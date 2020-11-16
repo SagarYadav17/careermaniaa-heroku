@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- index.html  21 Nov 2019 03:44:50 GMT -->
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <title>Merchant Dashboard</title>
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="{% static 'assets/css/app.min.css' %}">
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/components.css' %}">
+  <!-- Custom style CSS -->
+  <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+  <link rel='shortcut icon' type='image/x-icon' href="{% static 'assets/img/favicon.ico' %}" />
+</head>
+
+<body>
+  <div class="loader"></div>
+  <div id="app">
+    <div class="main-wrapper main-wrapper-1">
+      <div class="navbar-bg"></div>
+      <nav class="navbar navbar-expand-lg main-navbar sticky">
+        <div class="form-inline mr-auto">
+          <ul class="navbar-nav mr-3">
+            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg
+									collapse-btn"> <i data-feather="align-justify"></i></a></li>
+            <li><a href="#" class="nav-link nav-link-lg fullscreen-btn">
+                <i data-feather="maximize"></i>
+              </a></li>
+            <li>
+              <form class="form-inline mr-auto">
+                <div class="search-element">
+                  <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="200">
+                  <button class="btn" type="submit">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+              </form>
+            </li>
+          </ul>
+        </div>
+        <ul class="navbar-nav navbar-right">
+          <li style="padding-top: 6px;"><a href="{% url 'merchant_messages' %}"><i data-feather="mail" style="color: black;"></i></a></li>
+          <li class="dropdown"><a href="#" data-toggle="dropdown"
+              class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="{{coaching.logo.url}}"
+                class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
+            <div class="dropdown-menu dropdown-menu-right pullDown">
+              <div class="dropdown-title">Hello {{merchant.username}}</div>
+              <a href="{% url 'merchant_profile' %}" class="dropdown-item has-icon"> <i class="far
+										fa-user"></i> Profile
+              </a>
+              <a href="{% url 'coaching' %}" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
+                Settings
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="{% url 'logout' %}" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <div class="main-sidebar sidebar-style-2">
+        <aside id="sidebar-wrapper">
+          <div class="sidebar-brand">
+            <a href="{% url 'merchant' %}"> <img alt="image" src="{% static 'assets/img/logo.png' %}" class="header-logo" /> <span
+                class="logo-name">CareerManiaa</span>
+            </a>
+          </div>
+          <ul class="sidebar-menu">
+            <li class="menu-header">Main</li>
+            <li class="dropdown active">
+              <a href="{% url 'merchant' %}" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="command"></i><span>Courses </span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="{% url 'add_course' %}">Add Courses</a></li>
+                  <li><a class="nav-link" href="{% url 'merchant_courses' %}">All Courses </a></li>
+                         </ul>
+            </li>
+            <li class="dropdown">
+            <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="chevrons-down"></i><span>General settings</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="{% url 'merchant_profile' %}">Profile</a></li>
+                <li><a class="nav-link" href="{% url 'coaching' %}">Coaching</a></li>
+                <li><a class="nav-link" href="{% url 'add_branch' %}">Branch</a></li>
+                  <li><a class="nav-link" href="{% url 'add_faculty' %}">Faculty</a></li>
+                  <li><a class="nav-link" href="{% url 'add_batch' %}">Batch</a></li>
+                  <li><a class="nav-link" href="{% url 'owner' %}">Owner</a></li>
+                  <li><a class="nav-link" href="{% url 'payment' %}">Bank Details</a></li>
+                  <li><a class="nav-link" href="{% url 'add_offer' %}">Offers</a></li>
+                  <li><a class="nav-link" href="{% url 'add_discount' %}">Discounts</a></li>
+                     </ul>
+            </li>
+            <li class="menu-header">Support</li>
+              <li><a class="nav-link" href="{% url 'merchant_messages' %}"><i data-feather="mail"></i><span>Chat with us</span></a></li>
+
+
+            <li class="menu-header">...</li>
+            <li><a class="nav-link" href="{% url 'merchant_invoice' %}"><i data-feather="file"></i><span>Invoice</span></a></li>
+            <li><a class="nav-link" href="{% url 'merchant_table' %}"><i data-feather="file-text"></i><span>Reports</span></a></li>
+
+
+                  </aside>
+      </div>
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-body">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="card">
+                  <div class="chat">
+                    <div class="chat-header clearfix">
+                      <img src="{% static 'assets/img/users/user-1.png' %}" alt="avatar">
+                      <div class="chat-about">
+                        <div class="chat-with">ADMIN</div>
+                        <div class="chat-num-messages"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="chat-box" id="mychatbox">
+                    <div class="card-body" style="height: 300px;overflow: scroll;">
+                      {% for message in messages %}
+                      {% if message.sender == merchant %}
+                        <div class="message-box-holder">
+                         <div class="message-box">
+                           {{message.message}}
+                         </div>
+                       </div>            
+                       {% else %}
+                       <div class="message-box-holder">
+                        <div class="message-box message-partner">
+                          {{message.message}}
+                        </div>
+                      </div>                     
+                      {% endif %}
+                      {% endfor %}
+                    </div>
+                    <div class="card-footer chat-form">
+                      <form action="messages" method="POST">{% csrf_token %}
+                        <input type="text" class="form-control" placeholder="Type a message" name="msg">
+                        <button class="btn btn-primary" type="submit">
+                          <i class="far fa-paper-plane"></i>
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="settingSidebar">
+          <a href="javascript:void(0)" class="settingPanelToggle"> <i class="fa fa-spin fa-cog"></i>
+          </a>
+          <div class="settingSidebar-body ps-container ps-theme-default">
+            <div class=" fade show active">
+              <div class="setting-panel-header">Setting Panel
+              </div>
+              <div class="p-15 border-bottom">
+                <h6 class="font-medium m-b-10">Select Layout</h6>
+                <div class="selectgroup layout-color w-50">
+                  <label class="selectgroup-item">
+                    <input type="radio" name="value" value="1" class="selectgroup-input-radio select-layout" checked>
+                    <span class="selectgroup-button">Light</span>
+                  </label>
+                  <label class="selectgroup-item">
+                    <input type="radio" name="value" value="2" class="selectgroup-input-radio select-layout">
+                    <span class="selectgroup-button">Dark</span>
+                  </label>
+                </div>
+              </div>
+              <div class="p-15 border-bottom">
+                <h6 class="font-medium m-b-10">Sidebar Color</h6>
+                <div class="selectgroup selectgroup-pills sidebar-color">
+                  <label class="selectgroup-item">
+                    <input type="radio" name="icon-input" value="1" class="selectgroup-input select-sidebar">
+                    <span class="selectgroup-button selectgroup-button-icon" data-toggle="tooltip"
+                      data-original-title="Light Sidebar"><i class="fas fa-sun"></i></span>
+                  </label>
+                  <label class="selectgroup-item">
+                    <input type="radio" name="icon-input" value="2" class="selectgroup-input select-sidebar" checked>
+                    <span class="selectgroup-button selectgroup-button-icon" data-toggle="tooltip"
+                      data-original-title="Dark Sidebar"><i class="fas fa-moon"></i></span>
+                  </label>
+                </div>
+              </div>
+              <div class="p-15 border-bottom">
+                <h6 class="font-medium m-b-10">Color Theme</h6>
+                <div class="theme-setting-options">
+                  <ul class="choose-theme list-unstyled mb-0">
+                    <li title="white" class="active">
+                      <div class="white"></div>
+                    </li>
+                    <li title="cyan">
+                      <div class="cyan"></div>
+                    </li>
+                    <li title="black">
+                      <div class="black"></div>
+                    </li>
+                    <li title="purple">
+                      <div class="purple"></div>
+                    </li>
+                    <li title="orange">
+                      <div class="orange"></div>
+                    </li>
+                    <li title="green">
+                      <div class="green"></div>
+                    </li>
+                    <li title="red">
+                      <div class="red"></div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="p-15 border-bottom">
+                <div class="theme-setting-options">
+                  <label class="m-b-0">
+                    <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input"
+                      id="mini_sidebar_setting">
+                    <span class="custom-switch-indicator"></span>
+                    <span class="control-label p-l-10">Mini Sidebar</span>
+                  </label>
+                </div>
+              </div>
+              <div class="p-15 border-bottom">
+                <div class="theme-setting-options">
+                  <label class="m-b-0">
+                    <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input"
+                      id="sticky_header_setting">
+                    <span class="custom-switch-indicator"></span>
+                    <span class="control-label p-l-10">Sticky Header</span>
+                  </label>
+                </div>
+              </div>
+              <div class="mt-4 mb-4 p-3 align-center rt-sidebar-last-ele">
+                <a href="#" class="btn btn-icon icon-left btn-primary btn-restore-theme">
+                  <i class="fas fa-undo"></i> Restore Default
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="main-footer">
+        <div class="footer-left">
+          CAREERMANIAA
+        </div>
+        <div class="footer-right">
+        </div>
+      </footer>
+    </div>
+  </div>
+  <style>
+    .message-box-holder {
+  width: 100%;
+  margin: 0 0 15px;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-end;
+}
+.message-partner {
+  background: green;
+  border: 2px solid rgba(0, 114, 135, .1);
+  align-self: flex-start;
+}
+.message-box {
+  padding: 6px 10px;
+  border-radius: 6px 0 6px 0;
+  position: relative;
+  background: blueviolet;
+  border: 2px solid rgba(100, 170, 0, .1);
+  color: white;
+  font-size: 12px;
+}
+
+  </style>
+  <!-- General JS Scripts -->
+  <script src="{% static 'assets/js/app.min.js' %}"></script>
+  <!-- JS Libraies -->
+  <!-- Page Specific JS File -->
+  <script src="{% static 'assets/js/page/chat.js' %}"></script>
+  <!-- Template JS File -->
+  <script src="{% static 'assets/js/scripts.js' %}"></script>
+  <!-- Custom JS File -->
+  <script src="{% static 'assets/js/custom.js' %}"></script>
+</body>
+
+
+<!-- chat.html  21 Nov 2019 03:50:12 GMT -->
+</html>
