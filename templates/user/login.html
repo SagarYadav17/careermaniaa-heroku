@@ -232,7 +232,7 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-6 col-sm-offset-3">
-              <h1 class="module-title font-alt mb-0">sign-up</h1>
+              <h1 class="module-title font-alt mb-0">Login</h1>
             </div>
           </div>
         </div>
@@ -265,7 +265,7 @@
                   <h2 class="sign-up__title text-uppercase animated fadeIn">Login</h2>
                 </header>
                 <div class="panel text-left animated fadeInUpSmall">
-                  <form data-behavior="sign-up" action="{% url 'login_user' %}" method="POST">{% csrf_token %}
+                  <form data-behavior="sign-up" method="POST">{% csrf_token %}
                     <fieldset class="form-group">
                       <label for="email">Email</label>
                       <input name="email" type="email" class="form-control" placeholder="Enter email address"
