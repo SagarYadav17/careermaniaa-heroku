@@ -166,6 +166,7 @@ EMAIL_HOST_USER = 'mobilecare.smtp@gmail.com'
 EMAIL_HOST_PASSWORD = 'MobileCareSMTP'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'Mobile Care Team'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 SITE_ID = 1
 
