@@ -1,5 +1,5 @@
 from django.urls import path, include
-from mania import views
+from . import views
 
 from django.contrib.auth import views as auth_views
 
@@ -33,4 +33,8 @@ urlpatterns = [
     path('del_item/<str:id>', views.delete_cartitem, name='del_item'),
     path('del_wishlist_item/<str:id>', views.delete_wishlistitem, name='del_wishlist_item'),
     path('search', views.search, name='search'),
+     path('about', views.about, name='about'),
+
+     path("checkout/<str:id>", views.checkout, name="Checkout"),
+    path("payment", views.handlerequest, name="HandleRequest"),
 ]

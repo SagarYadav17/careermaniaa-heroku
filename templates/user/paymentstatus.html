@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--  
+    Document Title
+    =============================================
+    -->
+    <title>CAREERMANIAA</title>
+    <!--  
+    Favicons
+    =============================================
+    -->
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'user_assets/images/favicons/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'user_assets/images/favicons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'user_assets/images/favicons/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'user_assets/images/favicons/favicon-16x16.png' %}">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{% static 'user_assets/images/favicons/ms-icon-144x144.png' %}">
+    <meta name="theme-color" content="#ffffff">
+    <!--  
+    Stylesheets
+    =============================================
+    
+    -->
+    <!-- Default stylesheets-->
+    <link href="{% static 'user_assets/lib/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Template specific stylesheets-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Volkhov:400i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <link href="{% static 'user_assets/lib/animate.css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'user_assets/lib/components-font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link href="{% static 'user_assets/lib/pe-icon-7-stroke/css/pe-icon-7-stroke.css' %}" rel="stylesheet">
+    <link href="{% static 'user_assets/lib/et-line-font/et-line-font.css' %}" rel="stylesheet">
+    <link href="{% static 'user_assets/lib/flexslider/flexslider.css' %}" rel="stylesheet">
+    <link href="{% static 'user_assets/lib/owl.carousel/dist/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'user_assets/lib/owl.carousel/dist/assets/owl.theme.default.min.css' %}" rel="stylesheet">
+    <link href="{% static 'user_assets/lib/magnific-popup/dist/magnific-popup.css' %}" rel="stylesheet">
+    <link href="{% static 'user_assets/lib/simple-text-rotator/simpletextrotator.css' %}" rel="stylesheet">
+    <!-- Main stylesheet and color file-->
+    <link href="{% static 'user_assets/css/style.css' %}" rel="stylesheet">
+    <link id="color-scheme" href="{% static 'user_assets/css/colors/default.css' %}" rel="stylesheet">
+     <!--[if lt IE 9]>
+            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script>window.html5 || document.write('<script src="assets/lib/html5shiv.js"><\/script>')</script>
+        <![endif]-->
+        
+    </head>
+  <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
+    <script>
+    
+      function showPosition() {
+          if(navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(function(position) {
+                  var positionInfo = "Your current position is (" + "Latitude: " + position.coords.latitude + ", " + "Longitude: " + position.coords.longitude + ")"
+                  var myform = document.getElementById("myform");
+                  document.getElementById("lat").value = position.coords.latitude;
+                  document.getElementById("lng").value = position.coords.longitude;
+                  myform.submit();
+              });
+          } else {
+              alert("Sorry, your browser does not support HTML5 geolocation.");
+          }
+      }
+  </script>
+  <form action="products" method="POST" id="myform">{% csrf_token %}
+      <input type="hidden" value="" name="lat" id="lat">
+      <input type="hidden" value="" name="lng" id="lng">
+  </form>
+    <main>
+        <!-- Navbar-->
+         <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse">
+              <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span>
+              <span class="icon-bar"></span></button><a class="navbar-brand" href="#"><img src="{% static 'user_assets/images/logo.ico' %}" alt=""></a>
+          </div>
+          <div class="collapse navbar-collapse" id="custom-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="fa fa-home" aria-hidden="true">home</i></a>
+             <ul class="dropdown-menu">
+                  <li><a href="about"><i class="fa fa-address-card">ABOUT US</i></a></li>
+                    </ul>
+                </li>
+        
+                <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="fa fa-university">Coaching classes</i></a>
+                <ul class="dropdown-menu">
+                  <li><a href="science_coachings"><i class="pe-7s-science"> SCIENCE</i></a></li>
+                    <li><a href="commerce_coachings"><i class="pe-7s-cash"> COMMERCE</i></a></li>
+                    <li><a href="other_coachings"><i class="pe-7s-box2"> humanlities</i></a></li>
+                  </ul>
+              </li>
+              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="glyphicon glyphicon-education"></i>COLLEGES</a>
+                <ul class="dropdown-menu" role="menu">
+                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="glyphicon glyphicon-plane"></i>SCIENCE-COLLEGES</a>
+                    <ul class="dropdown-menu">
+                       <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="glyphicon glyphicon-plane"></i>ENGINEERING-COLLEGES</a>
+                    <ul class="dropdown-menu">
+                     <li><a herf="#">M.TECH</a></li>
+                     <li><a herf="#">B.TECH</a></li>
+                     <li><a herf="#">DIPLOMA</a></li>
+                     <li><a herf="#">MORE</a></li>
+                           </ul>
+                        </li>
+                      <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="glyphicon glyphicon-plane"></i>MEDICAL-COLLEGES</a>
+                      <ul class="dropdown-menu">
+                      <li><a herf="#">MBBS</a></li>
+                      <li><a herf="#">BDS</a></li>
+                      <li><a herf="#">DIPLOMA</a></li>
+                      <li><a herf="#">NURSING</a></li>
+                      <li><a herf="#">MORE</a></li>
+                   </ul>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="glyphicon glyphicon-plane"></i>DEGREE-COLLEGES</a>
+                      <ul class="dropdown-menu">
+                      <li><a herf="#">PhD</a></li>
+                      <li><a herf="#">M.Sc.</a></li>
+                      <li><a herf="#">B.Sc.</a></li>
+                      <li><a herf="#">BCA</a></li>
+                      <li><a herf="#">MORE</a></li>
+                </ul>
+                </li>
+                </ul>
+                </li>
+                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">COMMERCE COLLEGE</a>
+                    <ul class="dropdown-menu">
+                     <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="glyphicon glyphicon-plane"></i>MANAGEMENT-COLLEGES</a>
+                     <ul class="dropdown-menu">
+                     <li><a herf="#">MBA</a></li>
+                     <li><a herf="#">BBA</a></li>
+                     <li><a herf="#">PGDM</a></li>
+                     <li><a herf="#">DIPLOMA</a></li>
+                     <li><a herf="#">MORE</a></li>
+                         </ul>
+                        </li>
+                     <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="glyphicon glyphicon-plane"></i>DEGREE-COLLEGES</a>
+                     <ul class="dropdown-menu">
+                         <li><a herf="#">PhD</a></li>
+                         <li><a herf="#">M.Com.</a></li>
+                         <li><a herf="#">B.Com.</a></li>
+                         <li><a herf="#">BBA</a></li>
+                         <li><a herf="#">MORE</a></li>
+                         </ul>
+                        </li>
+                      </ul>
+                     </li>
+                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">ARTS/humanlities COLLEGES</a>
+                    <ul class="dropdown-menu">
+                     <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="glyphicon glyphicon-plane"></i>LAW-COLLEGES</a>
+                     <ul class="dropdown-menu">
+                         <li><a herf="#">LLB</a></li>
+                         <li><a herf="#">LLM</a></li>
+                         <li><a herf="#">DIPLOAMA</a></li>
+                         <li><a herf="#">MORE</a></li>
+                         </ul>
+                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="glyphicon glyphicon-plane"></i>MASS-COMUNICATION-COLLEGES</a>
+                        <ul class="dropdown-menu">
+                        <li><a herf="#">M.J.</a></li>
+                        <li><a herf="#">B.J.</a></li>
+                        <li><a herf="#">B.J.M.C.</a></li>
+                        <li><a herf="#">B.M.C.</a></li>
+                        <li><a herf="#">B.M.M</a></li>
+                        <li><a herf="#">B.M.M.M.C</a></li>
+                        <li><a herf="#">DIPLOMA</a></li>
+                        </ul>
+                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="glyphicon glyphicon-plane"></i>DEGREE-COLLEGES</a>
+                         <ul class="dropdown-menu">
+                         <li><a herf="#">B.A</a></li>
+                         <li><a herf="#">M.A</a></li>
+                         <li><a herf="#">DIPLOMA</a></li>
+                         <li><a herf="#">MORE</a></li>
+                        </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                  </li>
+                <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="fa fa-cogs">COURSES</i></a>
+                <ul class="dropdown-menu">
+                <li><a herf="#">DIPLOMA</a></li>
+                    <li><a herf="#">CERTIFICATE</a></li>
+                <li><a herf="#">LONG-TERM</a></li>
+                </ul>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="fa fa-users">CLASS-ROOMS</i></a>
+                <ul class="dropdown-menu">
+                   <li><a href="#"><i class="pe-7s-science">SCIENCE</i></a></li>
+                    <li><a href="#"><i class="pe-7s-cash"> COMMERCE</i></a></li>
+                    <li><a href="#"><i class="pe-7s-box2"> humanlities</i></a></li>
+                </ul>
+               </li>
+                <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="fa fa-paper-plane">JOBS</i></a>
+                <ul class="dropdown-menu">
+                    <li><a herf="#">PART-TIME</a></li>
+                    <li><a herf="#">FULL-TIME</a></li>
+                </ul>
+               </li>
+               <li class="dropdown"><a class="dropdown-toggle" onclick="showPosition()">NEAR BY</a></i></li>
+               <li class="dropdown"><a class="dropdown-toggle" href="search" ><i class="fa fa-search"></a></i></li>
+				<li> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><span class="#"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="merchant_view">Merchant View</a></li> 
+                        <li><a href="{% url 'login_user' %}">Login</a></li> 
+                <li><a href="register_user">Sign Up</a></li>
+                <li><a href="cart"><i class="fa fa-shopping-cart"></i></a></li>
+                <li><a href="wishlist"><i class="fa fa-heart"></i></a></li>
+               </ul>
+                </li>
+              </ul>
+            </div>
+             </div>
+             </nav>
+{% block body %}
+<div class="container" style="padding:20px">
+    <div class="col my-6">
+
+        <center><h3><b>Payment status regarding your Order ID {{response.ORDERID}}</b></h3></center>
+        <br>
+        {% if response.RESPCODE == '01' %}
+        <center><h4 style="color:green">ORDER SUCCESS</h4></center>
+        {% else %}
+        <center><h4 style="color:red">ORDER FAILURE</h4></center>
+        {% endif%}
+        <br>
+		Name : {{registration.first_name}}  {{registration.last_name}}<br>
+		Institute : {{registration.course.name}}<br>
+        Order ID : {{response.ORDERID}} <br>
+        TXNID : {{response.TXNID}} <br>
+        TXNAMOUNT : ₹ {{response.TXNAMOUNT}}<br>
+        TXNDATE : {{response.TXNDATE}} <br>
+        Status : {{response.STATUS}} <br>
+        Response Message : {{response.RESPMSG}} <br>
+
+		<!--div style="padding:10px"><a href="{{reciept}}" download><button class="primary-btn">Print</button></a></div-->
+
+    </div>
+
+</div>
+{% endblock %}
+{% block js %}
+<script>
+</script>
+{% endblock %}
+
+<div class="module-small bg-dark">
+	<div class="container">
+	  <div class="row">
+		<div class="col-sm-3">
+		  <div class="widget">
+			<h5 class="widget-title font-alt">About Titan</h5>
+			<p>The languages only differ in their grammar, their pronunciation and their most common words.</p>
+			<p>Phone: +1 234 567 89 10</p>Fax: +1 234 567 89 10
+			<p>Email:<a href="#">somecompany@example.com</a></p>
+		  </div>
+		</div>
+		<div class="col-sm-3">
+		  <div class="widget">
+			<h5 class="widget-title font-alt">Recent Comments</h5>
+			<ul class="icon-list">
+			  <li>Maria on <a href="#">Designer Desk Essentials</a></li>
+			  <li>John on <a href="#">Realistic Business Card Mockup</a></li>
+			  <li>Andy on <a href="#">Eco bag Mockup</a></li>
+			  <li>Jack on <a href="#">Bottle Mockup</a></li>
+			  <li>Mark on <a href="#">Our trip to the Alps</a></li>
+			</ul>
+		  </div>
+		</div>
+		<div class="col-sm-3">
+		  <div class="widget">
+			<h5 class="widget-title font-alt">Blog Categories</h5>
+			<ul class="icon-list">
+			  <li><a href="#">Photography - 7</a></li>
+			  <li><a href="#">Web Design - 3</a></li>
+			  <li><a href="#">Illustration - 12</a></li>
+			  <li><a href="#">Marketing - 1</a></li>
+			  <li><a href="#">Wordpress - 16</a></li>
+			</ul>
+		  </div>
+		</div>
+		<div class="col-sm-3">
+		  <div class="widget">
+			<h5 class="widget-title font-alt">Popular Posts</h5>
+			<ul class="widget-posts">
+			  <li class="clearfix">
+				<div class="widget-posts-image"><a href="#"><img src="{% static 'user_assets/images/rp-1.jpg' %}" alt="Post Thumbnail"/></a></div>
+				<div class="widget-posts-body">
+				  <div class="widget-posts-title"><a href="#">Designer Desk Essentials</a></div>
+				  <div class="widget-posts-meta">23 january</div>
+				</div>
+			  </li>
+			  <li class="clearfix">
+				<div class="widget-posts-image"><a href="#"><img src="{% static 'user_assets/images/rp-2.jpg' %}" alt="Post Thumbnail"/></a></div>
+				<div class="widget-posts-body">
+				  <div class="widget-posts-title"><a href="#">Realistic Business Card Mockup</a></div>
+				  <div class="widget-posts-meta">15 February</div>
+				</div>
+			  </li>
+			</ul>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </div>
+  <hr class="divider-d">
+  <footer class="footer bg-dark">
+	<div class="container">
+	  <div class="row">
+		<div class="col-sm-6">
+		  <p class="copyright font-alt">&copy; 2017&nbsp;<a href="index.html">TitaN</a>, All Rights Reserved</p>
+		</div>
+		<div class="col-sm-6">
+		  <div class="footer-social-links"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a><a href="#"><i class="fa fa-skype"></i></a>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </footer>
+  <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
+  </div>
+</main>
+
+
+
+
+		  
+<!--JavaScripts
+=============================================
+-->
+<script src="{% static 'user_assets/lib/jquery/dist/jquery.js' %}"></script>
+<script src="{% static 'user_assets/lib/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'user_assets/lib/wow/dist/wow.js' %}"></script>
+<script src="{% static 'user_assets/lib/imagezoom/imagezoom.js' %}"></script>
+<script src="{% static 'user_assets/lib/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js' %}"></script>
+<script src="{% static 'user_assets/lib/isotope/dist/isotope.pkgd.js' %}"></script>
+<script src="{% static 'user_assets/lib/imagesloaded/imagesloaded.pkgd.js' %}"></script>
+<script src="{% static 'user_assets/lib/flexslider/jquery.flexslider.js' %}"></script>
+<script src="{% static 'user_assets/lib/owl.carousel/dist/owl.carousel.min.js' %}"></script>
+<script src="{% static 'user_assets/lib/smoothscroll.js' %}"></script>
+<script src="{% static 'user_assets/lib/magnific-popup/dist/jquery.magnific-popup.js' %}"></script>
+<script src="{% static 'user_assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js' %}"></script>
+<script src="{% static 'user_assets/js/plugins.js' %}"></script>
+<script src="{% static 'user_assets/js/main.js' %}"></script>
+</body>
+</html>

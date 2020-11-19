@@ -136,3 +136,21 @@ class Wishlist(models.Model):
 
     def __str__(self):
         return  self.id
+
+class Registration(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    address = models.ForeignKey(Address, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=20, default="")
+    last_name = models.CharField(max_length=20, default="")
+    mobile = models.CharField(max_length=15, default="")
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    fees = models.CharField(max_length=10)
+    registration_id = models.CharField(max_length=100, unique=True, default="")
+    txn_id = models.CharField(max_length=100, default="")
+    txn_amount = models.CharField(max_length=20, default="")
+    txn_date = models.CharField(max_length=50, default="")
+    txn_status = models.CharField(max_length=100, default="")
+    txn_msg = models.CharField(max_length=400, default="")
+
+    def __str__(self):
+        return self.first_name + self.last_name
