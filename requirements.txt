@@ -31,3 +31,4 @@ urllib3==1.26.0
 WeasyPrint==52.1
 webencodings==0.5.1
 whitenoise==5.2.0
+geocoder==1.38.1 

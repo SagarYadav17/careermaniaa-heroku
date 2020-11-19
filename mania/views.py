@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect
 
 from mania.models import User
-from merchant_app.models import Merchant_Details
+from merchant_app.models import *
 
 from django.db import IntegrityError
 
@@ -127,6 +127,7 @@ def login_user(request):
 
     return render(request, 'user/login.html')
 
+import reverse_geocoder as rg
 
 def reverseGeocode(coordinates):
     result = rg.search(coordinates)
@@ -317,3 +318,22 @@ def delete_wishlistitem(request, id):
 
 def about(request):
     return render(request, 'user/about.html')
+
+def search(request):
+    if request.method == "POST":
+        keyword = request.POST['keyword']
+        if keyword == "":
+            return render(request, 'search.html', {'length': 0})
+        courses = []
+        courses += Course.objects.filter(Q(name__icontains=keyword) | Q(description__icontains=keyword) |
+                                              Q(coaching__icontains=keyword) | Q(branch__icontains=keyword))
+        all_address = Address.objects.filter(Q(city__icontains=keyword) |Q(line1__icontains=keyword) |Q(apartment__icontains=keyword) |
+                                                Q(building__icontains=keyword) |Q(landmark__icontains=keyword) |
+                                                Q(district__icontains=keyword) | Q(state__icontains=keyword))
+        for address in all_address:
+            coaching = Coaching.objects.filter(merchant=address.user)
+            courses += Course.objects.filter(coaching=coaching)
+        courses = list(set(courses))
+        return render(request, 'user/search.html', {'courses': courses, 'keyword': keyword})
+    courses = Course.objects.all()
+    return render(request, 'user/search.html', {'courses': courses})
