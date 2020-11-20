@@ -14,7 +14,14 @@ class Merchant_Details(models.Model):
         ('Sports', 'Sports'),
     )
 
+    Merchant_Type_Choices = (
+        ('College', 'College'),
+        ('Institute', 'Institute'),
+        ('Recruiter', 'Recruiter'),
+    )
+
     merchant = models.ForeignKey('mania.User', on_delete=models.CASCADE)
+    merchant_type = models.CharField(choices=Merchant_Type_Choices, max_length=10, blank=True, null=True)
     first_name = models.CharField(max_length=250, blank=False, null=False)
     last_name = models.CharField(max_length=250, blank=False, null=False)
     organization = models.CharField(max_length=250, blank=False, null=False)
@@ -274,6 +281,7 @@ class Job(models.Model):
     company_address = models.CharField(max_length=500, blank=True, null=True)
     city = models.CharField(max_length=50, blank=True, null=True)
     state = models.CharField(max_length=50, blank=True, null=True)
+    title = models.CharField(max_length=50, blank=True, null=True)
     description = models.TextField()
 
     def __str__(self):
