@@ -210,9 +210,9 @@
                 <ul class="dropdown-menu">
                   <li><a href="merchant_view">Merchant View</a></li> 
                         <li><a href="{% url 'login_user' %}">Login</a></li> 
-                <li><a href="register_user">Sign Up</a></li>
-                <li><a href="cart"><i class="fa fa-shopping-cart"></i></a></li>
-                <li><a href="wishlist"><i class="fa fa-heart"></i></a></li>
+                <li><a href="{% url 'register_user' %}">Sign Up</a></li>
+                <li><a href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i></a></li>
+                <li><a href="{% url 'wishlist' %}"><i class="fa fa-heart"></i></a></li>
                </ul>
                 </li>
               </ul>
