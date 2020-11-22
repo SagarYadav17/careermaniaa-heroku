@@ -12,6 +12,7 @@ from django.urls import reverse
 
 from django.contrib import messages
 from datetime import *
+from mania.views import send_confirmation_email
 
 
 def merchant_view(request):
