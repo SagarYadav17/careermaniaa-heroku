@@ -5,30 +5,15 @@ from django.db import models
 
 
 class Merchant_Details(models.Model):
-    Stream_CHOICES = (
-        ('Science', 'Science'),
-        ('Commerce', 'Commerce'),
-        ('Arts', 'Arts'),
-        ('Music', 'Music'),
-        ('Dance', 'Dance'),
-        ('Sports', 'Sports'),
-    )
-
-    Merchant_Type_Choices = (
-        ('College', 'College'),
-        ('Institute', 'Institute'),
-        ('Recruiter', 'Recruiter'),
-    )
-
     merchant = models.ForeignKey('mania.User', on_delete=models.CASCADE)
-    merchant_type = models.CharField(choices=Merchant_Type_Choices, max_length=10, blank=True, null=True)
+    merchant_type = models.CharField(max_length=10, blank=True, null=True)
     first_name = models.CharField(max_length=250, blank=False, null=False)
     last_name = models.CharField(max_length=250, blank=False, null=False)
     organization = models.CharField(max_length=250, blank=False, null=False)
     email = models.CharField(max_length=250, blank=False, null=False)
     mobile = models.CharField(max_length=250, blank=False, null=False)
     stream = models.CharField(max_length=250, blank=False, null=False,
-                              verbose_name='coaching_stream', choices=Stream_CHOICES, default=None
+                              verbose_name='coaching_stream', default=None
                               )
 
     def __str__(self):
@@ -85,17 +70,12 @@ class CoachingReview(models.Model):
 
 
 class Branch(models.Model):
-    Type_CHOICES = (
-        ('Main', 'Main'),
-        ('Sub', 'Sub')
-    )
-
     name = models.CharField(max_length=250, blank=False,
                             null=False, verbose_name='coaching_branch_name')
     coaching = models.ForeignKey(
         Coaching, related_name='branches', on_delete=models.CASCADE)
     branch_type = models.CharField(max_length=250, blank=False, null=False,
-                                   verbose_name='coaching_branch', choices=Type_CHOICES, default="Main"
+                                   verbose_name='coaching_branch', default="Main"
                                    )
 
     def __str__(self):
@@ -115,27 +95,10 @@ class Geolocation(models.Model):
 
 
 class Course(models.Model):
-
-    Stream_CHOICES = (
-        ('Science', 'Science'),
-        ('Commerce', 'Commerce'),
-        ('Arts', 'Arts'),
-        ('Music', 'Music'),
-        ('Dance', 'Dance'),
-        ('Sports', 'Sports'),
-    )
-
-    trial_period = (
-        ('1 Day', '1 Day'),
-        ('3 Days', '3 Days'),
-        ('1 Week', '1 Week'),
-    )
-
     name = models.CharField(max_length=250, blank=False,
                             null=False, verbose_name='branch_course_name')
     coaching = models.ForeignKey(Coaching, on_delete=models.CASCADE)
-    trial = models.CharField(choices=trial_period,
-                             default='Not Available', max_length=10)
+    trial = models.CharField(default='Not Available', max_length=10)
     branch = models.ForeignKey(
         Branch, related_name='courses_of', on_delete=models.CASCADE)
     description = models.TextField(blank=True, null=True)
@@ -148,7 +111,7 @@ class Course(models.Model):
         max_length=30, blank=True, null=False, default="INR")
     is_active = models.BooleanField(default=False)
     stream = models.CharField(max_length=250, blank=False, null=False,
-                              verbose_name='coaching_stream', choices=Stream_CHOICES, default=None
+                              verbose_name='coaching_stream', default=None
                               )
 
     def __str__(self):
@@ -230,25 +193,12 @@ class Message(models.Model):
 
 
 class College(models.Model):
-    university_choices = [
-        ('Open', 'Open'),
-        ('State University', 'State University'),
-    ]
-
-    institute_choices = [
-        ('Engg. & Technology', 'Engg. & Technology'),
-        ('Medical', 'Medical'),
-        ('Pharmaceutical', 'Pharmaceutical'),
-    ]
-
     email = models.OneToOneField('mania.User', on_delete=models.CASCADE)
     registration_no = models.SmallIntegerField()
     contact_no = models.PositiveIntegerField()
     college_name = models.CharField(max_length=255, blank=True, null=True)
-    university_type = models.CharField(
-        choices=university_choices, max_length=50, blank=True, null=True)
-    institute_type = models.CharField(
-        choices=institute_choices, max_length=50, blank=True, null=True)
+    university_type = models.CharField(max_length=50, blank=True, null=True)
+    institute_type = models.CharField(max_length=50, blank=True, null=True)
     chairman = models.CharField(max_length=50, blank=True, null=True)
     college_address = models.CharField(max_length=255, blank=True, null=True)
     college_address_2 = models.CharField(max_length=255, blank=True, null=True)
@@ -259,20 +209,23 @@ class College(models.Model):
     def __str__(self):
         return self.college_name
 
+
 class Booking(models.Model):
     BOOKING_STATUS = (
-            ('Pending for Approval', 'Pending for Approval'),
-            ('Awaiting', 'Awaiting'),
-            ('Accepted', 'Accepted'),
-            ('Rejected', 'Rejected'),
+        ('Pending for Approval', 'Pending for Approval'),
+        ('Awaiting', 'Awaiting'),
+        ('Accepted', 'Accepted'),
+        ('Rejected', 'Rejected'),
     )
     user = models.ForeignKey('mania.User', on_delete=models.CASCADE)
     check_in = models.DateTimeField(auto_now_add=True)
     check_out = models.DateTimeField()
-    status = models.CharField(choices=BOOKING_STATUS, max_length=20, blank=True, null=True)
+    status = models.CharField(choices=BOOKING_STATUS,
+                              max_length=20, blank=True, null=True)
 
     def __str__(self):
         return self.user
+
 
 class Job(models.Model):
     user = models.ForeignKey('mania.User', on_delete=models.CASCADE)

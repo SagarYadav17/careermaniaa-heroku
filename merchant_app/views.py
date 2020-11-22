@@ -28,12 +28,13 @@ def register_merchant(request):
         stream = request.POST['stream']
         password = request.POST['password']
         organization = request.POST['organization']
+        merchant_type = request.POST['type']
 
         try:
             user = User.objects.create_merchant(email, username, password)
             user.save()
             merchant = Merchant_Details(first_name=fname, last_name=lname, email=email, mobile=mobile, organization=organization,
-                                        stream=stream, merchant=user)
+                                        stream=stream, merchant=user, merchant_type=merchant_type)
             merchant.save()
             send_confirmation_email(request, user)
             return redirect('merchant_login')
