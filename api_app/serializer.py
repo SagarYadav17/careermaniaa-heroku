@@ -4,43 +4,25 @@ from mania.models import *
 from merchant_app.models import *
 
 
-class UserAPI(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        exclude = ['password', 'name']
+        fields = ['id', 'email', 'username', 'is_staff', 'is_merchant', 'is_verified', 'is_student']
 
-
-class MerchantDetailsAPI(serializers.ModelSerializer):
-    class Meta:
-        model = Merchant_Details
-        fields = ('__all__')
-
-
-class CoachingAPI(serializers.ModelSerializer):
+class CoachingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Coaching
         fields = ('__all__')
 
 
-class BranchAPI(serializers.ModelSerializer):
-    class Meta:
-        model = Branch
-        fields = ('__all__')
 
-
-class CourseAPI(serializers.ModelSerializer):
-    class Meta:
-        model = Course
-        fields = ('__all__')
-
-
-
-class CollegeAPI(serializers.ModelSerializer):
+class CollegeSerializer(serializers.ModelSerializer):
     class Meta:
         model = College
         fields = ('__all__')
 
-class JobAPI(serializers.ModelSerializer):
+
+class JobSerializer(serializers.ModelSerializer):
     class Meta:
         model = Job
         fields = ('__all__')
