@@ -9,7 +9,6 @@ class Merchant_Details(models.Model):
     merchant_type = models.CharField(max_length=10, blank=True, null=True)
     first_name = models.CharField(max_length=250, blank=False, null=False)
     last_name = models.CharField(max_length=250, blank=False, null=False)
-    organization = models.CharField(max_length=250, blank=False, null=False)
     email = models.CharField(max_length=250, blank=False, null=False)
     mobile = models.CharField(max_length=250, blank=False, null=False)
     stream = models.CharField(max_length=250, blank=False, null=False,
@@ -26,7 +25,6 @@ class Coaching(models.Model):
                             blank=False, null=False)
     description = models.TextField(blank=False, null=False)
     logo = models.ImageField(upload_to='logos/', blank=True, null=True)
-    logo_link = models.URLField()
 
     def __str__(self):
         return self.name
@@ -53,10 +51,8 @@ class CoachingFacultyMember(models.Model):
     name = models.CharField(max_length=250, blank=False, null=False)
     age = models.PositiveIntegerField()
     specialization = models.CharField(max_length=250, blank=False, null=False)
-    meta_description = models.TextField(blank=True, null=True)
     faculty_image = models.ImageField(
         upload_to='faculties/', blank=True, null=True)
-    faculty_image_link = models.URLField()
 
     def __str__(self):
         return self.name
@@ -98,12 +94,11 @@ class Course(models.Model):
     name = models.CharField(max_length=250, blank=False,
                             null=False, verbose_name='branch_course_name')
     coaching = models.ForeignKey(Coaching, on_delete=models.CASCADE)
+    timePeriod = models.CharField(max_length=20, blank=True, null=True)
     trial = models.CharField(default='Not Available', max_length=10)
     branch = models.ForeignKey(
         Branch, related_name='courses_of', on_delete=models.CASCADE)
     description = models.TextField(blank=True, null=True)
-    start_date = models.DateField(editable=True)
-    end_date = models.DateField(editable=True)
     syllabus = models.FileField(blank=True, null=True)
     fees = models.DecimalField(
         blank=False, null=False, max_digits=10, decimal_places=2, default=None)
@@ -121,13 +116,10 @@ class Course(models.Model):
 class CoachingMetaData(models.Model):
     coaching = models.ForeignKey(
         Coaching, related_name="metadata_of", on_delete=models.CASCADE)
-    contact = models.CharField(blank=False, default=None, max_length=20)
-    help_contact = models.CharField(blank=True, default=None, max_length=20)
     owner_name = models.CharField(max_length=250, blank=True, null=True)
-    owner_description = models.TextField(blank=True, null=True)
     owner_image = models.ImageField(upload_to='owners/', blank=True, null=True)
-    owner_image_link = models.URLField(blank=True, null=True, default=None)
     established_on = models.DateField()
+    mobile = models.PositiveIntegerField()
 
     def __str__(self):
         return self.coaching.name
@@ -170,11 +162,11 @@ class Discount(models.Model):
 
 
 class Review(models.Model):
-    review = models.CharField(max_length=200, default=None)
+    reviewer = models.ForeignKey('mania.User', on_delete=models.CASCADE)
+    description = models.CharField(max_length=200, default=None)
     rating = models.IntegerField(default=None)
     coaching = models.ForeignKey(Coaching, on_delete=models.CASCADE)
-    user = models.ForeignKey('mania.User', on_delete=models.CASCADE)
-    review_time = models.DateTimeField(auto_now=False)
+    review_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.coaching.name + " - Review By : " + self.user.username
@@ -186,14 +178,14 @@ class Message(models.Model):
         'mania.User', on_delete=models.CASCADE, related_name="msg_sender")
     receiver = models.ForeignKey(
         'mania.User', on_delete=models.CASCADE, related_name="msg_receiver")
-    timestamp = models.DateTimeField(auto_now=False)
+    timestamp = models.DateTimeField(auto_now_add=False)
 
     def __str__(self):
         return str(self.sender) + " - Message : " + self.message
 
 
 class College(models.Model):
-    email = models.OneToOneField('mania.User', on_delete=models.CASCADE)
+    user = models.OneToOneField('mania.User', on_delete=models.CASCADE)
     registration_no = models.SmallIntegerField()
     contact_no = models.PositiveIntegerField()
     college_name = models.CharField(max_length=255, blank=True, null=True)
@@ -201,7 +193,6 @@ class College(models.Model):
     institute_type = models.CharField(max_length=50, blank=True, null=True)
     chairman = models.CharField(max_length=50, blank=True, null=True)
     college_address = models.CharField(max_length=255, blank=True, null=True)
-    college_address_2 = models.CharField(max_length=255, blank=True, null=True)
     country = models.CharField(max_length=50, blank=True, null=True)
     state = models.CharField(max_length=50, blank=True, null=True)
     city = models.CharField(max_length=50, blank=True, null=True)
