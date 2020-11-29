@@ -2,427 +2,547 @@
 {% load static %}
 {% block content %}
 <!--hero-slider-->
-<section class="home-section home-full-height bg-dark  parallax-bg -gradient" id="home">
-         <div class="hero-slider">
-          <ul class="slides">
-            <li class="bg-dark-30 bg-gradient" style="background-image:url({% static 'user_assets/images/146875-OTNM5C-535.jpg' %});">
-              <div class="titan-caption">
-                <div class="caption-content">
-                  <div class="font-alt mb-30 titan-title-size-1">Find classrooms &amp; colleges </div>
-                  <div class="font-alt mb-40 titan-title-size-4">Near you </div><a class="section-scroll btn btn-border-w btn-round" href="#about">APPLY-NOW</a>
+<div class="image-cover hero_banner hero-inner-2 shadow rlt" style="background:url({% static 'user_assets_new/img/banner-2.jpg' %}) no-repeat;" data-overlay="7">
+  <div class="elix_img_box">
+    <img src="{% static 'user_assets_new/img/preet-o.html' %}" class="img-fluid" alt="" />
+  </div>
+  <div class="container">
+    
+    <div class="hero-caption small_wd mb-5">
+      <h1 class="big-header-capt cl_2 mb-0">Learn on your schedule</h1>
+      <p>Study any topic, anytime. Explore thousands of courses for the lowest price ever!</p>
+    </div>
+    <!-- Type -->
+    <div class="row">
+      <div class="col-lg-8 col-md-12 col-sm-12">
+        <div class="banner-search shadow_high">
+          <div class="search_hero_wrapping">
+            <div class="row">
+            
+              <div class="col-lg-5 col-md-5 col-sm-12 br-right">
+                <div class="form-group">
+                  <div class="input-with-icon">
+                    <input type="text" class="form-control" placeholder="Keyword" />
+                    <img src="{% static 'user_assets_new/img/search.svg' %}" class="search-icon" alt="" />
                   </div>
                 </div>
-                 </li>
-            <li class="bg-dark-30 bg-gradient" style="background-image: url({% static 'user_assets/images/2513975.jpg' %});">
-              <div class="titan-caption">
-                <div class="caption-content">
-                  <div class="font-alt mb-30 titan-title-size-2">GET upto 50% OFF <br/> ON YOUR FIRST BOOKING
-                  </div><a class="btn btn-border-w btn-round" href="about">BOOK-NOW</a>
-                </div>
               </div>
-            </li>
-            <li class="bg-dark-30 bg-gradient" style="background-image: url({% static 'user_assets/images/2522847.jpg' %});">
-              <div class="titan-caption">
-                <div class="caption-content">
-                  <div class="font-alt mb-30 titan-title-size-1">BOOK YOUR BEST COLLEGES AND CLASS-ROOMS</div>
-                  <div class="font-alt mb-40 titan-title-size-3">NEAR YOU</div><a class="section-scroll btn btn-border-w btn-round" href="#about">FIND-NOW</a>
-                </div>
-              </div>
-            </li>
-            <li class="bg-dark-30 bg-gradient" style="background-image: url({% static 'user_assets/images/514343-PI8QLX-189.jpg' %});">
-              <div class="titan-caption">
-                <div class="caption-content">
-                    <div class="font-alt mb-30 titan-title-size-1">"BE AN EXPERT"<br/>IN YOUR FIELD </div>
-                  <div class="font-alt mb-40 titan-title-size-3">With SUCESS-FUll mentors</div><a class="section-scroll btn btn-border-w btn-round" href="#about">buy-now</a>
+              
+              <div class="col-lg-5 col-md-4 col-sm-12 small-pad">
+                <div class="form-group">
+                  <div class="input-with-icon">
+                    <select id="c-category" class="form-control">
+                      <option value="">&nbsp;</option>
+                      <option value="1">Web Designing</option>
+                      <option value="2">Business</option>
+                      <option value="3">Accounting</option>
+                      <option value="3">Development</option>
+                      <option value="3">Art & Culture</option>
+                    </select>
+                    <img src="{% static 'user_assets_new/img/pin.svg' %}" class="search-icon" alt="" />
                   </div>
                 </div>
-         </ul>
+              </div>
+              
+              <div class="col-lg-2 col-md-3 col-sm-12 pl-0">
+                <div class="form-group none">
+                  <a href="#" class="btn search-btn full-width">Search</a>
+                </div>
+              </div>
+              
+            </div>
+            
+          </div>
         </div>
-</section>
-        <!-- hero-slider End -->       
-    <!--<li> tags create the individual christmas lights. we're going to have 43 -->
- <ul class="strand">
-   <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
- <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <h2 class="module-title font-alt">OFFER SECTION</h2>
-   <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
- <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  </ul>
-  <section class="module sliding-portfolio">
-          <div class="row">
-            <div class="col-sm-6 col-sm-offset-3">
-            </div>
-          </div>
-          <div class="container-fluid">
-            <div class="row">
-              <div class="owl-carousel text-center" data-items="4" data-pagination="false" data-navigation="false">
-                <div class="owl-item">
-                  <div class="col-sm-12">
-                    <div class="work-item"><a href="#">
-                        <div class="work-image"><img src="{% static 'user_assets/images/owl-items/6711.jpg' %}" alt="Portfolio Item"/></div>
-                        <div class="work-caption font-alt">
-                          <h3 class="work-title">Corporate Identity</h3>
-                          <div class="work-descr">Illustration</div>
-                        </div></a></div>
-                  </div>
-                </div>
-                <div class="owl-item">
-                  <div class="col-sm-12">
-                    <div class="work-item"><a href="#">
-                        <div class="work-image"><img src="{% static 'user_assets/images/owl-items/11140.jpg' %}" alt="Portfolio Item"/></div>
-                        <div class="work-caption font-alt">
-                          <h3 class="work-title">Bag MockUp</h3>
-                          <div class="work-descr">Marketing</div>
-                        </div></a></div>
-                  </div>
-                </div>
-                <div class="owl-item">
-                  <div class="col-sm-12">
-                    <div class="work-item"><a href="#">
-                        <div class="work-image"><img src="{% static 'user_assets/images/owl-items/170.jpg' %}" alt="Portfolio Item"/></div>
-                        <div class="work-caption font-alt">
-                          <h3 class="work-title">Disk Cover</h3>
-                          <div class="work-descr">Illustration</div>
-                        </div></a></div>
-                  </div>
-                </div>
-                <div class="owl-item">
-                  <div class="col-sm-12">
-                    <div class="work-item"><a href="#">
-                        <div class="work-image"><img src="{% static 'user_assets/images/owl-items/9394.jpg' %}" alt="Portfolio Item"/></div>
-                        <div class="work-caption font-alt">
-                          <h3 class="work-title">Corporate Identity</h3>
-                          <div class="work-descr">Illustration</div>
-                        </div></a></div>
-                  </div>
-                </div>
-                <div class="owl-item">
-                  <div class="col-sm-12">
-                    <div class="work-item"><a href="#">
-                        <div class="work-image"><img src="{% static 'user_assets/images/owl-items/53384.jpg' %}" alt="Portfolio Item"/></div>
-                        <div class="work-caption font-alt">
-                          <h3 class="work-title">Bag MockUp</h3>
-                          <div class="work-descr">Marketing</div>
-                        </div></a></div>
-                  </div>
-                </div>
-                <div class="owl-item">
-                  <div class="col-sm-12">
-                    <div class="work-item"><a href="#">
-                        <div class="work-image"><img src="{% static 'user_assets/images/owl-items/Job1-01.jpg' %}" alt="Portfolio Item"/></div>
-                        <div class="work-caption font-alt">
-                          <h3 class="work-title">Disk Cover</h3>
-                          <div class="work-descr">Illustration</div>
-                        </div></a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            </div>
-        </section>
-   <!-- News-section -->  
-    <section class="news-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="titie-section wow fadeInDown animated ">
-                        <h2 class="module-title font-alt">STREAMS</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" >
-                    <div class="col-sm-4 wow fadeInDown animated" data-wow-delay="0.2s">
-                        <div class="blog-item">
-                            <a href="#"><img src="{% static 'user_assets/images/21350.jpg' %}" width="350" height="262" alt=""></a>
-                            <h3><a class="btn btn-border-w btn-circle" href="">SCIENCE</a> </h3>
-                    </div>
-                    </div>
-                    <div class="col-sm-4 wow fadeInDown animated" data-wow-delay="0.4s">
-                        <div class="blog-item">
-                            <a href="#"><img src="{% static 'user_assets/images/21339.jpg' %}" width="350" height="262" alt=""></a>
-                            <h3><a class="btn btn-border-w btn-circle" href="">COMMERCE</a> </h3>
-                      </div>
-                    </div>
-                    <div class="col-sm-4 wow fadeInDown animated" data-wow-delay="0.6s">
-                        <div class="blog-item">
-                            <a href="#"><img src="{% static 'user_assets/images/20700.jpg' %}" width="350" height="262" alt=""></a>
-                            <h3><a class="btn btn-border-w btn-circle" href="">HUMANILITES</a></h3>
-                            </div>
-                        </div>
-                     </div>
-                </div>
-      </section>
-        
-<!--main-showcase --> 
-        <div class="main showcase-page">
-        <section class="module-extra-small bg-dark">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-6 col-md-8 col-lg-9">
-                <div class="callout-text font-alt">
-                  <h4 style="margin-top: 0px; font-;"></h4>
-                  <p style="margin-bottom: 0px;">LOOKING FOR YOU!</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section class="module-medium" id="demos">
-          <div class="container">
-            <div class="row multi-columns-row">
-              <div class="col-md-4 col-sm-6 col-xs-12"><a class="content-box" href="index_mp_fullscreen_video_background.html">
-                  <div class="content-box-image"><img src="{% static 'user_assets/images/harry-knight-mLavRTnVZM4-unsplash.jpg' %}" alt="Main Demo"></div>
-                  <h3 class="content-box-title font-serif">Main Demo</h3></a></div>
-              <div class="col-md-4 col-sm-6 col-xs-12"><a class="content-box" href="index_agency.html">
-                  <div class="content-box-image"><img src="{% static 'user_assets/images/harry-knight-mLavRTnVZM4-unsplash.jpg' %}" alt="Agency"></div>
-                  <h3 class="content-box-title font-serif">Agency</h3></a></div>
-              <div class="col-md-4 col-sm-6 col-xs-12"><a class="content-box" href="index_portfolio.html">
-                  <div class="content-box-image"><img src="{% static 'user_assets/images/harry-knight-mLavRTnVZM4-unsplash.jpg' %}" alt="Portfolio"></div>
-                  <h3 class="content-box-title font-serif">Portfolio</h3></a></div>
-              <div class="col-md-4 col-sm-6 col-xs-12"><a class="content-box" href="index_restaurant.html">
-                  <div class="content-box-image"><img src="{% static 'user_assets/images/harry-knight-mLavRTnVZM4-unsplash.jpg' %}" alt="Restaurant"></div>
-                  <h3 class="content-box-title font-serif">Restaurant</h3></a></div>
-              <div class="col-md-4 col-sm-6 col-xs-12"><a class="content-box" href="index_finance.html">
-                  <div class="content-box-image"><img src="{% static 'user_assets/images/harry-knight-mLavRTnVZM4-unsplash.jpg' %}" alt="Finance"></div>
-                  <h3 class="content-box-title font-serif">Finance</h3></a></div>
-              <div class="col-md-4 col-sm-6 col-xs-12"><a class="content-box" href="index_landing.html">
-                  <div class="content-box-image"><img src="{% static 'user_assets/images/harry-knight-mLavRTnVZM4-unsplash.jpg' %}" alt="Landing"></div>
-                  <h3 class="content-box-title font-serif">Landing</h3></a></div>
-              <div class="col-md-4 col-sm-6 col-xs-12"><a class="content-box" href="index_photography.html">
-                  <div class="content-box-image"><img src="{% static 'user_assets/images/harry-knight-mLavRTnVZM4-unsplash.jpg' %}" alt="Photography"></div>
-                  <h3 class="content-box-title font-serif">Photography</h3></a></div>
-              <div class="col-md-4 col-sm-6 col-xs-12"><a class="content-box" href="index_shop.html">
-                  <div class="content-box-image"><img src="{% static 'user_assets/images/harry-knight-mLavRTnVZM4-unsplash.jpg' %}" alt="Shop"></div>
-                  <h3 class="content-box-title font-serif">Shop</h3></a></div>
-              <div class="col-md-4 col-sm-6 col-xs-12"><a class="content-box" href="index_op_fullscreen_gradient_overlay.html">
-                  <div class="content-box-image"><img src="{% static 'user_assets/images/harry-knight-mLavRTnVZM4-unsplash.jpg' %}" alt="One Page"></div>
-                  <h3 class="content-box-title font-serif">One Page</h3></a></div>
-            </div>
-          </div>
-            </section>
-     <section class="news-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="titie-section wow fadeInDown animated ">
-                        <h2 class="module-title font-alt">Our Solved Cases</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" >
-                    <div class="col-sm-4 wow fadeInDown animated" data-wow-delay="0.2s">
-                        <div class="blog-item">
-                            <a href="#"><img src="{% static 'user_assets/images/3616.jpg' %}" width="350" height="262" alt=""></a>
-                            <a href="#">APPLY NOW</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 wow fadeInDown animated" data-wow-delay="0.4s">
-                        <div class="blog-item">
-                            <a href="#"><img src="{% static 'user_assets/images/3616.jpg' %}" width="350" height="262" alt=""></a>
-                           <a href="#">APPLY NOW</a>
-
-                        </div>
-                    </div>
-                    <div class="col-sm-4 wow fadeInDown animated" data-wow-delay="0.6s">
-                        <div class="blog-item">
-                            <a href="#"><img src="{% static 'user_assets/images/3616.jpg' %}" width="350" height="262" alt=""></a>
-                            <a href="#">APPLY NOW</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </section>
-            <!--figure-element---->
-<section class="figure-elemet">
-            <h2 class="module-title font-alt">up-coming cities</h2>
-      <figure class="snip1566">
-  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample14.jpg" alt="sq-sample14" />
-  <figcaption><i class="ion-android-add"></i></figcaption>
-  <a href="#"></a>
-</figure>
-<figure class="snip1566 hover"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample17.jpg" alt="sq-sample17" />
-  <figcaption><i class="ion-android-open"></i></figcaption>
-  <a href="#"></a>
-</figure>
-<figure class="snip1566"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample19.jpg" alt="sq-sample19" />
-  <figcaption><i class="ion-android-star-outline"></i></figcaption>
-  <a href="#"></a>
-</figure>
-<figure class="snip1566"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample20.jpg" alt="sq-sample20" />
-  <figcaption><i class="ion-android-stopwatch"></i></figcaption>
-  <a href="#"></a>
-</figure>
-<figure class="snip1566"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample20.jpg" alt="sq-sample20" />
-  <figcaption><i class="ion-android-stopwatch"></i></figcaption>
-  <a href="#"></a>
-</figure>
- </section>
+      </div>
+    </div>
+  </div>
 </div>
+<!-- ============================ Hero Banner End ================================== -->
+
+<!-- ============================ Trips Facts Start ================================== -->
+<section class="p-0 trips_top">
+  <div class="container">
+    <div class="trips_wrap">
+      <div class="row m-0">
+      
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <div class="trips">
+            <div class="trips_icons">
+              <i class="ti-video-camera"></i>
+            </div>
+            <div class="trips_detail">
+              <h4>100,000 online courses</h4>
+              <p>Nor again is there anyone who loves or pursues or desires</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <div class="trips">
+            <div class="trips_icons">
+              <i class="ti-medall"></i>
+            </div>
+            <div class="trips_detail">
+              <h4>Expert instruction</h4>
+              <p>Nam libero tempore, cum soluta and nobis est eligendi optio</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <div class="trips none">
+            <div class="trips_icons">
+              <i class="ti-infinite"></i>
+            </div>
+            <div class="trips_detail">
+              <h4>Lifetime access</h4>
+              <p>These cases are perfectly simple and easy to distinguish</p>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============================ Trips Facts Start ================================== -->
+
+<!-- ============================ Featured Courcses Start ================================== -->
+<section>
+  <div class="container">
+    
+    <div class="row justify-content-center">
+      <div class="col-lg-12 col-md-12 mb-3">
+        <div class="sec-heading2">
+          <div class="sec-left">
+            <h3>Featured Courses</h3>
+          </div>
+          <div class="sec-right">
+            <ul class="nav nav-tabs side-cates">
+              <li class="nav-item">
+              <a class="nav-link active" href="javascript:void(0);">Design</a>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link" href="javascript:void(0);">Development</a>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link" href="javascript:void(0);">Business</a>
+              </li>
+              <li class="nav-item" href="javascript:void(0);">
+              <a class="nav-link" href="javascript:void(0);">Accounting</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 p-0">
+
+        <div class="arrow_slide three_slide arrow_middle">
+
+          <!-- Single Slide -->
+          <div class="singles_items">
+            <div class="education_block_grid style_2">
+              <div class="education_block_thumb n-shadow">
+                <a href="course-detail.html"><img src="{% static 'user_assets_new/img/co-1.jpg' %}" class="img-fluid" alt=""></a>
+                <div class="cources_price">$520</div>
+              </div>
+              
+              <div class="education_block_body">
+                <h4 class="bl-title"><a href="course-detail.html">Tableau For Beginners: Get CA Certified, Grow Your Career</a></h4>
+              </div>
+              
+              <div class="cources_info_style3">
+                <ul>
+                  <li><i class="ti-eye mr-2"></i>8682 Views</li>
+                  <li><i class="ti-time mr-2"></i>6h 40min</li>
+                  <li><i class="ti-star text-warning mr-2"></i>4.7 Reviews</li>
+                </ul>
+              </div>
+              
+              <div class="education_block_footer">
+                <div class="education_block_author">
+                  <div class="path-img"><a href="instructor-detail.html"><img src="{% static 'user_assets_new/img/user-1.jpg' %}" class="img-fluid" alt=""></a></div>
+                  <h5><a href="instructor-detail.html">Robert Wilson</a></h5>
+                </div>
+                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i>54 lectures</div>
+              </div>
+            </div>	
+          </div>
+          
+          <!-- Single Slide -->
+          <div class="singles_items">
+            <div class="education_block_grid style_2">
+              <div class="education_block_thumb n-shadow">
+                <a href="course-detail.html"><img src="{% static 'user_assets_new/img/co-2.jpg' %}" class="img-fluid" alt=""></a>
+                <div class="cources_price">$349</div>
+              </div>
+              
+              <div class="education_block_body">
+                <h4 class="bl-title"><a href="course-detail.html">The Complete Business Plan Course (Includes 50 Templates)</a></h4>
+              </div>
+              
+              <div class="cources_info_style3">
+                <ul>
+                  <li><i class="ti-eye mr-2"></i>9882 Views</li>
+                  <li><i class="ti-time mr-2"></i>6h 30min</li>
+                  <li><i class="ti-star text-warning mr-2"></i>4.7 Reviews</li>
+                </ul>
+              </div>
+              
+              <div class="education_block_footer">
+                <div class="education_block_author">
+                  <div class="path-img"><a href="instructor-detail.html"><img src="{% static 'user_assets_new/img/user-2.jpg' %}" class="img-fluid" alt=""></a></div>
+                  <h5><a href="instructor-detail.html">Shruti Hasan</a></h5>
+                </div>
+                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i>26 lectures</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Single Slide -->
+          <div class="singles_items">
+            <div class="education_block_grid style_2">
+              <div class="education_block_thumb n-shadow">
+                <a href="course-detail.html"><img src="{% static 'user_assets_new/img/co-3.jpg' %}" class="img-fluid" alt=""></a>
+                <div class="cources_price">$545</div>
+              </div>
+              
+              <div class="education_block_body">
+                <h4 class="bl-title"><a href="course-detail.html">An Entire MBA In 1 Course:Award Winning Business School Prof</a></h4>
+              </div>
+              
+              <div class="cources_info_style3">
+                <ul>
+                  <li><i class="ti-eye mr-2"></i>5893 Views</li>
+                  <li><i class="ti-time mr-2"></i>5h 15min</li>
+                  <li><i class="ti-star text-warning mr-2"></i>4.7 Reviews</li>
+                </ul>
+              </div>
+              
+              <div class="education_block_footer">
+                <div class="education_block_author">
+                  <div class="path-img"><a href="instructor-detail.html"><img src="{% static 'user_assets_new/img/user-3.jpg' %}" class="img-fluid" alt=""></a></div>
+                  <h5><a href="instructor-detail.html">Adam Viknoi</a></h5>
+                </div>
+                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i>52 lectures</div>
+              </div>
+            </div>	
+          </div>
+          
+          <!-- Single Slide -->
+          <div class="singles_items">
+            <div class="education_block_grid style_2">
+              <div class="education_block_thumb n-shadow">
+                <a href="course-detail.html"><img src="{% static 'user_assets_new/img/co-4.jpg' %}" class="img-fluid" alt=""></a>
+                <div class="cources_price">$420</div>
+              </div>
+              
+              <div class="education_block_body">
+                <h4 class="bl-title"><a href="course-detail.html">The Complete Financial Analyst Course 2020</a></h4>
+              </div>
+              
+              <div class="cources_info_style3">
+                <ul>
+                  <li><i class="ti-eye mr-2"></i>8582 Views</li>
+                  <li><i class="ti-time mr-2"></i>4h 59min</li>
+                  <li><i class="ti-star text-warning mr-2"></i>4.6 Reviews</li>
+                </ul>
+              </div>
+              
+              <div class="education_block_footer">
+                <div class="education_block_author">
+                  <div class="path-img"><a href="instructor-detail.html"><img src="{% static 'user_assets_new/img/user-4.jpg' %}" class="img-fluid" alt=""></a></div>
+                  <h5><a href="instructor-detail.html">Shilpa Shekh</a></h5>
+                </div>
+                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i>43 lectures</div>
+              </div>
+            </div>	
+          </div>
+          
+          <!-- Single Slide -->
+          <div class="singles_items">
+            <div class="education_block_grid style_2">
+              <div class="education_block_thumb n-shadow">
+                <a href="course-detail.html"><img src="{% static 'user_assets_new/img/co-5.jpg' %}" class="img-fluid" alt=""></a>
+                <div class="cources_price">$429</div>
+              </div>
+              
+              <div class="education_block_body">
+                <h4 class="bl-title"><a href="course-detail.html">PMP Exam Prep Seminar - PMBOK Guide 6</a></h4>
+              </div>
+              
+              <div class="cources_info_style3">
+                <ul>
+                  <li><i class="ti-eye mr-2"></i>9857 Views</li>
+                  <li><i class="ti-time mr-2"></i>7h 45min</li>
+                  <li><i class="ti-star text-warning mr-2"></i>4.9 Reviews</li>
+                </ul>
+              </div>
+              
+              <div class="education_block_footer">
+                <div class="education_block_author">
+                  <div class="path-img"><a href="instructor-detail.html"><img src="{% static 'user_assets_new/img/user-5.jpg' %}" class="img-fluid" alt=""></a></div>
+                  <h5><a href="instructor-detail.html">Shaurya Preet</a></h5>
+                </div>
+                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i>32 lectures</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Single Slide -->
+          <div class="singles_items">
+            <div class="education_block_grid style_2">
+              <div class="education_block_thumb n-shadow">
+                <a href="course-detail.html"><img src="{% static 'user_assets_new/img/co-6.jpg' %}" class="img-fluid" alt=""></a>
+                <div class="cources_price">$249</div>
+              </div>
+              
+              <div class="education_block_body">
+                <h4 class="bl-title"><a href="course-detail.html">Tableau 2020 A-Z:Hands-On Tableau Training For Data Science!</a></h4>
+              </div>
+              
+              <div class="cources_info_style3">
+                <ul>
+                  <li><i class="ti-eye mr-2"></i>6852 Views</li>
+                  <li><i class="ti-time mr-2"></i>2h 30min</li>
+                  <li><i class="ti-star text-warning mr-2"></i>4.8 Reviews</li>
+                </ul>
+              </div>
+              
+              <div class="education_block_footer">
+                <div class="education_block_author">
+                  <div class="path-img"><a href="instructor-detail.html"><img src="{% static 'user_assets_new/img/user-6.jpg' %}" class="img-fluid" alt=""></a></div>
+                  <h5><a href="instructor-detail.html">Preeti Bhartiya</a></h5>
+                </div>
+                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i>48 lectures</div>
+              </div>
+            </div>	
+          </div>
+          <!-- Single Slide -->
+          <div class="singles_items">
+            <div class="education_block_grid style_2">
+              <div class="education_block_thumb n-shadow">
+                <a href="course-detail.html"><img src="{% static 'user_assets_new/img/co-7.jpg' %}" class="img-fluid" alt=""></a>
+                <div class="cources_price">$329</div>
+              </div>
+              
+              <div class="education_block_body">
+                <h4 class="bl-title"><a href="course-detail.html">The Complete Financial Analyst Training & Investing Course</a></h4>
+              </div>
+              
+              <div class="cources_info_style3">
+                <ul>
+                  <li><i class="ti-eye mr-2"></i>8852 Views</li>
+                  <li><i class="ti-time mr-2"></i>3h 20min</li>
+                  <li><i class="ti-star text-warning mr-2"></i>4.9 Reviews</li>
+                </ul>
+              </div>
+              
+              <div class="education_block_footer">
+                <div class="education_block_author">
+                  <div class="path-img"><a href="instructor-detail.html"><img src="{% static 'user_assets_new/img/user-7.jpg' %}" class="img-fluid" alt=""></a></div>
+                  <h5><a href="instructor-detail.html">Jasvinder Bhartiya</a></h5>
+                </div>
+                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i>42 lectures</div>
+              </div>
+              
+            </div>	
+          </div>
+        
+        </div>
+      </div>
+
+    </div>
+    
+  </div>
+</section>
+<!-- ============================ Featured Courcses End ================================== -->
+
+<!-- ============================ Featured Category Start ================================== -->
+<section class="bg-light">
+  <div class="container">
+    
+    <div class="row justify-content-center">
+      <div class="col-lg-12 col-md-12 mb-3">
+        <div class="sec-heading2">
+          <div class="sec-left">
+            <h3>Got & Popular Categories</h3>
+          </div>
+          <div class="sec-right">
+            <a href="javascript:void(0);" class="btn-br-more">Browse More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 p-0">
+
+        <div class="arrow_slide three_slide-dots arrow_middle">
+          
+          <!-- Single Slide -->
+          <div class="singles_items">
+            <div class="edu_cat">
+              <div class="pic">
+                <a class="pic-main" href="#" style="background-image:url({% static 'user_assets_new/img/course-7.jpg' %});"></a>
+              </div>
+              <div class="edu_data">
+                <h4 class="title"><a href="#">Finance & Accounting</a></h4>
+                <ul class="meta">
+                  <li class="video"><i class="ti-video-clapper"></i>23 Videos</li>
+                  <li class="lessions"><i class="ti-book"></i>54 Lessions</li>
+                </ul>
+              </div>
+            </div>	
+          </div>
+          
+          <!-- Single Slide -->
+          <div class="singles_items">
+            <div class="edu_cat">
+              <div class="pic">
+                <a class="pic-main" href="#" style="background-image:url({% static 'user_assets_new/img/course-8.jpg' %});"></a>
+              </div>
+              <div class="edu_data">
+                <h4 class="title"><a href="#">Gym & Lifestyle</a></h4>
+                <ul class="meta">
+                  <li class="video"><i class="ti-video-clapper"></i>23 Videos</li>
+                  <li class="lessions"><i class="ti-book"></i>54 Lessions</li>
+                </ul>
+              </div>
+            </div>		
+          </div>
+          
+          <!-- Single Slide -->
+          <div class="singles_items">
+            <div class="edu_cat">
+              <div class="pic">
+                <a class="pic-main" href="#" style="background-image:url({% static 'user_assets_new/img/course-9.jpg' %});"></a>
+              </div>
+              <div class="edu_data">
+                <h4 class="title"><a href="#">Health & Fitness</a></h4>
+                <ul class="meta">
+                  <li class="video"><i class="ti-video-clapper"></i>23 Videos</li>
+                  <li class="lessions"><i class="ti-book"></i>54 Lessions</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Single Slide -->
+          <div class="singles_items">
+            <div class="edu_cat">
+              <div class="pic">
+                <a class="pic-main" href="#" style="background-image:url({% static 'user_assets_new/img/course-10.jpg' %});"></a>
+              </div>
+              <div class="edu_data">
+                <h4 class="title"><a href="#">Software & Development</a></h4>
+                <ul class="meta">
+                  <li class="video"><i class="ti-video-clapper"></i>23 Videos</li>
+                  <li class="lessions"><i class="ti-book"></i>54 Lessions</li>
+                </ul>
+              </div>
+            </div>		
+          </div>
+          
+          <!-- Single Slide -->
+          <div class="singles_items">
+            <div class="edu_cat">
+              <div class="pic">
+                <a class="pic-main" href="#" style="background-image:url({% static 'user_assets_new/img/course-11.jpg' %});"></a>
+              </div>
+              <div class="edu_data">
+                <h4 class="title"><a href="#">Business Development</a></h4>
+                <ul class="meta">
+                  <li class="video"><i class="ti-video-clapper"></i>23 Videos</li>
+                  <li class="lessions"><i class="ti-book"></i>54 Lessions</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        
+        </div>
+      </div>
+
+    </div>
+    
+  </div>
+</section>
+<!-- ============================ Featured Category End ================================== -->
+
+<!-- ========================== Articles Section =============================== -->
+<section>
+  <div class="container">
+  
+    <div class="row justify-content-center">
+      <div class="col-lg-12 col-md-12">
+        <div class="sec-heading-flex">
+          <h2 class="pl-2">Recent Articles</h2>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+          
+      <!-- Single Article -->
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="articles_grid_style">
+          <div class="articles_grid_thumb">
+            <a href="blog-detail.html"><img src="{% static 'user_assets_new/img/b-1.jpg' %}" class="img-fluid" alt="" /></a>
+          </div>
+          
+          <div class="articles_grid_caption">
+            <h4>The National Minimum wage is an important part</h4>
+            <div class="articles_grid_author">
+              <div class="articles_grid_author_img"><img src="{% static 'user_assets_new/img/user-1.jpg' %}" class="img-fluid" alt="" /></div>
+              <h4>Adam Willsone</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Single Article -->
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="articles_grid_style">
+          <div class="articles_grid_thumb">
+            <a href="blog-detail.html"><img src="{% static 'user_assets_new/img/b-2.jpg' %}" class="img-fluid" alt="" /></a>
+          </div>
+          
+          <div class="articles_grid_caption">
+            <h4>The National Minimum wage is an important part</h4>
+            <div class="articles_grid_author">
+              <div class="articles_grid_author_img"><img src="{% static 'user_assets_new/img/user-2.jpg' %}" class="img-fluid" alt="" /></div>
+              <h4>Rikki Sen</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Single Article -->
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="articles_grid_style">
+          <div class="articles_grid_thumb">
+            <a href="blog-detail.html"><img src="{% static 'user_assets_new/img/b-3.jpg' %}" class="img-fluid" alt="" /></a>
+          </div>
+          
+          <div class="articles_grid_caption">
+            <h4>The National Minimum wage is an important part</h4>
+            <div class="articles_grid_author">
+              <div class="articles_grid_author_img"><img src="{% static 'user_assets_new/img/user-3.jpg' %}" class="img-fluid" alt="" /></div>
+              <h4>Daniel Wikjones</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+  </div>
+</section>
+<!-- ========================== Articles Section =============================== -->
+      
+
 {% endblock %}
 {% include 'user/footer.html' %}
