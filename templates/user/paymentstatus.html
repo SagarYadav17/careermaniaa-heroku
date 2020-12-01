@@ -1,0 +1,37 @@
+{% include 'user/header.html' %}
+{% load static %}
+{% block content %}
+{% block body %}
+<div class="container" style="padding:20px">
+    <div class="col my-6">
+
+        <center><h3><b>Payment status regarding your Order ID {{response.ORDERID}}</b></h3></center>
+        <br>
+        {% if response.RESPCODE == '01' %}
+        <center><h4 style="color:green">ORDER SUCCESS</h4></center>
+        {% else %}
+        <center><h4 style="color:red">ORDER FAILURE</h4></center>
+        {% endif%}
+        <br>
+		Name : {{registration.first_name}}  {{registration.last_name}}<br>
+		Institute : {{registration.course.name}}<br>
+        Order ID : {{response.ORDERID}} <br>
+        TXNID : {{response.TXNID}} <br>
+        TXNAMOUNT : ₹ {{response.TXNAMOUNT}}<br>
+        TXNDATE : {{response.TXNDATE}} <br>
+        Status : {{response.STATUS}} <br>
+        Response Message : {{response.RESPMSG}} <br>
+
+		<!--div style="padding:10px"><a href="{{reciept}}" download><button class="primary-btn">Print</button></a></div-->
+
+    </div>
+
+</div>
+{% endblock %}
+{% block js %}
+<script>
+</script>
+{% endblock %}
+
+{% endblock %}
+{% include 'user/footer.html' %}

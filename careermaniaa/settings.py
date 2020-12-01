@@ -87,6 +87,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                # for allauth
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -106,7 +109,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+APPEND_SLASH=False
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
 
@@ -166,6 +169,7 @@ EMAIL_HOST_USER = 'mobilecare.smtp@gmail.com'
 EMAIL_HOST_PASSWORD = 'MobileCareSMTP'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'Mobile Care Team'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 SITE_ID = 1
 
@@ -201,3 +205,15 @@ SOCIALACCOUNT_PROVIDERS = {
         'VERIFIED_EMAIL': False,
         'VERSION': 'v2.8'}
 }
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+}
+
+APPEND_SLASH=False

@@ -12,6 +12,7 @@ from django.urls import reverse
 
 from django.contrib import messages
 from datetime import *
+from mania.views import send_confirmation_email
 
 
 def merchant_view(request):
@@ -27,16 +28,15 @@ def register_merchant(request):
         mobile = request.POST['mobile']
         stream = request.POST['stream']
         password = request.POST['password']
-        organization = request.POST['organization']
+        merchant_type = request.POST['type']
 
         try:
             user = User.objects.create_merchant(email, username, password)
             user.save()
-            # merchant = Merchant_Details(first_name=fname, last_name=lname, email=email, mobile=mobile, organization=organization,
-            #                             stream=stream, merchant=user)
-            # merchant.save()
-            # send_confirmation_email(request, user)
-            return redirect('merchant_login')
+            merchant = Merchant_Details(first_name=fname, last_name=lname, email=email, mobile=mobile, stream=stream, merchant=user, merchant_type=merchant_type)
+            merchant.save()
+            send_confirmation_email(request, user)
+            return redirect('login_merchant')
 
         except IntegrityError as e:
             if str(e) == 'UNIQUE constraint failed: acc_app_useraccount.username':
@@ -69,7 +69,7 @@ def login_merchant(request):
 
 def forms_details(request, user):
     user = User.objects.get(username=str(user))
-    if user.is_merchant:
+    if user.is_merchant and user.is_verified:
         try:
             coaching = Coaching.objects.get(merchant=user)
         except:
@@ -218,7 +218,7 @@ def logout_user(request):
 
 def add_coaching(request, user):
     user = User.objects.get(username=user)
-    if user.is_merchant:
+    if user.is_merchant and user.is_verified:
         if request.method == "POST":
             name = request.POST['name']
             description = request.POST['description']
@@ -234,7 +234,7 @@ def add_coaching(request, user):
 
 def add_coaching_metadata(request, user):
     user = User.objects.get(username=user)
-    if user.is_merchant:
+    if user.is_merchant and user.is_verified:
         if request.method == "POST":
             name = request.POST['name']
             description = request.POST['description']

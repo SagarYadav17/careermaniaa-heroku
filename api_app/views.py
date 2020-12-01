@@ -1,41 +1,50 @@
-from rest_framework import viewsets
-
 from mania.models import *
 from merchant_app.models import *
 from api_app.serializer import *
 
+from django.shortcuts import render
+from django.http import JsonResponse
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 # Create your views here.
 
 
-class UserAPIView(viewsets.ModelViewSet):
-    queryset = User.objects.all().order_by('id')
-    serializer_class = UserAPI
+@api_view(['GET'])
+def apiOverview(request):
+    api_urls = {
+        'Users': '/users/',
+        'Coachings': '/coachings/',
+        'Colleges': '/colleges/',
+        'Jobs': '/jobs/',
+    }
+
+    return Response(api_urls)
 
 
-class MerchantDetailSAPIView(viewsets.ModelViewSet):
-    queryset = Merchant_Details.objects.all().order_by('-id')
-    serializer_class = MerchantDetailsAPI
+@api_view(['GET'])
+def userList(request):
+    users = User.objects.all()
+    serializer = UserSerializer(users, many=True)
+    return Response(serializer.data)
 
 
-class CoachingAPIView(viewsets.ModelViewSet):
-    queryset = Coaching.objects.all().order_by('-id')
-    serializer_class = CoachingAPI
+@api_view(['GET'])
+def coachingList(request):
+    coaching = Coaching.objects.all()
+    serializer = CoachingSerializer(coaching, many=True)
+    return Response(serializer.data)
 
 
-class BranchAPIView(viewsets.ModelViewSet):
-    queryset = Branch.objects.all().order_by('-id')
-    serializer_class = BranchAPI
+@api_view(['GET'])
+def collegeList(request):
+    college = College.objects.all()
+    serializer = CollegeSerializer(college, many=True)
+    return Response(serializer.data)
 
 
-class CourseAPIView(viewsets.ModelViewSet):
-    queryset = Course.objects.all().order_by('-id')
-    serializer_class = CourseAPI
-
-
-class CollegeAPIView(viewsets.ModelViewSet):
-    queryset = College.objects.all().order_by('-id')
-    serializer_class = CollegeAPI
-
-class JobAPIView(viewsets.ModelViewSet):
-    queryset = Job.objects.all().order_by('-id')
-    serializer_class = JobAPI
+@api_view(['GET'])
+def jobList(request):
+    job = Job.objects.all()
+    serializer = JobSerializer(job, many=True)
+    return Response(serializer.data)

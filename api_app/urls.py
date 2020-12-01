@@ -1,19 +1,17 @@
 from django.urls import path, include
 from api_app import views
 
-from rest_framework import routers
-
-router = routers.DefaultRouter(trailing_slash=True)
-router.register('users', views.UserAPIView)
-router.register('merchant-detail', views.MerchantDetailSAPIView)
-router.register('coaching', views.CoachingAPIView)
-router.register('branch', views.BranchAPIView)
-router.register('college', views.CollegeAPIView)
-router.register('job', views.JobAPIView)
-
+from rest_framework_simplejwt import views as jwt_views
 
 urlpatterns = [
-    path('api/', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api/', views.apiOverview, name='api'),
+    path('users/', views.userList, name='user-list'),
+    path('coachings/', views.coachingList, name='coaching-list'),
+    path('colleges/', views.collegeList, name='college-list'),
+    path('jobs/', views.jobList, name='job-list'),
+
+    path('api/token/', jwt_views.TokenObtainPairView.as_view(),
+         name='token_obtain_pair'),
+    path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(),
+         name='token_refresh'),
 ]
-        

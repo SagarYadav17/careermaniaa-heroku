@@ -42,7 +42,7 @@
 		<div class="row">
 			<div class="col-lg-6" style="padding: 80px;border-right:3px solid black;">
 				<br>
-				<form class="form" action="login_merchant" method="POST">{% csrf_token %}
+				<form class="form" method="POST">{% csrf_token %}
 					<div class="input-icons">
 						<input type="text" class="text-line " placeholder="Email" name="email" required>
 						<i class="fa fa-envelope-square" aria-hidden="true"></i>
@@ -53,7 +53,7 @@
 						<i class="fa fa-eye" aria-hidden="true" onclick="merchant()" style="cursor: pointer;"></i>
 						<br>
 					</div>
-					<div style="color:blue;float:right"><a href="reset_password">Forgot Password?</a></div>
+					<div style="color:blue;float:right"><a href="{ url 'reset_password' %}">Forgot Password?</a></div>
 					<div style="color:red">{{error}}</div>
 					<div style="color:green">{{success}}</div>
 					<br>
@@ -64,7 +64,7 @@
 			<div class="col-lg-6" style="padding: 80px;">
 				<center>
 					<h4> Also you can Login with </h4>
-					<div style="">
+					<div>
 						<ul style="list-style-type: none;">
 							<li style="display: inline-block;padding: 10px;"><a href="{% url 'facebook_login'  %}"><img
 										src="{% static 'img/facebook.png' %}" width="40" height="40"></li></a>

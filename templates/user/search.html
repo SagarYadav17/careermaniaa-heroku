@@ -1,0 +1,36 @@
+{% include 'user/header.html' %}
+{% load static %}
+{% block content %}
+<div class="main">
+        <div class="container">
+          <form class="d-flex" action="search" method="POST">{% csrf_token %}
+            <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="keyword" value="{{keyword}}">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        <hr class="divider-w">
+        <section class="module-small">
+          <div class="container">
+            <div class="row multi-columns-row">
+              {% for course in courses %}
+              <div class="col-sm-6 col-md-3 col-lg-3">
+                <div class="shop-item">
+                  <div class="shop-item-image"><img src="{{course.coaching.logo.url}}" alt="Accessories Pack"/>
+                    <div class="shop-item-detail"><a href="{% url 'add_to_cart' id=course.id %}" class="btn btn-round btn-b"><span class="icon-basket">Add To Cart</span></a></div>
+                  </div>
+                  <h4 class="shop-item-title font-alt"><a href="#">{{course.name}}</a></h4>Rs. {{course.fees}}<br>
+                  {{course.description}}
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="pagination font-alt"><a href="#"><i class="fa fa-angle-left"></i></a><a class="active" href="#">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#"><i class="fa fa-angle-right"></i></a></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+{% endblock %}
+{% include 'user/footer.html' %}

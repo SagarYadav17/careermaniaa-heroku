@@ -1,8 +1,8 @@
 # import reverse_geocoder as rg
 from django.shortcuts import render, redirect
 
-from mania.models import User
-from merchant_app.models import Merchant_Details
+from mania.models import *
+from merchant_app.models import *
 
 from django.db import IntegrityError
 
@@ -127,6 +127,7 @@ def login_user(request):
 
     return render(request, 'user/login.html')
 
+import reverse_geocoder as rg
 
 def reverseGeocode(coordinates):
     result = rg.search(coordinates)
@@ -229,6 +230,7 @@ def add_to_cart(request, id):
         user = request.user
         cart = Cart(user=user, course=course)
         cart.save()
+        return redirect('cart')
     else:
         courses = request.COOKIES
         i = str(len(courses) + 2)
@@ -240,6 +242,7 @@ def add_to_cart(request, id):
         res = HttpResponse("Item Added to cart. Go to Cart to checkout")
         res.set_cookie(cookiee_name, id)
         return res
+    return HttpResponse("Some Error Occured")
 
 import json
 def cart(request):
@@ -263,7 +266,6 @@ def cart(request):
     else:
         msg = ""
     context = {"courses": carts, "msg":msg, 'loggedIn': loggedIn}
-    print(context)
     return render(request, "user/cart.html", context)
 
 def delete_cartitem(request, id):
@@ -317,3 +319,79 @@ def delete_wishlistitem(request, id):
 
 def about(request):
     return render(request, 'user/about.html')
+
+from django.db.models import Q
+
+def search(request):
+    if request.method == "POST":
+        keyword = request.POST['keyword']
+        if keyword == "":
+            return render(request, 'user/search.html', {'length': 0})
+        courses = []
+        courses += Course.objects.filter(Q(name__icontains=keyword) | Q(description__icontains=keyword))
+        all_address = Address.objects.filter(Q(city__icontains=keyword) |Q(line1__icontains=keyword) |Q(apartment__icontains=keyword) |
+                                                Q(building__icontains=keyword) |Q(landmark__icontains=keyword) |
+                                                Q(district__icontains=keyword) | Q(state__icontains=keyword))
+        for address in all_address:
+            coaching = Coaching.objects.filter(merchant=address.user)
+            courses += Course.objects.filter(coaching=coaching)
+        courses = list(set(courses))
+        return render(request, 'user/search.html', {'courses': courses, 'keyword': keyword})
+    courses = Course.objects.all()
+    return render(request, 'user/search.html', {'courses': courses})
+
+from .paytm import Checksum
+from datetime import datetime
+
+def checkout(request, id):
+    if request.user in User.objects.all():
+        user = request.user
+        address = Address.objects.get(user=user)
+        course = Course.objects.get(id=id)
+        fees = str(course.fees)
+        now = datetime.now()
+        registration_id = str(now.year) + str(now.month) + str(now.day) + str(now.hour) + str(now.minute) + str(
+            now.second)
+        registration = Registration(user=user, address=address, course=course, fees=str(fees), registration_id=registration_id)
+        registration.save()
+
+        param_dict = {
+
+            'MID': 'MerchantID',
+            'ORDER_ID': str(registration.registration_id),
+            'TXN_AMOUNT': str(fees),
+            'CUST_ID': user.email,
+            'INDUSTRY_TYPE_ID': 'Retail',
+            'WEBSITE': 'WEBSTAGING',
+            'CHANNEL_ID': 'WEB',
+            'CALLBACK_URL': 'http://careermaniaa.herokuapp.com/payment',
+
+        }
+        param_dict['CHECKSUMHASH'] = Checksum.generate_checksum(param_dict, 'MerchantKey')
+        return render(request, 'user/paytm.html', {'param_dict': param_dict})
+
+    return redirect('register_user')
+
+
+def handlerequest(request):
+    form = request.POST
+    response_dict = {}
+    for i in form.keys():
+        response_dict[i] = form[i]
+        if i == 'CHECKSUMHASH':
+            checksum = form[i]
+
+    registration = Registration.objects.get(registration_id=response_dict['ORDERID'])
+
+    verify = Checksum.verify_checksum(response_dict, "MerchantKey", checksum)
+    if verify:
+        registration.txn_id = str(response_dict['TXNID'])
+        registration.txn_date = str(response_dict['TXNDATE'])
+        registration.txn_amount = str(response_dict['TXNAMOUNT'])
+        registration.txn_status = str(response_dict['STATUS'])
+        registration.txn_msg = str(response_dict['RESPMSG'])
+        registration.save()
+        return render(request, 'user/paymentstatus.html',
+                      {'response': response_dict, 'registration': registration})
+    return render(request, 'index.html')
+
