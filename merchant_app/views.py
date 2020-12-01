@@ -228,7 +228,7 @@ def add_coaching(request, user):
             coaching = Coaching(
                 name=name, description=description, merchant=merchant, logo=image)
             coaching.save()
-            return redirect('owner', user=user.username)
+            return redirect('add_coaching_metadata', user=user.username)
         return render(request, 'merchant/dashboard/add_coaching.html', {'merchant': user})
     return render(request, 'signup.html')
 
@@ -238,17 +238,15 @@ def add_coaching_metadata(request, user):
     if user.is_merchant and user.is_verified:
         if request.method == "POST":
             name = request.POST['name']
-            description = request.POST['description']
-            contact1 = request.POST['contact1']
-            contact2 = request.POST['contact2']
+            mobile = request.POST['contact1']
             establish = request.POST['date']
             owner_image = request.FILES['owner_image']
             merchant = user
             coaching = Coaching.objects.get(merchant=merchant)
-            coaching_data = CoachingMetaData(coaching=coaching, contact=contact1, help_contact=contact2,
-                                             owner_name=name, owner_description=description, established_on=establish, owner_image=owner_image)
+            coaching_data = CoachingMetaData(coaching=coaching, mobile=mobile,
+                                             owner_name=name, established_on=establish, owner_image=owner_image)
             coaching_data.save()
-            return redirect('index')
+            return redirect('merchant_view')
         return render(request, 'merchant/dashboard/add_coaching_metadata.html', {'merchant': user})
     return render(request, 'signup.html')
 

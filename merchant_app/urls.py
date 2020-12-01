@@ -18,7 +18,7 @@ urlpatterns = [
     path('invoice', views.merchant_invoice, name="merchant_invoice"),
 
     path('courses', views.merchant_courses, name="merchant_courses"),
-    path('payment', views.merchant_payment, name="payment"),
+    path('payment_info', views.merchant_payment, name="payment_info"),
     path('profile', views.merchant_profile, name="merchant_profile"),
 
     path('forms_details/<user>', views.forms_details, name='forms_details'),
@@ -27,7 +27,7 @@ urlpatterns = [
     path('coaching', views.update_coaching, name='coaching'),
 
     path('add_coaching_metadata/<user>',
-         views.add_coaching_metadata, name='owner'),
+         views.add_coaching_metadata, name='add_coaching_metadata'),
     path('owner', views.update_coaching_metadata, name='owner'),
 
     path('add_branch', views.add_branch, name='add_branch'),

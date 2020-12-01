@@ -121,16 +121,13 @@
           <div class="sec-right">
             <ul class="nav nav-tabs side-cates">
               <li class="nav-item">
-              <a class="nav-link active" href="javascript:void(0);">Design</a>
+              <a class="nav-link active" href="javascript:void(0);">Science</a>
               </li>
               <li class="nav-item">
-              <a class="nav-link" href="javascript:void(0);">Development</a>
+              <a class="nav-link" href="javascript:void(0);">Commerce</a>
               </li>
               <li class="nav-item">
-              <a class="nav-link" href="javascript:void(0);">Business</a>
-              </li>
-              <li class="nav-item" href="javascript:void(0);">
-              <a class="nav-link" href="javascript:void(0);">Accounting</a>
+              <a class="nav-link" href="javascript:void(0);">Humanities</a>
               </li>
             </ul>
           </div>
@@ -144,15 +141,17 @@
         <div class="arrow_slide three_slide arrow_middle">
 
           <!-- Single Slide -->
+          {% for course in courses %}
           <div class="singles_items">
             <div class="education_block_grid style_2">
               <div class="education_block_thumb n-shadow">
-                <a href="course-detail.html"><img src="{% static 'user_assets_new/img/co-1.jpg' %}" class="img-fluid" alt=""></a>
-                <div class="cources_price">$520</div>
+                <a href="course-detail.html"><img src="{{course.coaching.logo.url}}" class="img-fluid" alt=""></a>
+                <div class="cources_price">INR {{course.fees}}</div>
               </div>
               
               <div class="education_block_body">
-                <h4 class="bl-title"><a href="course-detail.html">Tableau For Beginners: Get CA Certified, Grow Your Career</a></h4>
+                <h4 class="bl-title"><a href="course-detail.html">{{course.name}}</a></h4>
+                <p>{{course.description}}</p>
               </div>
               
               <div class="cources_info_style3">
@@ -165,193 +164,14 @@
               
               <div class="education_block_footer">
                 <div class="education_block_author">
-                  <div class="path-img"><a href="instructor-detail.html"><img src="{% static 'user_assets_new/img/user-1.jpg' %}" class="img-fluid" alt=""></a></div>
-                  <h5><a href="instructor-detail.html">Robert Wilson</a></h5>
+                  <div class="path-img"><a href="instructor-detail.html"><img src="{{course.coaching.logo.url}}" class="img-fluid" alt=""></a></div>
+                  <h5><a href="instructor-detail.html">{{course.coaching.name}}</a></h5>
                 </div>
-                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i>54 lectures</div>
+                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i><a href=""><button class="btn btn-success">Book Now</button></a></div>
               </div>
             </div>	
           </div>
-          
-          <!-- Single Slide -->
-          <div class="singles_items">
-            <div class="education_block_grid style_2">
-              <div class="education_block_thumb n-shadow">
-                <a href="course-detail.html"><img src="{% static 'user_assets_new/img/co-2.jpg' %}" class="img-fluid" alt=""></a>
-                <div class="cources_price">$349</div>
-              </div>
-              
-              <div class="education_block_body">
-                <h4 class="bl-title"><a href="course-detail.html">The Complete Business Plan Course (Includes 50 Templates)</a></h4>
-              </div>
-              
-              <div class="cources_info_style3">
-                <ul>
-                  <li><i class="ti-eye mr-2"></i>9882 Views</li>
-                  <li><i class="ti-time mr-2"></i>6h 30min</li>
-                  <li><i class="ti-star text-warning mr-2"></i>4.7 Reviews</li>
-                </ul>
-              </div>
-              
-              <div class="education_block_footer">
-                <div class="education_block_author">
-                  <div class="path-img"><a href="instructor-detail.html"><img src="{% static 'user_assets_new/img/user-2.jpg' %}" class="img-fluid" alt=""></a></div>
-                  <h5><a href="instructor-detail.html">Shruti Hasan</a></h5>
-                </div>
-                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i>26 lectures</div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Single Slide -->
-          <div class="singles_items">
-            <div class="education_block_grid style_2">
-              <div class="education_block_thumb n-shadow">
-                <a href="course-detail.html"><img src="{% static 'user_assets_new/img/co-3.jpg' %}" class="img-fluid" alt=""></a>
-                <div class="cources_price">$545</div>
-              </div>
-              
-              <div class="education_block_body">
-                <h4 class="bl-title"><a href="course-detail.html">An Entire MBA In 1 Course:Award Winning Business School Prof</a></h4>
-              </div>
-              
-              <div class="cources_info_style3">
-                <ul>
-                  <li><i class="ti-eye mr-2"></i>5893 Views</li>
-                  <li><i class="ti-time mr-2"></i>5h 15min</li>
-                  <li><i class="ti-star text-warning mr-2"></i>4.7 Reviews</li>
-                </ul>
-              </div>
-              
-              <div class="education_block_footer">
-                <div class="education_block_author">
-                  <div class="path-img"><a href="instructor-detail.html"><img src="{% static 'user_assets_new/img/user-3.jpg' %}" class="img-fluid" alt=""></a></div>
-                  <h5><a href="instructor-detail.html">Adam Viknoi</a></h5>
-                </div>
-                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i>52 lectures</div>
-              </div>
-            </div>	
-          </div>
-          
-          <!-- Single Slide -->
-          <div class="singles_items">
-            <div class="education_block_grid style_2">
-              <div class="education_block_thumb n-shadow">
-                <a href="course-detail.html"><img src="{% static 'user_assets_new/img/co-4.jpg' %}" class="img-fluid" alt=""></a>
-                <div class="cources_price">$420</div>
-              </div>
-              
-              <div class="education_block_body">
-                <h4 class="bl-title"><a href="course-detail.html">The Complete Financial Analyst Course 2020</a></h4>
-              </div>
-              
-              <div class="cources_info_style3">
-                <ul>
-                  <li><i class="ti-eye mr-2"></i>8582 Views</li>
-                  <li><i class="ti-time mr-2"></i>4h 59min</li>
-                  <li><i class="ti-star text-warning mr-2"></i>4.6 Reviews</li>
-                </ul>
-              </div>
-              
-              <div class="education_block_footer">
-                <div class="education_block_author">
-                  <div class="path-img"><a href="instructor-detail.html"><img src="{% static 'user_assets_new/img/user-4.jpg' %}" class="img-fluid" alt=""></a></div>
-                  <h5><a href="instructor-detail.html">Shilpa Shekh</a></h5>
-                </div>
-                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i>43 lectures</div>
-              </div>
-            </div>	
-          </div>
-          
-          <!-- Single Slide -->
-          <div class="singles_items">
-            <div class="education_block_grid style_2">
-              <div class="education_block_thumb n-shadow">
-                <a href="course-detail.html"><img src="{% static 'user_assets_new/img/co-5.jpg' %}" class="img-fluid" alt=""></a>
-                <div class="cources_price">$429</div>
-              </div>
-              
-              <div class="education_block_body">
-                <h4 class="bl-title"><a href="course-detail.html">PMP Exam Prep Seminar - PMBOK Guide 6</a></h4>
-              </div>
-              
-              <div class="cources_info_style3">
-                <ul>
-                  <li><i class="ti-eye mr-2"></i>9857 Views</li>
-                  <li><i class="ti-time mr-2"></i>7h 45min</li>
-                  <li><i class="ti-star text-warning mr-2"></i>4.9 Reviews</li>
-                </ul>
-              </div>
-              
-              <div class="education_block_footer">
-                <div class="education_block_author">
-                  <div class="path-img"><a href="instructor-detail.html"><img src="{% static 'user_assets_new/img/user-5.jpg' %}" class="img-fluid" alt=""></a></div>
-                  <h5><a href="instructor-detail.html">Shaurya Preet</a></h5>
-                </div>
-                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i>32 lectures</div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Single Slide -->
-          <div class="singles_items">
-            <div class="education_block_grid style_2">
-              <div class="education_block_thumb n-shadow">
-                <a href="course-detail.html"><img src="{% static 'user_assets_new/img/co-6.jpg' %}" class="img-fluid" alt=""></a>
-                <div class="cources_price">$249</div>
-              </div>
-              
-              <div class="education_block_body">
-                <h4 class="bl-title"><a href="course-detail.html">Tableau 2020 A-Z:Hands-On Tableau Training For Data Science!</a></h4>
-              </div>
-              
-              <div class="cources_info_style3">
-                <ul>
-                  <li><i class="ti-eye mr-2"></i>6852 Views</li>
-                  <li><i class="ti-time mr-2"></i>2h 30min</li>
-                  <li><i class="ti-star text-warning mr-2"></i>4.8 Reviews</li>
-                </ul>
-              </div>
-              
-              <div class="education_block_footer">
-                <div class="education_block_author">
-                  <div class="path-img"><a href="instructor-detail.html"><img src="{% static 'user_assets_new/img/user-6.jpg' %}" class="img-fluid" alt=""></a></div>
-                  <h5><a href="instructor-detail.html">Preeti Bhartiya</a></h5>
-                </div>
-                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i>48 lectures</div>
-              </div>
-            </div>	
-          </div>
-          <!-- Single Slide -->
-          <div class="singles_items">
-            <div class="education_block_grid style_2">
-              <div class="education_block_thumb n-shadow">
-                <a href="course-detail.html"><img src="{% static 'user_assets_new/img/co-7.jpg' %}" class="img-fluid" alt=""></a>
-                <div class="cources_price">$329</div>
-              </div>
-              
-              <div class="education_block_body">
-                <h4 class="bl-title"><a href="course-detail.html">The Complete Financial Analyst Training & Investing Course</a></h4>
-              </div>
-              
-              <div class="cources_info_style3">
-                <ul>
-                  <li><i class="ti-eye mr-2"></i>8852 Views</li>
-                  <li><i class="ti-time mr-2"></i>3h 20min</li>
-                  <li><i class="ti-star text-warning mr-2"></i>4.9 Reviews</li>
-                </ul>
-              </div>
-              
-              <div class="education_block_footer">
-                <div class="education_block_author">
-                  <div class="path-img"><a href="instructor-detail.html"><img src="{% static 'user_assets_new/img/user-7.jpg' %}" class="img-fluid" alt=""></a></div>
-                  <h5><a href="instructor-detail.html">Jasvinder Bhartiya</a></h5>
-                </div>
-                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i>42 lectures</div>
-              </div>
-              
-            </div>	
-          </div>
+          {% endfor %}
         
         </div>
       </div>

@@ -81,7 +81,9 @@ class ActivateAccountView(View):
 
 
 def index(request):
-    return render(request, 'user/index.html')
+    courses = Course.objects.all()
+    context = {'courses': courses}
+    return render(request, 'user/index.html', context)
 
 
 def register_user(request):
@@ -183,15 +185,7 @@ def filters(request):
 
 
 def science_coachings(request):
-    merchants = list(Merchant_Details.objects.all())
-    merchants = [
-        merchant for merchant in merchants if merchant.stream == "Science"]
-    coachings = [Coaching.objects.get(
-        merchant=merchant.merchant) for merchant in merchants]
-    courses = []
-    for coaching in coachings:
-        courses += Course.objects.filter(coaching=coaching)
-    print(merchants)
+    courses = Course.objects.filter(stream="Science")
     context = {'courses': courses, 'msg': 'Science Coachings'}
     return render(request, 'user/products.html', context)
 
