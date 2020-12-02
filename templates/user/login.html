@@ -1,44 +1,10 @@
 {% include 'user/header.html' %}
 {% load static %}
 {% block content %}
-<div class="main">
-  <section class="module bg-dark-30" data-background="{% static 'user_assets/images/167598-OVI67H-67.jpg' %}">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-6 col-sm-offset-3">
-          <h1 class="module-title font-alt mb-0">Login</h1>
-        </div>
-      </div>
-    </div>
-  </section>
   <!---sign up HTML--->
-  <section class="container sign-up">
-    <div class="row">
-      <div
-        class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 sign-up__background">
-        <div class="row">
+    <div style="width:600px;margin:20px auto">
           <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center sign-up__wrapper">
-            <header class="sign-up__header">
-              <svg id="sign-up__logo" width="120px" height="120px" viewBox="0 0 120 120" version="1.1"
-                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                  <g transform="translate(-144.000000, -81.000000)">
-                    <g transform="translate(143.000000, 81.000000)">
-                      <g transform="translate(1.000000, 0.000000)">
-                        <path id="sign-up__logo__circle"
-                          d="M87.5794617,6.70020519 C106.839908,16.6866076 120,36.8064517 120,60 C120,93.137085 93.137085,120 60,120 C26.862915,120 0,93.137085 0,60 C0,26.862915 26.862915,0 60,0 C60.0507157,0 60.1014166,6.29228956e-05 60.1521028,0.000188694877 L60.1521028,5.04900441 C60.1186772,5.04895117 60.0852446,5.04892133 60.051805,5.04892133 C29.6761437,5.04892133 5.05180496,29.6732601 5.05180496,60.0489213 C5.05180496,90.4245826 29.6761437,115.048921 60.051805,115.048921 C90.4274662,115.048921 115.051805,90.4245826 115.051805,60.0489213 C115.051805,38.7813657 102.980666,20.3331757 85.3160283,11.1819915 L87.5794617,6.70020519 Z"
-                          fill="#F7F7F7"></path>
-                        <path id="sign-up__logo__notch"
-                          d="M83.3722284,4.90439647 C77.6658734,2.48716934 71.5078907,0.927819435 65.0600208,0.388087409 L64.6846019,5.41901478 C70.6409793,5.91711182 76.3275409,7.36440406 81.5925593,9.60916405 L83.3722284,4.90439647 Z"
-                          fill="#F04444"></path>
-                      </g>
-                    </g>
-                  </g>
-                </g>
-              </svg>
-              <h2 class="sign-up__title text-uppercase animated fadeIn">Login</h2>
-            </header>
-            <div class="panel text-left animated fadeInUpSmall">
+            <h1>LOGIN</h1>
               <form data-behavior="sign-up" method="POST">{% csrf_token %}
                 <fieldset class="form-group">
                   <label for="email">Email</label>
@@ -54,19 +20,23 @@
                 <div class="form-group">
                   <button class="btn btn-primary btn-block text-uppercase" type="submit">Log In</button>
                 </div>
-                <div style="color:blue;float:right;padding:10px"><a href="{% url 'password_reset' %}">Forgot
-                    Password?</a></div>
               </form>
-              <div class="sign-up__byline">
-                <span>connect with</span>
-                <ul class="list-unstyled list-inline pull-right">
-                  <li><a href="{% url 'facebook_login' %}"><span class="fa fa-facebook-official"></span></a>
+
+              <div class="panel text-right" style="color:blue;"><a href="{% url 'reset_password' %}">Forgot
+                Password?</a></div>
+
+              <div style="display:inline">
+                Connect With
+                <ul>
+                  <li><a href="{% url 'facebook_login' %}"><i class="fa fa-facebook-f"></i></a>
                   </li>
-                  <li><a href="{% url 'google_login' %}"><span class="fa fa-google"></span></a>
+                  <li><a href="{% url 'google_login' %}"><i class="fa fa-google"></i></a>
                   </li>
                 </ul>
               </div>
-            </div>
+
+            
+
             <div class="panel text-left animated fadeInUpSmall delay--450">
               <small class="text-uppercase">
                 Not Registered?
@@ -75,8 +45,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
+
   {% endblock %}
   {% include 'user/footer.html' %}

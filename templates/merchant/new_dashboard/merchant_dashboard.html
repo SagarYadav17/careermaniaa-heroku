@@ -19,6 +19,32 @@
 </head>
 
 <body>
+  <script>
+    window.onload = function() {
+    
+    var chart = new CanvasJS.Chart("chartContainer", {
+      animationEnabled: true,
+      title: {
+        text: "Stream Comparison"
+      },
+      data: [{
+        type: "pie",
+        startAngle: 240,
+        yValueFormatString: "##0.00\"%\"",
+        indexLabel: "{label} {y}",
+        dataPoints: [
+          {y: 60, label: "Science"},
+          {y: 25, label: "Commerce"},
+          {y: 15, label: "Arts"},
+        ]
+      }]
+    });
+    chart.render();
+    
+    }
+    </script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  
   <div class="loader"></div>
   <div id="app">
     <div class="main-wrapper main-wrapper-1">
@@ -93,7 +119,7 @@
                   <li><a class="nav-link" href="{% url 'add_faculty' %}">Faculty</a></li>
                   <li><a class="nav-link" href="{% url 'add_batch' %}">Batch</a></li>
                   <li><a class="nav-link" href="{% url 'owner' %}">Owner</a></li>
-                  <li><a class="nav-link" href="{% url 'payment' %}">Bank Details</a></li>
+                  <li><a class="nav-link" href="{% url 'payment_info' %}">Bank Details</a></li>
                   <li><a class="nav-link" href="{% url 'add_offer' %}">Offers</a></li>
                   <li><a class="nav-link" href="{% url 'add_discount' %}">Discounts</a></li>
                      </ul>
@@ -290,6 +316,8 @@
               </div>
             </div>
           </div>
+
+          <div class="container card" id="chartContainer" style="height: 370px; width: 80%;padding:20px"></div>
 
           <div class="row">
             <div class="col-md-6 col-lg-12 col-xl-6">
