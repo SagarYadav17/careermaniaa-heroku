@@ -32,7 +32,7 @@
         {% if loggedIn %}
         {% for course in courses %}
         <tr>
-            <td style="padding: 10px;width:300px;"><a href="{{course.course.name}}"></a></td>
+            <td style="padding: 10px;width:300px;"><a href="">{{course.course.name}}</a></td>
             <td style="padding: 10px;width:10px;">Rs. {{course.course.fees}}</td>
             <td style="padding: 10px;width:50px;"><a href="{% url 'del_item' id=course.id %}"><i class="fa fa-times" style="color: red;"></i></a></td>
         </tr>
@@ -40,7 +40,7 @@
         {% else %}
         {% for course in courses %}
         <tr>
-            <td style="padding: 10px;width:300px;"><a href="{{course.name}}"></a></td>
+            <td style="padding: 10px;width:300px;"><a href="">{{course.name}}</a></td>
             <td style="padding: 10px;width:10px;">Rs. {{course.fees}}</td>
             <td style="padding: 10px;width:50px;"><a href="{% url 'del_item' id=course.id %}"><i class="fa fa-times" style="color: red;"></i></a></td>
         </tr>
