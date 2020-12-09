@@ -1,0 +1,10 @@
+{% include 'user/header.html' %}
+{% load static %}
+{% block content %}
+<section class="page-title">
+  <h3>Username : {{user.username}}</h3><br>
+  <h3>Email : {{user.email}}</h3><br>
+  <h3>Change Password : <a href="reset_password"><button class="btn btn-warning">Change</button></a></h3>
+</section>	
+{% endblock %}
+{% include 'user/footer.html' %}

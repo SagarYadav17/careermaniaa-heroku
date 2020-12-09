@@ -83,8 +83,14 @@ class ActivateAccountView(View):
 def index(request):
     courses = Course.objects.all()
     science_courses = Course.objects.filter(stream="Science")
-    context = {'courses': courses, 'science_courses': science_courses}
+    loggedIn = False
+    if request.user in User.objects.all():
+        loggedIn = True
+    context = {'courses': courses, 'science_courses': science_courses, 'loggedIn': loggedIn}
     return render(request, 'user/index.html', context)
+
+def profile(request):
+    return render(request, 'user/profile.html')
 
 
 def register_user(request):
@@ -282,7 +288,7 @@ def delete_cartitem(request, id):
     return redirect('cart')
 
 def wishlist(request):
-    if request.user in list(User.objects.all()):
+    if request.user in User.objects.all():
         try:
             wishlists = Wishlist.objects.filter(user=request.user)
         except:

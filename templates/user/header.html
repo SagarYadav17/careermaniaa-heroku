@@ -86,12 +86,17 @@
 							</ul>
 							
 							<ul class="nav-menu nav-menu-social align-to-right">
-                {% if user %}
-                <li>
-									<a href=""><img src="{% static 'user_assets_new/img/user-6.jpg' %}" width=30 height=30></a>
+                {% if user.username %}
+                <li><a href=""><i class="fa fa-user"></i><span class="submenu-indicator"></span></a>
+									<ul class="nav-dropdown nav-submenu" role="menu">
+										<li><a>{{user.username}}</a>
+                    </li>
+                    <li><a href="{% url 'profile' %}">Profile</a>
+                    </li>
+									</ul>
                 </li>
                 <li>
-									<a href=""><button class="btn btn-success" style="border-radius: 20px;margin-top:-7px">{{user.username}}</button></a>
+									<a href="logout"><button class="btn btn-danger" style="border-radius: 20px;margin-top:-7px">Logout</button></a>
 								</li>
                 {% else %}
 								<li class="login_click light">
