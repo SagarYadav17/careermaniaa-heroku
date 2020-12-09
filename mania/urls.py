@@ -35,6 +35,7 @@ urlpatterns = [
     path('search', views.search, name='search'),
      path('about', views.about, name='about'),
 
-     path("checkout/<str:id>", views.checkout, name="Checkout"),
+     path("checkout/<str:id>", views.checkout, name="checkout"),
     path("payment", views.handlerequest, name="HandleRequest"),
+    path("profile", views.profile, name="profile"),
 ]
