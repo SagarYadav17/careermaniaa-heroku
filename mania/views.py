@@ -398,3 +398,11 @@ def handlerequest(request):
                       {'response': response_dict, 'registration': registration})
     return render(request, 'index.html')
 
+def bookings(request):
+    if request.user in User.objects.all():
+        courses = Registration.objects.filter(user=request.user)
+        print(courses)
+        context = {'courses': courses}
+        return render(request, 'user/bookings.html', context)
+    return redirect('login_user')
+
