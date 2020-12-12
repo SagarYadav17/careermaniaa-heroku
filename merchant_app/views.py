@@ -46,7 +46,7 @@ def register_merchant(request):
             else:
                 messages.info(request, 'something went wrong')
 
-    return render(request, "merchant/signup_merchant.html")
+    return render(request, "merchant/signup.html")
 
 
 def login_merchant(request):
@@ -60,12 +60,12 @@ def login_merchant(request):
                 return redirect('merchant')
             elif user.is_verified != True:
 
-                return render(request, 'merchant/login_merchant.html', {'error': 'Account is not verified yet. Pleace check your e-mail.'})
+                return render(request, 'merchant/login.html', {'error': 'Account is not verified yet. Pleace check your e-mail.'})
 
         else:
-            return render(request, 'merchant/login_merchant.html', {'error': 'No account found.'})
+            return render(request, 'merchant/login.html', {'error': 'No account found.'})
 
-    return render(request, 'merchant/login_merchant.html')
+    return render(request, 'merchant/login.html')
 
 
 def forms_details(request, user):
@@ -84,7 +84,7 @@ def forms_details(request, user):
         if not info:
             return redirect('owner', user=user.username)
         return redirect("index")
-    return render(request, 'merchant/login_merchant.html')
+    return render(request, 'merchant/login.html')
 
 
 @login_required(login_url='index')
@@ -97,7 +97,7 @@ def merchant_dashboard(request):
             return redirect('forms_details', merchant.username)
         context = {'merchant': request.user, 'coaching': coaching}
         return render(request, 'merchant/new_dashboard/merchant_dashboard.html', context=context)
-    return render(request, 'merchant/login_merchant.html')
+    return render(request, 'merchant/login.html')
 
 
 @login_required
@@ -449,7 +449,7 @@ def add_course(request):
         context = {'merchant': request.user,
                    'coaching': coaching, 'branches': branches}
         return render(request, 'merchant/new_dashboard/add_course.html', context)
-    return render(request, 'merchant/signup_merchant.html')
+    return render(request, 'merchant/signup.html')
 
 
 @login_required(login_url='index')
@@ -488,7 +488,7 @@ def update_course(request, id):
         context = {'merchant': request.user, 'coaching': coaching,
                    'branches': branches, 'course': course}
         return render(request, 'merchant/new_dashboard/add_course.html', context)
-    return render(request, 'merchant/signup_merchant.html')
+    return render(request, 'merchant/signup.html')
 
 
 @login_required(login_url='index')
@@ -519,7 +519,7 @@ def add_faculty(request):
         context = {'merchant': request.user,
                    'coaching': coaching, 'faculties': faculties}
         return render(request, 'merchant/new_dashboard/faculty.html', context)
-    return render(request, 'merchant/signup_merchant.html')
+    return render(request, 'merchant/signup.html')
 
 
 @login_required(login_url='index')
@@ -547,7 +547,7 @@ def update_faculty(request, id):
         context = {'merchant': request.user, 'coaching': coaching,
                    'faculties': faculties, 'edit_faculty': faculty}
         return render(request, 'merchant/new_dashboard/faculty.html', context)
-    return render(request, 'merchant/signup_merchant.html')
+    return render(request, 'merchant/signup.html')
 
 
 @login_required(login_url='index')
@@ -592,7 +592,7 @@ def add_batch(request):
         context = {'merchant': request.user, 'coaching': coaching,
                    'courses': courses, 'faculties': faculties, 'batches': batches}
         return render(request, 'merchant/new_dashboard/batch.html', context)
-    return render(request, 'merchant/signup_merchant.html')
+    return render(request, 'merchant/signup.html')
 
 
 @login_required(login_url='index')

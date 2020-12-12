@@ -1,0 +1,538 @@
+
+html,body{
+    /* height: 100% !important; */
+}
+body{
+    margin: 0;
+    width: 100% !important;
+    background-color: #1100000f;
+    overflow-y: overlay;
+    height: 950px;
+}
+.hide{
+    display: none;
+}
+.main-body{
+    width: 100%;
+    height: 950px;
+    background-image: url(../asset/header.png),url(../Background/lower_left.png),url(../Background/lower_right.png);
+    background-position: left top,left bottom, right bottom;
+    background-repeat: no-repeat,no-repeat, no-repeat;
+    background-size: 100% 40%,30%,50%;
+}
+#signup_page{
+    z-index: 1;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    height: 930px;
+}
+.forht{
+    height:15%;
+}
+.forbtn{
+    height: 7%;
+}
+.register{
+    z-index: 1;
+}
+.table{
+    margin-bottom: 0px !important;
+}
+.dropdown{
+    width: 100%;
+}
+.select2-container{
+    width: 100% !important;
+}
+.head_name .select2-container{
+    width: 80px !important;
+}
+.select2-selection__choice{
+    height: 20px;
+    width: fit-content;
+    height: fit-content;
+    padding: 7px !important;
+
+}
+.select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #aaaaaa9e;
+    border-radius: 12px;
+    height: 32px;
+}
+.select2-container--default .select2-selection--multiple {
+    background-color: white;
+    border: olid #aaaaaa9e 1px;
+    border-radius: 30px;
+}
+.register-left{
+    text-align: center;
+    color: #fff;
+    margin-top: 4%;
+}
+.register-left input{
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2%;
+    width: 60%;
+    background: #f8f9fa;
+    font-weight: bold;
+    color: #383d41;
+    margin-top: 30%;
+    margin-bottom: 3%;
+    cursor: pointer;
+}
+.register-right{
+    background: #f8f9fa;
+    margin-top: 6%;
+    width: 80%;
+    height: 800px;
+    border-radius: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 70px;
+}
+.header_content{
+    margin: 10px;
+}
+.header_content .logo_img{
+    width:70px;
+    height: 100px;
+    margin-top: 12px;
+}
+.header_content .logo_text{
+    float: right;
+    font-size: 24px;
+    margin-top: 40px;
+}
+.btn-group{
+    left: 20%;
+}
+button.btn.btn-primary {
+    justify-content: center;
+    text-align: center;
+    background: transparent;
+    border: 1px solid;
+    color: #fff;
+    background-color: black;
+    border-color: #da0b4e;
+}
+.btn-group-lg>.btn, .btn-lg {
+    padding: 10px 20px;
+    font-size: 18px;
+    line-height: 1;
+}
+ .btn{
+    border-radius: 100px;
+}
+.btn-group button{
+    margin: 10px;
+    width: 150px;
+}
+.btn-group button:hover{
+    color: #fff;
+    background-color: black!important;
+    border-color: black;
+}
+.register-left img{
+    margin-top: 15%;
+    margin-bottom: 5%;
+    width: 25%;
+    -webkit-animation: mover 2s infinite  alternate;
+    animation: mover 1s infinite  alternate;
+}
+@-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+.register-left p{
+    font-weight: lighter;
+    padding: 12%;
+    margin-top: -9%;
+}
+.register .register-form{
+    padding: 1% 1% 2% 1%;
+    margin-top: 3%;
+}
+.left-form{
+    line-height: 0.6;
+    float: left;
+}
+.right-form{
+    line-height: 0.6;
+    float: right;
+}
+.register .nav-tabs{
+    margin-top: 3%;
+    border: none;
+    background:  #da0b4e;
+    border-radius: 1.5rem;
+    width: 28%;
+    float: right;
+}
+.college_info{
+    padding-top: 10px;
+}
+.register .nav-tabs .nav-link{
+    padding: 2%;
+    height: 34px;
+    font-weight: 600;
+    color: #fff;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+}
+.register .nav-tabs .nav-link:hover{
+    border: none;
+}
+.register .nav-tabs .nav-link.active{
+    width: 100px;
+    color: #da0b4e;
+    border: 1px solid #da0b4e;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+}
+.register-heading{
+    text-align: center;
+    margin-top: 8%;
+    margin-bottom: -15%;
+    color: #495057;
+}
+.box{
+    min-height: 94%;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active{
+    color: #fff;
+    background-color: #da0b4e !important;
+    border-color: black;
+}
+ .btn-group>.btn:not(:last-child):not(.dropdown-toggle) {
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+.btn-group>.btn:not(:first-child) {
+    border-top-left-radius: 110px;
+    border-bottom-left-radius: 110px;
+    border-top-right-radius: 110px;
+    border-bottom-right-radius: 110px;
+}
+.form-group {
+    margin-bottom: 0 !important;
+    padding-bottom: 10px;
+}
+input{
+    height: 35px;
+    border-radius: 16px !important;
+}
+
+.bootstrap-select.form-control {
+    height: 35px;
+    width: 100%;
+    border: 1px solid #00000021;
+    border-radius: 14px;
+}
+.missform{
+    width: 23% !important;
+}
+.head_name_input{
+    display: inline;
+    width: 75%;
+}
+.btnSignup{
+    float: left;
+    border: 1px solid;
+    border-color: #da0b4e;
+    border-radius: 100px;
+    padding: 1%;
+    background: black;
+    color: #fff;
+    font-weight: 600;
+    width: 50%;
+    cursor: pointer;
+}
+.btnSignup:hover,.btnLogin:hover{
+    background-color:#da0b4e;
+    color: white;
+    border: 1px solid black;
+}
+.btnLogin{
+    float: right;
+    border: 1px solid;
+    border-color: #da0b4e;
+    border-radius: 100px;
+    padding: 1%;
+    background:  black;
+    color: #fff;
+    font-weight: 600;
+    width: 50%;
+    cursor: pointer;
+}
+.footer-buttons{
+    padding: 0% 2%;
+}
+.table td {
+    padding: 10px;
+}
+.footer_content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.footer_content p{
+    margin-bottom: 0px;
+}
+.or_hr{
+    width: 80px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.signup_hr{
+    width: 200px;
+    margin-top: 0px;
+    margin-bottom: 1rem;
+    border-top: 1px solid rgba(0,0,0,0.4);
+}
+.footer_icons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.footer_icons img{
+    width: 33px;
+}
+.form-control {
+     border-radius: 50px;
+}
+/*************************** Media Query Started **************************/
+@media(max-width: 1025px){
+     .register-right{
+    height: 780px;
+    margin-bottom: 50px;
+    }
+    .btn-group {
+    left: 16%;
+}
+.btn-group-lg>.btn, .btn-lg {
+    padding: 8px 16px;
+    font-size: 16px;
+}
+.btn-group button{
+    margin: 10px;
+    width: 140px;
+}
+    .head_name_input {
+    width: 72%;
+}
+    .header_content .logo_img {
+    width: 65px;
+    height: 95px;
+}
+}
+ @media screen and (min-width:500px) and (max-width:770px) {
+     .register-right{
+    height: 750px;
+    margin-bottom: 40px;
+    }
+    .header_content .logo_img {
+    width: 60px;
+    height: 90px;
+     }
+     .header_content .logo_text {
+    font-size: 22px;
+     }
+     .register .register-form {
+    font-size: 14px;
+}
+     .register .register-form table td {
+    font-size: 14px;
+}
+     .btn-group {
+    left: 9%
+}
+     .btn-group button{
+    margin: 10px;
+    width: 120px;
+}
+    .btn-group-lg>.btn, .btn-lg {
+    padding: 5px 5px;
+    font-size: 16px;
+     }
+     .select2-container--default .select2-selection--single {
+         height: 30px;
+     }
+     .head_name_input {
+    width: 60%;
+    }
+     .footer_content p{
+   font-size: 16px;
+}
+}
+@media(max-width:480px){
+    .forht {
+        height: 10%;
+    }
+    .forbtn {
+    height: 5%;
+
+    }
+    .register-right{
+    height: 1080px;
+    margin-bottom: 20px;
+    }
+    .header_content .logo_img {
+    width: 55px;
+    height: 85px;
+     }
+    .header_content .logo_text {
+    font-size: 20px;
+     }
+      .btn-group {
+        left: 2%;
+    }
+      .btn-group button{
+    margin: 10px;
+    width: 90px;
+    }
+    .btn-group-lg>.btn, .btn-lg {
+    padding: 5px 5px;
+    font-size: 16px;
+     }
+    .footer-buttons {
+    padding: 0% 3%;
+}
+    .btnSignup,.btnLogin{
+        font-weight: 400;
+        font-size: 16px;
+        width: 100px;
+    }
+    .head_name_input {
+        display: inline;
+        width: 68%;
+    }
+    .register-right {
+        width: 90% !important;
+        left: 0%;
+    }
+    .footer_content {
+    font-size: 14px;
+}
+    .signup_hr {
+        width: 140px;
+    }
+    .main-body{
+        height: 1150px;
+    }
+}
+@media (max-width: 380px){
+    .register-right{
+    height: 1050px;
+    }
+.head_name_input {
+    display: inline;
+    width: 60%
+    }
+    .forht {
+        height: 9%;
+    }
+    .header_content .logo_img {
+    width: 50px;
+    height: 80px;
+     }
+    .header_content .logo_text {
+    font-size: 18px;
+     }
+      .btn-group {
+    left: 1%;
+    }
+      .btn-group button{
+    margin: 8px;
+    width: 80px;
+    }
+    .btnSignup,.btnLogin{
+        width: 80px;
+    }
+    .signup_hr {
+    width: 130px;
+}
+    .footer_icons img {
+    width: 30px;
+}
+}
+@media (max-width: 325px){
+    .register-right{
+    height: 970px;
+    }
+    .header_content {
+    margin: 0px;
+    }
+    .btn-group {
+    left: 6px;
+    }
+    .btn-group button{
+    margin: 6px;
+    width: 65px;
+    }
+    .form-group {
+    padding-bottom: 8px;
+    }
+    .header_content .logo_img {
+    width: 55px;
+    height: 75px;
+     }
+    .header_content .logo_text {
+    font-size: 16px;
+     }
+    .forht {
+        height: 10%;
+    }
+    .forbtn {
+    height: 4%;
+    }
+    .col-md-12{
+    padding-right: 10px;
+    padding-left: 10px;
+    }
+    .btnSignup,.btnLogin{
+        font-weight: 300;
+        font-size: 14px;
+        padding: 2%;
+        width: 70px;
+    }
+    .footer_content {
+    font-size: 12px;
+    }
+    button.btn.btn-primary{
+        font-size: 14px;
+    }
+    .register .register-form {
+    font-size: 12px;
+}
+     .register .register-form table td {
+    font-size: 12px;
+}
+    .footer-buttons{ 
+    padding: 0% 2%;
+}
+    .signup_hr {
+    width: 110px;
+}
+    .footer_icons img {
+    width: 28px;
+}
+    .head_name_input {
+    display: inline;
+    width: 55%
+    }
+
+}
