@@ -82,8 +82,15 @@ class ActivateAccountView(View):
 
 def index(request):
     courses = Course.objects.all()
-    context = {'courses': courses}
+    science_courses = Course.objects.filter(stream="Science")
+    loggedIn = False
+    if request.user in User.objects.all():
+        loggedIn = True
+    context = {'courses': courses, 'science_courses': science_courses, 'loggedIn': loggedIn}
     return render(request, 'user/index.html', context)
+
+def profile(request):
+    return render(request, 'user/profile.html')
 
 
 def register_user(request):
@@ -120,7 +127,7 @@ def login_user(request):
         if user:
             if user.is_student and user.is_verified:
                 login(request, user)
-                return HttpResponse("Logged in as " + user.username)
+                return redirect('index')
 
             elif user.is_verified != True:
                 return render(request, 'user/login.html', {'error': 'Account not verified yet. Please check your e-mail'})
@@ -143,17 +150,17 @@ def products(request):
         lng = request.POST.get("lng", "79.0882")
         coordinates = lat, lng
         city = reverseGeocode(coordinates)
-        courses = Course.objects.all()
-        result = []
-        print(courses)
-        for course in courses:
-            address = Address.objects.get(branch=course.branch)
-            if address.city == city:
-                result.append(course)
-        if result == []:
+        all_address = list(Address.objects.filter(city=city))
+        all_address = [address for address in all_address if address.user.is_merchant]
+        courses = []
+        for address in all_address:
+            coaching = Coaching.objects.get(user=address.user)
+            courses += Course.objects.filter(coaching=coaching)
+        
+        if courses == []:
             context = {'msg': 'No Near By Coachings'}
         else:
-            context = {'courses': result, 'msg': 'Near You'}
+            context = {'courses': courses, 'msg': 'Near You'}
         return render(request, 'user/products.html', context)
     courses = Course.objects.all()
     context = {'courses': courses, 'msg': 'All Courses'}
@@ -281,7 +288,7 @@ def delete_cartitem(request, id):
     return redirect('cart')
 
 def wishlist(request):
-    if request.user in list(User.objects.all()):
+    if request.user in User.objects.all():
         try:
             wishlists = Wishlist.objects.filter(user=request.user)
         except:
@@ -318,14 +325,16 @@ from django.db.models import Q
 
 def search(request):
     if request.method == "POST":
+        try:
+            city = request.POST['city']
+        except:
+            city = None
         keyword = request.POST['keyword']
         if keyword == "":
             return render(request, 'user/search.html', {'length': 0})
         courses = []
         courses += Course.objects.filter(Q(name__icontains=keyword) | Q(description__icontains=keyword))
-        all_address = Address.objects.filter(Q(city__icontains=keyword) |Q(line1__icontains=keyword) |Q(apartment__icontains=keyword) |
-                                                Q(building__icontains=keyword) |Q(landmark__icontains=keyword) |
-                                                Q(district__icontains=keyword) | Q(state__icontains=keyword))
+        all_address = Address.objects.filter(city=city)
         for address in all_address:
             coaching = Coaching.objects.filter(merchant=address.user)
             courses += Course.objects.filter(coaching=coaching)
@@ -388,4 +397,12 @@ def handlerequest(request):
         return render(request, 'user/paymentstatus.html',
                       {'response': response_dict, 'registration': registration})
     return render(request, 'index.html')
+
+def bookings(request):
+    if request.user in User.objects.all():
+        courses = Registration.objects.filter(user=request.user)
+        print(courses)
+        context = {'courses': courses}
+        return render(request, 'user/bookings.html', context)
+    return redirect('login_user')
 

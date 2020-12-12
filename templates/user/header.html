@@ -49,8 +49,8 @@
 				<div class="container">
 					<nav id="navigation" class="navigation navigation-landscape">
 						<div class="nav-header">
-							<a class="nav-brand" href="#">
-								<img src="{% static 'user_assets_new/img/logo.png' %}" class="logo" alt="" />
+							<a class="nav-brand" href="/">
+								<img src="{% static 'user_assets_new/img/Asset 2.png' %}" class="logo" alt="" width=60 height=100 />
 							</a>
 							<div class="nav-toggle"></div>
 						</div>
@@ -86,16 +86,29 @@
 							</ul>
 							
 							<ul class="nav-menu nav-menu-social align-to-right">
-								
+                {% if user.username %}
+                <li><a href=""><i class="fa fa-user"></i><span class="submenu-indicator"></span></a>
+									<ul class="nav-dropdown nav-submenu" role="menu">
+										<li><a>{{user.username}}</a>
+                    </li>
+                    <li><a href="{% url 'profile' %}">Profile</a>
+                    </li>
+                  </li>
+                  <li><a href="{% url 'bookings' %}">Bookings</a>
+                  </li>
+									</ul>
+                </li>
+                <li>
+									<a href="logout"><button class="btn btn-danger" style="border-radius: 20px;margin-top:-7px">Logout</button></a>
+								</li>
+                {% else %}
 								<li class="login_click light">
 									<a href="{% url 'login_user' %}">Sign in</a>
 								</li>
 								<li class="login_click theme-bg">
 									<a href="{% url 'register_user' %}">Sign up</a>
                 </li>
-                <li class="login_click" style="background-color: green;">
-									<a href="{% url 'merchant_view' %}">Merchant View</a>
-								</li>
+                {% endif %}
 							</ul>
 						</div>
 					</nav>

@@ -17,12 +17,13 @@
       <div class="col-lg-8 col-md-12 col-sm-12">
         <div class="banner-search shadow_high">
           <div class="search_hero_wrapping">
+            <form action="search" method="POST">{% csrf_token %}
             <div class="row">
             
               <div class="col-lg-5 col-md-5 col-sm-12 br-right">
                 <div class="form-group">
                   <div class="input-with-icon">
-                    <input type="text" class="form-control" placeholder="Keyword" />
+                    <input type="text" class="form-control" placeholder="Keyword" name="keyword"/>
                     <img src="{% static 'user_assets_new/img/search.svg' %}" class="search-icon" alt="" />
                   </div>
                 </div>
@@ -31,13 +32,13 @@
               <div class="col-lg-5 col-md-4 col-sm-12 small-pad">
                 <div class="form-group">
                   <div class="input-with-icon">
-                    <select id="c-category" class="form-control">
+                    <select id="c-category" class="form-control" name="city">
                       <option value="">&nbsp;</option>
-                      <option value="1">Web Designing</option>
-                      <option value="2">Business</option>
-                      <option value="3">Accounting</option>
-                      <option value="3">Development</option>
-                      <option value="3">Art & Culture</option>
+                      <option value="1">Nagpur</option>
+                      <option value="2">Delhi</option>
+                      <option value="3">Mumbai</option>
+                      <option value="3">Pune</option>
+                      <option value="3">Chandigadh</option>
                     </select>
                     <img src="{% static 'user_assets_new/img/pin.svg' %}" class="search-icon" alt="" />
                   </div>
@@ -46,12 +47,12 @@
               
               <div class="col-lg-2 col-md-3 col-sm-12 pl-0">
                 <div class="form-group none">
-                  <a href="#" class="btn search-btn full-width">Search</a>
+                  <input type="submit" class="btn search-btn full-width" value="Search">
                 </div>
               </div>
               
             </div>
-            
+            </form>
           </div>
         </div>
       </div>
@@ -169,6 +170,7 @@
                 </div>
                 <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i><a href=""><button class="btn btn-success">Book Now</button></a></div>
               </div>
+              <center><a href="{% url 'add_to_cart' id=course.id %}"><button class="btn btn-warning" style="margin:5px">ADD TO CART</button></a></center>
             </div>	
           </div>
           {% endfor %}
@@ -193,7 +195,7 @@
             <h3>Got & Popular Categories</h3>
           </div>
           <div class="sec-right">
-            <a href="javascript:void(0);" class="btn-br-more">Browse More</a>
+            <a href="{% url 'products' %}" class="btn-br-more">Browse More</a>
           </div>
         </div>
       </div>
@@ -205,84 +207,38 @@
         <div class="arrow_slide three_slide-dots arrow_middle">
           
           <!-- Single Slide -->
+          {% for course in science_courses %}
           <div class="singles_items">
-            <div class="edu_cat">
-              <div class="pic">
-                <a class="pic-main" href="#" style="background-image:url({% static 'user_assets_new/img/course-7.jpg' %});"></a>
+            <div class="education_block_grid style_2">
+              <div class="education_block_thumb n-shadow">
+                <a href="course-detail.html"><img src="{{course.coaching.logo.url}}" class="img-fluid" alt=""></a>
+                <div class="cources_price">INR {{course.fees}}</div>
               </div>
-              <div class="edu_data">
-                <h4 class="title"><a href="#">Finance & Accounting</a></h4>
-                <ul class="meta">
-                  <li class="video"><i class="ti-video-clapper"></i>23 Videos</li>
-                  <li class="lessions"><i class="ti-book"></i>54 Lessions</li>
+              
+              <div class="education_block_body">
+                <h4 class="bl-title"><a href="course-detail.html">{{course.name}}</a></h4>
+                <p>{{course.description}}</p>
+              </div>
+              
+              <div class="cources_info_style3">
+                <ul>
+                  <li><i class="ti-eye mr-2"></i>8682 Views</li>
+                  <li><i class="ti-time mr-2"></i>6h 40min</li>
+                  <li><i class="ti-star text-warning mr-2"></i>4.7 Reviews</li>
                 </ul>
               </div>
+              
+              <div class="education_block_footer">
+                <div class="education_block_author">
+                  <div class="path-img"><a href="instructor-detail.html"><img src="{{course.coaching.logo.url}}" class="img-fluid" alt=""></a></div>
+                  <h5><a href="instructor-detail.html">{{course.coaching.name}}</a></h5>
+                </div>
+                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i><a href=""><button class="btn btn-success">Book Now</button></a></div>
+              </div>
+              <center><a href="{% url 'add_to_cart' id=course.id %}"><button class="btn btn-warning" style="margin:5px">ADD TO CART</button></a></center>
             </div>	
           </div>
-          
-          <!-- Single Slide -->
-          <div class="singles_items">
-            <div class="edu_cat">
-              <div class="pic">
-                <a class="pic-main" href="#" style="background-image:url({% static 'user_assets_new/img/course-8.jpg' %});"></a>
-              </div>
-              <div class="edu_data">
-                <h4 class="title"><a href="#">Gym & Lifestyle</a></h4>
-                <ul class="meta">
-                  <li class="video"><i class="ti-video-clapper"></i>23 Videos</li>
-                  <li class="lessions"><i class="ti-book"></i>54 Lessions</li>
-                </ul>
-              </div>
-            </div>		
-          </div>
-          
-          <!-- Single Slide -->
-          <div class="singles_items">
-            <div class="edu_cat">
-              <div class="pic">
-                <a class="pic-main" href="#" style="background-image:url({% static 'user_assets_new/img/course-9.jpg' %});"></a>
-              </div>
-              <div class="edu_data">
-                <h4 class="title"><a href="#">Health & Fitness</a></h4>
-                <ul class="meta">
-                  <li class="video"><i class="ti-video-clapper"></i>23 Videos</li>
-                  <li class="lessions"><i class="ti-book"></i>54 Lessions</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Single Slide -->
-          <div class="singles_items">
-            <div class="edu_cat">
-              <div class="pic">
-                <a class="pic-main" href="#" style="background-image:url({% static 'user_assets_new/img/course-10.jpg' %});"></a>
-              </div>
-              <div class="edu_data">
-                <h4 class="title"><a href="#">Software & Development</a></h4>
-                <ul class="meta">
-                  <li class="video"><i class="ti-video-clapper"></i>23 Videos</li>
-                  <li class="lessions"><i class="ti-book"></i>54 Lessions</li>
-                </ul>
-              </div>
-            </div>		
-          </div>
-          
-          <!-- Single Slide -->
-          <div class="singles_items">
-            <div class="edu_cat">
-              <div class="pic">
-                <a class="pic-main" href="#" style="background-image:url({% static 'user_assets_new/img/course-11.jpg' %});"></a>
-              </div>
-              <div class="edu_data">
-                <h4 class="title"><a href="#">Business Development</a></h4>
-                <ul class="meta">
-                  <li class="video"><i class="ti-video-clapper"></i>23 Videos</li>
-                  <li class="lessions"><i class="ti-book"></i>54 Lessions</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          {% endfor %}
         
         </div>
       </div>
