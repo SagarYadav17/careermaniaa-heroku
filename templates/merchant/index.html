@@ -2,557 +2,630 @@
 <!doctype html>
 
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Careermaniaa</title>
-    <meta name="description" content="The HTML5 Herald">
-    <meta name="author" content="SitePoint">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{% static 'new-merchant/vendor/bootstrap/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'new-merchant/vendor/font-awesome/all.css' %}">
-    <link rel="stylesheet" href="{% static 'new-merchant/css/styles.css' %}">
-  </head>
 
-    <body>
-      <!--Welcome page strt from here ***************************-->
-          <div class="welcome_page col-md-14" id="first_page">
-              <div class="headerpart">
-                <!-- <div class="headercontent"> -->
-                <div class="logoandlogin">
-                  <div class="logo">
-                    <img src="{% static 'new-merchant/asset/logo1.png' %}">
-                    <p><span style="color:#da0b4e;">Career</span><span style="color:black;">Maniaa</span></p>
-                  </div>
-                  <div class="usericon">
-                    <a href="{% url 'login_merchant' %}"><img src="{% static 'new-merchant/asset/usericon.png' %}"></a>
-                  </div>
-                </div>
-              </div>
-            <div class="col-md-14 footerpart">
-                <!-- <img class = "cross_behind_girl" src="{% static 'new-merchant/asset/float_above_and _behind_girl.png' %}"> -->
-                <!-- <img class="cute_girl" src="{% static 'new-merchant/asset/girl.png' %}"> -->
-                <div class="upper_part">
-                  <h1>Welcome</h1>
-                  <p style="padding-top:5px;">To the India's fastest growing</p>
-                  <p>educational platform</p>
-                </div>
-                  <div class="lower_buttons">
-                    <button class="btn btn-primary Classes" id="CollegesButton">Colleges</button>
-                    <button class="btn btn-primary" id="ClassesButton">Classes</button>
-                    <button class="btn btn-primary" id="JobsButton">Jobs</button>
-                  </div>
-                <a class="scroll" href="#bcvPage"><img src="{% static 'new-merchant/asset/lower_footer.png' %}"></a>
+<head>
+  <meta charset="utf-8">
+  <title>Careermaniaa</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'new-merchant/vendor/bootstrap/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'new-merchant/vendor/font-awesome/all.css' %}">
+  <link rel="stylesheet" href="{% static 'new-merchant/css/styles.css' %}">
+</head>
+
+<body>
+  <!--Welcome page strt from here ***************************-->
+  <div class="welcome_page col-md-14" id="first_page">
+    <div class="headerpart">
+      <!-- <div class="headercontent"> -->
+      <div class="logoandlogin">
+        <div class="logo">
+          <img src="{% static 'new-merchant/asset/logo1.png' %}">
+          <p><span style="color:#da0b4e;">Career</span><span style="color:black;">Maniaa</span></p>
+        </div>
+        <div class="usericon">
+          <a href="{% url 'login_merchant' %}"><img src="{% static 'new-merchant/asset/usericon.png' %}"></a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-14 footerpart">
+      <!-- <img class = "cross_behind_girl" src="{% static 'new-merchant/asset/float_above_and _behind_girl.png' %}"> -->
+      <!-- <img class="cute_girl" src="{% static 'new-merchant/asset/girl.png' %}"> -->
+      <div class="upper_part">
+        <h1>Welcome</h1>
+        <p style="padding-top:5px;">To the India's fastest growing</p>
+        <p>educational platform</p>
+      </div>
+      <div class="lower_buttons">
+        <button class="btn btn-primary Classes" id="CollegesButton">Colleges</button>
+        <button class="btn btn-primary" id="ClassesButton">Classes</button>
+        <button class="btn btn-primary" id="JobsButton">Jobs</button>
+      </div>
+      <a class="scroll" href="#bcvPage"><img src="{% static 'new-merchant/asset/lower_footer.png' %}"></a>
+    </div>
+  </div>
+  <!--Welcome page end here ***************************-->
+
+  <!--Bcv page start from here *****************************-->
+
+  <div class="col-md-14 bcv_page" id="bcvPage">
+    <div id="total_navbar">
+      <div id="navbar" class="col-md-14">
+        <div class="col-md-4 logo">
+          <img src="{% static 'new-merchant/asset/logo2.png' %}">
+        </div>
+        <div class="col-md-8 top_rig">
+          <div id="menu_content">
+            <span><a class="nav-link scroll" href="#first_page"> Home </a></span>
+            <span><a class="nav-link scroll" href="#about_us"> About us </a></span>
+            <span><a class="nav-link scroll" href="#numberPage"> Opportunity</a></span>
+            <span><a class="nav-link scroll" href="#sevices_page"> Services</a></span>
+            <span><a class="nav-link scroll" href="#contuctUsPage">Contact us </a></span>
+          </div>
+          <a href="javascript:void(0);" id="hamburgericon">
+            <i class="fa fa-bars"></i>
+          </a>
+          <a href="{% url 'login_merchant' %}"><span><img
+                src="{% static 'new-merchant/asset/usericon.png' %}"></span></a>
+        </div>
+      </div>
+      <div id="hamburgerMenu" class="col-md-14">
+        <a class="nav-link scroll first_menu" href="#first_page"> Home </a>
+        <a class="nav-link scroll" href="#numberPage"> About us </a>
+        <a class="nav-link scroll" href="#sevices_page"> Services</a>
+        <a class="nav-link scroll last_menu" href="#contuctUsPage">Contact us </a>
+      </div>
+    </div>
+    <div class="col-md-14 bcv_upperpart">
+      <input type="text" class="form-control curved" id="autosuggestfor" placeholder="Search" />
+      <ul class="suggestionList">
+      </ul>
+    </div>
+    <div class="col-md-14 bcv_downpart">
+      <div class="col-md-6 leftpart">
+        <div class="content_holder">
+          <img src="{% static 'new-merchant/asset/bcv1.png' %}" class="background_shape">
+          <img src="{% static 'new-merchant/asset/bcv2.png' %}" class="man_reading">
+          <img src="{% static 'new-merchant/asset/lamp.png' %}" class="lamp">
+        </div>
+      </div>
+      <div class="col-md-6 rightpart">
+        <div class="rightpart_content_holder">
+          <p>Career Mania is the one roof solution</p>
+          <p>To grow your</p>
+          <div id="showhideTextportion">
+            <div class="showhideTextBox">
+              <span class="showhidebutton">Buisness</span>
             </div>
           </div>
-      <!--Welcome page end here ***************************-->
+          <p>Join now to grow your</p>
+          <p style="color: #da0b4e">Situation</p>
+          <div class="contact_button">
+            <button class="btn btn-primary"><a class="scroll" href="#lastPage"
+                style="color: white;text-decoration: none;">Join</a></button>
+            <button class="btn btn-primary"><a class="scroll" href="#contuctUsPage"
+                style="color: white;text-decoration: none;">Contact</a></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Bcv page end here *****************************-->
 
-        <!--Bcv page start from here *****************************-->
+  <!--Chatbot page start from here ***********************-->
+  <div class="col-md-14 chatbot_page">
 
-        <div class="col-md-14 bcv_page" id="bcvPage">
-          <div id="total_navbar">
-              <div id="navbar" class="col-md-14">
-                <div class="col-md-4 logo">
-                    <img src="{% static 'new-merchant/asset/logo2.png' %}">
-                </div>
-                <div class="col-md-8 top_rig">
-                    <div id = "menu_content">
-                      <span><a class="nav-link scroll" href="#first_page"> Home </a></span>
-                      <span><a class="nav-link scroll" href="#about_us"> About us </a></span>
-                      <span><a class="nav-link scroll" href="#numberPage"> Opportunity</a></span>
-                      <span><a class="nav-link scroll"  href="#sevices_page"> Services</a></span>
-                      <span><a class="nav-link scroll" href="#contuctUsPage">Contact us </a></span>
-                    </div>
-                    <a href="javascript:void(0);" id="hamburgericon">
-                      <i class="fa fa-bars"></i>
-                    </a>
-                    <a href="{% url 'login_merchant' %}"><span><img src="{% static 'new-merchant/asset/usericon.png' %}"></span></a>
-                </div>
-              </div>
-            <div id="hamburgerMenu" class="col-md-14">
-              <a class="nav-link scroll first_menu" href="#first_page"> Home </a>
-              <a class="nav-link scroll" href="#numberPage"> About us </a>
-              <a class="nav-link scroll"  href="#sevices_page"> Services</a>
-              <a class="nav-link scroll last_menu" href="#contuctUsPage">Contact us </a>
+    <div class="dmenu">
+    </div>
+    <div class="col-md-12 chatbot_dwnpart" id="about_us">
+      <div class="col-md-6 chatbot_left_part">
+        <div class="single_item">
+          <img src="{% static 'new-merchant/asset/business.png' %}">
+          <span class="develop_content">
+            <p class="hdtext">Develop Business</p>
+            <p class="bdtext">Get insights to improve the reach of your business...</p>
+          </span>
+        </div>
+        <div class="single_item">
+          <img src="{% static 'new-merchant/asset/meeting.png' %}">
+          <span class="develop_content">
+            <p class="hdtext">10 times more engagement</p>
+            <p class="bdtext">Find millions of new students for your coaching classes...</p>
+          </span>
+        </div>
+        <div class="single_item">
+          <img src="{% static 'new-merchant/asset/technology_meet.png' %}">
+          <span class="develop_content">
+            <p class="hdtext">Technology meets management</p>
+            <p class="bdtext">Hassle-free management with careermania to boost your revenue...</p>
+          </span>
+        </div>
+      </div>
+
+      <div class="col-md-6 chatbot_right_part" id="contuctUsPage">
+        <div class="chatbot_background">
+          <img src="{% static 'new-merchant/asset/gradient _other _page.png' %}">
+        </div>
+        <div class="chatbot_div">
+          <div class="chatbot_heading">
+            <p>Lets Talk the possibilities</p>
+            <hr style="background-color: #e2deed;;">
+          </div>
+          <div class="chatbot_buttons">
+            <button class="btn btn-primary active chatbutton" value="chat">Chat us</button>
+            <button class="btn btn-primary chatbutton" value="custom message">Drop a cutom message</button>
+          </div>
+          <div class="chat_functionality">
+            <div class="chat_space">
+
+            </div>
+            <div class="message_input">
+              <input id="chat_input" type="text" class="form-control" placeholder="Ask to us" />
+              <a href="#contuctUsPage" id="chat_send"><img src="{% static 'new-merchant/asset/send.png' %}"></a>
             </div>
           </div>
-          <div class="col-md-14 bcv_upperpart">
-            <input type="text" class="form-control curved" id="autosuggestfor" placeholder="Search"/>
-            <ul class="suggestionList">
+          <div class="custom_message hide">
+            <div class="message-form">
+              <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" placeholder="Ask to us" />
+              </div>
+              <div class="form-group">
+                <label>Mobile</label>
+                <input type="text" class="form-control" placeholder="Ask to us" />
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control" placeholder="Ask to us" />
+              </div>
+              <div class="form-group">
+                <label>Message</label>
+                <textarea class="form-control"></textarea>
+              </div>
+              <div class="submit_button">
+                <button class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Chatbot page end here ***********************-->
+
+    <!-- Cources page start from here *********************-->
+    <div class="col-md-14 cources_page" id="sevices_page">
+      <div class="dmenu1">
+      </div>
+      <div class="up">
+        <p> Learning Corners <br> at <span class="cword">Career</span>Maniaa</p>
+      </div>
+      <div class="contpart">
+        <div class="course_container col-md-10">
+          <div class="module col-md-2">
+            <div class="main_course_module">
+              <div class="schl">
+                <img src="{% static 'new-merchant/asset/schooling.png' %}" class="courceimage">
+                <p>Schooling <br>Upto +2</p>
+              </div>
+              <div class="med">
+                <img src="{% static 'new-merchant/asset/medical.png' %}" class="courceimage">
+                <p>Medical<br>Classes</p>
+              </div>
+            </div>
+          </div>
+          <div class="module col-md-2">
+            <div class="main_course_module">
+              <div class="art">
+                <img src="{% static 'new-merchant/asset/art.png' %}" class="courceimage">
+                <p>Art <br>Classes</p>
+              </div>
+              <div class="engg">
+                <img src="{% static 'new-merchant/asset/engg.png' %}" class="courceimage">
+                <p>Enggeering <br>Classes</p>
+              </div>
+            </div>
+          </div>
+          <div class="module col-md-2">
+            <div class="main_course_module">
+              <div class="cod">
+                <img src="{% static 'new-merchant/asset/coding.png' %}" class="courceimage">
+                <p>Coding and <br>Languages</p>
+              </div>
+              <div class="sing">
+                <img src="{% static 'new-merchant/asset/singing.png' %}" class="courceimage">
+                <p>Singing <br>Classes</p>
+              </div>
+            </div>
+          </div>
+          <div class="module col-md-2">
+            <div class="main_course_module">
+              <div class="dan">
+                <img src="{% static 'new-merchant/asset/dance.png' %}" class="courceimage">
+                <p>Dance <br>Classes</p>
+              </div>
+              <div class="fin">
+                <img src="{% static 'new-merchant/asset/finance.png' %}" class="courceimage">
+                <p>Finance <br>Studies</p>
+              </div>
+            </div>
+          </div>
+          <div class="module col-md-2">
+            <div class="main_course_module">
+              <div class="self">
+                <img src="{% static 'new-merchant/asset/self.png' %}" class="courceimage">
+                <p>Self <br>Defence</p>
+              </div>
+              <div class="tech">
+                <img src="{% static 'new-merchant/asset/tech.png' %}" class="courceimage">
+                <p>Technical<br>Skills</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Cources page end here-->
+
+    <!--Number page start from here *****************************-->
+    <div class="col-md-14 number_page" id="numberPage">
+      <div class="dmenu">
+      </div>
+      <div class="col-md-14 uprpart line">
+        <p>
+          Quick path to start with <br><span class="word">Career</span>Maniaa
+        </p>
+      </div>
+      <div class="col-md-14 dnpart">
+        <div class="col-md-6 lefpart">
+          <div class="lefpart_cont_holder">
+            <img src="{% static 'new-merchant/asset/other.png' %}" class="colgrad">
+            <img src="{% static 'new-merchant/asset/showpot.png' %}" class="pot">
+          </div>
+        </div>
+        <div class="col-md-6 rigpart">
+          <div class="rigpart_cont_holder">
+            <div class="row cont1">
+              <div class="col-md-9 line1">Register with us and fill all the required details</div>
+              <div class="col-md-3 img1">
+                <img src="{% static 'new-merchant/asset/noone.png' %}">
+              </div>
+            </div>
+            <div class="row cont2">
+              <div class="col-md-7 okpic line2 ">Login to explore the endless possiblities post verification <img
+                  src="{% static 'new-merchant/asset/ok.png' %}"> </div>
+              <div class="col-md-5 img2">
+                <img src="{% static 'new-merchant/asset/notwo.png' %}">
+              </div>
+            </div>
+            <div class="row cont3">
+              <div class="col-md-5 line3">Connect with the students</div>
+              <div class="col-md-7 img3">
+                <img src="{% static 'new-merchant/asset/nothree.png' %}">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Number page end from here *****************************-->
+
+    <!--Last page start from here *****************************-->
+    <div class="col-md-14 last_page" id="lastPage">
+      <div class="dmenu2">
+      </div>
+      <div class="col-md-14 last_page_upperpart">
+        <p style="color: white;">FAQs for <span style="color: deeppink">Career</span>Mania</p>
+      </div>
+
+      <div class="col-md-14 middlepart">
+        <div class="contentholder">
+          <div class="col-md-6 leftpart">
+            <div class="accordion" id="accordionExample">
+              <div class="card one">
+                <div class="card-header" id="headingOne">
+                  <span class="mb-0">what will careermania charge me after joining ?</span>
+                </div>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                  <div class="card-body">
+                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a
+                      given HTML element such as colors, backgrounds, fonts etc. <a
+                        href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
+                  </div>
+                </div>
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse"
+                  data-target="#collapseOne" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                </svg>
+              </div>
+
+              <div class="card two">
+                <div class="card-header" id="headingTwo">
+                  <span class="mb-0">Which documents are required for online registering ?</span>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                  <div class="card-body">
+                    <p style="color: black">CSS stands for Cascading Style Sheet. CSS allows you to specify various
+                      style properties for a given HTML element such as colors, backgrounds, fonts etc. <a
+                        href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
+                  </div>
+                </div>
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse"
+                  data-target="#collapseTwo" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                </svg>
+              </div>
+
+              <div class="card three">
+                <div class="card-header" id="headingThree">
+                  <span class="mb-0">What if I am unable to give admission...?</span>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                  <div class="card-body">
+                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a
+                      given HTML element such as colors, backgrounds, fonts etc. <a
+                        href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
+                  </div>
+                </div>
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse"
+                  data-target="#collapseThree" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 rightpart">
+            <div class="accordion" id="accordionExamples">
+              <div class="card one">
+                <div class="card-header" id="headingFour">
+                  <span class="mb-0">what will careermania charge me after joining ?</span>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExamples">
+                  <div class="card-body">
+                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a
+                      given HTML element such as colors, backgrounds, fonts etc. <a
+                        href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
+                  </div>
+                </div>
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse"
+                  data-target="#collapseFour" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                </svg>
+              </div>
+
+              <div class="card two">
+                <div class="card-header" id="headingFive">
+                  <span class="mb-0">Which documents are required for online registering ? </span>
+                </div>
+                <div id="collapseFive" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExamples">
+                  <div class="card-body">
+                    <p style="color: black">CSS stands for Cascading Style Sheet. CSS allows you to specify various
+                      style properties for a given HTML element such as colors, backgrounds, fonts etc. <a
+                        href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
+                  </div>
+                </div>
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse"
+                  data-target="#collapseFive" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                </svg>
+              </div>
+
+              <div class="card three">
+                <div class="card-header" id="headingSix">
+                  <span class="mb-0">What if I am unable to give admission...?</span>
+                </div>
+                <div id="collapseSix" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExamples">
+                  <div class="card-body">
+                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a
+                      given HTML element such as colors, backgrounds, fonts etc. <a
+                        href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
+                  </div>
+                </div>
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse"
+                  data-target="#collapseSix" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contentholder_mobile">
+          <div class="col-md-12">
+            <div class="accordion" id="newaccordionExample">
+              <div class="card one">
+                <div class="card-header" id="newheadingOne">
+                  <span class="mb-0">what will careermania charge me after joining ?</span>
+                </div>
+                <div id="newcollapseOne" class="collapse" aria-labelledby="headingThree"
+                  data-parent="#newaccordionExample">
+                  <div class="card-body">
+                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a
+                      given HTML element such as colors, backgrounds, fonts etc. <a
+                        href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
+                  </div>
+                </div>
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse"
+                  data-target="#newcollapseOne" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                </svg>
+              </div>
+
+              <div class="card two">
+                <div class="card-header" id="newheadingTwo">
+                  <span class="mb-0">Which documents are required for online registering ? </span>
+                </div>
+                <div id="newcollapseTwo" class="collapse" aria-labelledby="headingThree"
+                  data-parent="#newaccordionExample">
+                  <div class="card-body">
+                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a
+                      given HTML element such as colors, backgrounds, fonts etc. <a
+                        href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
+                  </div>
+                </div>
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse"
+                  data-target="#newcollapseTwo" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                </svg>
+              </div>
+
+              <div class="card three">
+                <div class="card-header" id="newheadingThree">
+                  <span class="mb-0">What if I am unable to give admission...? </span>
+                </div>
+                <div id="newcollapseThree" class="collapse" aria-labelledby="headingThree"
+                  data-parent="#newaccordionExample">
+                  <div class="card-body">
+                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a
+                      given HTML element such as colors, backgrounds, fonts etc. <a
+                        href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
+                  </div>
+                </div>
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse"
+                  data-target="#newcollapseThree" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                </svg>
+              </div>
+
+              <div class="card one">
+                <div class="card-header" id="newheadingFour">
+                  <span class="mb-0">what will careermania charge me after joining ?</span>
+                </div>
+                <div id="newcollapseFour" class="collapse" aria-labelledby="headingThree"
+                  data-parent="#newaccordionExample">
+                  <div class="card-body">
+                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a
+                      given HTML element such as colors, backgrounds, fonts etc. <a
+                        href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
+                  </div>
+                </div>
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse"
+                  data-target="#newcollapseFour" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                </svg>
+              </div>
+
+              <div class="card two">
+                <div class="card-header" id="newheadingFive">
+                  <span class="mb-0">Which documents are required for online registering ? </span>
+                </div>
+                <div id="newcollapseFive" class="collapse" aria-labelledby="headingThree"
+                  data-parent="#newaccordionExample">
+                  <div class="card-body">
+                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a
+                      given HTML element such as colors, backgrounds, fonts etc. <a
+                        href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
+                  </div>
+                </div>
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse"
+                  data-target="#newcollapseFive" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                </svg>
+              </div>
+
+              <div class="card three">
+                <div class="card-header" id="newheadingSix">
+                  <span class="mb-0">What if I am unable to give admission...</span>
+                </div>
+                <div id="newcollapseSix" class="collapse" aria-labelledby="headingThree"
+                  data-parent="#newaccordionExample">
+                  <div class="card-body">
+                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a
+                      given HTML element such as colors, backgrounds, fonts etc. <a
+                        href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
+                  </div>
+                </div>
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse"
+                  data-target="#newcollapseSix" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 lowerpart">
+        <div class="col-md-3 icons">
+          <div class="image_group">
+            <img src="{% static 'new-merchant/asset/fbicon.png' %}">
+            <img src="{% static 'new-merchant/asset/twittericon.png' %}">
+            <img src="{% static 'new-merchant/asset/gmailicon.png' %}">
+          </div>
+        </div>
+        <div class="col-md-4 links">
+          <div class="col-md-12 linksforexternal">
+            <ul>
+              <li>Home</li>
+              <li>Abut Us</li>
+              <li>Services</li>
+              <li>Contact</li>
+              <li>Us</li>
+              <li>FAQ</li>
+              <li>Career</li>
+            </ul>
+            <ul>
+              <li>Learning</li>
+              <li>10+2</li>
+              <li>Investor</li>
+              <li>Undertakling program</li>
+              <li>Student area</li>
+              <li>Get demo</li>
+            </ul>
+            <ul>
+              <li>Book a call</li>
+              <li>T&C</li>
+              <li>Privacy</li>
+              <li>More from Us</li>
             </ul>
           </div>
-            <div class="col-md-14 bcv_downpart">
-              <div class="col-md-6 leftpart">
-                  <div class="content_holder">
-                      <img src="{% static 'new-merchant/asset/bcv1.png' %}" class="background_shape">
-                      <img src="{% static 'new-merchant/asset/bcv2.png' %}" class="man_reading">
-                      <img src="{% static 'new-merchant/asset/lamp.png' %}" class="lamp">
-                  </div>
-              </div>
-              <div class="col-md-6 rightpart">
-                    <div class="rightpart_content_holder">
-                        <p>Career Mania is the one roof solution</p>
-                        <p>To grow your</p>
-                      <div id="showhideTextportion">
-                        <div class="showhideTextBox">
-                        <span class="showhidebutton">Buisness</span>
-                        </div>
-                      </div>
-                        <p>Join now to grow your</p>
-                        <p style="color: #da0b4e">Situation</p>
-                      <div class="contact_button">
-                        <button class="btn btn-primary"><a class="scroll" href="#lastPage" style="color: white;text-decoration: none;">Join</a></button>
-                        <button class="btn btn-primary"><a class="scroll" href="#contuctUsPage" style="color: white;text-decoration: none;">Contact</a></button>
-                      </div>
-                    </div>
-              </div>
-            </div>
+          <div class="col-md-12 lowername">
+            <p><span style=" color: #da0b4e;">Career</span><span style="color: white;">Maniaa - 2020 </span></p>
+          </div>
         </div>
-        <!--Bcv page end here *****************************-->
-
-        <!--Chatbot page start from here ***********************-->
-        <div class="col-md-14 chatbot_page">
-
-            <div class="dmenu">
-        </div>
-            <div class="col-md-12 chatbot_dwnpart" id="about_us">
-            <div class="col-md-6 chatbot_left_part">
-              <div class="single_item">
-                <img src="{% static 'new-merchant/asset/business.png' %}">
-                <span class="develop_content">
-                    <p class="hdtext">Develop Business</p>
-                    <p class="bdtext">Get insights to improve the reach of your business...</p>
-                </span>
-              </div>
-              <div class="single_item">
-                <img src="{% static 'new-merchant/asset/meeting.png' %}">
-                <span  class="develop_content">
-                    <p class="hdtext">10 times more engagement</p>
-                    <p class="bdtext">Find millions of new students for your coaching classes...</p>
-                </span>
-              </div>
-              <div class="single_item">
-                <img src="{% static 'new-merchant/asset/technology_meet.png' %}">
-                <span class="develop_content">
-                    <p class="hdtext">Technology meets management</p>
-                    <p class="bdtext">Hassle-free management with careermania to boost your revenue...</p>
-                </span>
-              </div>
-            </div>
-
-            <div class="col-md-6 chatbot_right_part" id="contuctUsPage">
-              <div class="chatbot_background">
-                <img src="{% static 'new-merchant/asset/gradient _other _page.png' %}">
-              </div>
-              <div class="chatbot_div">
-                <div class="chatbot_heading">
-                    <p>Lets Talk the possibilities</p>
-                    <hr style="background-color: #e2deed;;">
-                </div>
-                <div class="chatbot_buttons">
-                    <button class="btn btn-primary active chatbutton" value="chat">Chat us</button>
-                    <button class="btn btn-primary chatbutton" value="custom message">Drop a cutom message</button>
-                </div>
-                <div class="chat_functionality">
-                    <div class="chat_space">
-
-                    </div>
-                    <div class="message_input">
-                        <input id="chat_input" type="text" class="form-control" placeholder="Ask to us"/>
-                        <a href="#contuctUsPage" id="chat_send"><img src="{% static 'new-merchant/asset/send.png' %}"></a>
-                    </div>
-                </div>
-                <div class="custom_message hide">
-                    <div class="message-form">
-                        <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" class="form-control" placeholder="Ask to us"/>
-                        </div>
-                        <div class="form-group">
-                            <label>Mobile</label>
-                            <input type="text" class="form-control" placeholder="Ask to us"/>
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="text" class="form-control" placeholder="Ask to us"/>
-                        </div>
-                        <div class="form-group">
-                            <label>Message</label>
-                            <textarea class="form-control"></textarea>
-                        </div>
-                        <div class="submit_button">
-                            <button class="btn btn-primary">Submit</button>
-                        </div>
-                    </div>
-                </div>
-              </div>
+        <div class="col-md-5 subscribe">
+          <div class=" col-md-10 lowercontentholder">
+            <input type="text" class="form-control subscribeinput" placeholder="Enter your email address" />
+            <input type="button" class="form-control subscribebutton" value="Subscribe">
+            <div class="contact_info">
+              <p>CareerManiaa EDUCATION PRIVATE LIMITED</p>
+              <p>Plot no 123,Chandigarh,</p>
+              <p>+919876543210</p>
+              <p>hi@careermaniaa.com</p>
             </div>
           </div>
-        <!--Chatbot page end here ***********************-->
-
-        <!-- Cources page start from here *********************-->
-        <div class="col-md-14 cources_page" id="sevices_page">
-             <div class="dmenu1">
         </div>
-              <div class="up">
-                <p> Learning Corners <br> at <span class="cword">Career</span>Maniaa</p>
-              </div>
-              <div class="contpart">
-                <div class="course_container col-md-10">
-                    <div class="module col-md-2">
-                        <div class="main_course_module">
-                            <div class="schl">
-                                <img src="{% static 'new-merchant/asset/schooling.png' %}" class="courceimage" >
-                                <p>Schooling <br>Upto +2</p>
-                            </div>
-                            <div class="med">
-                                <img src="{% static 'new-merchant/asset/medical.png' %}" class="courceimage">
-                                <p>Medical<br>Classes</p> 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="module col-md-2">
-                        <div class="main_course_module">
-                            <div class="art">
-                                <img src="{% static 'new-merchant/asset/art.png' %}"  class="courceimage">
-                                <p>Art <br>Classes</p> 
-                            </div>
-                            <div class="engg">
-                                <img src="{% static 'new-merchant/asset/engg.png' %}" class="courceimage">
-                                <p>Enggeering <br>Classes</p> 
-                            </div>
-                        </div>
-                    </div>    
-                    <div class="module col-md-2">
-                        <div class="main_course_module">
-                            <div class="cod">
-                                <img src="{% static 'new-merchant/asset/coding.png' %}"  class="courceimage">
-                                <p>Coding and <br>Languages</p> 
-                            </div>
-                            <div class="sing">
-                                <img src="{% static 'new-merchant/asset/singing.png' %}" class="courceimage">
-                                <p>Singing <br>Classes</p> 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="module col-md-2">
-                        <div class="main_course_module">
-                            <div class="dan">
-                                <img src="{% static 'new-merchant/asset/dance.png' %}"  class="courceimage">
-                                <p>Dance <br>Classes</p> 
-                            </div>
-                            <div class="fin">
-                                <img src="{% static 'new-merchant/asset/finance.png' %}" class="courceimage">
-                                <p>Finance <br>Studies</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="module col-md-2">
-                        <div class="main_course_module">
-                            <div class="self">
-                                <img src="{% static 'new-merchant/asset/self.png' %}" class="courceimage">
-                                <p>Self <br>Defence</p>
-                            </div>
-                            <div class="tech">
-                                <img src="{% static 'new-merchant/asset/tech.png' %}" class="courceimage">
-                                <p>Technical<br>Skills</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-          </div>
-        <!--Cources page end here-->
+      </div>
+    </div>
+    <!--Last page end here *******************************-->
 
-            <!--Number page start from here *****************************-->
-        <div class="col-md-14 number_page" id="numberPage">
-            <div class="dmenu">
-        </div>  
-            <div class="col-md-14 uprpart line">
-              <p>
-              Quick path to start with <br><span class="word">Career</span>Maniaa
-              </p>
-            </div>
-            <div class="col-md-14 dnpart">
-              <div class="col-md-6 lefpart">
-                <div class="lefpart_cont_holder">
-                  <img src="{% static 'new-merchant/asset/other.png' %}" class="colgrad">
-                  <img src="{% static 'new-merchant/asset/showpot.png' %}"class="pot">
-                </div>
-              </div>
-              <div class="col-md-6 rigpart">
-                <div class="rigpart_cont_holder">
-                    <div class="row cont1">
-                      <div class="col-md-9 line1">Register with us and fill all the required details</div>
-                        <div class="col-md-3 img1">
-                          <img src="{% static 'new-merchant/asset/noone.png' %}">
-                        </div>
-                    </div>
-                  <div class="row cont2">
-                      <div class="col-md-7 okpic line2 ">Login to explore the endless possiblities post verification <img src="{% static 'new-merchant/asset/ok.png' %}"> </div>
-                      <div class="col-md-5 img2">
-                          <img src="{% static 'new-merchant/asset/notwo.png' %}">
-                      </div>
-                  </div>
-                    <div class="row cont3">
-                      <div class="col-md-5 line3">Connect with the students</div>
-                        <div class="col-md-7 img3">
-                          <img src="{% static 'new-merchant/asset/nothree.png' %}">
-                        </div>
-                    </div>
-                  </div>    
-                </div>
-            </div>
-          </div>
-        <!--Number page end from here *****************************-->
-        
-        <!--Last page start from here *****************************-->
-          <div class="col-md-14 last_page" id="lastPage">
-              <div class="dmenu2">
-        </div>
-            <div class="col-md-14 last_page_upperpart">
-              <p style="color: white;">FAQs for <span style="color: deeppink">Career</span>Mania</p>
-            </div>
+    <script src="{% static 'new-merchant/vendor/jquery/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'new-merchant/vendor/bootstrap/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'new-merchant/js/main.js' %}"></script>
+</body>
 
-            <div class="col-md-14 middlepart">
-              <div class="contentholder">
-                  <div class="col-md-6 leftpart">
-                      <div class="accordion" id="accordionExample">
-                          <div class="card one">
-                              <div class="card-header" id="headingOne">
-                                  <span class="mb-0">what will careermania charge me after joining ?</span>
-                              </div>
-                              <div id="collapseOne" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                  <div class="card-body">
-                                      <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a given HTML element such as colors, backgrounds, fonts etc. <a href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
-                                  </div>
-                              </div>
-                              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse" data-target="#collapseOne" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                                </svg>
-                          </div>
-      
-                          <div class="card two">
-                              <div class="card-header" id="headingTwo">
-                                  <span class="mb-0">Which documents are required for online registering ?</span>
-                              </div>
-                              <div id="collapseTwo" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                  <div class="card-body">
-                                      <p style="color: black">CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a given HTML element such as colors, backgrounds, fonts etc. <a href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
-                                  </div>
-                              </div>
-                              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse" data-target="#collapseTwo" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                                </svg>
-                          </div>
-      
-                          <div class="card three">
-                              <div class="card-header" id="headingThree">
-                                  <span class="mb-0">What if I am unable to give admission...?</span>
-                              </div>
-                              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                  <div class="card-body">
-                                      <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a given HTML element such as colors, backgrounds, fonts etc. <a href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
-                                  </div>
-                              </div>
-                              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse" data-target="#collapseThree" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                                </svg>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col-md-6 rightpart">
-                      <div class="accordion" id="accordionExamples">
-                          <div class="card one">
-                              <div class="card-header" id="headingFour">
-                                  <span class="mb-0">what will careermania charge me after joining ?</span>
-                              </div>
-                              <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExamples">
-                                  <div class="card-body">
-                                      <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a given HTML element such as colors, backgrounds, fonts etc. <a href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
-                                  </div>
-                              </div>
-                              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse" data-target="#collapseFour" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                                </svg>
-                          </div>
-      
-                          <div class="card two">
-                              <div class="card-header" id="headingFive">
-                                  <span class="mb-0">Which documents are required for online registering ? </span>
-                              </div>
-                              <div id="collapseFive" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExamples">
-                                  <div class="card-body">
-                                      <p style="color: black">CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a given HTML element such as colors, backgrounds, fonts etc. <a href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
-                                  </div>
-                              </div>
-                              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse" data-target="#collapseFive" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                                </svg>
-                          </div>
-      
-                          <div class="card three">
-                              <div class="card-header" id="headingSix">
-                                  <span class="mb-0">What if I am unable to give admission...?</span>
-                              </div>
-                              <div id="collapseSix" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExamples">
-                                  <div class="card-body">
-                                      <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a given HTML element such as colors, backgrounds, fonts etc. <a href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
-                                  </div>
-                              </div>
-                              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse" data-target="#collapseSix" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                                </svg>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+<script>
+  $("#ClassesButton").click(function () {
+    // var origin = window.location.origin;
+    window.location.href = "{% url 'register_merchant' %}?value=class";
+  })
+  $("#CollegesButton").click(function () {
+    window.location.href = "{% url 'register_merchant' %}?value=college";
+  })
+  $("#JobsButton").click(function () {
+    window.location.href = "{% url 'register_merchant' %}?value=job";
+  })
+</script>
 
-              <div class="contentholder_mobile">
-                <div class="col-md-12">
-                    <div class="accordion" id="newaccordionExample">
-                        <div class="card one">
-                            <div class="card-header" id="newheadingOne">
-                                <span class="mb-0">what will careermania charge me after joining ?</span>
-                            </div>
-                            <div id="newcollapseOne" class="collapse" aria-labelledby="headingThree" data-parent="#newaccordionExample">
-                                <div class="card-body">
-                                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a given HTML element such as colors, backgrounds, fonts etc. <a href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
-                                </div>
-                            </div>
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse" data-target="#newcollapseOne" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                              </svg>
-                        </div>
-    
-                        <div class="card two">
-                            <div class="card-header" id="newheadingTwo">
-                                <span class="mb-0">Which documents are required for online registering ? </span>
-                            </div>
-                            <div id="newcollapseTwo" class="collapse" aria-labelledby="headingThree" data-parent="#newaccordionExample">
-                                <div class="card-body">
-                                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a given HTML element such as colors, backgrounds, fonts etc. <a href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
-                                </div>
-                            </div>
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse" data-target="#newcollapseTwo" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                              </svg>
-                        </div>
-    
-                        <div class="card three">
-                            <div class="card-header" id="newheadingThree">
-                                <span class="mb-0">What if I am unable to give admission...? </span>
-                            </div>
-                            <div id="newcollapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#newaccordionExample">
-                                <div class="card-body">
-                                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a given HTML element such as colors, backgrounds, fonts etc. <a href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
-                                </div>
-                            </div>
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse" data-target="#newcollapseThree" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                              </svg>
-                        </div>
-
-                        <div class="card one">
-                            <div class="card-header" id="newheadingFour">
-                                <span class="mb-0">what will careermania charge me after joining ?</span>
-                            </div>
-                            <div id="newcollapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#newaccordionExample">
-                                <div class="card-body">
-                                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a given HTML element such as colors, backgrounds, fonts etc. <a href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
-                                </div>
-                            </div>
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse" data-target="#newcollapseFour" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                              </svg>
-                        </div>
-    
-                        <div class="card two">
-                            <div class="card-header" id="newheadingFive">
-                                <span class="mb-0">Which documents are required for online registering ? </span>
-                            </div>
-                            <div id="newcollapseFive" class="collapse" aria-labelledby="headingThree" data-parent="#newaccordionExample">
-                                <div class="card-body">
-                                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a given HTML element such as colors, backgrounds, fonts etc. <a href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
-                                </div>
-                            </div>
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse" data-target="#newcollapseFive" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                              </svg>
-                        </div>
-    
-                        <div class="card three">
-                            <div class="card-header" id="newheadingSix">
-                                <span class="mb-0">What if I am unable to give admission...</span>
-                            </div>
-                            <div id="newcollapseSix" class="collapse" aria-labelledby="headingThree" data-parent="#newaccordionExample">
-                                <div class="card-body">
-                                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a given HTML element such as colors, backgrounds, fonts etc. <a href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
-                                </div>
-                            </div>
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse" data-target="#newcollapseSix" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                              </svg>
-                        </div>
-                      </div>
-                  </div>
-              </div>
-            </div>
-                <div class="col-md-12 lowerpart">
-                  <div class="col-md-3 icons">
-                      <div class="image_group">
-                          <img src="{% static 'new-merchant/asset/fbicon.png' %}">
-                          <img src="{% static 'new-merchant/asset/twittericon.png' %}">
-                          <img src="{% static 'new-merchant/asset/gmailicon.png' %}">
-                      </div>
-                  </div>
-                  <div class="col-md-4 links">
-                      <div class="col-md-12 linksforexternal">
-                        <ul>
-                          <li>Home</li>
-                          <li>Abut Us</li>
-                          <li>Services</li>
-                          <li>Contact</li>
-                          <li>Us</li>
-                          <li>FAQ</li>
-                          <li>Career</li>
-                        </ul>
-                        <ul>
-                          <li>Learning</li>
-                          <li>10+2</li>
-                          <li>Investor</li>
-                          <li>Undertakling program</li>
-                          <li>Student area</li>
-                          <li>Get demo</li>
-                        </ul>
-                        <ul>
-                          <li>Book a call</li>
-                          <li>T&C</li>
-                          <li>Privacy</li>
-                          <li>More from Us</li>
-                        </ul>
-                      </div>
-                      <div class="col-md-12 lowername">
-                          <p><span style=" color: #da0b4e;">Career</span><span style="color: white;">Maniaa - 2020 </span></p>
-                      </div>
-                  </div>
-                    <div class="col-md-5 subscribe">
-                        <div class=" col-md-10 lowercontentholder">
-                          <input type="text" class="form-control subscribeinput" placeholder="Enter your email address"/>
-                          <input type="button" class="form-control subscribebutton" value="Subscribe">
-                            <div class="contact_info">
-                              <p>CareerManiaa EDUCATION PRIVATE LIMITED</p>
-                              <p>Plot no 123,Chandigarh,</p>
-                              <p>+919876543210</p>
-                              <p>hi@careermaniaa.com</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <!--Last page end here *******************************-->
-
-      <script src="{% static 'new-merchant/vendor/jquery/jquery-3.5.1.min.js' %}"></script>
-      <script src="{% static 'new-merchant/vendor/bootstrap/bootstrap.bundle.min.js' %}"></script>
-      <script src="{% static 'new-merchant/js/main.js' %}"></script>
-    </body>
 </html>
