@@ -1,0 +1,58 @@
+{% include 'user/header.html' %}
+{% load static %}
+{% block content %}
+<!-- ============================ Page Title Start================================== -->
+<div class="ed_detail_head">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-4 col-md-5">
+        
+        <div class="property_video">
+          <div class="thumb">
+            <img class="pro_img img-fluid w100" src="{{course.coaching.logo.url}}" alt="7.jpg">
+          </div>
+        </div>
+        
+      </div>
+      
+      <div class="col-lg-8 col-md-7">
+        <div class="ed_detail_wrap">
+          <ul class="cources_facts_list">
+            <li class="facts-1">{{course.stream}}</li>
+          </ul>
+          <div class="ed_header_caption">
+            <h2 class="ed_title">{{course.name}}</h2>
+            <ul>
+              <li><i class="ti-calendar"></i>10 - 20 weeks</li>
+              <li><i class="ti-control-forward"></i>102 Lectures</li>
+              <li><i class="ti-user"></i>502 Student Enrolled</li>
+            </ul>
+          </div>
+          <div class="ed_header_short">
+            <p>{{course.description}}</p>
+          </div>
+          
+          <div class="ed_rate_info">
+            <div class="star_info">
+              <i class="fas fa-star filled"></i>
+              <i class="fas fa-star filled"></i>
+              <i class="fas fa-star filled"></i>
+              <i class="fas fa-star filled"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <div class="review_counter">
+              <strong class="high">4.7</strong> 3572 Reviews
+            </div>
+          </div>
+
+          <a href="{% url 'checkout' id=course.id %}"><button class="btn btn-primary">Register</button></a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ============================ Page Title End ================================== -->
+
+{% endblock %}
+{% include 'user/footer.html' %}

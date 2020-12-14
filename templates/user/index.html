@@ -151,7 +151,7 @@
               </div>
               
               <div class="education_block_body">
-                <h4 class="bl-title"><a href="course-detail.html">{{course.name}}</a></h4>
+                <h4 class="bl-title"><a href="{% url 'product' id=course.id %}">{{course.name}}</a></h4>
                 <p>{{course.description}}</p>
               </div>
               
@@ -168,7 +168,7 @@
                   <div class="path-img"><a href="instructor-detail.html"><img src="{{course.coaching.logo.url}}" class="img-fluid" alt=""></a></div>
                   <h5><a href="instructor-detail.html">{{course.coaching.name}}</a></h5>
                 </div>
-                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i><a href=""><button class="btn btn-success">Book Now</button></a></div>
+                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i><a href="{% url 'checkout' id=course.id %}"><button class="btn btn-success">Book Now</button></a></div>
               </div>
               <center><a href="{% url 'add_to_cart' id=course.id %}"><button class="btn btn-warning" style="margin:5px">ADD TO CART</button></a></center>
             </div>	
@@ -216,7 +216,7 @@
               </div>
               
               <div class="education_block_body">
-                <h4 class="bl-title"><a href="course-detail.html">{{course.name}}</a></h4>
+                <h4 class="bl-title"><a href="{% url 'product' id=course.id %}">{{course.name}}</a></h4>
                 <p>{{course.description}}</p>
               </div>
               
@@ -233,7 +233,7 @@
                   <div class="path-img"><a href="instructor-detail.html"><img src="{{course.coaching.logo.url}}" class="img-fluid" alt=""></a></div>
                   <h5><a href="instructor-detail.html">{{course.coaching.name}}</a></h5>
                 </div>
-                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i><a href=""><button class="btn btn-success">Book Now</button></a></div>
+                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i><a href="{% url 'checkout' id=course.id %}"><button class="btn btn-success">Book Now</button></a></div>
               </div>
               <center><a href="{% url 'add_to_cart' id=course.id %}"><button class="btn btn-warning" style="margin:5px">ADD TO CART</button></a></center>
             </div>	
