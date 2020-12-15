@@ -40,4 +40,6 @@ urlpatterns = [
     path("profile", views.profile, name="profile"),
     path("bookings", views.bookings, name="bookings"),
     path("product/<str:id>", views.product, name="product"),
+
+    path('reverify', views.reverifyAccount, name="reverify")
 ]

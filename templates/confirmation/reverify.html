@@ -1,0 +1,23 @@
+{% include 'user/header.html' %}
+{% load static %}
+{% block content %}
+
+<div style="width:600px;margin:20px auto">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center sign-up__wrapper">
+        <h1>Re-verify Account</h1>
+        <form data-behavior="sign-up" method="POST">{% csrf_token %}
+            <fieldset class="form-group">
+                <label for="email">Email</label>
+                <input name="email" type="email" class="form-control" placeholder="Enter email address"
+                    autocomplete="email" autofocus required>
+            </fieldset>
+
+            <div class="form-group">
+                <button class="btn btn-primary btn-block text-uppercase" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+{% include 'user/footer.html' %}

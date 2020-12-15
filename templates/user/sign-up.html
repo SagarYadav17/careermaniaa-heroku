@@ -1,48 +1,50 @@
 {% include 'user/header.html' %}
 {% load static %}
 {% block content %}
-      <!---sign up HTML--->
-      <div style="width:600px;margin:20px auto">
-        <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center sign-up__wrapper">
-          <h1>SIGNUP</h1>
-                  <form data-behavior="sign-up" method="POST">{% csrf_token %}
-                    <fieldset class="form-group">
-                      <label for="email">Email</label>
-                      <input name="email" type="email" class="form-control" placeholder="Enter email address" autofocus
-                        required>
-                    </fieldset>
-                    <fieldset class="form-group">
-                      <label for="username">Username</label>
-                      <input name="username" type="text" class="form-control" placeholder="Enter username" required>
-                    </fieldset>
-                    <fieldset class="form-group">
-                      <label for="password">Password</label>
-                      <input name="password" type="password" class="form-control" placeholder="Enter password" required>
-                    </fieldset>
-                    {% for message in messages %}
-                    <div style="color:red">{{message}}</div>
-                    {% endfor %}
-                    <div class="form-group">
-                      <button class="btn btn-primary btn-block text-uppercase" type="submit">Create Account</button>
-                    </div>
-                  </form>
-                  <div class="sign-up__byline">
-                    <span>connect with</span>
-                    <ul class="list-unstyled list-inline pull-right">
-                      <li><a href="{% url 'facebook_login' %}"><span class="fa fa-facebook-official"></span></a>
-                      </li>
-                      <li><a href="{% url 'google_login' %}"><span class="fa fa-google"></span></a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="panel text-left animated fadeInUpSmall delay--450">
-                  <small class="text-uppercase">
-                    Already have account?
-                    <a href="{% url 'login_user' %}" class="pull-right">Sign in</a>
-                  </small>
-                </div>
-              </div>
-      <!---End sign up--->
+<!---sign up HTML--->
+<div style="width:600px;margin:20px auto">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center sign-up__wrapper">
+    <h1>SIGNUP</h1>
+    <form data-behavior="sign-up" method="POST">{% csrf_token %}
+      <fieldset class="form-group">
+        <label for="email">Email</label>
+        <input name="email" type="email" class="form-control" placeholder="Enter email address" autocomplete="email"
+          required>
+      </fieldset>
+      <fieldset class="form-group">
+        <label for="username">Username</label>
+        <input name="username" type="text" class="form-control" placeholder="Enter username" autocomplete="username"
+          required>
+      </fieldset>
+      <fieldset class="form-group">
+        <label for="password">Password</label>
+        <input name="password" type="password" class="form-control" placeholder="Enter password"
+          autocomplete="current-password" required>
+      </fieldset>
+      {% for message in messages %}
+      <div style="color:red">{{message}}</div>
+      {% endfor %}
+      <div class="form-group">
+        <button class="btn btn-primary btn-block text-uppercase" type="submit">Create Account</button>
+      </div>
+    </form>
+    <div class="sign-up__byline">
+      <span>connect with</span>
+      <ul class="list-unstyled list-inline pull-right">
+        <li><a href="{% url 'facebook_login' %}"><span class="fa fa-facebook-official"></span></a>
+        </li>
+        <li><a href="{% url 'google_login' %}"><span class="fa fa-google"></span></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="panel text-left animated fadeInUpSmall delay--450">
+    <small class="text-uppercase">
+      Already have account?
+      <a href="{% url 'login_user' %}" class="pull-right">Sign in</a>
+    </small>
+  </div>
+</div>
+<!---End sign up--->
 {% endblock %}
 {% include 'user/footer.html' %}
