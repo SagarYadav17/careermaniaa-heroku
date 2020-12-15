@@ -407,7 +407,12 @@ def bookings(request):
     return redirect('login_user')
 
 def product(request, id):
-    course = Course.objects.filter(id=id)
+    try:
+        course = Course.objects.get(id=id)
+    except: 
+        course = None
+        return redirect('index')
     context = {'course': course}
+    print(context)
     return render(request, 'user/product.html', context)
 

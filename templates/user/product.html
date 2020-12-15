@@ -30,6 +30,7 @@
           </div>
           <div class="ed_header_short">
             <p>{{course.description}}</p>
+            <p>Offered By : {{course.coaching.name}}</p>
           </div>
           
           <div class="ed_rate_info">
@@ -45,7 +46,7 @@
             </div>
           </div>
 
-          <a href="{% url 'checkout' id=course.id %}"><button class="btn btn-primary">Register</button></a>
+          <a href="{% url 'checkout' id=course.id %}"><button class="btn btn-primary" style="margin-top:10px">Register</button></a>
           
         </div>
       </div>

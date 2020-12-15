@@ -44,12 +44,12 @@
               <div class="singles_items">
                 <div class="education_block_grid style_2">
                   <div class="education_block_thumb n-shadow">
-                    <a href="course-detail.html"><img src="{{course.coaching.logo.url}}" class="img-fluid" alt=""></a>
+                    <a href="{% url 'product' id=course.id %}"><img src="{{course.coaching.logo.url}}" class="img-fluid" alt=""></a>
                     <div class="cources_price">INR {{course.fees}}</div>
                   </div>
                   
                   <div class="education_block_body">
-                    <h4 class="bl-title"><a href="course-detail.html">{{course.name}}</a></h4>
+                    <h4 class="bl-title"><a href="{% url 'product' id=course.id %}">{{course.name}}</a></h4>
                     <p>{{course.description}}</p>
                   </div>
                   

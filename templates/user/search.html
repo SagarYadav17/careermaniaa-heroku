@@ -16,12 +16,12 @@
             <div class="singles_items">
               <div class="education_block_grid style_2">
                 <div class="education_block_thumb n-shadow">
-                  <a href="course-detail.html"><img src="{{course.coaching.logo.url}}" class="img-fluid" alt=""></a>
+                  <a href="{% url 'product' id=course.id %}"><img src="{{course.coaching.logo.url}}" class="img-fluid" alt=""></a>
                   <div class="cources_price">INR {{course.fees}}</div>
                 </div>
                 
                 <div class="education_block_body">
-                  <h4 class="bl-title"><a href="course-detail.html">{{course.name}}</a></h4>
+                  <h4 class="bl-title"><a href="{% url 'product' id=course.id %}">{{course.name}}</a></h4>
                   <p>{{course.description}}</p>
                 </div>
                 
@@ -35,8 +35,8 @@
                 
                 <div class="education_block_footer">
                   <div class="education_block_author">
-                    <div class="path-img"><a href="instructor-detail.html"><img src="{{course.coaching.logo.url}}" class="img-fluid" alt=""></a></div>
-                    <h5><a href="instructor-detail.html">{{course.coaching.name}}</a></h5>
+                    <div class="path-img"><a href="{% url 'product' id=course.id %}"><img src="{{course.coaching.logo.url}}" class="img-fluid" alt=""></a></div>
+                    <h5><a href="{% url 'product' id=course.id %}">{{course.coaching.name}}</a></h5>
                   </div>
                   <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i><a href=""><button class="btn btn-success">Book Now</button></a></div>
                 </div>
