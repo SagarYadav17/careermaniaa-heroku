@@ -1,4 +1,9 @@
 # import reverse_geocoder as rg
+from .paytm import Checksum
+from django.db.models import Q
+import json
+import reverse_geocoder as rg
+from datetime import datetime
 from django.shortcuts import render, redirect
 
 from mania.models import *
@@ -6,7 +11,7 @@ from merchant_app.models import *
 
 from django.db import IntegrityError
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 
 from django.contrib.auth import authenticate, login
 from django.contrib.sites.shortcuts import get_current_site
@@ -86,8 +91,10 @@ def index(request):
     loggedIn = False
     if request.user in User.objects.all():
         loggedIn = True
-    context = {'courses': courses, 'science_courses': science_courses, 'loggedIn': loggedIn}
+    context = {'courses': courses,
+               'science_courses': science_courses, 'loggedIn': loggedIn}
     return render(request, 'user/index.html', context)
+
 
 def profile(request):
     return render(request, 'user/profile.html')
@@ -136,7 +143,23 @@ def login_user(request):
 
     return render(request, 'user/login.html')
 
-import reverse_geocoder as rg
+def reverifyAccount(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        user = User.objects.get(email=email)
+
+        if not user.is_verified:
+            send_confirmation_email(request, user)
+            return JsonResponse({'message': 'Check your mail'})
+        if user.is_verified:
+            return JsonResponse({'message': 'Account is already verified'})
+        if not user:
+            return JsonResponse({'message': 'Not account found with this email-id'})
+        else:
+            return JsonResponse({'messagr': 'Something went wrong'})
+    
+    return render(request, 'confirmation/reverify.html')
+
 
 def reverseGeocode(coordinates):
     result = rg.search(coordinates)
@@ -151,12 +174,13 @@ def products(request):
         coordinates = lat, lng
         city = reverseGeocode(coordinates)
         all_address = list(Address.objects.filter(city=city))
-        all_address = [address for address in all_address if address.user.is_merchant]
+        all_address = [
+            address for address in all_address if address.user.is_merchant]
         courses = []
         for address in all_address:
             coaching = Coaching.objects.get(user=address.user)
             courses += Course.objects.filter(coaching=coaching)
-        
+
         if courses == []:
             context = {'msg': 'No Near By Coachings'}
         else:
@@ -245,7 +269,7 @@ def add_to_cart(request, id):
         return res
     return HttpResponse("Some Error Occured")
 
-import json
+
 def cart(request):
     if request.user in list(User.objects.all()):
         try:
@@ -263,11 +287,12 @@ def cart(request):
                 carts.append(Course.objects.get(id=item[1]))
         loggedIn = False
     if carts == None:
-        msg="Your Cart is Empty."
+        msg = "Your Cart is Empty."
     else:
         msg = ""
-    context = {"courses": carts, "msg":msg, 'loggedIn': loggedIn}
+    context = {"courses": carts, "msg": msg, 'loggedIn': loggedIn}
     return render(request, "user/cart.html", context)
+
 
 def delete_cartitem(request, id):
     if request.user in list(User.objects.all()):
@@ -287,6 +312,7 @@ def delete_cartitem(request, id):
         return res
     return redirect('cart')
 
+
 def wishlist(request):
     if request.user in User.objects.all():
         try:
@@ -294,14 +320,13 @@ def wishlist(request):
         except:
             wishlists = None
         if wishlists == None:
-            msg="Your Wishlist is Empty."
+            msg = "Your Wishlist is Empty."
         else:
             msg = ""
-        context = {"courses": wishlists, "msg":msg}
+        context = {"courses": wishlists, "msg": msg}
         return render(request, "user/wishlist.html", context)
     else:
         return redirect('login_user')
-    
 
 
 def add_to_wishlist(request, id):
@@ -312,16 +337,17 @@ def add_to_wishlist(request, id):
         wishlist.save()
         return HttpResponse("Item added to wishlist")
 
+
 def delete_wishlistitem(request, id):
     if request.user in list(User.objects.all()):
         wishlist = Wishlist.objects.get(id=id)
         wishlist.delete()
         return redirect('cart')
 
+
 def about(request):
     return render(request, 'user/about.html')
 
-from django.db.models import Q
 
 def search(request):
     if request.method == "POST":
@@ -333,7 +359,8 @@ def search(request):
         if keyword == "":
             return render(request, 'user/search.html', {'length': 0})
         courses = []
-        courses += Course.objects.filter(Q(name__icontains=keyword) | Q(description__icontains=keyword))
+        courses += Course.objects.filter(Q(name__icontains=keyword)
+                                         | Q(description__icontains=keyword))
         all_address = Address.objects.filter(city=city)
         for address in all_address:
             coaching = Coaching.objects.filter(merchant=address.user)
@@ -343,8 +370,6 @@ def search(request):
     courses = Course.objects.all()
     return render(request, 'user/search.html', {'courses': courses})
 
-from .paytm import Checksum
-from datetime import datetime
 
 def checkout(request, id):
     if request.user in User.objects.all():
@@ -355,7 +380,8 @@ def checkout(request, id):
         now = datetime.now()
         registration_id = str(now.year) + str(now.month) + str(now.day) + str(now.hour) + str(now.minute) + str(
             now.second)
-        registration = Registration(user=user, address=address, course=course, fees=str(fees), registration_id=registration_id)
+        registration = Registration(user=user, address=address, course=course, fees=str(
+            fees), registration_id=registration_id)
         registration.save()
 
         param_dict = {
@@ -370,7 +396,8 @@ def checkout(request, id):
             'CALLBACK_URL': 'http://careermaniaa.herokuapp.com/payment',
 
         }
-        param_dict['CHECKSUMHASH'] = Checksum.generate_checksum(param_dict, 'MerchantKey')
+        param_dict['CHECKSUMHASH'] = Checksum.generate_checksum(
+            param_dict, 'MerchantKey')
         return render(request, 'user/paytm.html', {'param_dict': param_dict})
 
     return redirect('register_user')
@@ -384,7 +411,8 @@ def handlerequest(request):
         if i == 'CHECKSUMHASH':
             checksum = form[i]
 
-    registration = Registration.objects.get(registration_id=response_dict['ORDERID'])
+    registration = Registration.objects.get(
+        registration_id=response_dict['ORDERID'])
 
     verify = Checksum.verify_checksum(response_dict, "MerchantKey", checksum)
     if verify:
@@ -398,6 +426,7 @@ def handlerequest(request):
                       {'response': response_dict, 'registration': registration})
     return render(request, 'index.html')
 
+
 def bookings(request):
     if request.user in User.objects.all():
         courses = Registration.objects.filter(user=request.user)
@@ -406,13 +435,13 @@ def bookings(request):
         return render(request, 'user/bookings.html', context)
     return redirect('login_user')
 
+
 def product(request, id):
     try:
         course = Course.objects.get(id=id)
-    except: 
+    except:
         course = None
         return redirect('index')
     context = {'course': course}
     print(context)
     return render(request, 'user/product.html', context)
-

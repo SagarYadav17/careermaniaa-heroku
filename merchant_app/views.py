@@ -58,9 +58,9 @@ def login_merchant(request):
             if user.is_merchant and user.is_verified:
                 login(request, user)
                 return redirect('merchant')
-            elif user.is_verified != True:
 
-                return render(request, 'merchant/login.html', {'error': 'Account is not verified yet. Pleace check your e-mail.'})
+            elif user.is_verified != True:
+                return render(request, 'merchant/login.html', {"error": "Account is not verified yet. Pleace check your e-mail."})
 
         else:
             return render(request, 'merchant/login.html', {'error': 'No account found.'})
