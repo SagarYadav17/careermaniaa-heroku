@@ -80,7 +80,7 @@ class ActivateAccountView(View):
                                  'Account Activated Successfully.')
             if user.is_merchant:
                 add_forms_mail(request, user)
-                return redirect('login_merchant')
+                return redirect('merchant/login')
             return redirect('login_user')
         return render(request, 'confirmation/activate_failed.html', status=401)
 
@@ -143,21 +143,20 @@ def login_user(request):
 
     return render(request, 'user/login.html')
 
+
 def reverifyAccount(request):
     if request.method == 'POST':
         email = request.POST['email']
-        user = User.objects.get(email=email)
+        try:
+            user = User.objects.get(email=email)
+            if not user.is_verified:
+                send_confirmation_email(request, user)
+                return JsonResponse({'message': 'Check your mail'})
+            if user.is_verified:
+                return JsonResponse({'message': 'Account is already verified'})
+        except:
+            redirect('reverify')
 
-        if not user.is_verified:
-            send_confirmation_email(request, user)
-            return JsonResponse({'message': 'Check your mail'})
-        if user.is_verified:
-            return JsonResponse({'message': 'Account is already verified'})
-        if not user:
-            return JsonResponse({'message': 'Not account found with this email-id'})
-        else:
-            return JsonResponse({'messagr': 'Something went wrong'})
-    
     return render(request, 'confirmation/reverify.html')
 
 

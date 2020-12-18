@@ -23,7 +23,7 @@
                         </div>
                         <div class="col-md-12 forbtn">
                             <div class="btn-group btn-group-lg">
-                                <button type="button" class="btn btn-primary active" id="college_btn" value="college">Colleges</button>
+                                <button type="button" class="btn btn-primary active" id="college_btn" value="colleges">Colleges</button>
                                 <button type="button" class="btn btn-primary" id="class_btn" value="classes">Classes</button>
                                 <button type="button" class="btn btn-primary" id="job_btn" value="jobs">Jobs</button>
                             </div>
@@ -31,32 +31,33 @@
                                 <div class="col-md-12">
                                     <div class="row register-form" id="main_form">
                                         <form method="POST">
+                                            <input type="text" class="form-control hide" id="form_define" value="colleges" />
                                             <div class="col-md-6 left-form">
                                                 <div class="form-group email_id">
                                                     <label for="email" id="email_title">College Email id:</label><br>
-                                                    <input type="email" class="form-control" placeholder="abcd123@gmail.com" autocomplete="email"  />
+                                                    <input type="email" class="form-control" placeholder="abcd123@gmail.com" value="" autocomplete="email" />
                                                 </div>
                                                 <div class="form-group">
                                                     <table>
                                                         <tr>
                                                             <td>
                                                                 <label for="Reg No" > Registration No: </label><br>
-                                                                <input type="text" class="form-control" placeholder="0265MP"  />
+                                                                <input type="text" class="form-control" placeholder="0265MP" value="" />
                                                             </td>
                                                             <td> 
                                                                 <label for="Phone No" > Phone Number: </label><br>
-                                                                <input type="tel" class="form-control" placeholder="1646846464" autocomplete="tel"  />
+                                                                <input type="tel" class="form-control" placeholder="1646846464" value="" autocomplete="tel" />
                                                             </td>
                                                         </tr>
                                                     </table> 
                                                 </div>
                                                 <div class="form-group merchent_name ">
                                                     <label for="Name" id="merchent_name_title" > Collage Name:</label><br>
-                                                    <input type="text" class="form-control" placeholder="Collage name"  />
+                                                    <input type="text" class="form-control" placeholder="Collage name" value="" />
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="Password" > Password:</label><br>
-                                                    <input type="password" class="form-control"  placeholder="Password"  />
+                                                    <input type="password" class="form-control"  placeholder="Password" value="" autocomplete="current-password" />
                                                 </div>
                                                 <div class="selector-group">
         
@@ -64,19 +65,19 @@
                                                         <div class="form-group university">
                                                             <label for="Select1" > University Type: </label><br>
                                                             <select class="form-control dropdown">
-                                                                <option>Opt 1</option>
-                                                                <option>Opt 2</option>
-                                                                <option>Opt 3</option>
-                                                                <option>Opt 4</option>
+                                                                <option class="university_option">Opt 1</option>
+                                                                <option class="university_option">Opt 2</option>
+                                                                <option class="university_option">Opt 3</option>
+                                                                <option class="university_option">Opt 4</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group insitute">
                                                             <label for="Select2" > Institution Type:</label><br>
                                                             <select class="form-control dropdown">
-                                                                <option>Opt 1</option>
-                                                                <option>Opt 2</option>
-                                                                <option>Opt 3</option>
-                                                                <option>Opt 4</option>
+                                                                <option class="institution_option">Opt 1</option>
+                                                                <option class="institution_option">Opt 2</option>
+                                                                <option class="institution_option">Opt 3</option>
+                                                                <option class="institution_option">Opt 4</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -85,19 +86,19 @@
                                                         <div class="form-group class">
                                                             <label for="Select1" > class Type: </label><br>
                                                             <select class=" form-control dropdown" multiple>
-                                                                <option>class 1</option>
-                                                                <option>Class 2</option>
-                                                                <option>Class 3</option>
-                                                                <option>Class 4</option>
+                                                                <option class="class_option">class 1</option>
+                                                                <option class="class_option">Class 2</option>
+                                                                <option class="class_option">Class 3</option>
+                                                                <option class="class_option">Class 4</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group course">
                                                             <label for="Select2" > Course Offered:</label><br>
                                                             <select class="form-control dropdown" multiple>
-                                                                <option>Course 1</option>
-                                                                <option>Course 2</option>
-                                                                <option>Course 3</option>
-                                                                <option>Course 4</option>
+                                                                <option class="course_option">Course 1</option>
+                                                                <option class="course_option">Course 2</option>
+                                                                <option class="course_option">Course 3</option>
+                                                                <option class="course_option">Course 4</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -106,10 +107,10 @@
                                                         <div class="form-group class">
                                                             <label for="Select1" > Industry Type: </label><br>
                                                             <select class="form-control dropdown" multiple>
-                                                                <option>Industry 1</option>
-                                                                <option>Industry 2</option>
-                                                                <option>Industry 3</option>
-                                                                <option>Industry 4</option>
+                                                                <option class="industry_option">Industry 1</option>
+                                                                <option class="industry_option">Industry 2</option>
+                                                                <option class="industry_option">Industry 3</option>
+                                                                <option class="industry_option">Industry 4</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -125,30 +126,30 @@
                                                         <option value="Mrs.">Mrs.</option>
                                                         <option value="Miss">Miss</option>
                                                     </select>
-                                                    <input type="text" class="form-control head_name_input"  placeholder="Full Name"  />
+                                                    <input type="text" class="form-control head_name_input"  placeholder="Full Name" value="" />
                                                 </div>
             
                                                 <div class="form-group address">
                                                     <label for="Address line 1" id="address_title" > Collage Address:</label><br>
-                                                    <input type="text" class="form-control" placeholder="line 1"  />
+                                                    <input type="text" class="form-control" placeholder="line 1" value="" />
                                                 </div>
                                                 <div class="form-group" style="margin-top: 7%;">
-                                                    <input type="text" class="form-control" placeholder="line 2"  />
+                                                    <input type="text" class="form-control" placeholder="line 2" value="" />
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="Country" > Country Name:</label><br>
-                                                    <input type="text" class="form-control" placeholder="Country Name"  />
+                                                    <input type="text" class="form-control" placeholder="Country Name" value="" autocomplete="country" />
                                                 </div>
                                                 <div class="form-group">
                                                     <table>
                                                         <tr>
                                                             <td>
                                                                 <label for="State" > State:</label><br>
-                                                                <input type="text" class="form-control" placeholder=""  />
+                                                                <input type="text" class="form-control" placeholder="" value="" />
                                                             </td>
                                                             <td> 
                                                                 <label for="City" > City:</label><br>
-                                                                <input type="text" class="form-control" placeholder=""  />
+                                                                <input type="text" class="form-control" placeholder="" value="" />
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -161,10 +162,10 @@
                             <table class="table table-borderless" style="width: 100%;">
                                 <tr>
                                     <td>
-                                        <input type="submit" class="btnSignup"  value="Signup"/>
+                                        <input type="submit" class=" btn btn-primary btnSignup"  value="Signup"/>
                                     </td>
                                     <td>
-                                        <a href="{% url 'login_merchant' %}"><input type="button" class="btnLogin"  value="Login"/></a>
+                                        <a href="{% url 'merchant/login' %}"><input type="button" class="btnLogin"  value="Login"/></a>
                                     </td>
                                 </tr>
                             </table>
@@ -191,3 +192,4 @@
         <script src="{% static 'new-merchant/js/signup.js' %}"></script>
     </body>
 </html>
+

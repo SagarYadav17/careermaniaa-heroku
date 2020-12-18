@@ -38,7 +38,7 @@
                                         <p class="error-message">{{ message }}</p>
                                         {% endfor %}
                                         <div>
-                                            <p><a href="{% url 'reset_password' %}" ><small style="color: #da0b4e;">Forgot Password ?</small></a></p>	
+                                            <p><a href="{% url 'merchant/forget-password' %}" ><small style="color: #da0b4e;">Forgot Password ?</small></a></p>	
                                         </div>
                                         <div class="footer-buttons">
                                             <table class="table table-borderless" style="width: 100%;">
@@ -75,7 +75,7 @@
         <script>
             $(function(){
                 $("#signup_btn").click(function(){
-                    window.location.href = "{% url 'register_merchant' %}";
+                    window.location.href = "{% url 'merchant/register' %}";
                 })
             })
         </script>
