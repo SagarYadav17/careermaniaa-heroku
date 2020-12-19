@@ -15,10 +15,10 @@
                     <h4>Branch</h4>
                   </div>
                   <div class="card-body">
-                    {% if not geolocation %}
+                    {% if not branch %}
                     <form method="POST" action="add_branch"> {% csrf_token %}
                       {% else %}
-                    <form method="POST" action="{% url 'update_branch' id=geolocation.id %}"> {% csrf_token %}
+                    <form method="POST" action="{% url 'update_branch' id=branch.id %}"> {% csrf_token %}
                       {% endif %}
                       <div class="form-group floating-addon">
                         <label>Name of Branch</label>
@@ -28,13 +28,13 @@
                               
                             </div>
                           </div>
-                          <input id="name" type="text" class="form-control" name="name" autofocus placeholder="Name Of Branch" value="{{geolocation.address.branch.name}}">
+                          <input id="name" type="text" class="form-control" name="name" autofocus placeholder="Name Of Branch" value="{{branch.name}}">
                         </div>
                       </div>
                       <div class="form-group floating-addon">
                         <label>Branch Type</label><br>
                           
-                          {% if geolocation.address.branch.branch_type == 'Main' %}
+                          {% if branch.branch_type == 'Main' %}
                             <input type="radio" id="main" name="branch_type" value="Main" checked>
                                 <label for="main" class="form-label">Main Branch</label><br>
                             <input type="radio" id="sub" name="branch_type" value="Sub">
@@ -46,124 +46,7 @@
                                 <label for="sub" class="form-label">Sub Branch</label>
                                 {% endif %}
                         </div>
-                        <div class="card-header">
-                            <h4>Address</h4>
-                          </div>
-                        <div class="form-group floating-addon">
-                        <label>Line</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text">
-                              
-                            </div>
-                          </div>
-                          <input id="Description" type="text" class="form-control" name="line" placeholder="Line" value="{{geolocation.address.line1}}">
-                        </div>
-                      </div>
-                      <div class="form-group floating-addon">
-                        <label>Apartment</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text">
-                              
-                            </div>
-                          </div>
-                          <input id="Description" type="text" class="form-control" name="apartment" placeholder="Apartment" value="{{geolocation.address.apartment}}">
-                        </div>
-                      </div>
-                      <div class="form-group floating-addon">
-                        <label>Building</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text">
-                              
-                            </div>
-                          </div>
-                          <input id="Description" type="text" class="form-control" name="building" placeholder="Building" value="{{geolocation.address.building}}">
-                        </div>
-                      </div>
-                      <div class="form-group floating-addon">
-                        <label>Landmark</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text">
-                              
-                            </div>
-                          </div>
-                          <input id="Description" type="text" class="form-control" name="landmark" placeholder="Landmark" value="{{geolocation.address.landmark}}">
-                        </div>
-                      </div>
-                      <div class="form-group floating-addon">
-                        <label>City</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text">
-                              
-                            </div>
-                          </div>
-                          <input id="Description" type="text" class="form-control" name="city" placeholder="City" value="{{geolocation.address.city}}">
-                        </div>
-                      </div>
-                      <div class="form-group floating-addon">
-                        <label>District</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text">
-                              
-                            </div>
-                          </div>
-                          <input id="Description" type="text" class="form-control" name="district" placeholder="District" value="{{geolocation.address.district}}">
-                        </div>
-                      </div>
-                      <div class="form-group floating-addon">
-                        <label>State</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text">
-                              
-                            </div>
-                          </div>
-                          <input id="Description" type="text" class="form-control" name="state" placeholder="State" value="{{geolocation.address.state}}">
-                        </div>
-                      </div>
-                      <div class="form-group floating-addon">
-                        <label>Pincode</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text">
-                              
-                            </div>
-                          </div>
-                          <input id="Description" type="text" class="form-control" name="pincode" placeholder="Pincode" value="{{geolocation.address.pincode}}">
-                        </div>
-                      </div>
 
-                      <div class="card-header">
-                        <h4>Geolocation</h4>
-                      </div>
-
-                      <div class="form-group floating-addon">
-                        <label>Latitude</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text">
-                              
-                            </div>
-                          </div>
-                          <input id="Description" type="text" class="form-control" name="latitude" placeholder="Latitude" value="{{geolocation.lat}}">
-                        </div>
-                      </div>
-                      <div class="form-group floating-addon">
-                        <label>Longitude</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text">
-                              
-                            </div>
-                          </div>
-                          <input id="Description" type="text" class="form-control" name="longitude" placeholder="Longitude" value="{{geolocation.lng}}">
-                        </div>
-                      </div>
                       <center>
                         <button type="submit" class="btn btn-round btn-lg btn-primary">
                           Submit
@@ -197,19 +80,17 @@
                     <tr>
                       <th>Branch Name</th>
                       <th>Type</th>
-                      <th>Address</th>
                       <th>Edit</th>
                       <th>Delete</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {% for location in geolocations %}
+                    {% for branch in branches %}
                     <tr>
-                      <td>{{location.address.branch.name}}</td>
-                      <td>{{location.address.branch.branch_type}}</td>
-                      <td>{{location.address}}</td>
-                      <td><a href="{% url 'update_branch' id=location.id %}"><button class="btn btn-lg btn-success">Edit</button></a></td>
-                      <td><a href="{% url 'delete_branch' id=location.id %}"><button class="btn btn-lg btn-danger">Delete</button></a></td>
+                      <td>{{branch.name}}</td>
+                      <td>{{branch.branch_type}}</td>
+                      <td><a href="{% url 'update_branch' id=branch.id %}"><button class="btn btn-lg btn-success">Edit</button></a></td>
+                      <td><a href="{% url 'delete_branch' id=branch.id %}"><button class="btn btn-lg btn-danger">Delete</button></a></td>
                     </tr>
                     {% endfor %}
                     </tbody>

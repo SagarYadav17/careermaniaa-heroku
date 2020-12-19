@@ -33,17 +33,6 @@
                         </div>
                       </div>
                       <div class="form-group floating-addon">
-                        <label>Description</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text">
-                              
-                            </div>
-                          </div>
-                          <input id="Description" type="text" class="form-control" name="description" placeholder="Description" value="{{edit_faculty.meta_description}}">
-                        </div>
-                      </div>
-                      <div class="form-group floating-addon">
                         <label>Age</label>
                         <div class="input-group">
                           <div class="input-group-prepend">
@@ -100,7 +89,7 @@
           <div class="col-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1">
           <div class="card">
             <div class="card-header">
-              <h4>All Offers</h4>
+              <h4>All faculties</h4>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -109,7 +98,6 @@
                     <tr>
                       <th>Name</th>
                       <th>Age</th>
-                      <th>Description</th>
                       <th>Specialization</th>
                       <th>Edit</th>
                       <th>Delete</th>
@@ -120,7 +108,6 @@
                     <tr>
                       <td>{{faculty.name}}</td>
                       <td>{{faculty.age}}</td>
-                      <td>{{faculty.meta_description}}</td>
                       <td>{{faculty.specialization}}</td>
                       <td><a href="{% url 'update_faculty' id=faculty.id %}"><button class="btn btn-lg btn-success">Edit</button></a></td>
                       <td><a href="{% url 'delete_faculty' id=faculty.id %}"><button class="btn btn-lg btn-danger">Delete</button></a></td>

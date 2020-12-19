@@ -19,7 +19,7 @@ urlpatterns = [
 
     path('courses', views.merchant_courses, name="merchant_courses"),
     path('payment_info', views.merchant_payment, name="payment_info"),
-    path('profile', views.merchant_profile, name="merchant_profile"),
+    path('merchant_profile', views.merchant_profile, name="merchant_profile"),
 
     path('forms_details/<user>', views.forms_details, name='forms_details'),
 
