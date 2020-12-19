@@ -33,6 +33,7 @@ $(document).ready(function(){
             $(this).removeClass("active");
         })
         self.addClass("active")
+        $("#main_form").find("#form_define").val("colleges");
         $("#main_form").find(".left-form .email_id #email_title").html("College Email id *")
         $("#main_form").find(".right-form .head_name #head_name_title").html("Chancellor/Chairman")
         $("#main_form").find(".right-form .address #address_title").html("Collage Address ")
@@ -48,6 +49,7 @@ $(document).ready(function(){
             $(this).removeClass("active");
         })
         self.addClass("active")
+        $("#main_form").find("#form_define").val("classes");
         $("#main_form").find(".left-form .email_id #email_title").html("Class Email id *")
         $("#main_form").find(".right-form .head_name #head_name_title").html("Directors Name")
         $("#main_form").find(".right-form .address #address_title").html("Center Address ")
@@ -63,6 +65,7 @@ $(document).ready(function(){
             $(this).removeClass("active");
         })
         self.addClass("active")
+        $("#main_form").find("#form_define").val("jobs");
         $("#main_form").find(".left-form .email_id #email_title").html("Employer Email id *")
         $("#main_form").find(".right-form .head_name #head_name_title").html("Directors Name")
         $("#main_form").find(".right-form .address #address_title").html("Company Address ")

@@ -14,6 +14,35 @@ from django.contrib import messages
 from datetime import *
 from mania.views import send_confirmation_email
 
+from urllib.parse import urlparse, urlunparse
+
+from django.conf import settings
+# Avoid shadowing the login() and logout() views below.
+from django.contrib.auth import (
+    REDIRECT_FIELD_NAME, get_user_model, login as auth_login,
+    logout as auth_logout, update_session_auth_hash,
+)
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import (
+    AuthenticationForm, PasswordChangeForm, PasswordResetForm, SetPasswordForm,
+)
+from django.contrib.auth.tokens import default_token_generator
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.exceptions import ValidationError
+from django.http import HttpResponseRedirect, QueryDict
+from django.shortcuts import resolve_url
+from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from django.utils.http import (
+    url_has_allowed_host_and_scheme, urlsafe_base64_decode,
+)
+from django.utils.translation import gettext_lazy as _
+from django.views.decorators.cache import never_cache
+from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.debug import sensitive_post_parameters
+from django.views.generic.base import TemplateView
+from django.views.generic.edit import FormView
+
 
 def merchant_view(request):
     return render(request, 'merchant/index.html')
@@ -33,10 +62,11 @@ def register_merchant(request):
         try:
             user = User.objects.create_merchant(email, username, password)
             user.save()
-            merchant = Merchant_Details(first_name=fname, last_name=lname, email=email, mobile=mobile, stream=stream, merchant=user, merchant_type=merchant_type)
+            merchant = Merchant_Details(first_name=fname, last_name=lname, email=email,
+                                        mobile=mobile, stream=stream, merchant=user, merchant_type=merchant_type)
             merchant.save()
             send_confirmation_email(request, user)
-            return redirect('login_merchant')
+            return redirect('merchant/login')
 
         except IntegrityError as e:
             if str(e) == 'UNIQUE constraint failed: acc_app_useraccount.username':
@@ -47,6 +77,52 @@ def register_merchant(request):
                 messages.info(request, 'something went wrong')
 
     return render(request, "merchant/signup.html")
+
+
+class PasswordContextMixin:
+    extra_context = None
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            'title': self.title,
+            **(self.extra_context or {})
+        })
+        return context
+
+
+class PasswordResetView(PasswordContextMixin, FormView):
+    email_template_name = 'registration/password_reset_email.html'
+    extra_email_context = None
+    form_class = PasswordResetForm
+    from_email = None
+    html_email_template_name = None
+    subject_template_name = 'registration/password_reset_subject.txt'
+    success_url = reverse_lazy('password_reset_done')
+    template_name = 'merchant/forget-password.html'
+    title = _('Password reset')
+    token_generator = default_token_generator
+
+    @method_decorator(csrf_protect)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    def form_valid(self, form):
+        opts = {
+            'use_https': self.request.is_secure(),
+            'token_generator': self.token_generator,
+            'from_email': self.from_email,
+            'email_template_name': self.email_template_name,
+            'subject_template_name': self.subject_template_name,
+            'request': self.request,
+            'html_email_template_name': self.html_email_template_name,
+            'extra_email_context': self.extra_email_context,
+        }
+        form.save(**opts)
+        return super().form_valid(form)
+
+
+INTERNAL_RESET_SESSION_TOKEN = '_password_reset_token'
 
 
 def login_merchant(request):
@@ -87,7 +163,7 @@ def forms_details(request, user):
     return render(request, 'merchant/login.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def merchant_dashboard(request):
     if request.user.is_merchant:
         merchant = request.user
@@ -100,7 +176,7 @@ def merchant_dashboard(request):
     return render(request, 'merchant/login.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def merchant_messages(request):
     if request.user.is_merchant:
         coaching = Coaching.objects.get(merchant=request.user)
@@ -125,32 +201,32 @@ def merchant_messages(request):
         return render(request, 'merchant/new_dashboard/chat.html', context)
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def merchant_table(request):
     return render(request, 'merchant/new_dashboard/export-table.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def merchant_contact(request):
     return render(request, 'merchant/new_dashboard/contact.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def merchant_forms2(request):
     return render(request, 'merchant/new_dashboard/basic-form2.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def merchant_gallery(request):
     return render(request, 'merchant/new_dashboard/gallery1.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def merchant_invoice(request):
     return render(request, 'merchant/new_dashboard/invoice.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def merchant_payment(request):
     if request.user.is_merchant:
         coaching = Coaching.objects.get(merchant=request.user)
@@ -191,7 +267,7 @@ def merchant_payment(request):
         return render(request, 'merchant/new_dashboard/payment.html', context)
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def merchant_profile(request):
     if request.user.is_merchant:
         info = Merchant_Details.objects.get(merchant=request.user)
@@ -211,12 +287,13 @@ def merchant_profile(request):
     return render(request, 'signup.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def logout_user(request):
     logout(request)
     return redirect('index')
 
-@login_required(login_url='login_merchant')
+
+@login_required(login_url='merchant/login')
 def add_coaching(request, user):
     user = User.objects.get(username=user)
     if user.is_merchant and user.is_verified:
@@ -232,7 +309,8 @@ def add_coaching(request, user):
         return render(request, 'merchant/dashboard/add_coaching.html', {'merchant': user})
     return render(request, 'signup.html')
 
-@login_required(login_url='login_merchant')
+
+@login_required(login_url='merchant/login')
 def add_coaching_metadata(request, user):
     user = User.objects.get(username=user)
     if user.is_merchant and user.is_verified:
@@ -251,7 +329,7 @@ def add_coaching_metadata(request, user):
     return render(request, 'signup.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def update_coaching(request):
     if request.user.is_merchant:
         merchant = request.user
@@ -277,7 +355,7 @@ def update_coaching(request):
     return render(request, 'signup.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def update_coaching_metadata(request):
     if request.user.is_merchant:
         try:
@@ -311,7 +389,7 @@ def update_coaching_metadata(request):
     return render(request, 'signup.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def add_branch(request):
     if request.user.is_merchant:
         merchant = request.user
@@ -329,7 +407,7 @@ def add_branch(request):
     return render(request, 'signup.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def update_branch(request, id):
     if request.user.is_merchant:
         merchant = request.user
@@ -347,7 +425,7 @@ def update_branch(request, id):
     return render(request, 'signup.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def delete_branch(request, id):
     if request.user.is_merchant:
         branch = Branch.objects.get(id=id)
@@ -356,7 +434,7 @@ def delete_branch(request, id):
     return render(request, 'signup.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def merchant_courses(request):
     if request.user.is_merchant:
         coaching = Coaching.objects.get(merchant=request.user)
@@ -368,7 +446,7 @@ def merchant_courses(request):
         return render(request, 'merchant/new_dashboard/courses.html', context)
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def add_course(request):
     if request.user.is_merchant:
         merchant = request.user
@@ -402,7 +480,7 @@ def add_course(request):
     return render(request, 'merchant/signup.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def update_course(request, id):
     if request.user.is_merchant:
         merchant = request.user
@@ -441,7 +519,7 @@ def update_course(request, id):
     return render(request, 'merchant/signup.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def delete_course(request, id):
     if request.user.is_merchant:
         course = Course.objects.get(id=id)
@@ -450,7 +528,7 @@ def delete_course(request, id):
     return render(request, 'signup.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def add_faculty(request):
     if request.user.is_merchant:
         merchant = request.user
@@ -471,7 +549,7 @@ def add_faculty(request):
     return render(request, 'merchant/signup.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def update_faculty(request, id):
     if request.user.is_merchant:
         coaching = Coaching.objects.get(merchant=request.user)
@@ -498,7 +576,7 @@ def update_faculty(request, id):
     return render(request, 'merchant/signup.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def delete_faculty(request, id):
     if request.user.is_merchant:
         faculty = CoachingFacultyMember.objects.get(id=id)
@@ -507,7 +585,7 @@ def delete_faculty(request, id):
     return render(request, 'signup.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def add_batch(request):
     if request.user.is_merchant:
         merchant = request.user
@@ -543,7 +621,7 @@ def add_batch(request):
     return render(request, 'merchant/signup.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def update_batch(request, id):
     if request.user.is_merchant:
         merchant = request.user
@@ -583,7 +661,7 @@ def update_batch(request, id):
     return render(request, 'signup.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def delete_batch(request, id):
     if request.user.is_merchant:
         batch = Batch.objects.get(id=id)
@@ -592,7 +670,7 @@ def delete_batch(request, id):
     return render(request, 'signup.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def add_offer(request):
     if request.user.is_merchant:
         coaching = Coaching.objects.get(merchant=request.user)
@@ -608,7 +686,7 @@ def add_offer(request):
     return render(request, 'signup.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def update_offer(request, id):
     if request.user.is_merchant:
         coaching = Coaching.objects.get(merchant=request.user)
@@ -625,7 +703,7 @@ def update_offer(request, id):
     return render(request, 'signup.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def delete_offer(request, id):
     if request.user.is_merchant:
         offer = Offer.objects.get(id=id)
@@ -634,7 +712,7 @@ def delete_offer(request, id):
     return render(request, 'signup.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def add_discount(request):
     if request.user.is_merchant:
         coaching = Coaching.objects.get(merchant=request.user)
@@ -651,7 +729,7 @@ def add_discount(request):
     return render(request, 'signup.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def update_discount(request, id):
     if request.user.is_merchant:
         coaching = Coaching.objects.get(merchant=request.user)
@@ -670,7 +748,7 @@ def update_discount(request, id):
     return render(request, 'signup.html')
 
 
-@login_required(login_url='login_merchant')
+@login_required(login_url='merchant/login')
 def delete_discount(request, id):
     if request.user.is_merchant:
         discount = Discount.objects.get(id=id)

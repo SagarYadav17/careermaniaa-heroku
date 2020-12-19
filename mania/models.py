@@ -123,19 +123,22 @@ class Geolocation(models.Model):
     def __str__(self):
         return str(self.user)
 
+
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
     def __str__(self):
-        return  self.id
+        return self.id
+
 
 class Wishlist(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
     def __str__(self):
-        return  self.id
+        return self.id
+
 
 class Registration(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
