@@ -175,8 +175,10 @@ def products(request):
         all_address = list(Address.objects.filter(city=city))
         all_address = [
             address for address in all_address if address.user.is_merchant]
+        print(all_address)
         courses = []
         for address in all_address:
+            print(address.user, address)
             coaching = Coaching.objects.get(user=address.user)
             courses += Course.objects.filter(coaching=coaching)
 
