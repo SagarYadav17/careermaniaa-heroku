@@ -1,195 +1,213 @@
 {% load static %}
 <html lang="en">
-    <head>
+
+<head>
     <meta charset="utf-8">
-    <meta name="viewport"content="width=device-width, initial scale 1.0">
+    <meta name="viewport" content="width=device-width, initial scale 1.0">
     <meta name="description" content="Merchant signup page">
     <meta name="author" content="Indranil and Moumita">
     <title>careermania-signup</title>
     <link rel="stylesheet" href="{% static 'new-merchant/vendor/bootstrap/bootstrap.min.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{% static 'new-merchant/css/signup.css' %}">
-    </head>
+</head>
 
-    <body>
-        <div class="main-body">
-                <div class="container register" id="signup_page">
-                    <div class="col-md-9 register-right">
-                        <div class="col-md-12 forht">
-                            <div class="header_content">
-                                <a href="{% url 'merchant_view' %}"><img src="{% static 'new-merchant/asset/logo1.png' %}" class="logo_img"></a>
-                                <p class="logo_text"><span style="color:  #da0b4e;">Career</span>Maniaa </p>
-                            </div>
-                        </div>
-                        <div class="col-md-12 forbtn">
-                            <div class="btn-group btn-group-lg">
-                                <button type="button" class="btn btn-primary active" id="college_btn" value="colleges">Colleges</button>
-                                <button type="button" class="btn btn-primary" id="class_btn" value="classes">Classes</button>
-                                <button type="button" class="btn btn-primary" id="job_btn" value="jobs">Jobs</button>
-                            </div>
-                        </div>
-                                <div class="col-md-12">
-                                    <div class="row register-form" id="main_form">
-                                        <form method="POST">
-                                            <input type="text" class="form-control hide" id="form_define" value="colleges" />
-                                            <div class="col-md-6 left-form">
-                                                <div class="form-group email_id">
-                                                    <label for="email" id="email_title">College Email id:</label><br>
-                                                    <input type="email" class="form-control" placeholder="abcd123@gmail.com" value="" autocomplete="email" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <table>
-                                                        <tr>
-                                                            <td>
-                                                                <label for="Reg No" > Registration No: </label><br>
-                                                                <input type="text" class="form-control" placeholder="0265MP" value="" />
-                                                            </td>
-                                                            <td> 
-                                                                <label for="Phone No" > Phone Number: </label><br>
-                                                                <input type="tel" class="form-control" placeholder="1646846464" value="" autocomplete="tel" />
-                                                            </td>
-                                                        </tr>
-                                                    </table> 
-                                                </div>
-                                                <div class="form-group merchent_name ">
-                                                    <label for="Name" id="merchent_name_title" > Collage Name:</label><br>
-                                                    <input type="text" class="form-control" placeholder="Collage name" value="" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="Password" > Password:</label><br>
-                                                    <input type="password" class="form-control"  placeholder="Password" value="" autocomplete="current-password" />
-                                                </div>
-                                                <div class="selector-group">
-        
-                                                    <div class="selector college_info">
-                                                        <div class="form-group university">
-                                                            <label for="Select1" > University Type: </label><br>
-                                                            <select class="form-control dropdown">
-                                                                <option class="university_option">Opt 1</option>
-                                                                <option class="university_option">Opt 2</option>
-                                                                <option class="university_option">Opt 3</option>
-                                                                <option class="university_option">Opt 4</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group insitute">
-                                                            <label for="Select2" > Institution Type:</label><br>
-                                                            <select class="form-control dropdown">
-                                                                <option class="institution_option">Opt 1</option>
-                                                                <option class="institution_option">Opt 2</option>
-                                                                <option class="institution_option">Opt 3</option>
-                                                                <option class="institution_option">Opt 4</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-        
-                                                    <div class="selector class_info hide">
-                                                        <div class="form-group class">
-                                                            <label for="Select1" > class Type: </label><br>
-                                                            <select class=" form-control dropdown" multiple>
-                                                                <option class="class_option">class 1</option>
-                                                                <option class="class_option">Class 2</option>
-                                                                <option class="class_option">Class 3</option>
-                                                                <option class="class_option">Class 4</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group course">
-                                                            <label for="Select2" > Course Offered:</label><br>
-                                                            <select class="form-control dropdown" multiple>
-                                                                <option class="course_option">Course 1</option>
-                                                                <option class="course_option">Course 2</option>
-                                                                <option class="course_option">Course 3</option>
-                                                                <option class="course_option">Course 4</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-        
-                                                    <div class="selector job_info hide">
-                                                        <div class="form-group class">
-                                                            <label for="Select1" > Industry Type: </label><br>
-                                                            <select class="form-control dropdown" multiple>
-                                                                <option class="industry_option">Industry 1</option>
-                                                                <option class="industry_option">Industry 2</option>
-                                                                <option class="industry_option">Industry 3</option>
-                                                                <option class="industry_option">Industry 4</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-        
-                                                </div>
-                                            </div>
-            
-                                            <div class="col-md-6 right-form">
-                                                <div class="form-group head_name">
-                                                    <label for="perName" id="head_name_title">Chancellor/Chairman:</label><br>
-                                                    <select name="sal" class="form-control missform dropdown">
-                                                        <option selected="selected" value="Mr.">Mr.</option>
-                                                        <option value="Mrs.">Mrs.</option>
-                                                        <option value="Miss">Miss</option>
-                                                    </select>
-                                                    <input type="text" class="form-control head_name_input"  placeholder="Full Name" value="" />
-                                                </div>
-            
-                                                <div class="form-group address">
-                                                    <label for="Address line 1" id="address_title" > Collage Address:</label><br>
-                                                    <input type="text" class="form-control" placeholder="line 1" value="" />
-                                                </div>
-                                                <div class="form-group" style="margin-top: 7%;">
-                                                    <input type="text" class="form-control" placeholder="line 2" value="" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="Country" > Country Name:</label><br>
-                                                    <input type="text" class="form-control" placeholder="Country Name" value="" autocomplete="country" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <table>
-                                                        <tr>
-                                                            <td>
-                                                                <label for="State" > State:</label><br>
-                                                                <input type="text" class="form-control" placeholder="" value="" />
-                                                            </td>
-                                                            <td> 
-                                                                <label for="City" > City:</label><br>
-                                                                <input type="text" class="form-control" placeholder="" value="" />
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                        <div class="footer-buttons">
-                            <table class="table table-borderless" style="width: 100%;">
-                                <tr>
-                                    <td>
-                                        <input type="submit" class=" btn btn-primary btnSignup"  value="Signup"/>
-                                    </td>
-                                    <td>
-                                        <a href="{% url 'merchant/login' %}"><input type="button" class="btnLogin"  value="Login"/></a>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="footer_content">
-                            <p class="footer_content_or">Or</p>
-                            <hr class="or_hr">
-                            <p class="footer_content_signup">Signup using</p>
-                            <hr class="signup_hr">
-                        </div>
-                        <div class="footer_icons">
-                            <img src="{% static 'new-merchant/asset/fbicon.png' %}">
-                            <img src="{% static 'new-merchant/asset/gmailicon.png' %}">
-                        </div>
+<body>
+    <div class="main-body">
+        <div class="container register" id="signup_page">
+            <div class="col-md-9 register-right">
+                <div class="col-md-12 forht">
+                    <div class="header_content">
+                        <a href="{% url 'merchant_view' %}"><img src="{% static 'new-merchant/asset/logo1.png' %}"
+                                class="logo_img"></a>
+                        <p class="logo_text"><span style="color:  #da0b4e;">Career</span>Maniaa </p>
                     </div>
                 </div>
-            </div>
-        <script src="{% static 'new-merchant/vendor/jquery/jquery-3.5.1.min.js' %}"></script>
-        <script src="{% static 'new-merchant/vendor/bootstrap/bootstrap.bundle.min.js' %}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script> -->
-        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-        <!-- <script src= "https://files.codepedia.info/files/uploads/iScripts/html2canvas.js"></script> -->
-        <script src="{% static 'new-merchant/js/signup.js' %}"></script>
-    </body>
-</html>
+                <div class="col-md-12 forbtn">
+                    <div class="btn-group btn-group-lg">
+                        <button type="button" class="btn btn-primary active" id="college_btn"
+                            value="colleges">Colleges</button>
+                        <button type="button" class="btn btn-primary" id="class_btn" value="classes">Classes</button>
+                        <button type="button" class="btn btn-primary" id="job_btn" value="jobs">Jobs</button>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row register-form" id="main_form">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <input type="text" class="form-control hide" id="form_define" name="register-type" value="colleges" />
+                            <div class="col-md-6 left-form">
+                                <div class="form-group email_id">
+                                    <label for="email" id="email_title">College Email id:</label><br>
+                                    <input type="email" name="email" class="form-control"
+                                        placeholder="abcd123@gmail.com" value="" autocomplete="email" />
+                                </div>
+                                <div class="form-group">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <label for="Reg No"> Registration No: </label><br>
+                                                <input type="text" name="registeration-number" class="form-control"
+                                                    placeholder="0265MP" value="" />
+                                            </td>
+                                            <td>
+                                                <label for="Phone No"> Phone Number: </label><br>
+                                                <input type="tel" name="phone-number" class="form-control"
+                                                    placeholder="1646846464" value="" autocomplete="tel" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="form-group merchent_name ">
+                                    <label for="Name" id="merchent_name_title"> Collage Name:</label><br>
+                                    <input type="text" class="form-control" name="name"
+                                        placeholder="Collage name" value="" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Password"> Password:</label><br>
+                                    <input type="password" name="password" class="form-control" placeholder="Password"
+                                        value="" autocomplete="current-password" />
+                                </div>
+                                <div class="selector-group">
 
+                                    <div class="selector college_info">
+                                        <div class="form-group university">
+                                            <label for="Select1"> University Type: </label><br>
+                                            <select class="form-control dropdown" name="uni-type">
+                                                <option class="university_option">Opt 1</option>
+                                                <option class="university_option">Opt 2</option>
+                                                <option class="university_option">Opt 3</option>
+                                                <option class="university_option">Opt 4</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group insitute">
+                                            <label for="Select2"> Institution Type:</label><br>
+                                            <select class="form-control dropdown" name="inst-type">
+                                                <option class="institution_option">Opt 1</option>
+                                                <option class="institution_option">Opt 2</option>
+                                                <option class="institution_option">Opt 3</option>
+                                                <option class="institution_option">Opt 4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="selector class_info hide">
+                                        <div class="form-group class">
+                                            <label for="Select1"> class Type: </label><br>
+                                            <select class=" form-control dropdown" multiple name="class-type">
+                                                <option class="class_option">class 1</option>
+                                                <option class="class_option">Class 2</option>
+                                                <option class="class_option">Class 3</option>
+                                                <option class="class_option">Class 4</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group course">
+                                            <label for="Select2"> Course Offered:</label><br>
+                                            <select class="form-control dropdown" multiple name="courses">
+                                                <option class="course_option">Course 1</option>
+                                                <option class="course_option">Course 2</option>
+                                                <option class="course_option">Course 3</option>
+                                                <option class="course_option">Course 4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="selector job_info hide">
+                                        <div class="form-group class">
+                                            <label for="Select1"> Industry Type: </label><br>
+                                            <select class="form-control dropdown" multiple name="industry-type">
+                                                <option class="industry_option">Industry 1</option>
+                                                <option class="industry_option">Industry 2</option>
+                                                <option class="industry_option">Industry 3</option>
+                                                <option class="industry_option">Industry 4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 right-form">
+                                <div class="form-group head_name">
+                                    <label for="perName" id="head_name_title">Chancellor/Chairman:</label><br>
+                                    <select class="form-control missform dropdown">
+                                        <option selected="selected" value="Mr.">Mr.</option>
+                                        <option value="Mrs.">Mrs.</option>
+                                        <option value="Miss">Miss</option>
+                                    </select>
+                                    <input type="text" name="chairman" class="form-control head_name_input" placeholder="Full Name"
+                                        value="" />
+                                </div>
+
+                                <div class="form-group address">
+                                    <label for="Address line 1" id="address_title"> Collage Address:</label><br>
+                                    <input type="text" name="add-1" class="form-control" placeholder="line 1"
+                                        value="" />
+                                </div>
+                                <div class="form-group" style="margin-top: 7%;">
+                                    <input type="text" name="add-2" class="form-control" placeholder="line 2"
+                                        value="" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Country"> Country Name:</label><br>
+                                    <input type="text" name="country" class="form-control" placeholder="Country Name"
+                                        value="" autocomplete="country" />
+                                </div>
+                                <div class="form-group">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <label for="State"> State:</label><br>
+                                                <input type="text" name="state" class="form-control" placeholder=""
+                                                    value="" />
+                                            </td>
+                                            <td>
+                                                <label for="City"> City:</label><br>
+                                                <input type="text" name="city" class="form-control" placeholder=""
+                                                    value="" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="footer-buttons">
+                    <table class="table table-borderless" style="width: 100%;">
+                        <tr>
+                            <td>
+                                <input type="submit" class=" btn btn-primary btnSignup" value="Signup" />
+                            </td>
+                            <td>
+                                <a href="{% url 'merchant/login' %}"><input type="button" class="btnLogin"
+                                        value="Login" /></a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                </form>
+                <div class="footer_content">
+                    <p class="footer_content_or">Or</p>
+                    <hr class="or_hr">
+                    <p class="footer_content_signup">Signup using</p>
+                    <hr class="signup_hr">
+                </div>
+                <div class="footer_icons">
+                    <img src="{% static 'new-merchant/asset/fbicon.png' %}">
+                    <img src="{% static 'new-merchant/asset/gmailicon.png' %}">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'new-merchant/vendor/jquery/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'new-merchant/vendor/bootstrap/bootstrap.bundle.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <!-- <script src= "https://files.codepedia.info/files/uploads/iScripts/html2canvas.js"></script> -->
+    <script src="{% static 'new-merchant/js/signup.js' %}"></script>
+</body>
+
+</html>

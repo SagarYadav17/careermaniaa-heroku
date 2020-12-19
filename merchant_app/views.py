@@ -50,33 +50,116 @@ def merchant_view(request):
 
 def register_merchant(request):
     if request.method == "POST":
-        username = request.POST['username']
-        fname = request.POST['fname']
-        lname = request.POST['lname']
-        email = request.POST['email']
-        mobile = request.POST['mobile']
-        stream = request.POST['stream']
-        password = request.POST['password']
-        merchant_type = request.POST['type']
+        if request.POST['register-type'] == str('colleges'):
+            try:
+                user = User.objects.create_merchant(
+                    email=request.POST['email'],
+                    username=request.POST['add-2'],
+                    password=request.POST['password']
+                )
+                user.save()
+                user_id = User.objects.get(email=request.POST['email'])
+                college = College.objects.create(
+                    user=user_id,
+                    registration_no=request.POST['registeration-number'],
+                    contact_no=request.POST['phone-number'],
+                    college_name=request.POST['institute-name'],
+                    university_type=request.POST['uni-type'],
+                    institute_type=request.POST['inst-type'],
+                    chairman=request.POST['chairman'],
+                    college_address=request.POST['add-1'],
+                    country=request.POST['country'],
+                    state=request.POST['state'],
+                    city=request.POST['city']
+                )
+                college.save()
 
-        try:
-            user = User.objects.create_merchant(email, username, password)
-            user.save()
-            merchant = Merchant_Details(first_name=fname, last_name=lname, email=email,
-                                        mobile=mobile, stream=stream, merchant=user, merchant_type=merchant_type)
-            merchant.save()
-            send_confirmation_email(request, user)
-            return redirect('merchant/login')
+                send_confirmation_email(request, user)
 
-        except IntegrityError as e:
-            if str(e) == 'UNIQUE constraint failed: acc_app_useraccount.username':
-                messages.info(request, 'username already taken')
-            if str(e) == 'UNIQUE constraint failed: acc_app_useraccount.email':
-                messages.info(request, 'email already taken')
-            else:
-                messages.info(request, 'something went wrong')
+                return redirect('index')
+
+            except IntegrityError as e:
+                if str(e) == 'UNIQUE constraint failed: mania_user.username':
+                    messages.info(request, 'username is already taken')
+                if str(e) == 'UNIQUE constraint failed: mania_user.email':
+                    messages.info(request, 'EmailID is already in use')
+                else:
+                    messages.info(request, 'Something went wrong')
+
+        if request.POST['register-type'] == str('jobs'):
+            try:
+                user = User.objects.create_merchant(
+                    email=request.POST['email'],
+                    username=request.POST['add-2'],
+                    password=request.POST['password']
+                )
+                user.save()
+                user_id = User.objects.get(email=request.POST['email'])
+                job = Job.objects.create(
+                    user=user_id,
+                    contact_no=request.POST['phone-number'],
+                    company_address=request.POST['add-1'],
+                    company_name=request.POST['name'],
+                    registration_no=request.POST['registeration-number'],
+                    country=request.POST['country'],
+                    state=request.POST['state'],
+                    city=request.POST['city'],
+                    director_name=request.POST['chairman'],
+                    industry_type=request.POST['industry-type']
+                )
+                job.save()
+
+                send_confirmation_email(request, user)
+
+                return redirect('index')
+
+            except IntegrityError as e:
+                if str(e) == 'UNIQUE constraint failed: mania_user.username':
+                    messages.info(request, 'username is already taken')
+                if str(e) == 'UNIQUE constraint failed: mania_user.email':
+                    messages.info(request, 'EmailID is already in use')
+                else:
+                    messages.info(request, 'Something went wrong')
 
     return render(request, "merchant/signup.html")
+
+
+def login_merchant(request):
+    if request.method == "POST":
+        email = request.POST['email']
+        password = request.POST['password']
+        user = authenticate(email=email, password=password)
+        if user:
+            if user.is_merchant and user.is_verified:
+                login(request, user)
+                return redirect('merchant')
+
+            elif user.is_verified != True:
+                return render(request, 'merchant/login.html', {"error": "Account is not verified yet. Pleace check your e-mail."})
+
+        else:
+            return render(request, 'merchant/login.html', {'error': 'No account found.'})
+
+    return render(request, 'merchant/login.html')
+
+
+def forms_details(request, user):
+    user = User.objects.get(username=str(user))
+    if user.is_merchant and user.is_verified:
+        try:
+            coaching = Coaching.objects.get(merchant=user)
+        except:
+            coaching = None
+        try:
+            info = CoachingMetaData.objects.get(coaching=coaching)
+        except:
+            info = None
+        if not coaching:
+            return redirect('add_coaching', user=user.username)
+        if not info:
+            return redirect('owner', user=user.username)
+        return redirect("index")
+    return render(request, 'merchant/login.html')
 
 
 class PasswordContextMixin:
@@ -120,47 +203,6 @@ class PasswordResetView(PasswordContextMixin, FormView):
         }
         form.save(**opts)
         return super().form_valid(form)
-
-
-INTERNAL_RESET_SESSION_TOKEN = '_password_reset_token'
-
-
-def login_merchant(request):
-    if request.method == "POST":
-        email = request.POST['email']
-        password = request.POST['password']
-        user = authenticate(email=email, password=password)
-        if user:
-            if user.is_merchant and user.is_verified:
-                login(request, user)
-                return redirect('merchant')
-
-            elif user.is_verified != True:
-                return render(request, 'merchant/login.html', {"error": "Account is not verified yet. Pleace check your e-mail."})
-
-        else:
-            return render(request, 'merchant/login.html', {'error': 'No account found.'})
-
-    return render(request, 'merchant/login.html')
-
-
-def forms_details(request, user):
-    user = User.objects.get(username=str(user))
-    if user.is_merchant and user.is_verified:
-        try:
-            coaching = Coaching.objects.get(merchant=user)
-        except:
-            coaching = None
-        try:
-            info = CoachingMetaData.objects.get(coaching=coaching)
-        except:
-            info = None
-        if not coaching:
-            return redirect('add_coaching', user=user.username)
-        if not info:
-            return redirect('owner', user=user.username)
-        return redirect("index")
-    return render(request, 'merchant/login.html')
 
 
 @login_required(login_url='merchant/login')
