@@ -442,32 +442,9 @@ def add_branch(request):
             branch = Branch(name=name, coaching=coaching,
                             branch_type=branch_type)
             branch.save()
-            line = request.POST['line']
-            apartment = request.POST['apartment']
-            building = request.POST['building']
-            landmark = request.POST['landmark']
-            city = request.POST['city']
-            district = request.POST['district']
-            state = request.POST['state']
-            pincode = request.POST['pincode']
-            address = Address(line1=line, apartment=apartment, building=building, landmark=landmark, city=city,
-                              district=district, state=state, pincode=pincode, branch=branch)
-            address.save()
-            latitude = request.POST['latitude']
-            longitude = request.POST['longitude']
-            geolocation = Geolocation(
-                address=address, lat=latitude, lng=longitude)
-            geolocation.save()
             return redirect('add_branch')
-        all_address = []
-        geolocations = []
         branches = Branch.objects.filter(coaching=coaching)
-        for branch in branches:
-            all_address += list(Address.objects.filter(branch=branch))
-        for address in all_address:
-            geolocations += list(Geolocation.objects.filter(id=address.id))
-        context = {'merchant': request.user, 'coaching': coaching, 'branches': branches,
-                   'all_address': all_address, 'geolocations': geolocations}
+        context = {'merchant': request.user, 'coaching': coaching, 'branches': branches}
         return render(request, 'merchant/new_dashboard/branch.html', context)
     return render(request, 'signup.html')
 
@@ -477,38 +454,15 @@ def update_branch(request, id):
     if request.user.is_merchant:
         merchant = request.user
         coaching = Coaching.objects.get(merchant=merchant)
-        geolocation = Geolocation.objects.get(id=id)
         if request.method == "POST":
             name = request.POST['name']
             branch_type = request.POST['branch_type']
-            line = request.POST['line']
-            apartment = request.POST['apartment']
-            building = request.POST['building']
-            landmark = request.POST['landmark']
-            city = request.POST['city']
-            district = request.POST['district']
-            state = request.POST['state']
-            pincode = request.POST['pincode']
-            latitude = request.POST['latitude']
-            longitude = request.POST['longitude']
-            geolocation = Geolocation.objects.filter(
-                id=id).update(lat=latitude, lng=longitude)
-            geolocation = Geolocation.objects.get(id=id)
-            address = Address.objects.filter(id=geolocation.address.id).update(line1=line, apartment=apartment, building=building, landmark=landmark, city=city,
-                                                                               district=district, state=state, pincode=pincode)
-            address = Address.objects.get(id=geolocation.address.id)
-            branch = Branch.objects.filter(id=address.branch.id).update(
+            branch = Branch.objects.filter(id=id).update(
                 name=name, branch_type=branch_type)
             return redirect('add_branch')
-        all_address = []
-        geolocations = []
         branches = Branch.objects.filter(coaching=coaching)
-        for branch in branches:
-            all_address += list(Address.objects.filter(branch=branch))
-        for address in all_address:
-            geolocations += list(Geolocation.objects.filter(id=address.id))
-        context = {'merchant': request.user, 'coaching': coaching, 'branches': branches,
-                   'all_address': all_address, 'geolocations': geolocations, 'geolocation': geolocation}
+        branch = Branch.objects.get(id=id)
+        context = {'merchant': request.user, 'coaching': coaching, 'branches': branches, 'branch':branch}
         return render(request, 'merchant/new_dashboard/branch.html', context)
     return render(request, 'signup.html')
 
@@ -516,12 +470,8 @@ def update_branch(request, id):
 @login_required(login_url='merchant/login')
 def delete_branch(request, id):
     if request.user.is_merchant:
-        geolocation = Geolocation.objects.get(id=id)
-        address = Address.objects.get(id=geolocation.address.id)
-        branch = Branch.objects.get(id=address.branch.id)
+        branch = Branch.objects.get(id=id)
         branch.delete()
-        address.delete()
-        geolocation.delete()
         return redirect('add_branch')
     return render(request, 'signup.html')
 
@@ -627,11 +577,10 @@ def add_faculty(request):
         coaching = Coaching.objects.get(merchant=merchant)
         if request.method == "POST":
             name = request.POST['name']
-            age = request.POST['age']
+            age = int(request.POST['age'])
             specialization = request.POST['specialization']
-            description = request.POST['description']
             faculty_image = request.FILES['pic']
-            faculty = CoachingFacultyMember(name=name, age=age, specialization=specialization, meta_description=description,
+            faculty = CoachingFacultyMember(name=name, age=age, specialization=specialization,
                                             coaching=coaching, faculty_image=faculty_image)
             faculty.save()
             return redirect('add_faculty')
@@ -648,15 +597,14 @@ def update_faculty(request, id):
         coaching = Coaching.objects.get(merchant=request.user)
         if request.method == "POST":
             name = request.POST['name']
-            age = request.POST['age']
+            age = int(request.POST['age'])
             specialization = request.POST['specialization']
-            description = request.POST['description']
             try:
                 faculty_image = request.FILES['pic']
             except:
                 faculty_image = None
             faculty = CoachingFacultyMember.objects.filter(id=id).update(
-                name=name, age=age, specialization=specialization, meta_description=description)
+                name=name, age=age, specialization=specialization)
             faculty = CoachingFacultyMember.objects.get(id=id)
             if faculty_image:
                 faculty.faculty_image = faculty_image

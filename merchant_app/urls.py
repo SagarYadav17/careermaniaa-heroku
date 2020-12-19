@@ -18,9 +18,15 @@ urlpatterns = [
     path('merchant/gallery', views.merchant_gallery, name="merchant_gallery"),
     path('merchant/invoice', views.merchant_invoice, name="merchant_invoice"),
 
+<<<<<<< HEAD
+    path('courses', views.merchant_courses, name="merchant_courses"),
+    path('payment_info', views.merchant_payment, name="payment_info"),
+    path('merchant_profile', views.merchant_profile, name="merchant_profile"),
+=======
     path('merchant/courses', views.merchant_courses, name="merchant_courses"),
     path('merchant/payment_info', views.merchant_payment, name="payment_info"),
     path('merchant/profile', views.merchant_profile, name="merchant_profile"),
+>>>>>>> 8509701e0746e6745bf7c3fc1c8f015422280cdd
 
     path('merchant/forms_details/<user>',
          views.forms_details, name='forms_details'),
