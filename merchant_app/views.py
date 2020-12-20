@@ -261,7 +261,7 @@ def merchant_payment(request):
                 payment = BankAccountDetails(account_holder=account_holder, account_no=account_no, ifsc_code=ifsc, bank_name=bank_name,
                                              adhar_card=adhar, pan_card=pan, coaching=coaching, mobile_no=mobile)
                 payment.save()
-            return redirect('payment')
+            return redirect('payment_info')
         context = {'merchant': request.user,
                    'coaching': coaching, 'account': payment}
         return render(request, 'merchant/new_dashboard/payment.html', context)
@@ -276,10 +276,9 @@ def merchant_profile(request):
             fname = request.POST['fname']
             lname = request.POST['lname']
             mobile = request.POST['mobile']
-            organization = request.POST['organization']
             stream = request.POST['stream']
             info = Merchant_Details.objects.filter(id=info.id).update(
-                first_name=fname, last_name=lname, mobile=mobile, organization=organization, stream=stream)
+                first_name=fname, last_name=lname, mobile=mobile, stream=stream)
             return redirect('merchant_profile')
         context = {'info': info, 'merchant': request.user,
                    'coaching': coaching}
@@ -365,20 +364,15 @@ def update_coaching_metadata(request):
             return redirect('forms_details', request.user.username)
         if request.method == "POST":
             name = request.POST['name']
-            description = request.POST['description']
-            contact1 = request.POST['contact1']
-            contact2 = request.POST['contact2']
+            mobile = request.POST['mobile']
             establish = request.POST['date']
             info.owner_name = name
-            info.owner_description = description
             info.established_on = establish
-            info.contact = contact1
-            info.help_contact = contact2
+            info.mobile = mobile
             try:
                 owner_image = request.FILES['owner_image']
             except:
                 owner_image = None
-            print(owner_image)
             if owner_image:
                 info.owner_image = owner_image
             info.save()

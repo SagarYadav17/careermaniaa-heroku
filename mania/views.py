@@ -96,7 +96,7 @@ def index(request):
     return render(request, 'user/index.html', context)
 
 
-def profile(request):
+def user_profile(request):
     return render(request, 'user/profile.html')
 
 
@@ -172,16 +172,8 @@ def products(request):
         lng = request.POST.get("lng", "79.0882")
         coordinates = lat, lng
         city = reverseGeocode(coordinates)
-        all_address = list(Address.objects.filter(city=city))
-        all_address = [
-            address for address in all_address if address.user.is_merchant]
-        print(all_address)
-        courses = []
-        for address in all_address:
-            print(address.user, address)
-            coaching = Coaching.objects.get(user=address.user)
-            courses += Course.objects.filter(coaching=coaching)
-
+        courses = list(Course.objects.all())
+        courses = [course for course in courses if Address.objects.get(user=course.coaching.merchant).city == city]
         if courses == []:
             context = {'msg': 'No Near By Coachings'}
         else:
@@ -223,29 +215,15 @@ def science_coachings(request):
 
 
 def commerce_coachings(request):
-    merchants = list(Merchant_Details.objects.all())
-    merchants = [
-        merchant for merchant in merchants if merchant.stream == "Commerce"]
-    coachings = [Coaching.objects.get(
-        merchant=merchant.merchant) for merchant in merchants]
-    courses = []
-    for coaching in coachings:
-        courses += Course.objects.filter(coaching=coaching)
-    print(merchants)
-    context = {'courses': courses, 'msg': 'Commerce Coachings'}
+    courses = Course.objects.filter(stream="Commerce")
+    context = {'courses': courses, 'msg': 'Science Coachings'}
     return render(request, 'user/products.html', context)
 
 
 def other_coachings(request):
-    merchants = list(Merchant_Details.objects.all())
-    merchants = [merchant for merchant in merchants if merchant.stream !=
-                 "Science" and merchant.stream != "Commerce"]
-    coachings = [Coaching.objects.get(
-        merchant=merchant.merchant) for merchant in merchants]
-    courses = []
-    for coaching in coachings:
-        courses += Course.objects.filter(coaching=coaching)
-    print(merchants)
+    courses = list(Course.objects.all())
+    courses = [course for course in courses if course.stream !=
+                 "Science" and course.stream != "Commerce"]
     context = {'courses': courses, 'msg': 'Other Coachings'}
     return render(request, 'user/products.html', context)
 
