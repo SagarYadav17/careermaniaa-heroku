@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from mania.models import User
+from mania.models import Address, User
 from merchant_app.models import Merchant_Details
 
 from django.db import IntegrityError
@@ -294,7 +294,7 @@ def merchant_payment(request):
                 payment = BankAccountDetails(account_holder=account_holder, account_no=account_no, ifsc_code=ifsc, bank_name=bank_name,
                                              adhar_card=adhar, pan_card=pan, coaching=coaching, mobile_no=mobile)
                 payment.save()
-            return redirect('payment')
+            return redirect('payment_info')
         context = {'merchant': request.user,
                    'coaching': coaching, 'account': payment}
         return render(request, 'merchant/new_dashboard/payment.html', context)
@@ -309,10 +309,9 @@ def merchant_profile(request):
             fname = request.POST['fname']
             lname = request.POST['lname']
             mobile = request.POST['mobile']
-            organization = request.POST['organization']
             stream = request.POST['stream']
             info = Merchant_Details.objects.filter(id=info.id).update(
-                first_name=fname, last_name=lname, mobile=mobile, organization=organization, stream=stream)
+                first_name=fname, last_name=lname, mobile=mobile, stream=stream)
             return redirect('merchant_profile')
         context = {'info': info, 'merchant': request.user,
                    'coaching': coaching}
@@ -398,20 +397,15 @@ def update_coaching_metadata(request):
             return redirect('forms_details', request.user.username)
         if request.method == "POST":
             name = request.POST['name']
-            description = request.POST['description']
-            contact1 = request.POST['contact1']
-            contact2 = request.POST['contact2']
+            mobile = request.POST['mobile']
             establish = request.POST['date']
             info.owner_name = name
-            info.owner_description = description
             info.established_on = establish
-            info.contact = contact1
-            info.help_contact = contact2
+            info.mobile = mobile
             try:
                 owner_image = request.FILES['owner_image']
             except:
                 owner_image = None
-            print(owner_image)
             if owner_image:
                 info.owner_image = owner_image
             info.save()
@@ -477,7 +471,6 @@ def merchant_courses(request):
         courses = Course.objects.filter(coaching=coaching)
         context = {'courses': courses,
                    'merchant': request.user, 'coaching': coaching}
-        branches = Branch.objects.filter(coaching=coaching)
         return render(request, 'merchant/new_dashboard/courses.html', context)
 
 
@@ -488,17 +481,16 @@ def add_course(request):
         coaching = Coaching.objects.get(merchant=merchant)
         if request.method == "POST":
             branch_taken = request.POST['branch']
-            details = Merchant_Details.objects.get(merchant=merchant)
-            stream = details.stream
+            stream = request.POST['stream']
             name = request.POST['name']
             description = request.POST['description']
-            start = request.POST['start']
-            end = request.POST['end']
+            timeperiod = request.POST['timeperiod']
+            trial = request.POST['trial']
             fees = float(request.POST['fees'])
             currency = request.POST['currency']
             active = request.POST['active']
             branch = Branch.objects.get(name=branch_taken)
-            course = Course(name=name, description=description, branch=branch, start_date=start, end_date=end,
+            course = Course(name=name, description=description, branch=branch, timePeriod=timeperiod, trial=trial,
                             stream=stream, fees=fees, currency=currency, coaching=coaching)
             myfile = request.FILES["syllabus"]
             course.syllabus = myfile
@@ -509,8 +501,9 @@ def add_course(request):
             course.save()
             return redirect('add_course')
         branches = Branch.objects.filter(coaching=coaching)
+        streams = ['Science', 'Commerce', 'Other']
         context = {'merchant': request.user,
-                   'coaching': coaching, 'branches': branches}
+                   'coaching': coaching, 'branches': branches, 'streams': streams}
         return render(request, 'merchant/new_dashboard/add_course.html', context)
     return render(request, 'merchant/signup.html')
 
@@ -522,18 +515,17 @@ def update_course(request, id):
         coaching = Coaching.objects.get(merchant=merchant)
         if request.method == "POST":
             branch_taken = request.POST['branch']
-            details = Merchant_Details.objects.get(merchant=merchant)
-            stream = details.stream
+            stream = request.POST['stream']
             name = request.POST['name']
             description = request.POST['description']
-            start = request.POST['start']
-            end = request.POST['end']
+            timeperiod = request.POST['timeperiod']
+            trial = request.POST['trial']
             fees = float(request.POST['fees'])
             currency = request.POST['currency']
             active = request.POST['active']
             branch = Branch.objects.get(name=branch_taken)
-            course = Course.objects.filter(id=id).update(name=name, description=description, branch=branch, start_date=start, end_date=end,
-                                                         stream=stream, fees=fees, currency=currency)
+            course = Course.objects.filter(id=id).update(name=name, description=description, branch=branch, timePeriod=timeperiod, trial=trial,
+                            stream=stream, fees=fees, currency=currency)
             course = Course.objects.get(id=id)
             try:
                 myfile = request.FILES["syllabus"]
@@ -548,8 +540,9 @@ def update_course(request, id):
             return redirect('merchant_courses')
         branches = Branch.objects.filter(coaching=coaching)
         course = Course.objects.get(id=id)
-        context = {'merchant': request.user, 'coaching': coaching,
-                   'branches': branches, 'course': course}
+        streams = ['Science', 'Commerce', 'Other']
+        context = {'merchant': request.user,
+                   'coaching': coaching, 'branches': branches, 'streams': streams, 'course':course}
         return render(request, 'merchant/new_dashboard/add_course.html', context)
     return render(request, 'merchant/signup.html')
 
@@ -790,3 +783,32 @@ def delete_discount(request, id):
         discount.delete()
         return redirect('add_discount')
     return render(request, 'signup.html')
+
+@login_required(login_url='merchant/login')
+def merchant_address(request):
+    if request.user.is_merchant:
+        coaching = Coaching.objects.get(merchant=request.user)
+        try:
+            address = Address.objects.get(user=request.user)
+        except:
+            address = None
+        if request.method == "POST":
+            line1 = request.POST['line']
+            apartment = request.POST['apartment']
+            building = request.POST['building']
+            landmark = request.POST['landmark']
+            city = request.POST['city']
+            district = request.POST['district']
+            state = request.POST['state']
+            pincode = request.POST['pincode']
+            if address:
+                address = Address.objects.filter(user=request.user).update(line1=line1, apartment=apartment, building=building, 
+                landmark=landmark, city=city, district=district, state=state, pincode=pincode)
+            else:
+                address = Address(user=request.user, line1=line1, apartment=apartment, building=building, 
+                landmark=landmark, city=city, district=district, state=state, pincode=pincode)
+                address.save()
+            return redirect('merchant_address')
+            coaching = Coaching.objects.get(user=request.user)
+        context = {'merchant': request.user, 'address':address, 'coaching': coaching}
+        return render(request, 'merchant/new_dashboard/address.html', context)

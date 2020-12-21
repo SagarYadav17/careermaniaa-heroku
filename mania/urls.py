@@ -37,7 +37,7 @@ urlpatterns = [
 
      path("checkout/<str:id>", views.checkout, name="checkout"),
     path("payment", views.handlerequest, name="HandleRequest"),
-    path("profile", views.profile, name="profile"),
+    path("user_profile", views.user_profile, name="user_profile"),
     path("bookings", views.bookings, name="bookings"),
     path("product/<str:id>", views.product, name="product"),
 
