@@ -35,12 +35,18 @@
                     <div class="row register-form" id="main_form">
                         <form method="POST">
                             {% csrf_token %}
-                            <input type="text" class="form-control hide" id="form_define" name="register-type" value="colleges" />
+                            <input type="text" class="form-control hide" id="form_define" name="register-type"
+                                value="colleges" />
                             <div class="col-md-6 left-form">
                                 <div class="form-group email_id">
                                     <label for="email" id="email_title">College Email id:</label><br>
                                     <input type="email" name="email" class="form-control"
-                                        placeholder="abcd123@gmail.com" value="" autocomplete="email" />
+                                        placeholder="abcd123@gmail.com" autocomplete="email" required />
+                                </div>
+                                <div class="form-group username_id">
+                                    <label for="username">Username:</label><br>
+                                    <input type="text" name="username" class="form-control" placeholder="Username"
+                                        autocomplete="username" required />
                                 </div>
                                 <div class="form-group">
                                     <table>
@@ -48,25 +54,24 @@
                                             <td>
                                                 <label for="Reg No"> Registration No: </label><br>
                                                 <input type="text" name="registeration-number" class="form-control"
-                                                    placeholder="0265MP" value="" />
+                                                    placeholder="0265MP" />
                                             </td>
                                             <td>
                                                 <label for="Phone No"> Phone Number: </label><br>
                                                 <input type="tel" name="phone-number" class="form-control"
-                                                    placeholder="1646846464" value="" autocomplete="tel" />
+                                                    placeholder="1646846464" autocomplete="tel" required />
                                             </td>
                                         </tr>
                                     </table>
                                 </div>
                                 <div class="form-group merchent_name ">
                                     <label for="Name" id="merchent_name_title"> Collage Name:</label><br>
-                                    <input type="text" class="form-control" name="name"
-                                        placeholder="Collage name" value="" />
+                                    <input type="text" class="form-control" name="name" placeholder="Collage name" />
                                 </div>
                                 <div class="form-group">
                                     <label for="Password"> Password:</label><br>
                                     <input type="password" name="password" class="form-control" placeholder="Password"
-                                        value="" autocomplete="current-password" />
+                                        autocomplete="current-password" required />
                                 </div>
                                 <div class="selector-group">
 
@@ -80,15 +85,7 @@
                                                 <option class="university_option">Opt 4</option>
                                             </select>
                                         </div>
-                                        <div class="form-group insitute">
-                                            <label for="Select2"> Institution Type:</label><br>
-                                            <select class="form-control dropdown" name="inst-type">
-                                                <option class="institution_option">Opt 1</option>
-                                                <option class="institution_option">Opt 2</option>
-                                                <option class="institution_option">Opt 3</option>
-                                                <option class="institution_option">Opt 4</option>
-                                            </select>
-                                        </div>
+
                                     </div>
 
                                     <div class="selector class_info hide">
@@ -128,6 +125,16 @@
                             </div>
 
                             <div class="col-md-6 right-form">
+                                <div class="form-group insitute">
+                                    <label for="Select2"> Institution Type:</label><br>
+                                    <select class="form-control dropdown" name="inst-type">
+                                        <option class="institution_option">Opt 1</option>
+                                        <option class="institution_option">Opt 2</option>
+                                        <option class="institution_option">Opt 3</option>
+                                        <option class="institution_option">Opt 4</option>
+                                    </select>
+                                </div>
+
                                 <div class="form-group head_name">
                                     <label for="perName" id="head_name_title">Chancellor/Chairman:</label><br>
                                     <select class="form-control missform dropdown">
@@ -135,36 +142,30 @@
                                         <option value="Mrs.">Mrs.</option>
                                         <option value="Miss">Miss</option>
                                     </select>
-                                    <input type="text" name="chairman" class="form-control head_name_input" placeholder="Full Name"
-                                        value="" />
+                                    <input type="text" name="chairman" class="form-control head_name_input"
+                                        placeholder="Full Name" />
                                 </div>
 
                                 <div class="form-group address">
                                     <label for="Address line 1" id="address_title"> Collage Address:</label><br>
-                                    <input type="text" name="add-1" class="form-control" placeholder="line 1"
-                                        value="" />
+                                    <input type="text" name="address" class="form-control" placeholder="line 1" />
                                 </div>
-                                <div class="form-group" style="margin-top: 7%;">
-                                    <input type="text" name="add-2" class="form-control" placeholder="line 2"
-                                        value="" />
-                                </div>
+
                                 <div class="form-group">
                                     <label for="Country"> Country Name:</label><br>
                                     <input type="text" name="country" class="form-control" placeholder="Country Name"
-                                        value="" autocomplete="country" />
+                                        autocomplete="country" />
                                 </div>
                                 <div class="form-group">
                                     <table>
                                         <tr>
                                             <td>
                                                 <label for="State"> State:</label><br>
-                                                <input type="text" name="state" class="form-control" placeholder=""
-                                                    value="" />
+                                                <input type="text" name="state" class="form-control" placeholder="" />
                                             </td>
                                             <td>
                                                 <label for="City"> City:</label><br>
-                                                <input type="text" name="city" class="form-control" placeholder=""
-                                                    value="" />
+                                                <input type="text" name="city" class="form-control" placeholder="" />
                                             </td>
                                         </tr>
                                     </table>

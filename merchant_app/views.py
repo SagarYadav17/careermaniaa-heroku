@@ -16,30 +16,16 @@ from mania.views import send_confirmation_email
 
 from urllib.parse import urlparse, urlunparse
 
-from django.conf import settings
-# Avoid shadowing the login() and logout() views below.
-from django.contrib.auth import (
-    REDIRECT_FIELD_NAME, get_user_model, login as auth_login,
-    logout as auth_logout, update_session_auth_hash,
-)
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import (
-    AuthenticationForm, PasswordChangeForm, PasswordResetForm, SetPasswordForm,
-)
+from django.conf import Settings
+
+from django.contrib.auth.forms import PasswordResetForm
+
 from django.contrib.auth.tokens import default_token_generator
-from django.contrib.sites.shortcuts import get_current_site
-from django.core.exceptions import ValidationError
-from django.http import HttpResponseRedirect, QueryDict
-from django.shortcuts import resolve_url
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-from django.utils.http import (
-    url_has_allowed_host_and_scheme, urlsafe_base64_decode,
-)
+
 from django.utils.translation import gettext_lazy as _
-from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
-from django.views.decorators.debug import sensitive_post_parameters
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
 
@@ -54,7 +40,7 @@ def register_merchant(request):
             try:
                 user = User.objects.create_merchant(
                     email=request.POST['email'],
-                    username=request.POST['add-2'],
+                    username=request.POST['username'],
                     password=request.POST['password']
                 )
                 user.save()
@@ -90,7 +76,7 @@ def register_merchant(request):
             try:
                 user = User.objects.create_merchant(
                     email=request.POST['email'],
-                    username=request.POST['add-2'],
+                    username=request.POST['username'],
                     password=request.POST['password']
                 )
                 user.save()
@@ -181,8 +167,8 @@ class PasswordResetView(PasswordContextMixin, FormView):
     from_email = None
     html_email_template_name = None
     subject_template_name = 'registration/password_reset_subject.txt'
-    success_url = reverse_lazy('password_reset_done')
-    template_name = 'merchant/forget-password.html'
+    success_url = reverse_lazy('merchant/password_reset_done')
+    template_name = 'merchant/password_reset/forget-password.html'
     title = _('Password reset')
     token_generator = default_token_generator
 
@@ -203,6 +189,11 @@ class PasswordResetView(PasswordContextMixin, FormView):
         }
         form.save(**opts)
         return super().form_valid(form)
+
+
+class PasswordResetDoneView(PasswordContextMixin, TemplateView):
+    template_name = 'merchant/password_reset/password-reset-done.html'
+    title = _('Password reset sent')
 
 
 @login_required(login_url='merchant/login')
@@ -444,7 +435,8 @@ def add_branch(request):
             branch.save()
             return redirect('add_branch')
         branches = Branch.objects.filter(coaching=coaching)
-        context = {'merchant': request.user, 'coaching': coaching, 'branches': branches}
+        context = {'merchant': request.user,
+                   'coaching': coaching, 'branches': branches}
         return render(request, 'merchant/new_dashboard/branch.html', context)
     return render(request, 'signup.html')
 
@@ -462,7 +454,8 @@ def update_branch(request, id):
             return redirect('add_branch')
         branches = Branch.objects.filter(coaching=coaching)
         branch = Branch.objects.get(id=id)
-        context = {'merchant': request.user, 'coaching': coaching, 'branches': branches, 'branch':branch}
+        context = {'merchant': request.user, 'coaching': coaching,
+                   'branches': branches, 'branch': branch}
         return render(request, 'merchant/new_dashboard/branch.html', context)
     return render(request, 'signup.html')
 
