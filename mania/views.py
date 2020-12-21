@@ -340,11 +340,10 @@ def search(request):
         courses = []
         courses += Course.objects.filter(Q(name__icontains=keyword)
                                          | Q(description__icontains=keyword))
-        all_address = Address.objects.filter(city=city)
-        for address in all_address:
-            coaching = Coaching.objects.filter(merchant=address.user)
-            courses += Course.objects.filter(coaching=coaching)
-        courses = list(set(courses))
+        if city:
+            print(city)
+            courses = [course for course in courses if Address.objects.get(user=course.coaching.merchant).city == city]
+        print(courses)
         return render(request, 'user/search.html', {'courses': courses, 'keyword': keyword})
     courses = Course.objects.all()
     return render(request, 'user/search.html', {'courses': courses})

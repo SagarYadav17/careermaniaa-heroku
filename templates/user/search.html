@@ -3,10 +3,50 @@
 {% block content %}
 <div class="main">
         <div class="container">
-          <form class="d-flex" action="search" method="POST">{% csrf_token %}
-            <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="keyword" value="{{keyword}}">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
+          <div class="row">
+            <div class="col-lg-8 col-md-12 col-sm-12">
+              <div class="banner-search shadow_high">
+                <div class="search_hero_wrapping">
+                  <form action="search" method="POST">{% csrf_token %}
+                  <div class="row">
+                  
+                    <div class="col-lg-5 col-md-5 col-sm-12 br-right">
+                      <div class="form-group">
+                        <div class="input-with-icon">
+                          <input type="text" class="form-control" placeholder="Search Course" name="keyword" value="{{keyword}}"/>
+                          <img src="{% static 'user_assets_new/img/search.svg' %}" class="search-icon" alt="" />
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="col-lg-5 col-md-4 col-sm-12 small-pad">
+                      <div class="form-group">
+                        <div class="input-with-icon">
+                          <select id="c-category" class="form-control" name="city">
+                            <option value="">&nbsp;</option>
+                            <option value="Nagpur">Nagpur</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Pune">Pune</option>
+                            <option value="Chandigadh">Chandigadh</option>
+                          </select>
+                          <img src="{% static 'user_assets_new/img/pin.svg' %}" class="search-icon" alt="" />
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="col-lg-2 col-md-3 col-sm-12 pl-0">
+                      <div class="form-group none">
+                        <input type="submit" class="btn search-btn full-width" value="Search">
+                      </div>
+                    </div>
+                    
+                  </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         <hr class="divider-w">
         <section class="module-small">
           <div class="container">
