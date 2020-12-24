@@ -1,0 +1,108 @@
+{% load static %}
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Careermaniaa</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'new-merchant/vendor/bootstrap/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'new-merchant/vendor/font-awesome/all.css' %}">
+  <link rel="stylesheet" href="{% static 'css/errorpage.css' %}">
+</head>
+
+<body>
+  <div class="container404">
+
+    <div id="total_navbar">
+      <div id="navbar" class="col-md-14">
+        <div class="col-md-4 logo">
+          <img src="{% static 'new-merchant/asset/logo2.png' %}">
+        </div>
+        <div class="col-md-8 top_rig">
+          <div id="menu_content">
+            <span><a class="nav-link scroll" href="#first_page"> Home </a></span>
+            <span><a class="nav-link scroll" href="#about_us"> About us </a></span>
+            <span><a class="nav-link scroll" href="#sevices_page"> Services</a></span>
+            <span><a class="nav-link scroll" href="#contuctUsPage">Contact us </a></span>
+          </div>
+          <a href="javascript:void(0);" id="hamburgericon">
+            <i class="fa fa-bars"></i>
+          </a>
+          <a href="{% url 'login_user' %}"><img src="{% static 'new-merchant/asset/usericon.png' %}"></a>
+
+        </div>
+      </div>
+      <div id="hamburgerMenu" class="col-md-14">
+        <a class="nav-link scroll first_menu" href="#first_page"> Home </a>
+        <a class="nav-link scroll" href="#numberPage"> About us </a>
+        <a class="nav-link scroll" href="#sevices_page"> Services</a>
+        <a class="nav-link scroll last_menu" href="#contuctUsPage">Contact us </a>
+      </div>
+    </div>
+    <div class="section">
+      <div class="sect">
+        <div class="sect_write">
+
+          <h1>OOPS! </h1>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 lowerpart">
+      <div class="col-md-3 icons">
+        <div class="image_group">
+          <img src="{% static 'new-merchant/asset/fbicon.png' %}">
+          <img src="{% static 'new-merchant/asset/twittericon.png' %}">
+          <img src="{% static 'new-merchant/asset/gmailicon.png' %}">
+        </div>
+      </div>
+      <div class="col-md-4 links">
+        <div class="col-md-12 linksforexternal">
+          <ul>
+            <li>Home</li>
+            <li>Abut Us</li>
+            <li>Services</li>
+            <li>Contact</li>
+            <li>Us</li>
+            <li>FAQ</li>
+            <li>Career</li>
+          </ul>
+          <ul>
+            <li>Learning</li>
+            <li>10+2</li>
+            <li>Investor</li>
+            <li>Undertakling program</li>
+            <li>Student area</li>
+            <li>Get demo</li>
+          </ul>
+          <ul>
+            <li>Book a call</li>
+            <li>T&C</li>
+            <li>Privacy</li>
+            <li>More from Us</li>
+          </ul>
+        </div>
+        <div class="col-md-12 lowername">
+          <p><span style=" color: #da0b4e;">Career</span><span style="color: white;">Maniaa - 2020 </span></p>
+        </div>
+      </div>
+      <div class="col-md-5 subscribe">
+        <div class=" col-md-10 lowercontentholder">
+          <input type="text" class="form-control subscribeinput" placeholder="Enter your email address" />
+          <input type="button" class="form-control subscribebutton" value="Subscribe">
+          <div class="contact_info">
+            <p>CareerManiaa EDUCATION PRIVATE LIMITED</p>
+            <p>Plot no 123,Chandigarh,</p>
+            <p>+919876543210</p>
+            <p>hi@careermaniaa.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

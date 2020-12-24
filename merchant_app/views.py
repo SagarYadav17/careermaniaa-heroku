@@ -4,6 +4,13 @@ from merchant_app.models import Merchant_Details
 
 from django.db import IntegrityError
 
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
+from mania.utils import generate_token
+from django.core.mail import EmailMessage
+
 from django.http import HttpResponseRedirect
 from merchant_app.models import *
 from django.contrib.auth import authenticate, login, logout
@@ -12,11 +19,8 @@ from django.urls import reverse
 
 from django.contrib import messages
 from datetime import *
-from mania.views import send_confirmation_email
 
 from urllib.parse import urlparse, urlunparse
-
-from django.conf import Settings
 
 from django.contrib.auth.forms import PasswordResetForm
 
@@ -29,13 +33,37 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
 
+from django.conf import settings
+
 
 def merchant_view(request):
     return render(request, 'merchant/index.html')
 
 
+def send_confirmation_email(request, user):
+    current_site = get_current_site(request)
+
+    message = render_to_string('confirmation/activate.html',
+                               {
+                                   'user': user,
+                                   'domain': current_site.domain,
+                                   'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                                   'token': generate_token.make_token(user)
+                               })
+
+    email_message = EmailMessage(
+        'Activate Your Account',
+        message,
+        settings.EMAIL_HOST_USER,
+        [user.email],
+    )
+
+    email_message.send(fail_silently=False)
+
+
 def register_merchant(request):
     if request.method == "POST":
+        print(request.POST['register-type'])
         if request.POST['register-type'] == str('colleges'):
             try:
                 user = User.objects.create_merchant(
@@ -44,25 +72,60 @@ def register_merchant(request):
                     password=request.POST['password']
                 )
                 user.save()
+                send_confirmation_email(request, user)
+
                 user_id = User.objects.get(email=request.POST['email'])
                 college = College.objects.create(
                     user=user_id,
                     registration_no=request.POST['registeration-number'],
                     contact_no=request.POST['phone-number'],
-                    college_name=request.POST['institute-name'],
+                    college_name=request.POST['name'],
                     university_type=request.POST['uni-type'],
                     institute_type=request.POST['inst-type'],
                     chairman=request.POST['chairman'],
-                    college_address=request.POST['add-1'],
+                    college_address=request.POST['address'],
                     country=request.POST['country'],
                     state=request.POST['state'],
                     city=request.POST['city']
                 )
                 college.save()
 
+                return redirect('merchant/login')
+
+            except IntegrityError as e:
+                if str(e) == 'UNIQUE constraint failed: mania_user.username':
+                    messages.info(request, 'username is already taken')
+                if str(e) == 'UNIQUE constraint failed: mania_user.email':
+                    messages.info(request, 'EmailID is already in use')
+                else:
+                    messages.info(request, 'Something went wrong')
+
+        if request.POST['register-type'] == str('classes'):
+            try:
+                user = User.objects.create_merchant(
+                    email=request.POST['email'],
+                    username=request.POST['username'],
+                    password=request.POST['password']
+                )
+                user.save()
                 send_confirmation_email(request, user)
 
-                return redirect('index')
+                user_id = User.objects.get(email=request.POST['email'])
+
+                coaching = Coaching.objects.create(
+                    merchant=user_id,
+                    name=request.POST['name'],
+                    registration_number=request.POST['registeration-number'],
+                    country=request.POST['country'],
+                    state=request.POST['state'],
+                    address=request.POST['address'],
+                    director_name=request.POST['chairman'],
+                    phone_number=request.POST['phone-number']
+                )
+
+                coaching.save()
+
+                return redirect('merchant/login')
 
             except IntegrityError as e:
                 if str(e) == 'UNIQUE constraint failed: mania_user.username':
@@ -80,11 +143,13 @@ def register_merchant(request):
                     password=request.POST['password']
                 )
                 user.save()
+                send_confirmation_email(request, user)
+
                 user_id = User.objects.get(email=request.POST['email'])
                 job = Job.objects.create(
                     user=user_id,
                     contact_no=request.POST['phone-number'],
-                    company_address=request.POST['add-1'],
+                    company_address=request.POST['address'],
                     company_name=request.POST['name'],
                     registration_no=request.POST['registeration-number'],
                     country=request.POST['country'],
@@ -95,9 +160,7 @@ def register_merchant(request):
                 )
                 job.save()
 
-                send_confirmation_email(request, user)
-
-                return redirect('index')
+                return redirect('merchant/login')
 
             except IntegrityError as e:
                 if str(e) == 'UNIQUE constraint failed: mania_user.username':
@@ -200,11 +263,7 @@ class PasswordResetDoneView(PasswordContextMixin, TemplateView):
 def merchant_dashboard(request):
     if request.user.is_merchant:
         merchant = request.user
-        try:
-            coaching = Coaching.objects.get(merchant=merchant)
-        except:
-            return redirect('forms_details', merchant.username)
-        context = {'merchant': request.user, 'coaching': coaching}
+        context = {'merchant': request.user}
         return render(request, 'merchant/new_dashboard/merchant_dashboard.html', context=context)
     return render(request, 'merchant/login.html')
 
@@ -525,7 +584,7 @@ def update_course(request, id):
             active = request.POST['active']
             branch = Branch.objects.get(name=branch_taken)
             course = Course.objects.filter(id=id).update(name=name, description=description, branch=branch, timePeriod=timeperiod, trial=trial,
-                            stream=stream, fees=fees, currency=currency)
+                                                         stream=stream, fees=fees, currency=currency)
             course = Course.objects.get(id=id)
             try:
                 myfile = request.FILES["syllabus"]
@@ -542,7 +601,7 @@ def update_course(request, id):
         course = Course.objects.get(id=id)
         streams = ['Science', 'Commerce', 'Other']
         context = {'merchant': request.user,
-                   'coaching': coaching, 'branches': branches, 'streams': streams, 'course':course}
+                   'coaching': coaching, 'branches': branches, 'streams': streams, 'course': course}
         return render(request, 'merchant/new_dashboard/add_course.html', context)
     return render(request, 'merchant/signup.html')
 
@@ -784,6 +843,7 @@ def delete_discount(request, id):
         return redirect('add_discount')
     return render(request, 'signup.html')
 
+
 @login_required(login_url='merchant/login')
 def merchant_address(request):
     if request.user.is_merchant:
@@ -802,13 +862,14 @@ def merchant_address(request):
             state = request.POST['state']
             pincode = request.POST['pincode']
             if address:
-                address = Address.objects.filter(user=request.user).update(line1=line1, apartment=apartment, building=building, 
-                landmark=landmark, city=city, district=district, state=state, pincode=pincode)
+                address = Address.objects.filter(user=request.user).update(line1=line1, apartment=apartment, building=building,
+                                                                           landmark=landmark, city=city, district=district, state=state, pincode=pincode)
             else:
-                address = Address(user=request.user, line1=line1, apartment=apartment, building=building, 
-                landmark=landmark, city=city, district=district, state=state, pincode=pincode)
+                address = Address(user=request.user, line1=line1, apartment=apartment, building=building,
+                                  landmark=landmark, city=city, district=district, state=state, pincode=pincode)
                 address.save()
             return redirect('merchant_address')
             coaching = Coaching.objects.get(user=request.user)
-        context = {'merchant': request.user, 'address':address, 'coaching': coaching}
+        context = {'merchant': request.user,
+                   'address': address, 'coaching': coaching}
         return render(request, 'merchant/new_dashboard/address.html', context)
