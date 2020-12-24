@@ -8,8 +8,11 @@ urlpatterns = [
     path('merchant/register', views.register_merchant, name='merchant/register'),
     path('merchant/login', views.login_merchant, name='merchant/login'),
     path('merchant', views.merchant_dashboard, name='merchant'),
-    path('logout', views.logout_user, name='logout_user'),
-    path('merchant/forget-password', views.PasswordResetView.as_view(), name='merchant/forget-password'),
+    path('logout', views.logout_user, name='logout'),
+    path('merchant/forget-password', views.PasswordResetView.as_view(),
+         name='merchant/forget-password'),
+    path('merchant/reset_password_sent', views.PasswordResetDoneView.as_view(),
+         name='merchant/password_reset_done'),
 
     path('merchant/messages', views.merchant_messages, name="merchant_messages"),
     path('merchant/table', views.merchant_table, name="merchant_table"),
@@ -21,7 +24,6 @@ urlpatterns = [
     path('merchant/courses', views.merchant_courses, name="merchant_courses"),
     path('merchant/payment_info', views.merchant_payment, name="payment_info"),
     path('merchant_profile', views.merchant_profile, name="merchant_profile"),
-
     path('merchant_address', views.merchant_address, name="merchant_address"),
 
     path('merchant/forms_details/<user>',
