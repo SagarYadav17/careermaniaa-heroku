@@ -168,8 +168,6 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'SMTP_Injection'
 EMAIL_HOST_PASSWORD = '845844d2a328ddcc69151f56cf1c07e07513b740'
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'CareerManiaa Team'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 SITE_ID = 1
 
