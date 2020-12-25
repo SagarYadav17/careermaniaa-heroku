@@ -95,12 +95,12 @@ class User(AbstractBaseUser):
 
 class Address(models.Model):
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, blank=True, null=True)
+        User, on_delete=models.CASCADE, default=None)
     line1 = models.CharField(max_length=250, blank=False, null=False)
-    city = models.CharField(max_length=250, blank=True, null=True)
-    apartment = models.CharField(max_length=250, blank=True, null=True)
-    building = models.CharField(max_length=250, blank=True, null=True)
-    landmark = models.CharField(max_length=250, blank=True, null=True)
+    city = models.CharField(max_length=250, default=None)
+    apartment = models.CharField(max_length=250, default=None)
+    building = models.CharField(max_length=250, default=None)
+    landmark = models.CharField(max_length=250, default=None)
     district = models.CharField(
         max_length=250, blank=False, null=False, default=None)
     state = models.CharField(
@@ -114,7 +114,7 @@ class Address(models.Model):
 
 class Geolocation(models.Model):
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, blank=True, null=True)
+        User, on_delete=models.CASCADE, default=None)
     lat = models.DecimalField(
         decimal_places=2, max_digits=10, null=False, default=None)
     lng = models.DecimalField(

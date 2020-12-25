@@ -23,8 +23,12 @@ class Coaching(models.Model):
     merchant = models.OneToOneField('mania.User', on_delete=models.CASCADE)
     name = models.CharField(max_length=250, unique=True,
                             blank=False, null=False)
-    description = models.TextField(blank=False, null=False)
-    logo = models.ImageField(upload_to='logos/', default=None)
+    registration_number = models.CharField(max_length=50, default=None)
+    country = models.CharField(max_length=50, default=None)
+    state = models.CharField(max_length=50, default=None)
+    address = models.CharField(max_length=50, default=None)
+    director_name = models.CharField(max_length=100, default=None)
+    phone_number = models.PositiveIntegerField()
 
     def __str__(self):
         return self.name
@@ -95,7 +99,7 @@ class Course(models.Model):
                             null=False, verbose_name='branch_course_name')
     coaching = models.ForeignKey(Coaching, on_delete=models.CASCADE)
     timePeriod = models.CharField(max_length=20, default=None)
-    trial = models.CharField(default='Not Available', max_length=10)
+    trial = models.CharField(default='Not Available', max_length=15)
     branch = models.ForeignKey(
         Branch, related_name='courses_of', on_delete=models.CASCADE)
     description = models.TextField(blank=True, null=True)
