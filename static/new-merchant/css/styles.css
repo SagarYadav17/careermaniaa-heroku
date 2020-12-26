@@ -461,6 +461,7 @@ html,body{
         padding: 5px;
         right: 100px;
         top: 40px;
+        border-radius: 25px;
     }
     .btn-primary:not(:disabled):not(.disabled).active{
     color: #fff;
@@ -1449,23 +1450,26 @@ html,body{
     .welcome_page{
         height: 650px;
     }
+    .welcome_page {
+        background-size: 200% 40%,30%,50%;
+    }
     .headerpart {
-    height: 325px;
+        height: 325px;
     }
     .headerpart > .logoandlogin > .logo img {
-    width: 55px;
-    height: 80px;
+        width: 55px;
+        height: 80px;
     }
     .headerpart > .logoandlogin > .usericon {
-    border: 10px;
-    right: 50px;
-    top: 35px;
+        border: 10px;
+        right: 50px;
+        top: 35px;
     }
     .headerpart > .logoandlogin > .logo p {
-    font-size: 22px;
+        font-size: 22px;
     }
      .upper_part > h1 {
-    font-size: 30px;
+        font-size: 30px;
     }
     .upper_part > p{
         font-size: 18px;
