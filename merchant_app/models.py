@@ -23,6 +23,7 @@ class Coaching(models.Model):
     merchant = models.OneToOneField('mania.User', on_delete=models.CASCADE)
     name = models.CharField(max_length=250, unique=True,
                             blank=False, null=False)
+    logo = models.ImageField(null=True)
     registration_number = models.CharField(max_length=50, default=None)
     country = models.CharField(max_length=50, default=None)
     state = models.CharField(max_length=50, default=None)

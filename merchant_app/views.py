@@ -4,18 +4,13 @@ from merchant_app.models import Merchant_Details
 
 from django.db import IntegrityError
 
-<<<<<<< HEAD
 from django.http import HttpResponse, HttpResponseRedirect
-=======
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from mania.utils import generate_token
 from django.core.mail import EmailMessage
-
-from django.http import HttpResponseRedirect
->>>>>>> 941abfa803bce9f31a3a36bf5417256a2e890b98
 from merchant_app.models import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -267,7 +262,11 @@ class PasswordResetDoneView(PasswordContextMixin, TemplateView):
 def merchant_dashboard(request):
     if request.user.is_merchant:
         merchant = request.user
-        context = {'merchant': request.user}
+        try:
+            coaching = Coaching.objects.get(merchant=merchant)
+        except:
+            return redirect('forms_details', merchant.username)
+        context = {'merchant': request.user, 'coaching': coaching}
         return render(request, 'merchant/new_dashboard/merchant_dashboard.html', context=context)
     return render(request, 'merchant/login.html')
 
@@ -406,11 +405,17 @@ def add_coaching(request, user):
     if user.is_merchant and user.is_verified:
         if request.method == "POST":
             name = request.POST['name']
-            description = request.POST['description']
+            registration_number = request.POST['reg']
+            country = request.POST['country']
+            state = request.POST['state']
+            address = request.POST['address']
+            director_name = request.POST['director']
+            phone_number = request.POST['phone']
             image = request.FILES['image']
             merchant = user
             coaching = Coaching(
-                name=name, description=description, merchant=merchant, logo=image)
+                name=name, merchant=merchant, logo=image, registration_number=registration_number, country=country, 
+                state=state, address=address, director_name=director_name, phone_number=phone_number)
             coaching.save()
             return redirect('add_coaching_metadata', user=user.username)
         return render(request, 'merchant/dashboard/add_coaching.html', {'merchant': user})
@@ -446,9 +451,20 @@ def update_coaching(request):
             return redirect('forms_details', merchant.username)
         if request.method == "POST":
             name = request.POST['name']
-            description = request.POST['description']
+            registration_number = request.POST['reg']
+            country = request.POST['country']
+            state = request.POST['state']
+            address = request.POST['address']
+            director_name = request.POST['director']
+            phone_number = request.POST['phone']
+            image = request.FILES['image']
             coaching.name = name
-            coaching.description = description
+            coaching.registration_number = registration_number
+            coaching.country = country
+            coaching.state = state
+            coaching.address = address
+            coaching.director_name = director_name
+            coaching.phone_number = phone_number
             try:
                 image = request.FILES['logo']
             except:
