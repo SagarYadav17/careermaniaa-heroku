@@ -40,7 +40,7 @@ def send_confirmation_email(request, user):
     email_message = EmailMessage(
         'Activate Your Account',
         message,
-        settings.EMAIL_HOST_USER,
+        'sagaryadav.careermaniaa@gmail.com',
         [user.email],
     )
 
@@ -59,7 +59,7 @@ def add_forms_mail(request, user):
     email_message = EmailMessage(
         email_subject,
         message,
-        settings.EMAIL_HOST_USER,
+        'sagaryadav.careermaniaa@gmail.com',
         [user.email],
     )
 
@@ -173,7 +173,8 @@ def products(request):
         coordinates = lat, lng
         city = reverseGeocode(coordinates)
         courses = list(Course.objects.all())
-        courses = [course for course in courses if Address.objects.get(user=course.coaching.merchant).city == city]
+        courses = [course for course in courses if Address.objects.get(
+            user=course.coaching.merchant).city == city]
         if courses == []:
             context = {'msg': 'No Near By Coachings'}
         else:
@@ -223,7 +224,7 @@ def commerce_coachings(request):
 def other_coachings(request):
     courses = list(Course.objects.all())
     courses = [course for course in courses if course.stream !=
-                 "Science" and course.stream != "Commerce"]
+               "Science" and course.stream != "Commerce"]
     context = {'courses': courses, 'msg': 'Other Coachings'}
     return render(request, 'user/products.html', context)
 
@@ -342,7 +343,8 @@ def search(request):
                                          | Q(description__icontains=keyword))
         if city:
             print(city)
-            courses = [course for course in courses if Address.objects.get(user=course.coaching.merchant).city == city]
+            courses = [course for course in courses if Address.objects.get(
+                user=course.coaching.merchant).city == city]
         print(courses)
         return render(request, 'user/search.html', {'courses': courses, 'keyword': keyword})
     courses = Course.objects.all()

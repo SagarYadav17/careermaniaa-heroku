@@ -53,7 +53,7 @@ def send_confirmation_email(request, user):
     email_message = EmailMessage(
         'Activate Your Account',
         message,
-        settings.EMAIL_HOST_USER,
+        'sagaryadav.careermaniaa@gmail.com',
         [user.email],
     )
 

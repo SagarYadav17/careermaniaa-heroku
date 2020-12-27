@@ -17,10 +17,6 @@ from smtplib import SMTP_SSL    # for e-mail service
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -163,13 +159,12 @@ MEDIA_ROOT = (BASE_DIR / 'media')
 
 
 # For E-mail services
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'mobilecare.smtp@gmail.com'
-EMAIL_HOST_PASSWORD = 'MobileCareSMTP'
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'CareerManiaa Team'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = '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'
+EMAIL_USE_TLS = True
 
 SITE_ID = 1
 
