@@ -36,6 +36,11 @@ from django.conf import settings
 
 
 def merchant_view(request):
+    if request.user in User.objects.all() and request.user.is_merchant:
+        merchant = request.user
+        coaching = Coaching.objects.get(merchant=merchant)
+        context = {'merchant': merchant, 'coaching': coaching}
+        return render(request, 'merchant/index.html', context)
     return render(request, 'merchant/index.html')
 
 
@@ -110,10 +115,11 @@ def register_merchant(request):
                 send_confirmation_email(request, user)
 
                 user_id = User.objects.get(email=request.POST['email'])
-
+                logo = request.FILES['logo_img']
                 coaching = Coaching.objects.create(
                     merchant=user_id,
                     name=request.POST['name'],
+                    logo=logo,
                     registration_number=request.POST['registeration-number'],
                     country=request.POST['country'],
                     state=request.POST['state'],
@@ -123,6 +129,13 @@ def register_merchant(request):
                 )
 
                 coaching.save()
+                owner_name = request.POST['chairman']
+                owner_image = request.FILES['image']
+                established = request.POST['established']
+                mobile = request.POST['phone-number']
+                owner = CoachingMetaData(owner_name=owner_name, owner_image=owner_image, mobile=mobile, established_on=established,
+                coaching=coaching)
+                owner.save()
 
                 return redirect('merchant/login')
 
@@ -262,10 +275,7 @@ class PasswordResetDoneView(PasswordContextMixin, TemplateView):
 def merchant_dashboard(request):
     if request.user.is_merchant:
         merchant = request.user
-        try:
-            coaching = Coaching.objects.get(merchant=merchant)
-        except:
-            return redirect('forms_details', merchant.username)
+        coaching = Coaching.objects.get(merchant=merchant)
         context = {'merchant': request.user, 'coaching': coaching}
         return render(request, 'merchant/new_dashboard/merchant_dashboard.html', context=context)
     return render(request, 'merchant/login.html')
@@ -275,10 +285,7 @@ def merchant_dashboard(request):
 def merchant_messages(request):
     if request.user.is_merchant:
         merchant = request.user
-        try:
-            coaching = Coaching.objects.get(merchant=merchant)
-        except:
-            return redirect('forms_details', merchant.username)
+        coaching = Coaching.objects.get(merchant=merchant)
         receiver = User.objects.get(is_superuser=True)
         if request.method == "POST":
             msg = request.POST['msg']
@@ -329,10 +336,7 @@ def merchant_invoice(request):
 def merchant_payment(request):
     if request.user.is_merchant:
         merchant = request.user
-        try:
-            coaching = Coaching.objects.get(merchant=merchant)
-        except:
-            return redirect('forms_details', merchant.username)
+        coaching = Coaching.objects.get(merchant=merchant)
         try:
             payment = BankAccountDetails.objects.get(coaching=coaching)
         except:
@@ -375,10 +379,7 @@ def merchant_profile(request):
     if request.user.is_merchant:
         info = Merchant_Details.objects.get(merchant=request.user)
         merchant = request.user
-        try:
-            coaching = Coaching.objects.get(merchant=merchant)
-        except:
-            return redirect('forms_details', merchant.username)
+        coaching = Coaching.objects.get(merchant=merchant)
         if request.method == "POST":
             fname = request.POST['fname']
             lname = request.POST['lname']
@@ -445,10 +446,8 @@ def add_coaching_metadata(request, user):
 def update_coaching(request):
     if request.user.is_merchant:
         merchant = request.user
-        try:
-            coaching = Coaching.objects.get(merchant=merchant)
-        except:
-            return redirect('forms_details', merchant.username)
+        merchant = request.user
+        coaching = Coaching.objects.get(merchant=merchant)
         if request.method == "POST":
             name = request.POST['name']
             registration_number = request.POST['reg']
@@ -481,11 +480,9 @@ def update_coaching(request):
 @login_required(login_url='merchant/login')
 def update_coaching_metadata(request):
     if request.user.is_merchant:
-        try:
-            coaching = Coaching.objects.get(merchant=request.user)
-            info = CoachingMetaData.objects.get(coaching=coaching)
-        except:
-            return redirect('forms_details', request.user.username)
+        merchant = request.user
+        coaching = Coaching.objects.get(merchant=merchant)
+        info = CoachingMetaData.objects.get(coaching=coaching)
         if request.method == "POST":
             name = request.POST['name']
             mobile = request.POST['mobile']
@@ -511,10 +508,8 @@ def update_coaching_metadata(request):
 def add_branch(request):
     if request.user.is_merchant:
         merchant = request.user
-        try:
-            coaching = Coaching.objects.get(merchant=merchant)
-        except:
-            return redirect('forms_details', merchant.username)
+        merchant = request.user
+        coaching = Coaching.objects.get(merchant=merchant)
         if request.method == "POST":
             name = request.POST['name']
             branch_type = request.POST['branch_type']
@@ -533,10 +528,7 @@ def add_branch(request):
 def update_branch(request, id):
     if request.user.is_merchant:
         merchant = request.user
-        try:
-            coaching = Coaching.objects.get(merchant=merchant)
-        except:
-            return redirect('forms_details', merchant.username)
+        coaching = Coaching.objects.get(merchant=merchant)
         if request.method == "POST":
             name = request.POST['name']
             branch_type = request.POST['branch_type']
@@ -564,10 +556,7 @@ def delete_branch(request, id):
 def merchant_courses(request):
     if request.user.is_merchant:
         merchant = request.user
-        try:
-            coaching = Coaching.objects.get(merchant=merchant)
-        except:
-            return redirect('forms_details', merchant.username)
+        coaching = Coaching.objects.get(merchant=merchant)
         branches = Branch.objects.filter(coaching=coaching)
         courses = Course.objects.filter(coaching=coaching)
         context = {'courses': courses,
@@ -579,10 +568,7 @@ def merchant_courses(request):
 def add_course(request):
     if request.user.is_merchant:
         merchant = request.user
-        try:
-            coaching = Coaching.objects.get(merchant=merchant)
-        except:
-            return redirect('forms_details', merchant.username)
+        coaching = Coaching.objects.get(merchant=merchant)
         if request.method == "POST":
             branch_taken = request.POST['branch']
             stream = request.POST['stream']
@@ -616,10 +602,7 @@ def add_course(request):
 def update_course(request, id):
     if request.user.is_merchant:
         merchant = request.user
-        try:
-            coaching = Coaching.objects.get(merchant=merchant)
-        except:
-            return redirect('forms_details', merchant.username)
+        coaching = Coaching.objects.get(merchant=merchant)
         if request.method == "POST":
             branch_taken = request.POST['branch']
             stream = request.POST['stream']
@@ -667,10 +650,7 @@ def delete_course(request, id):
 def add_faculty(request):
     if request.user.is_merchant:
         merchant = request.user
-        try:
-            coaching = Coaching.objects.get(merchant=merchant)
-        except:
-            return redirect('forms_details', merchant.username)
+        coaching = Coaching.objects.get(merchant=merchant)
         if request.method == "POST":
             name = request.POST['name']
             age = int(request.POST['age'])
@@ -691,10 +671,7 @@ def add_faculty(request):
 def update_faculty(request, id):
     if request.user.is_merchant:
         merchant = request.user
-        try:
-            coaching = Coaching.objects.get(merchant=merchant)
-        except:
-            return redirect('forms_details', merchant.username)
+        coaching = Coaching.objects.get(merchant=merchant)
         if request.method == "POST":
             name = request.POST['name']
             age = int(request.POST['age'])
@@ -731,10 +708,7 @@ def delete_faculty(request, id):
 def add_batch(request):
     if request.user.is_merchant:
         merchant = request.user
-        try:
-            coaching = Coaching.objects.get(merchant=merchant)
-        except:
-            return redirect('forms_details', merchant.username)
+        coaching = Coaching.objects.get(merchant=merchant)
         if request.method == "POST":
             name = request.POST['name']
             limit = request.POST['limit']
@@ -771,10 +745,7 @@ def add_batch(request):
 def update_batch(request, id):
     if request.user.is_merchant:
         merchant = request.user
-        try:
-            coaching = Coaching.objects.get(merchant=merchant)
-        except:
-            return redirect('forms_details', merchant.username)
+        coaching = Coaching.objects.get(merchant=merchant)
         batch = Batch.objects.get(id=id)
         if request.method == "POST":
             name = request.POST['name']
@@ -824,10 +795,7 @@ def delete_batch(request, id):
 def add_offer(request):
     if request.user.is_merchant:
         merchant = request.user
-        try:
-            coaching = Coaching.objects.get(merchant=merchant)
-        except:
-            return redirect('forms_details', merchant.username)
+        coaching = Coaching.objects.get(merchant=merchant)
         if request.method == "POST":
             name = request.POST['name']
             description = request.POST['description']
@@ -844,10 +812,7 @@ def add_offer(request):
 def update_offer(request, id):
     if request.user.is_merchant:
         merchant = request.user
-        try:
-            coaching = Coaching.objects.get(merchant=merchant)
-        except:
-            return redirect('forms_details', merchant.username)
+        coaching = Coaching.objects.get(merchant=merchant)
         offer = Offer.objects.get(id=id)
         if request.method == "POST":
             name = request.POST['name']
@@ -874,10 +839,7 @@ def delete_offer(request, id):
 def add_discount(request):
     if request.user.is_merchant:
         merchant = request.user
-        try:
-            coaching = Coaching.objects.get(merchant=merchant)
-        except:
-            return redirect('forms_details', merchant.username)
+        coaching = Coaching.objects.get(merchant=merchant)
         if request.method == "POST":
             coupon = request.POST['coupon']
             description = request.POST['description']
@@ -895,10 +857,7 @@ def add_discount(request):
 def update_discount(request, id):
     if request.user.is_merchant:
         merchant = request.user
-        try:
-            coaching = Coaching.objects.get(merchant=merchant)
-        except:
-            return redirect('forms_details', merchant.username)
+        coaching = Coaching.objects.get(merchant=merchant)
         discount = Discount.objects.get(id=id)
         if request.method == "POST":
             coupon = request.POST['coupon']
@@ -927,10 +886,7 @@ def delete_discount(request, id):
 def merchant_address(request):
     if request.user.is_merchant:
         merchant = request.user
-        try:
-            coaching = Coaching.objects.get(merchant=merchant)
-        except:
-            return redirect('forms_details', merchant.username)
+        coaching = Coaching.objects.get(merchant=merchant)
         try:
             address = Address.objects.get(user=request.user)
         except:

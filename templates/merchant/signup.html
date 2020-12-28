@@ -33,7 +33,7 @@
                 </div>
                 <div class="col-md-12">
                     <div class="row register-form" id="main_form">
-                        <form method="POST">
+                        <form method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             <input type="text" class="form-control hide" id="form_define" name="register-type"
                                 value="colleges" />
@@ -64,9 +64,14 @@
                                         </tr>
                                     </table>
                                 </div>
+                                
                                 <div class="form-group merchent_name ">
-                                    <label for="Name" id="merchent_name_title"> Collage Name:</label><br>
-                                    <input type="text" class="form-control" name="name" placeholder="Collage name" />
+                                    <label for="Name" id="merchent_name_title"> College Name:</label><br>
+                                    <input type="text" class="form-control" name="name" placeholder="College name" />
+                                </div>
+                                <div class="form-group merchent_name ">
+                                    <label for="Name" id="logo">Logo:</label><br>
+                                    <input type="file" class="form-control" name="logo_img" required/>
                                 </div>
                                 <div class="form-group">
                                     <label for="Password"> Password:</label><br>
@@ -144,6 +149,14 @@
                                     </select>
                                     <input type="text" name="chairman" class="form-control head_name_input"
                                         placeholder="Full Name" />
+                                </div>
+                                <div class="form-group merchent_name ">
+                                    <label for="Name" id="logo">Image:</label><br>
+                                    <input type="file" class="form-control" name="image" required/>
+                                </div>
+                                <div class="form-group merchent_name ">
+                                    <label for="Name" id="logo">Established:</label><br>
+                                    <input type="date" class="form-control" name="established" required/>
                                 </div>
 
                                 <div class="form-group address">
