@@ -36,11 +36,6 @@ from django.conf import settings
 
 
 def merchant_view(request):
-    if request.user in User.objects.all() and request.user.is_merchant:
-        merchant = request.user
-        coaching = Coaching.objects.get(merchant=merchant)
-        context = {'merchant': merchant, 'coaching': coaching}
-        return render(request, 'merchant/index.html', context)
     return render(request, 'merchant/index.html')
 
 
