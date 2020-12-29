@@ -25,11 +25,7 @@
           <p><span style="color:#da0b4e;">Career</span><span style="color:black;">Maniaa</span></p>
         </div>
         <div class="usericon">
-          {% if merchant %}
-          <a href="{% url 'merchant' %}"><img src="{{coaching.logo.url}}"></a>
-          {% else %}
-          <a href="{% url 'merchant/login' %}"><img src="{% static 'new-merchant/asset/usericon.png' %}"></a>
-          {% endif %}
+          <a href="{% url 'merchant' %}"><img src="{% static 'new-merchant/asset/usericon.png' %}"></a>
         </div>
       </div>
     </div>
