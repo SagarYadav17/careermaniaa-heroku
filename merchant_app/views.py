@@ -129,7 +129,7 @@ def register_merchant(request):
                 established = request.POST['established']
                 mobile = request.POST['phone-number']
                 owner = CoachingMetaData(owner_name=owner_name, owner_image=owner_image, mobile=mobile, established_on=established,
-                coaching=coaching)
+                                         coaching=coaching)
                 owner.save()
 
                 return redirect('merchant/login')
@@ -270,8 +270,8 @@ class PasswordResetDoneView(PasswordContextMixin, TemplateView):
 def merchant_dashboard(request):
     if request.user.is_merchant:
         merchant = request.user
-        coaching = Coaching.objects.get(merchant=merchant)
-        context = {'merchant': request.user, 'coaching': coaching}
+
+        context = {'merchant': request.user}
         return render(request, 'merchant/new_dashboard/merchant_dashboard.html', context=context)
     return render(request, 'merchant/login.html')
 
@@ -280,7 +280,7 @@ def merchant_dashboard(request):
 def merchant_messages(request):
     if request.user.is_merchant:
         merchant = request.user
-        coaching = Coaching.objects.get(merchant=merchant)
+
         receiver = User.objects.get(is_superuser=True)
         if request.method == "POST":
             msg = request.POST['msg']
@@ -297,7 +297,7 @@ def merchant_messages(request):
         from operator import attrgetter
         messages = sorted(messages, key=attrgetter('id'))
         context = {'messages': messages,
-                   'merchant': request.user, 'coaching': coaching}
+                   'merchant': request.user}
         print(messages)
         return render(request, 'merchant/new_dashboard/chat.html', context)
 
@@ -331,7 +331,7 @@ def merchant_invoice(request):
 def merchant_payment(request):
     if request.user.is_merchant:
         merchant = request.user
-        coaching = Coaching.objects.get(merchant=merchant)
+
         try:
             payment = BankAccountDetails.objects.get(coaching=coaching)
         except:
@@ -374,7 +374,7 @@ def merchant_profile(request):
     if request.user.is_merchant:
         info = Merchant_Details.objects.get(merchant=request.user)
         merchant = request.user
-        coaching = Coaching.objects.get(merchant=merchant)
+
         if request.method == "POST":
             fname = request.POST['fname']
             lname = request.POST['lname']
@@ -410,7 +410,7 @@ def add_coaching(request, user):
             image = request.FILES['image']
             merchant = user
             coaching = Coaching(
-                name=name, merchant=merchant, logo=image, registration_number=registration_number, country=country, 
+                name=name, merchant=merchant, logo=image, registration_number=registration_number, country=country,
                 state=state, address=address, director_name=director_name, phone_number=phone_number)
             coaching.save()
             return redirect('add_coaching_metadata', user=user.username)
@@ -428,7 +428,7 @@ def add_coaching_metadata(request, user):
             establish = request.POST['date']
             owner_image = request.FILES['owner_image']
             merchant = user
-            coaching = Coaching.objects.get(merchant=merchant)
+
             coaching_data = CoachingMetaData(coaching=coaching, mobile=mobile,
                                              owner_name=name, established_on=establish, owner_image=owner_image)
             coaching_data.save()
@@ -442,7 +442,7 @@ def update_coaching(request):
     if request.user.is_merchant:
         merchant = request.user
         merchant = request.user
-        coaching = Coaching.objects.get(merchant=merchant)
+
         if request.method == "POST":
             name = request.POST['name']
             registration_number = request.POST['reg']
@@ -467,7 +467,7 @@ def update_coaching(request):
                 coaching.logo = image
             coaching.save()
             return redirect('coaching')
-        context = {'merchant': request.user, 'coaching': coaching}
+        context = {'merchant': request.user}
         return render(request, 'merchant/new_dashboard/coaching.html', context=context)
     return render(request, 'signup.html')
 
@@ -476,7 +476,7 @@ def update_coaching(request):
 def update_coaching_metadata(request):
     if request.user.is_merchant:
         merchant = request.user
-        coaching = Coaching.objects.get(merchant=merchant)
+
         info = CoachingMetaData.objects.get(coaching=coaching)
         if request.method == "POST":
             name = request.POST['name']
@@ -504,7 +504,7 @@ def add_branch(request):
     if request.user.is_merchant:
         merchant = request.user
         merchant = request.user
-        coaching = Coaching.objects.get(merchant=merchant)
+
         if request.method == "POST":
             name = request.POST['name']
             branch_type = request.POST['branch_type']
@@ -523,7 +523,7 @@ def add_branch(request):
 def update_branch(request, id):
     if request.user.is_merchant:
         merchant = request.user
-        coaching = Coaching.objects.get(merchant=merchant)
+
         if request.method == "POST":
             name = request.POST['name']
             branch_type = request.POST['branch_type']
@@ -532,7 +532,7 @@ def update_branch(request, id):
             return redirect('add_branch')
         branches = Branch.objects.filter(coaching=coaching)
         branch = Branch.objects.get(id=id)
-        context = {'merchant': request.user, 'coaching': coaching,
+        context = {'merchant': request.user,
                    'branches': branches, 'branch': branch}
         return render(request, 'merchant/new_dashboard/branch.html', context)
     return render(request, 'signup.html')
@@ -551,11 +551,11 @@ def delete_branch(request, id):
 def merchant_courses(request):
     if request.user.is_merchant:
         merchant = request.user
-        coaching = Coaching.objects.get(merchant=merchant)
+
         branches = Branch.objects.filter(coaching=coaching)
         courses = Course.objects.filter(coaching=coaching)
         context = {'courses': courses,
-                   'merchant': request.user, 'coaching': coaching}
+                   'merchant': request.user}
         return render(request, 'merchant/new_dashboard/courses.html', context)
 
 
@@ -563,7 +563,7 @@ def merchant_courses(request):
 def add_course(request):
     if request.user.is_merchant:
         merchant = request.user
-        coaching = Coaching.objects.get(merchant=merchant)
+
         if request.method == "POST":
             branch_taken = request.POST['branch']
             stream = request.POST['stream']
@@ -597,7 +597,7 @@ def add_course(request):
 def update_course(request, id):
     if request.user.is_merchant:
         merchant = request.user
-        coaching = Coaching.objects.get(merchant=merchant)
+
         if request.method == "POST":
             branch_taken = request.POST['branch']
             stream = request.POST['stream']
@@ -645,7 +645,7 @@ def delete_course(request, id):
 def add_faculty(request):
     if request.user.is_merchant:
         merchant = request.user
-        coaching = Coaching.objects.get(merchant=merchant)
+
         if request.method == "POST":
             name = request.POST['name']
             age = int(request.POST['age'])
@@ -666,7 +666,7 @@ def add_faculty(request):
 def update_faculty(request, id):
     if request.user.is_merchant:
         merchant = request.user
-        coaching = Coaching.objects.get(merchant=merchant)
+
         if request.method == "POST":
             name = request.POST['name']
             age = int(request.POST['age'])
@@ -684,7 +684,7 @@ def update_faculty(request, id):
             return redirect('add_faculty')
         faculties = CoachingFacultyMember.objects.filter(coaching=coaching)
         faculty = CoachingFacultyMember.objects.get(id=id)
-        context = {'merchant': request.user, 'coaching': coaching,
+        context = {'merchant': request.user,
                    'faculties': faculties, 'edit_faculty': faculty}
         return render(request, 'merchant/new_dashboard/faculty.html', context)
     return render(request, 'merchant/signup.html')
@@ -703,7 +703,7 @@ def delete_faculty(request, id):
 def add_batch(request):
     if request.user.is_merchant:
         merchant = request.user
-        coaching = Coaching.objects.get(merchant=merchant)
+
         if request.method == "POST":
             name = request.POST['name']
             limit = request.POST['limit']
@@ -723,14 +723,14 @@ def add_batch(request):
                 batch.is_active = True
             batch.save()
             return redirect('add_batch')
-        coaching = Coaching.objects.get(merchant=merchant)
+
         branches = Branch.objects.filter(coaching=coaching)
         batches = []
         courses = Course.objects.filter(coaching=coaching)
         for course in courses:
             batches += list(Batch.objects.filter(course=course))
         faculties = CoachingFacultyMember.objects.filter(coaching=coaching)
-        context = {'merchant': request.user, 'coaching': coaching,
+        context = {'merchant': request.user,
                    'courses': courses, 'faculties': faculties, 'batches': batches}
         return render(request, 'merchant/new_dashboard/batch.html', context)
     return render(request, 'merchant/signup.html')
@@ -740,7 +740,7 @@ def add_batch(request):
 def update_batch(request, id):
     if request.user.is_merchant:
         merchant = request.user
-        coaching = Coaching.objects.get(merchant=merchant)
+
         batch = Batch.objects.get(id=id)
         if request.method == "POST":
             name = request.POST['name']
@@ -762,7 +762,7 @@ def update_batch(request, id):
                 batch.is_active = True
             batch.save()
             return redirect('add_batch')
-        coaching = Coaching.objects.get(merchant=merchant)
+
         branches = Branch.objects.filter(coaching=coaching)
         courses = []
         batches = []
@@ -771,7 +771,7 @@ def update_batch(request, id):
         for course in courses:
             batches += list(Batch.objects.filter(course=course))
         faculties = CoachingFacultyMember.objects.filter(coaching=coaching)
-        context = {'merchant': request.user, 'coaching': coaching, 'courses': courses,
+        context = {'merchant': request.user, 'courses': courses,
                    'faculties': faculties, 'batches': batches, 'edit_batch': batch}
         return render(request, 'merchant/new_dashboard/batch.html', context)
     return render(request, 'signup.html')
@@ -790,7 +790,7 @@ def delete_batch(request, id):
 def add_offer(request):
     if request.user.is_merchant:
         merchant = request.user
-        coaching = Coaching.objects.get(merchant=merchant)
+
         if request.method == "POST":
             name = request.POST['name']
             description = request.POST['description']
@@ -799,7 +799,7 @@ def add_offer(request):
             offer.save()
             return redirect('add_offer')
         offers = Offer.objects.filter(coaching=coaching)
-        return render(request, 'merchant/new_dashboard/offer.html', {'offers': offers, 'merchant': request.user, 'coaching': coaching})
+        return render(request, 'merchant/new_dashboard/offer.html', {'offers': offers, 'merchant': request.user})
     return render(request, 'signup.html')
 
 
@@ -807,7 +807,7 @@ def add_offer(request):
 def update_offer(request, id):
     if request.user.is_merchant:
         merchant = request.user
-        coaching = Coaching.objects.get(merchant=merchant)
+
         offer = Offer.objects.get(id=id)
         if request.method == "POST":
             name = request.POST['name']
@@ -817,7 +817,7 @@ def update_offer(request, id):
             offer.save()
             return redirect('add_offer')
         offers = Offer.objects.filter(coaching=coaching)
-        return render(request, 'merchant/new_dashboard/offer.html', {'offers': offers, 'edit_offer': offer, 'merchant': request.user, 'coaching': coaching})
+        return render(request, 'merchant/new_dashboard/offer.html', {'offers': offers, 'edit_offer': offer, 'merchant': request.user})
     return render(request, 'signup.html')
 
 
@@ -834,7 +834,7 @@ def delete_offer(request, id):
 def add_discount(request):
     if request.user.is_merchant:
         merchant = request.user
-        coaching = Coaching.objects.get(merchant=merchant)
+
         if request.method == "POST":
             coupon = request.POST['coupon']
             description = request.POST['description']
@@ -844,7 +844,7 @@ def add_discount(request):
             discount.save()
             return redirect('add_discount')
         discounts = Discount.objects.filter(coaching=coaching)
-        return render(request, 'merchant/new_dashboard/discount.html', {'discounts': discounts, 'merchant': request.user, 'coaching': coaching})
+        return render(request, 'merchant/new_dashboard/discount.html', {'discounts': discounts, 'merchant': request.user})
     return render(request, 'signup.html')
 
 
@@ -852,7 +852,7 @@ def add_discount(request):
 def update_discount(request, id):
     if request.user.is_merchant:
         merchant = request.user
-        coaching = Coaching.objects.get(merchant=merchant)
+
         discount = Discount.objects.get(id=id)
         if request.method == "POST":
             coupon = request.POST['coupon']
@@ -864,7 +864,7 @@ def update_discount(request, id):
             discount.save()
             return redirect('add_discount')
         discounts = Discount.objects.filter(coaching=coaching)
-        return render(request, 'merchant/new_dashboard/discount.html', {'discounts': discounts, 'edit_discount': discount, 'merchant': request.user, 'coaching': coaching})
+        return render(request, 'merchant/new_dashboard/discount.html', {'discounts': discounts, 'edit_discount': discount, 'merchant': request.user})
     return render(request, 'signup.html')
 
 
@@ -881,7 +881,7 @@ def delete_discount(request, id):
 def merchant_address(request):
     if request.user.is_merchant:
         merchant = request.user
-        coaching = Coaching.objects.get(merchant=merchant)
+
         try:
             address = Address.objects.get(user=request.user)
         except:
@@ -905,5 +905,5 @@ def merchant_address(request):
             return redirect('merchant_address')
             coaching = Coaching.objects.get(user=request.user)
         context = {'merchant': request.user,
-                   'address': address, 'coaching': coaching}
+                   'address': address}
         return render(request, 'merchant/new_dashboard/address.html', context)
