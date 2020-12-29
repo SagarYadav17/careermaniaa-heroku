@@ -191,7 +191,7 @@ class Message(models.Model):
 
 class College(models.Model):
     user = models.OneToOneField('mania.User', on_delete=models.CASCADE)
-    registration_no = models.SmallIntegerField()
+    registration_no = models.CharField(max_length=50, default=None)
     contact_no = models.PositiveIntegerField()
     college_name = models.CharField(max_length=255, default=None)
     university_type = models.CharField(max_length=50, default=None)
