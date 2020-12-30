@@ -1,7 +1,8 @@
 $(document).ready(function(){
 
     var navbar = document.getElementById("total_navbar");
-    var sticky = navbar.offsetTop;
+    var welcome_header = document.getElementById("welcome_page_upperPart");
+    var sticky = welcome_header.offsetTop;
     console.log("sticky = ",sticky);
     window.onscroll = function() {stickyFunction()};
     run();
@@ -208,8 +209,10 @@ $(document).ready(function(){
     function stickyFunction() {
         if (window.pageYOffset >= (sticky+100)) {
             navbar.classList.add("sticky")
+            navbar.classList.remove("hide")
         } else {
             navbar.classList.remove("sticky");
+            navbar.classList.add("hide")
         }
     }
     function hmburgerFunction(){
