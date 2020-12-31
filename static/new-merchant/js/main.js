@@ -1,36 +1,35 @@
-$(document).ready(function(){
-
+$(document).ready(function () {
     var navbar = document.getElementById("total_navbar");
     var welcome_header = document.getElementById("welcome_page_upperPart");
     var sticky = welcome_header.offsetTop;
-    console.log("sticky = ",sticky);
-    window.onscroll = function() {stickyFunction()};
+    console.log("sticky = ", sticky);
+    window.onscroll = function () { stickyFunction() };
     run();
     hmburgerFunction();
-    $(window).resize(function() {
+    $(window).resize(function () {
         hmburgerFunction();
     });
 
-    $("#hamburgericon").click(function(){
+    $("#hamburgericon").click(function () {
         myFunction();
     })
 
-    $("#hamburgerMenu .scroll").click(function(){
+    $("#hamburgerMenu .scroll").click(function () {
         myFunction();
     })
 
     // var count = 1;
-    window.setInterval(function(){
+    window.setInterval(function () {
         bcvTextChange();
-    },2000);
+    }, 2000);
 
     var scrollLink = $('.scroll');
     // Smooth scrolling
-    scrollLink.click(function(e) {
-      e.preventDefault();
-      $('body,html').animate({
-        scrollTop: $(this.hash).offset().top
-      }, 1000 );
+    scrollLink.click(function (e) {
+        e.preventDefault();
+        $('body,html').animate({
+            scrollTop: $(this.hash).offset().top
+        }, 1000);
     });
 
     // $("#ClassesButton").click(function(){
@@ -94,20 +93,20 @@ $(document).ready(function(){
                 Promise.resolve()
             );
         });
-    } 
+    }
     // Print given phrases to element
     function printPhrases(phrases, el) {
         // For each phrase
         // wait for phrase to be typed
         // before start typing next
         phrases.reduce(
-            (promise, phrase,index) => promise.then(_ =>{
-                if(index === phrases.length-1){
+            (promise, phrase, index) => promise.then(_ => {
+                if (index === phrases.length - 1) {
                     clearPlaceholder(el);
-                    setTimeout(run,2000);
+                    setTimeout(run, 2000);
                 }
-                return printPhrase(phrase, el);   
-            }), 
+                return printPhrase(phrase, el);
+            }),
             Promise.resolve()
         );
     }
@@ -122,23 +121,23 @@ $(document).ready(function(){
         printPhrases(phrases, $('#autosuggestfor'));
     }
 
-    $("body").click(function(){
+    $("body").click(function () {
         $("#autosuggestfor").removeClass("open")
         $(".bcv_upperpart .suggestionList").html("");
     })
 
-    $(".bcv_upperpart #autosuggestfor").keyup(function(e){
+    $(".bcv_upperpart #autosuggestfor").keyup(function (e) {
         let cur_search_value = $("#autosuggestfor").val();
         let search_result = "";
         $(".bcv_upperpart .suggestionList").html(search_result);
         $("#autosuggestfor").removeClass("open")
-        if(cur_search_value.length >=3){
+        if (cur_search_value.length >= 3) {
             let final_search_value = cur_search_value.toLowerCase();
             final_search_value.includes("log") ? search_result += "<li><a href='./html/login.html'>Login in Careermania</a></li>" : "";
             final_search_value.includes("sig") ? search_result += "<li><a href='./html/signup.html'>Signup in careermania</a></li>" : "";
             final_search_value.includes("joi") ? search_result += "<li><a href='./html/signup.html'>Join in careermania</a></li>" : "";
         }
-        if(search_result !=""){
+        if (search_result != "") {
             $("#autosuggestfor").addClass("open")
             $(".bcv_upperpart .suggestionList").html(search_result);
         }
@@ -151,63 +150,63 @@ $(document).ready(function(){
     //////////////////////////////////////////////////////////////////////////////////
 
     let index = 0;
-    function bcvTextChange(){
-        let buttonTextArray = ["Buisness","Career","Value"];
+    function bcvTextChange() {
+        let buttonTextArray = ["Buisness", "Career", "Value"];
         $("#showhideTextportion").find(".showhidebutton").html(buttonTextArray[index]);
-        index == 2 ? index = 0 : index ++;
+        index == 2 ? index = 0 : index++;
     }
 
-    $(".chatbutton").click(function(){
+    $(".chatbutton").click(function () {
         $(".chatbutton").removeClass("active");
         let buttonValue = $(this).val();
-        if(buttonValue == "custom message"){
-            $('.chatbot_buttons').css("z-index","1");
+        if (buttonValue == "custom message") {
+            $('.chatbot_buttons').css("z-index", "1");
             $('.chat_functionality').addClass('hide');
             $('.custom_message').removeClass('hide');
-        }else{
-            $('.chatbot_buttons').css("z-index","2");
+        } else {
+            $('.chatbot_buttons').css("z-index", "2");
             $('.chat_functionality').removeClass('hide');
             $('.custom_message').addClass('hide');
         }
         $(this).addClass('active');
     })
 
-    $("#chat_send").click(function(){
+    $("#chat_send").click(function () {
         let message = $("#chat_input").val()
-        console.log("your message is ",message)
-        if(message !=""){
-            let constract_message = '<div class="container darker"><img src="" alt="Avatar" class="right" style="width:100%;"><p>'+message+'</p></div>'
+        console.log("your message is ", message)
+        if (message != "") {
+            let constract_message = '<div class="container darker"><img src="" alt="Avatar" class="right" style="width:100%;"><p>' + message + '</p></div>'
             let cur_chat_space = $('.chat_space').html();
-            console.log("cur_chat_space ",cur_chat_space);
+            console.log("cur_chat_space ", cur_chat_space);
             let whole_message = cur_chat_space + constract_message;
-            setInterval(updateScroll(),1000);
-            console.log("whole_message ",whole_message);
+            setInterval(updateScroll(), 1000);
+            console.log("whole_message ", whole_message);
             $('.chat_space').html(whole_message);
         }
         $("#chat_input").val("");
     })
-    $(".chat_space").on('scroll', function(){
-        scrolled=true;
+    $(".chat_space").on('scroll', function () {
+        scrolled = true;
     });
     var scrolled = false;
-    function updateScroll(){
-        if(!scrolled){
+    function updateScroll() {
+        if (!scrolled) {
             var element = $(".chat_space");
             let element_height = element[0].scrollHeight;
-            console.log("element.scrollHeight ",element[0].scrollHeight);
+            console.log("element.scrollHeight ", element[0].scrollHeight);
             $(".chat_space").scrollTop(element_height);
         }
     }
-                
-    $("#chat_input").keyup(function(event) {
+
+    $("#chat_input").keyup(function (event) {
         if (event.keyCode === 13) {
             event.preventDefault();
             $("#chat_send").click();
         }
     });
-
+    navbar.classList.add("hide")
     function stickyFunction() {
-        if (window.pageYOffset >= (sticky+100)) {
+        if (window.pageYOffset >= (sticky + 100)) {
             navbar.classList.add("sticky")
             navbar.classList.remove("hide")
         } else {
@@ -215,25 +214,25 @@ $(document).ready(function(){
             navbar.classList.add("hide")
         }
     }
-    function hmburgerFunction(){
-        if(screen.width < 768){
+    function hmburgerFunction() {
+        if (screen.width < 768) {
             $("#menu_content").addClass("hide");
             $("#hamburgericon").removeClass("hide");
             // $("#hamburgerMenu").remobveClass("hide");
-        }else{
+        } else {
             $("#menu_content").removeClass("hide");
             $("#hamburgericon").addClass("hide");
-            $("#hamburgerMenu").css("display","none");
+            $("#hamburgerMenu").css("display", "none");
         }
     }
 
     function myFunction() {
         var x = document.getElementById("hamburgerMenu");
         if (x.style.display === "block") {
-          x.style.display = "none";
+            x.style.display = "none";
         } else {
-          x.style.display = "block";
+            x.style.display = "block";
         }
-      }
+    }
 })
 
