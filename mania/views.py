@@ -1,4 +1,4 @@
-# import reverse_geocoder as rg
+import reverse_geocoder as rg
 from .paytm import Checksum
 from django.db.models import Q
 import json

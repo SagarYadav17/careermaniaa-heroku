@@ -20,7 +20,7 @@ class Merchant_Details(models.Model):
 
 
 class Coaching(models.Model):
-    merchant = models.OneToOneField('mania.User', on_delete=models.CASCADE)
+    merchant = models.ForeignKey('mania.User', on_delete=models.CASCADE)
     name = models.CharField(max_length=250, unique=True,
                             blank=False, null=False)
     logo = models.ImageField(null=True)
@@ -29,7 +29,7 @@ class Coaching(models.Model):
     state = models.CharField(max_length=50, default=None)
     address = models.CharField(max_length=50, default=None)
     director_name = models.CharField(max_length=100, default=None)
-    phone_number = models.PositiveIntegerField()
+    phone_number = models.BigIntegerField()
 
     def __str__(self):
         return self.name
@@ -54,7 +54,7 @@ class CoachingFacultyMember(models.Model):
     coaching = models.ForeignKey(
         Coaching, related_name="faculty_of", on_delete=models.CASCADE)
     name = models.CharField(max_length=250, blank=False, null=False)
-    age = models.PositiveIntegerField()
+    age = models.BigIntegerField()
     specialization = models.CharField(max_length=250, blank=False, null=False)
     faculty_image = models.ImageField(
         upload_to='faculties/', default=None)
@@ -66,7 +66,7 @@ class CoachingFacultyMember(models.Model):
 class CoachingReview(models.Model):
     coaching = models.ForeignKey(
         Coaching, related_name='reviews_of', on_delete=models.CASCADE)
-    rating = models.PositiveIntegerField()
+    rating = models.BigIntegerField()
     description = models.CharField(max_length=250, default=None)
 
 
@@ -84,7 +84,7 @@ class Branch(models.Model):
 
 
 class Geolocation(models.Model):
-    address = models.OneToOneField(
+    address = models.ForeignKey(
         'mania.Address', related_name='location_of', on_delete=models.CASCADE)
     lat = models.DecimalField(
         decimal_places=2, max_digits=10, null=False, default=None)
@@ -124,7 +124,7 @@ class CoachingMetaData(models.Model):
     owner_name = models.CharField(max_length=250, default=None)
     owner_image = models.ImageField(upload_to='owners/', default=None)
     established_on = models.DateField()
-    mobile = models.PositiveIntegerField()
+    mobile = models.BigIntegerField()
 
     def __str__(self):
         return self.coaching.name
@@ -139,8 +139,8 @@ class Batch(models.Model):
                                 on_delete=models.CASCADE, null=False, blank=False)
     start_time = models.CharField(max_length=20, default=None)
     end_time = models.CharField(max_length=20, default=None)
-    student_limit = models.PositiveIntegerField(blank=True, null=True)
-    students_enrolled = models.PositiveIntegerField(blank=True, null=True)
+    student_limit = models.BigIntegerField(blank=True, null=True)
+    students_enrolled = models.BigIntegerField(blank=True, null=True)
     is_active = models.BooleanField(default=False)
 
     def __str__(self):
@@ -190,9 +190,9 @@ class Message(models.Model):
 
 
 class College(models.Model):
-    user = models.OneToOneField('mania.User', on_delete=models.CASCADE)
+    user = models.ForeignKey('mania.User', on_delete=models.CASCADE)
     registration_no = models.CharField(max_length=50, default=None)
-    contact_no = models.PositiveIntegerField()
+    contact_no = models.BigIntegerField()
     college_name = models.CharField(max_length=255, default=None)
     university_type = models.CharField(max_length=50, default=None)
     institute_type = models.CharField(max_length=50, default=None)
@@ -225,7 +225,7 @@ class Booking(models.Model):
 
 class Job(models.Model):
     user = models.ForeignKey('mania.User', on_delete=models.CASCADE)
-    contact_no = models.PositiveIntegerField()
+    contact_no = models.BigIntegerField()
     registration_no = models.CharField(max_length=50, default=None)
     company_name = models.CharField(max_length=100, default=None)
     company_address = models.CharField(max_length=500, default=None)
@@ -234,6 +234,3 @@ class Job(models.Model):
     country = models.CharField(max_length=50, default=None)
     director_name = models.CharField(max_length=50, default=None)
     industry_type = models.CharField(max_length=50, default=None)
-
-    def __str__(self):
-        return self.company_name
