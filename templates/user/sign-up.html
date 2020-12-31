@@ -19,7 +19,7 @@
       <fieldset class="form-group">
         <label for="password">Password</label>
         <input name="password" type="password" class="form-control" placeholder="Enter password"
-          autocomplete="current-password" required>
+          autocomplete="current-password" minlength="8" required>
       </fieldset>
       {% for message in messages %}
       <div style="color:red">{{message}}</div>

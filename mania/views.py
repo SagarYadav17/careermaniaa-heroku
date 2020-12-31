@@ -2,7 +2,6 @@
 from .paytm import Checksum
 from django.db.models import Q
 import json
-import reverse_geocoder as rg
 from datetime import datetime
 from django.shortcuts import render, redirect
 
@@ -118,7 +117,7 @@ def register_user(request):
             if str(e) == 'UNIQUE constraint failed: mania_user.username':
                 messages.info(request, 'username is already taken')
             if str(e) == 'UNIQUE constraint failed: mania_user.email':
-                messages.info(request, 'EmailID is already in use')
+                messages.info(request, 'email is already taken')
             else:
                 messages.info(request, 'Something went wrong')
 
@@ -138,8 +137,11 @@ def login_user(request):
 
             elif user.is_verified != True:
                 return render(request, 'user/login.html', {'error': 'Account not verified yet. Please check your e-mail'})
+        if user is None:
+            return render(request, 'user/login.html', {'error': 'Your email and password didn\'t match. Please try again.'})
+            
         else:
-            return render(request, 'user/login.html', {'error': 'Account Not Found'})
+            return render(request, 'user/login.html', {'error': 'Account doesn\'t found. Try signup'})
 
     return render(request, 'user/login.html')
 

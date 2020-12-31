@@ -1,6 +1,8 @@
 from django.urls import path, include
 from . import views
 
+from django.contrib.auth.views import LoginView
+
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -31,11 +33,12 @@ urlpatterns = [
     path('wishlist', views.wishlist, name='wishlist'),
     path('add_to_wishlist/<str:id>', views.add_to_wishlist, name='add_to_wishlist'),
     path('del_item/<str:id>', views.delete_cartitem, name='del_item'),
-    path('del_wishlist_item/<str:id>', views.delete_wishlistitem, name='del_wishlist_item'),
+    path('del_wishlist_item/<str:id>',
+         views.delete_wishlistitem, name='del_wishlist_item'),
     path('search', views.search, name='search'),
-     path('about', views.about, name='about'),
+    path('about', views.about, name='about'),
 
-     path("checkout/<str:id>", views.checkout, name="checkout"),
+    path("checkout/<str:id>", views.checkout, name="checkout"),
     path("payment", views.handlerequest, name="HandleRequest"),
     path("user_profile", views.user_profile, name="user_profile"),
     path("bookings", views.bookings, name="bookings"),
