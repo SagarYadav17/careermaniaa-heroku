@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from mania.models import Address, User
+from mania.models import Address, FAQ, User
 from merchant_app.models import Merchant_Details
 
 from django.db import IntegrityError
@@ -36,7 +36,9 @@ from django.conf import settings
 
 
 def merchant_view(request):
-    return render(request, 'merchant/index.html')
+    faqs = FAQ.objects.all()
+    context = {'faqs': faqs}
+    return render(request, 'merchant/index.html', context)
 
 
 def send_confirmation_email(request, user):

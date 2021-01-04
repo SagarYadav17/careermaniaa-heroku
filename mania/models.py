@@ -154,3 +154,10 @@ class Registration(models.Model):
 
     def __str__(self):
         return self.first_name + self.last_name
+
+class FAQ(models.Model):
+    question = models.CharField(max_length=1000)
+    answer = models.CharField(max_length=1000)
+
+    def __str__(self):
+        return self.question
