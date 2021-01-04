@@ -320,242 +320,58 @@
 
       <div class="col-md-14 middlepart">
         <div class="contentholder">
+          
           <div class="col-md-6 leftpart">
             <div class="accordion" id="accordionExample">
-              <div class="card one">
-                <div class="card-header" id="headingOne">
-                  <span class="mb-0">what will careermania charge me after joining ?</span>
-                </div>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                  <div class="card-body">
-                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a
-                      given HTML element such as colors, backgrounds, fonts etc. <a
-                        href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
-                  </div>
-                </div>
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse"
-                  data-target="#collapseOne" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                </svg>
-              </div>
-
-              <div class="card two">
-                <div class="card-header" id="headingTwo">
-                  <span class="mb-0">Which documents are required for online registering ?</span>
-                </div>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                  <div class="card-body">
-                    <p style="color: black">CSS stands for Cascading Style Sheet. CSS allows you to specify various
-                      style properties for a given HTML element such as colors, backgrounds, fonts etc. <a
-                        href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
-                  </div>
-                </div>
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse"
-                  data-target="#collapseTwo" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                </svg>
-              </div>
-
+              
+              {% for faq in faqs %}
               <div class="card three">
-                <div class="card-header" id="headingThree">
-                  <span class="mb-0">What if I am unable to give admission...?</span>
+                <div class="card-header" id="headingOne">
+                  <span class="mb-0">{{faq.question}}</span>
                 </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div id="{{faq.id}}l" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                   <div class="card-body">
-                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a
-                      given HTML element such as colors, backgrounds, fonts etc. <a
-                        href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
+                    <p>{{faq.answer}}<a href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
                   </div>
                 </div>
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse"
-                  data-target="#collapseThree" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  data-target="#{{faq.id}}l" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd"
                     d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                 </svg>
               </div>
+              {% endfor %}
             </div>
           </div>
+
           <div class="col-md-6 rightpart">
             <div class="accordion" id="accordionExamples">
+              {% for faq in faqs %}
               <div class="card one">
                 <div class="card-header" id="headingFour">
-                  <span class="mb-0">what will careermania charge me after joining ?</span>
+                  <span class="mb-0">{{faq.question}}</span>
                 </div>
-                <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExamples">
+                <div id="{{faq.id}}r" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExamples">
                   <div class="card-body">
-                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a
-                      given HTML element such as colors, backgrounds, fonts etc. <a
+                    <p>{{faq.answer}}<a
                         href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
                   </div>
                 </div>
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse"
-                  data-target="#collapseFour" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  data-target="#{{faq.id}}r" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd"
                     d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                 </svg>
+              </div>
+              {% endfor %}
+              </div>
+              </div>
               </div>
 
-              <div class="card two">
-                <div class="card-header" id="headingFive">
-                  <span class="mb-0">Which documents are required for online registering ? </span>
-                </div>
-                <div id="collapseFive" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExamples">
-                  <div class="card-body">
-                    <p style="color: black">CSS stands for Cascading Style Sheet. CSS allows you to specify various
-                      style properties for a given HTML element such as colors, backgrounds, fonts etc. <a
-                        href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
-                  </div>
-                </div>
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse"
-                  data-target="#collapseFive" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                </svg>
-              </div>
-
-              <div class="card three">
-                <div class="card-header" id="headingSix">
-                  <span class="mb-0">What if I am unable to give admission...?</span>
-                </div>
-                <div id="collapseSix" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExamples">
-                  <div class="card-body">
-                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a
-                      given HTML element such as colors, backgrounds, fonts etc. <a
-                        href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
-                  </div>
-                </div>
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse"
-                  data-target="#collapseSix" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                </svg>
-              </div>
-            </div>
-          </div>
         </div>
 
-        <div class="contentholder_mobile">
-          <div class="col-md-12">
-            <div class="accordion" id="newaccordionExample">
-              <div class="card one">
-                <div class="card-header" id="newheadingOne">
-                  <span class="mb-0">what will careermania charge me after joining ?</span>
-                </div>
-                <div id="newcollapseOne" class="collapse" aria-labelledby="headingThree"
-                  data-parent="#newaccordionExample">
-                  <div class="card-body">
-                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a
-                      given HTML element such as colors, backgrounds, fonts etc. <a
-                        href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
-                  </div>
-                </div>
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse"
-                  data-target="#newcollapseOne" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                </svg>
-              </div>
+      
 
-              <div class="card two">
-                <div class="card-header" id="newheadingTwo">
-                  <span class="mb-0">Which documents are required for online registering ? </span>
-                </div>
-                <div id="newcollapseTwo" class="collapse" aria-labelledby="headingThree"
-                  data-parent="#newaccordionExample">
-                  <div class="card-body">
-                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a
-                      given HTML element such as colors, backgrounds, fonts etc. <a
-                        href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
-                  </div>
-                </div>
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse"
-                  data-target="#newcollapseTwo" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                </svg>
-              </div>
-
-              <div class="card three">
-                <div class="card-header" id="newheadingThree">
-                  <span class="mb-0">What if I am unable to give admission...? </span>
-                </div>
-                <div id="newcollapseThree" class="collapse" aria-labelledby="headingThree"
-                  data-parent="#newaccordionExample">
-                  <div class="card-body">
-                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a
-                      given HTML element such as colors, backgrounds, fonts etc. <a
-                        href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
-                  </div>
-                </div>
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse"
-                  data-target="#newcollapseThree" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                </svg>
-              </div>
-
-              <div class="card one">
-                <div class="card-header" id="newheadingFour">
-                  <span class="mb-0">what will careermania charge me after joining ?</span>
-                </div>
-                <div id="newcollapseFour" class="collapse" aria-labelledby="headingThree"
-                  data-parent="#newaccordionExample">
-                  <div class="card-body">
-                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a
-                      given HTML element such as colors, backgrounds, fonts etc. <a
-                        href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
-                  </div>
-                </div>
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse"
-                  data-target="#newcollapseFour" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                </svg>
-              </div>
-
-              <div class="card two">
-                <div class="card-header" id="newheadingFive">
-                  <span class="mb-0">Which documents are required for online registering ? </span>
-                </div>
-                <div id="newcollapseFive" class="collapse" aria-labelledby="headingThree"
-                  data-parent="#newaccordionExample">
-                  <div class="card-body">
-                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a
-                      given HTML element such as colors, backgrounds, fonts etc. <a
-                        href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
-                  </div>
-                </div>
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse"
-                  data-target="#newcollapseFive" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                </svg>
-              </div>
-
-              <div class="card three">
-                <div class="card-header" id="newheadingSix">
-                  <span class="mb-0">What if I am unable to give admission...</span>
-                </div>
-                <div id="newcollapseSix" class="collapse" aria-labelledby="headingThree"
-                  data-parent="#newaccordionExample">
-                  <div class="card-body">
-                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a
-                      given HTML element such as colors, backgrounds, fonts etc. <a
-                        href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
-                  </div>
-                </div>
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus collapsed" data-toggle="collapse"
-                  data-target="#newcollapseSix" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <div class="col-md-12 lowerpart">
         <div class="col-md-3 icons">
           <div class="image_group">
