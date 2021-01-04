@@ -1,0 +1,46 @@
+{% include 'merchant/new_dashboard/header.html' %}
+{% load static %}
+{% block content %}
+
+
+<section class="section">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12 col-md-12 offset-md-1 col-lg-12 offset-lg-1">
+                <div class="card" style="margin-top: 50px;">
+                    <div class="card-header">
+                        <h4>All Courses</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover" id="tableExport" style="width:100%;">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Posts Available</th>
+                                        <th>Job Type</th>
+                                        <th>Posted on</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for job in jobs %}
+                                    <tr>
+                                        <td>{{job.title}}</td>
+                                        <td>{{job.available_posts}}</td>
+                                        <td>{{job.job_type}}</td>
+                                        <td>{{job.posted_on}}</td>
+                                        <td><a href="{% url 'delete_job' id=job.id %}"><button
+                                                    class="btn btn-lg btn-danger">Delete</button></a></td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+</section>
+
+
+{% endblock %}

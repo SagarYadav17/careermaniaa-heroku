@@ -36,7 +36,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_merchant(self, email, username, password):
+    def create_merchant(self, email, username, password, merchant_type):
         user = self.create_user(
             email=self.normalize_email(email),
             password=password,
@@ -47,6 +47,7 @@ class UserManager(BaseUserManager):
         user.is_student = False
         user.is_active = True
         user.is_merchant = True
+        user.merchant_type = merchant_type
         user.save(using=self._db)
         return user
 
@@ -66,6 +67,13 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
+    TYPES = (
+        (0, None),
+        (1, 'College'),
+        (2, 'Coaching'),
+        (3, 'Jobs')
+    )
+
     name = models.CharField(max_length=255, blank=True, null=True)
     registered_date = models.DateTimeField(
         blank=True, null=True, default=timezone.now)
@@ -77,6 +85,7 @@ class User(AbstractBaseUser):
     is_superuser = models.BooleanField(default=False)
     is_student = models.BooleanField(default=False)
     is_merchant = models.BooleanField(default=False)
+    merchant_type = models.IntegerField(default=0, choices=TYPES)
     is_verified = models.BooleanField(default=False)
 
     USERNAME_FIELD = "email"

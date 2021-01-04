@@ -78,7 +78,6 @@ class ActivateAccountView(View):
             messages.add_message(request, messages.INFO,
                                  'Account Activated Successfully.')
             if user.is_merchant:
-                add_forms_mail(request, user)
                 return redirect('merchant/login')
             return redirect('login_user')
         return render(request, 'confirmation/activate_failed.html', status=401)
@@ -139,7 +138,7 @@ def login_user(request):
                 return render(request, 'user/login.html', {'error': 'Account not verified yet. Please check your e-mail'})
         if user is None:
             return render(request, 'user/login.html', {'error': 'Your email and password didn\'t match. Please try again.'})
-            
+
         else:
             return render(request, 'user/login.html', {'error': 'Account doesn\'t found. Try signup'})
 

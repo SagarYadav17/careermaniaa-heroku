@@ -223,7 +223,7 @@ class Booking(models.Model):
         return self.user
 
 
-class Job(models.Model):
+class JobRecruiter(models.Model):
     user = models.ForeignKey('mania.User', on_delete=models.CASCADE)
     contact_no = models.BigIntegerField()
     registration_no = models.CharField(max_length=50, default=None)
@@ -234,3 +234,16 @@ class Job(models.Model):
     country = models.CharField(max_length=50, default=None)
     director_name = models.CharField(max_length=50, default=None)
     industry_type = models.CharField(max_length=50, default=None)
+
+
+class Job(models.Model):
+    recruiter = models.ForeignKey(JobRecruiter, on_delete=models.CASCADE)
+    title = models.CharField(max_length=50, default=None)
+    skills = models.CharField(max_length=100, default=None)
+    available_posts = models.PositiveIntegerField(default=1)
+    description = models.TextField()
+    job_type = models.CharField(max_length=50, default="Full Time")
+    posted_on = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.job_title

@@ -10,7 +10,6 @@ urlpatterns = [
     # for apps
     path('', include('mania.urls')),
     path('', include('merchant_app.urls')),
-    path('', include('api_app.urls')),
 
     # for password reset
     path('', include('django.contrib.auth.urls')),

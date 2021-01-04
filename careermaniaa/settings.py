@@ -43,9 +43,6 @@ INSTALLED_APPS = [
     # apps
     'mania',
     'merchant_app',
-    'api_app',
-
-    'rest_framework',
 
     # all-auth
     'allauth',
