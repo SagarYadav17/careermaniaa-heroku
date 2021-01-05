@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.base_user import BaseUserManager
 
 from django.utils import timezone
-from merchant_app.models import Course
+from merchant_app.models import Course, Job
 
 # Create your models here.
 
@@ -164,9 +164,23 @@ class Registration(models.Model):
     def __str__(self):
         return self.first_name + self.last_name
 
+
 class FAQ(models.Model):
     question = models.CharField(max_length=1000)
     answer = models.CharField(max_length=1000)
 
     def __str__(self):
         return self.question
+
+
+class JobApplications(models.Model):
+    STATUS_CHOICES = (
+        ('Applied', 'Applied'),
+        ('In Review', 'In Review'),
+        ('Interview', 'Interview'),
+        ('Decline', 'Decline'),
+    )
+
+    applicant = models.ForeignKey(User, on_delete=models.CASCADE)
+    job_appication = models.OneToOneField(Job, on_delete=models.CASCADE)
+    status = models.CharField(choices=STATUS_CHOICES, default='Applied', max_length=20)

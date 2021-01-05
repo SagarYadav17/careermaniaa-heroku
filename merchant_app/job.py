@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from merchant_app.forms import CreateJob
 from merchant_app.models import Job, JobRecruiter
 from django.contrib.auth.decorators import login_required
+from mania.models import JobApplications
 
 
 @login_required(login_url='merchant/login')
@@ -39,3 +40,17 @@ def delete_job(request, id):
     job = Job.objects.get(id=id)
     job.delete()
     return redirect('all_jobs')
+
+@login_required(login_url='merchant/login')
+def applicants(request, id):
+    context = {
+        'applicants': JobApplications.objects.filter(id=id)
+    }
+
+    return render(request, 'merchant/new_dashboard/jobs/applicants.html', context)
+
+@login_required(login_url='merchant/login')
+def delete_applicant(request, id):
+    job = JobApplications.objects.get(id=id)
+    job.delete()
+    return redirect('all_applicants')
