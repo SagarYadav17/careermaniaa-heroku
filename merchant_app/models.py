@@ -190,7 +190,7 @@ class Message(models.Model):
 
 
 class College(models.Model):
-    user = models.ForeignKey('mania.User', on_delete=models.CASCADE)
+    user = models.OneToOneField('mania.User', on_delete=models.CASCADE)
     registration_no = models.CharField(max_length=50, default=None)
     contact_no = models.BigIntegerField()
     college_name = models.CharField(max_length=255, default=None)
@@ -204,6 +204,16 @@ class College(models.Model):
 
     def __str__(self):
         return self.college_name
+
+
+class CollegeFacultyMember(models.Model):
+    college = models.ForeignKey(College, on_delete=models.CASCADE)
+    full_name = models.CharField(max_length=100, default=None)
+    department = models.CharField(max_length=50, default=None)
+    post = models.CharField(max_length=50, default=None)
+
+    def __str__(self):
+        return self.full_name
 
 
 class Booking(models.Model):

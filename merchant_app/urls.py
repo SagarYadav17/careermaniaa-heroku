@@ -1,5 +1,5 @@
 from django.urls import path
-from merchant_app import views, coaching, job
+from merchant_app import views, coaching, job, college
 
 
 urlpatterns = [
@@ -73,11 +73,20 @@ urlpatterns = [
     path('merchant/delete_discount/<str:id>',
          coaching.delete_discount, name='delete_discount'),
 
-     # JOBS
+    # JOBS
     path('merchant/job/profile', job.profile, name='job/profile'),
     path('merchant/create/job', job.add_job, name='add_job'),
     path('merchant/jobs', job.jobs_list, name='all_jobs'),
     path('merchant/delete/job/<str:id>', job.delete_job, name='delete_job'),
-    path('merchant/delete/job/applicant/<str:id>', job.delete_applicant, name='delete_applicants'),
-    path('merchant/job/aplicants/<str:id>', job.applicants, name='all_applicants')
+    path('merchant/delete/job/applicant/<str:id>',
+         job.delete_applicant, name='delete_applicants'),
+    path('merchant/job/aplicants/<str:id>',
+         job.applicants, name='all_applicants')
+
+    # COLLEGES
+    path('merchant/colllege/profile', college.profile, name='college/profile'),
+    path('merchant/colllege/add/member',
+         college.add_faculty_member, name='add_college_member'),
+    path('merchant/college/members',
+         college.faculty_members, name='faculty_members'),
 ]

@@ -403,7 +403,6 @@ def logout_user(request):
     return redirect('index')
 
 
-
 @login_required(login_url='merchant/login')
 def merchant_address(request):
     if request.user.is_merchant:
