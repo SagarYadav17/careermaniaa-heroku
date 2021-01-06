@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from mania.models import Address, FAQ, User
+from mania.models import *
 from merchant_app.models import Merchant_Details
 
 from django.db import IntegrityError
@@ -181,8 +181,13 @@ def register_merchant(request):
                     messages.info(request, 'EmailID is already in use')
                 else:
                     messages.info(request, 'Something went wrong')
-
-    return render(request, "merchant/signup.html")
+    university_types = UniversityType.objects.all()
+    class_types = ClassType.objects.all()
+    industry_types = IndustryType.objects.all()
+    institution_types = InstitutionType.objects.all()
+    context = {'university_types':university_types, 'class_types':class_types, 
+    'industry_types':industry_types, 'institution_types':institution_types}
+    return render(request, "merchant/signup.html", context)
 
 
 def login_merchant(request):

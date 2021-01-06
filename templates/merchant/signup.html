@@ -69,10 +69,6 @@
                                     <label for="Name" id="merchent_name_title"> College Name:</label><br>
                                     <input type="text" class="form-control" name="name" placeholder="College name" maxlength="50" />
                                 </div>
-                                <div class="form-group merchent_name ">
-                                    <label for="Name" id="logo">Logo:</label><br>
-                                    <input type="file" class="form-control" name="logo_img" required/>
-                                </div>
                                 <div class="form-group">
                                     <label for="Password"> Password:</label><br>
                                     <input type="password" name="password" class="form-control" placeholder="Password"
@@ -84,10 +80,9 @@
                                         <div class="form-group university">
                                             <label for="Select1"> University Type: </label><br>
                                             <select class="form-control dropdown" name="uni-type">
-                                                <option class="university_option">Opt 1</option>
-                                                <option class="university_option">Opt 2</option>
-                                                <option class="university_option">Opt 3</option>
-                                                <option class="university_option">Opt 4</option>
+                                                {% for type in university_types %}
+                                                <option class="university_option">{{type}}</option>
+                                                {% endfor %}
                                             </select>
                                         </div>
 
@@ -97,10 +92,9 @@
                                         <div class="form-group class">
                                             <label for="Select1"> class Type: </label><br>
                                             <select class=" form-control dropdown" multiple name="class-type">
-                                                <option class="class_option">class 1</option>
-                                                <option class="class_option">Class 2</option>
-                                                <option class="class_option">Class 3</option>
-                                                <option class="class_option">Class 4</option>
+                                                {% for type in class_types %}
+                                                <option class="class_option">{{type}}</option>
+                                                {% endfor %}
                                             </select>
                                         </div>
                                         <div class="form-group course">
@@ -118,10 +112,9 @@
                                         <div class="form-group class">
                                             <label for="Select1"> Industry Type: </label><br>
                                             <select class="form-control dropdown" multiple name="industry-type">
-                                                <option class="industry_option">Industry 1</option>
-                                                <option class="industry_option">Industry 2</option>
-                                                <option class="industry_option">Industry 3</option>
-                                                <option class="industry_option">Industry 4</option>
+                                                {% for type in industry_types %}
+                                                <option class="industry_option">{{type}}</option>
+                                                {% endfor %}
                                             </select>
                                         </div>
                                     </div>
@@ -133,10 +126,9 @@
                                 <div class="form-group insitute">
                                     <label for="Select2"> Institution Type:</label><br>
                                     <select class="form-control dropdown" name="inst-type">
-                                        <option class="institution_option">Opt 1</option>
-                                        <option class="institution_option">Opt 2</option>
-                                        <option class="institution_option">Opt 3</option>
-                                        <option class="institution_option">Opt 4</option>
+                                        {% for type in institution_types %}
+                                        <option class="institution_option">{{type}}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
 
@@ -149,10 +141,6 @@
                                     </select>
                                     <input type="text" name="chairman" class="form-control head_name_input"
                                         placeholder="Full Name" maxlength="50" />
-                                </div>
-                                <div class="form-group merchent_name ">
-                                    <label for="Name" id="logo">Image:</label><br>
-                                    <input type="file" class="form-control" name="image" required/>
                                 </div>
                                 <div class="form-group merchent_name ">
                                     <label for="Name" id="logo">Established:</label><br>
