@@ -86,11 +86,8 @@ class ActivateAccountView(View):
 def index(request):
     courses = Course.objects.all()
     science_courses = Course.objects.filter(stream="Science")
-    loggedIn = False
-    if request.user in User.objects.all():
-        loggedIn = True
     context = {'courses': courses,
-               'science_courses': science_courses, 'loggedIn': loggedIn}
+               'science_courses': science_courses}
     return render(request, 'user/index.html', context)
 
 

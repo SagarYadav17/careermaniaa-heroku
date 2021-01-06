@@ -184,3 +184,27 @@ class JobApplications(models.Model):
     applicant = models.ForeignKey(User, on_delete=models.CASCADE)
     job_appication = models.OneToOneField(Job, on_delete=models.CASCADE)
     status = models.CharField(choices=STATUS_CHOICES, default='Applied', max_length=20)
+
+class UniversityType(models.Model):
+    type = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.type
+
+class ClassType(models.Model):
+    type = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.type
+
+class IndustryType(models.Model):
+    type = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.type
+
+class InstitutionType(models.Model):
+    type = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.type
