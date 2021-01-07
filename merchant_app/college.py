@@ -15,7 +15,7 @@ def profile(request):
 def add_faculty_member(request):
     if request.method == 'POST':
         member = CollegeFacultyMember.objects.create(
-            college=College.objects.get(user=request.user)
+            college=College.objects.get(user=request.user),
             full_name=request.POST['full_name'],
             department=request.POST['department'],
             post=request.POST['post']

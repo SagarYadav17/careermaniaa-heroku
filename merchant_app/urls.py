@@ -81,7 +81,7 @@ urlpatterns = [
     path('merchant/delete/job/applicant/<str:id>',
          job.delete_applicant, name='delete_applicants'),
     path('merchant/job/aplicants/<str:id>',
-         job.applicants, name='all_applicants')
+         job.applicants, name='all_applicants'),
 
     # COLLEGES
     path('merchant/colllege/profile', college.profile, name='college/profile'),
