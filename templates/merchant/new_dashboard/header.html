@@ -82,8 +82,8 @@
             {% if request.user.merchant_type == 1 %}
             <!-- For Colleges -->
             <li><a class="nav-link" href="{% url 'college/profile' %}">Profile</a></li>
-            <li><a class="nav-link" href="{% url 'add_college_member' %}">Add Faculty Member</a></li>
-            <li><a class="nav-link" href="{% url 'faculty_member' %}">All Faculty Members</a></li>
+            <li><a class="nav-link" href="{% url 'faculty_members' %}">Faculty Members</a></li>
+            <li><a class="nav-link" href="{% url 'college/course' %}">Courses</a></li>
             {% endif %}
             <!--  -->
             <!--  -->

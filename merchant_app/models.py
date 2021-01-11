@@ -215,6 +215,13 @@ class CollegeFacultyMember(models.Model):
     def __str__(self):
         return self.full_name
 
+class CollegeCourse(models.Model):
+    college = models.ForeignKey(College, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, default=None)
+    timePeriod = models.CharField(max_length=50, default=None)
+    description = models.TextField()
+    fees = models.DecimalField(max_digits=10, decimal_places=2, default=None)
+    
 
 class Booking(models.Model):
     BOOKING_STATUS = (

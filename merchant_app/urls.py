@@ -85,8 +85,11 @@ urlpatterns = [
 
     # COLLEGES
     path('merchant/colllege/profile', college.profile, name='college/profile'),
-    path('merchant/colllege/add/member',
-         college.add_faculty_member, name='add_college_member'),
     path('merchant/college/members',
          college.faculty_members, name='faculty_members'),
+    path('merchant/college/member/delete<str:id>',
+         college.delete_faculty_member, name='delete_member'),
+    path('merchant/college/course', college.course, name='college/course'),
+    path('merchant/college/course/delete/<str:id>',
+         college.delete_collegeCourse, name='delete/college/course')
 ]

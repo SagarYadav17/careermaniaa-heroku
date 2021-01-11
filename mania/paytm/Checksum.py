@@ -4,8 +4,8 @@ import string
 import random
 import hashlib
 
-from Crypto.Cipher import AES
-
+# from Crypto.Cipher import AES
+from Cryptodome.Cipher import AES
 
 IV = "@@@@&&&&####$$$$"
 BLOCK_SIZE = 16

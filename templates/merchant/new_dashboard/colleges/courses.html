@@ -1,7 +1,7 @@
 {% include 'merchant/new_dashboard/header.html' %}
 {% load static %}
 {% block content %}
-
+<!-- Main Content -->
 <div class="main-content">
     <section class="section">
         <div class="section-body">
@@ -9,29 +9,30 @@
                 <div class="col-12 col-md-6 col-lg-8">
                     <div class="card">
                         <div class="card-header">
-                            <h4>ADD FACULTY MEMBER</h4>
+                            <h4>ADD COURSE</h4>
                         </div>
                         <div class="card-body">
 
                             <form method="POST" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <div class="form-group">
-                                    <label>Full Name</label>
-                                    <input type="text" class="form-control" name="full_name" maxlength="100" required>
+                                    <label>Course Name</label>
+                                    <input type="text" class="form-control" name="name" maxlength="100" required>
                                 </div>
-
                                 <div class="form-group">
-                                    <label>Department</label>
-                                    <input type="text" class="form-control" rows="5" cols="50" name="department"
+                                    <label>Time Period</label>
+                                    <input type="text" class="form-control" rows="5" cols="50" name="timePeriod"
                                         maxlength="50" required>
-
                                 </div>
                                 <div class="form-group">
-                                    <label>Post in Department</label>
-                                    <input type="text" class="form-control" name="post" maxlength="50" required>
-
+                                    <label>Description</label>
+                                    <input type="text" class="form-control" name="description" maxlength="200" required>
                                 </div>
-
+                                <div class="form-group">
+                                    <label>Fees (Approax)</label>
+                                    <input type="number" class="form-control" name="fees" maxlength="10"
+                                        required>
+                                </div>
 
                                 <div class="card-footer text-right">
                                     <button class="btn btn-primary mr-1" type="submit">Submit</button>
@@ -39,32 +40,38 @@
                                 </div>
                             </form>
                         </div>
+
+
+
+
                     </div>
                 </div>
             </div>
         </div>
         <div class="card" style="margin-top: 50px;">
             <div class="card-header">
-                <h4>FACULTY MEMBERS: {{total}}</h4>
+                <h4>COURSES: {{total}}</h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-hover" id="tableExport" style="width:100%;">
                         <thead>
                             <tr>
-                                <th>Full Name</th>
-                                <th>Department</th>
-                                <th>Post in Department</th>
+                                <th>Name</th>
+                                <th>Time Period</th>
+                                <th>Description</th>
+                                <th>Fees</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for member in members %}
+                            {% for course in courses %}
                             <tr>
-                                <td>{{member.full_name}}</td>
-                                <td>{{member.department}}</td>
-                                <td>{{member.post}}</td>
-                                <td><a href="{% url 'delete_member' id=member.id %}"><button
+                                <td>{{course.name}}</td>
+                                <td>{{course.timePeroid}}</td>
+                                <td>{{course.description}}</td>
+                                <td>{{course.fees}}</td>
+                                <td><a href="{% url 'delete/college/course' id=course.id %}"><button
                                             class="btn btn-lg btn-danger">Delete</button></a></td>
                             </tr>
                             {% endfor %}
@@ -74,9 +81,15 @@
             </div>
         </div>
     </section>
-
 </div>
 
-
-
+<footer class="main-footer">
+    <div class="footer-left">
+        CAREERMANIAA
+    </div>
+    <div class="footer-right">
+    </div>
+</footer>
+</div>
+</div>
 {% endblock %}

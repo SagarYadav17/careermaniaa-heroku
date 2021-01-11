@@ -74,7 +74,6 @@ def register_merchant(request):
                     merchant_type=1
                 )
                 user.save()
-                send_confirmation_email(request, user)
 
                 user_id = User.objects.get(email=request.POST['email'])
                 college = College.objects.create(
@@ -91,7 +90,7 @@ def register_merchant(request):
                     city=request.POST['city']
                 )
                 college.save()
-
+                send_confirmation_email(request, user)
                 return redirect('merchant/login')
 
             except IntegrityError as e:
@@ -111,7 +110,6 @@ def register_merchant(request):
                     merchant_type=2
                 )
                 user.save()
-                send_confirmation_email(request, user)
 
                 user_id = User.objects.get(email=request.POST['email'])
                 logo = request.FILES['logo_img']
@@ -135,7 +133,7 @@ def register_merchant(request):
                 owner = CoachingMetaData(owner_name=owner_name, owner_image=owner_image, mobile=mobile, established_on=established,
                                          coaching=coaching)
                 owner.save()
-
+                
                 return redirect('merchant/login')
 
             except IntegrityError as e:
