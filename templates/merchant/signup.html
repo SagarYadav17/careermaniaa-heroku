@@ -71,7 +71,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="Password"> Password:</label><br>
-                                    <input type="password" name="password" class="form-control" placeholder="Password"
+                                    <input type="password" name="password" class="form-control" minlength="8" placeholder="Password"
                                         autocomplete="current-password" required />
                                 </div>
                                 <div class="selector-group">
@@ -80,6 +80,7 @@
                                         <div class="form-group university">
                                             <label for="Select1"> University Type: </label><br>
                                             <select class="form-control dropdown" name="uni-type">
+                                                <option value="None" class="university_option">None</option>
                                                 {% for type in university_types %}
                                                 <option class="university_option">{{type}}</option>
                                                 {% endfor %}
@@ -92,6 +93,7 @@
                                         <div class="form-group class">
                                             <label for="Select1"> class Type: </label><br>
                                             <select class=" form-control dropdown" multiple name="class-type">
+                                                <option value="None" class="class_option">None</option>
                                                 {% for type in class_types %}
                                                 <option class="class_option">{{type}}</option>
                                                 {% endfor %}
@@ -112,6 +114,7 @@
                                         <div class="form-group class">
                                             <label for="Select1"> Industry Type: </label><br>
                                             <select class="form-control dropdown" multiple name="industry-type">
+                                                <option value="None" class="industry_option">None</option>
                                                 {% for type in industry_types %}
                                                 <option class="industry_option">{{type}}</option>
                                                 {% endfor %}
@@ -126,6 +129,7 @@
                                 <div class="form-group insitute">
                                     <label for="Select2"> Institution Type:</label><br>
                                     <select class="form-control dropdown" name="inst-type">
+                                        <option value="None" class="institution_option">None</option>
                                         {% for type in institution_types %}
                                         <option class="institution_option">{{type}}</option>
                                         {% endfor %}
@@ -174,6 +178,9 @@
                             </div>
                     </div>
                 </div>
+                {% for i in messages %}
+                {{i}}
+                {% endfor %}
                 <div class="footer-buttons">
                     <table class="table table-borderless" style="width: 100%;">
                         <tr>
