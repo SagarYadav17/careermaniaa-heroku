@@ -215,13 +215,17 @@ class CollegeFacultyMember(models.Model):
     def __str__(self):
         return self.full_name
 
+
 class CollegeCourse(models.Model):
     college = models.ForeignKey(College, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, default=None)
     timePeriod = models.CharField(max_length=50, default=None)
     description = models.TextField()
     fees = models.DecimalField(max_digits=10, decimal_places=2, default=None)
-    
+
+    def __str__(self):
+        return self.name
+
 
 class Booking(models.Model):
     BOOKING_STATUS = (
@@ -252,6 +256,9 @@ class JobRecruiter(models.Model):
     director_name = models.CharField(max_length=50, default=None)
     industry_type = models.CharField(max_length=50, default=None)
 
+    def __str__(self):
+        return self.company_name
+
 
 class Job(models.Model):
     recruiter = models.ForeignKey(JobRecruiter, on_delete=models.CASCADE)
@@ -264,3 +271,20 @@ class Job(models.Model):
 
     def __str__(self):
         return self.job_title
+
+
+class Subscriber(models.Model):
+    email = models.EmailField(default=None)
+
+    def __str__(self):
+        return self.email
+
+
+class CustomerQuestion(models.Model):
+    name = models.CharField(max_length=20, default=None)
+    mobile = models.BigIntegerField()
+    email = models.EmailField(default=None)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.email

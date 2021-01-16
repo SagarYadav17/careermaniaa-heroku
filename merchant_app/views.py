@@ -133,7 +133,7 @@ def register_merchant(request):
                 owner = CoachingMetaData(owner_name=owner_name, owner_image=owner_image, mobile=mobile, established_on=established,
                                          coaching=coaching)
                 owner.save()
-                
+
                 return redirect('merchant/login')
 
             except IntegrityError as e:
@@ -183,8 +183,8 @@ def register_merchant(request):
     class_types = ClassType.objects.all()
     industry_types = IndustryType.objects.all()
     institution_types = InstitutionType.objects.all()
-    context = {'university_types':university_types, 'class_types':class_types, 
-    'industry_types':industry_types, 'institution_types':institution_types}
+    context = {'university_types': university_types, 'class_types': class_types,
+               'industry_types': industry_types, 'institution_types': institution_types}
     return render(request, "merchant/signup.html", context)
 
 
@@ -436,3 +436,22 @@ def merchant_address(request):
         context = {'merchant': request.user,
                    'address': address}
         return render(request, 'merchant/new_dashboard/address.html', context)
+
+
+def subscribe(request):
+    if request.method == 'POST':
+        Subscriber.objects.create(email=request.POST['email']).save()
+
+        return redirect('merchant_view')
+
+
+def contact(request):
+    if request.method == 'POST':
+        Customer_Question.objects.create(
+            email=request.POST['email'],
+            mobile=request.POST['phone'],
+            name=request.POST['name'],
+            message=request.POST['message']
+        ).save()
+
+        return redirect('merchant_view')

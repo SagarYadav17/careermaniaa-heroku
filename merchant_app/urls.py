@@ -4,6 +4,8 @@ from merchant_app import views, coaching, job, college
 
 urlpatterns = [
     path('join-us', views.merchant_view, name='merchant_view'),
+    path('subscribe', views.subscribe, name='subscribe'),
+    path('contact', views.contact, name='contact'),
 
     path('merchant/register', views.register_merchant, name='merchant/register'),
     path('merchant/login', views.login_merchant, name='merchant/login'),
