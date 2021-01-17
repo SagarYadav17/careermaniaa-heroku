@@ -447,7 +447,7 @@ def subscribe(request):
 
 def contact(request):
     if request.method == 'POST':
-        Customer_Question.objects.create(
+        CustomerQuestion.objects.create(
             email=request.POST['email'],
             mobile=request.POST['phone'],
             name=request.POST['name'],
