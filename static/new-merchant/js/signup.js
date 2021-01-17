@@ -1,35 +1,35 @@
-$(document).ready(function(){
-    $(".dropdown").select2();    
+$(document).ready(function () {
+    $(".dropdown").select2();
     var url = window.location.href;
     let value = url.split("value=")[1]
-    if(value == "class"){
+    if (value == "class") {
         let self = $("#class_btn");
         classButton(self)
-    }else if(value == "college"){
+    } else if (value == "college") {
         let self = $("#college_btn");
         collegeButton(self);
-    }else if(value == "job") {
+    } else if (value == "job") {
         let self = $("#job_btn");
         jobButton(self);
     }
 
-    $("#college_btn").click(function(){
+    $("#college_btn").click(function () {
         let self = $(this)
         collegeButton(self);
     })
 
-    $("#class_btn").click(function(){
+    $("#class_btn").click(function () {
         let self = $(this);
         classButton(self)
     })
 
-    $("#job_btn").click(function(){
+    $("#job_btn").click(function () {
         let self = $(this)
         jobButton(self);
     })
 
-    function collegeButton(self){
-        self.closest("div").find(".btn").each(function(){
+    function collegeButton(self) {
+        self.closest("div").find(".btn").each(function () {
             $(this).removeClass("active");
         })
         self.addClass("active")
@@ -38,14 +38,14 @@ $(document).ready(function(){
         $("#main_form").find(".right-form .head_name #head_name_title").html("Chancellor/Chairman")
         $("#main_form").find(".right-form .address #address_title").html("Collage Address ")
         $("#main_form").find(".left-form .merchent_name #merchent_name_title").html("Collage Name")
-        $("#main_form").find(".left-form .selector-group .selector").each(function(){
+        $("#main_form").find(".left-form .selector-group .selector").each(function () {
             $(this).addClass("hide");
         })
         $("#main_form").find(".left-form .selector-group .college_info").removeClass("hide")
     }
 
-    function classButton(self){
-        self.closest("div").find(".btn").each(function(){
+    function classButton(self) {
+        self.closest("div").find(".btn").each(function () {
             $(this).removeClass("active");
         })
         self.addClass("active")
@@ -54,14 +54,14 @@ $(document).ready(function(){
         $("#main_form").find(".right-form .head_name #head_name_title").html("Directors Name")
         $("#main_form").find(".right-form .address #address_title").html("Center Address ")
         $("#main_form").find(".left-form .merchent_name #merchent_name_title").html("Class Name *")
-        $("#main_form").find(".left-form .selector-group .selector").each(function(){
+        $("#main_form").find(".left-form .selector-group .selector").each(function () {
             $(this).addClass("hide");
         })
         $("#main_form").find(".left-form .selector-group .class_info").removeClass("hide")
     }
 
-    function jobButton(self){
-        self.closest("div").find(".btn").each(function(){
+    function jobButton(self) {
+        self.closest("div").find(".btn").each(function () {
             $(this).removeClass("active");
         })
         self.addClass("active")
@@ -70,9 +70,23 @@ $(document).ready(function(){
         $("#main_form").find(".right-form .head_name #head_name_title").html("Directors Name")
         $("#main_form").find(".right-form .address #address_title").html("Company Address ")
         $("#main_form").find(".left-form .merchent_name #merchent_name_title").html("Company Name *")
-        $("#main_form").find(".left-form .selector-group .selector").each(function(){
+        $("#main_form").find(".left-form .selector-group .selector").each(function () {
             $(this).addClass("hide");
         })
         $("#main_form").find(".left-form .selector-group .job_info").removeClass("hide")
     }
+
+    var today = new Date();
+    var dd = today.getDate()
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = yyyy + '-' + mm + '-' + dd;
+    document.getElementById("datefield").setAttribute("max", today);
 })
