@@ -270,7 +270,7 @@ class Job(models.Model):
     posted_on = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return self.job_title
+        return self.title
 
 
 class Subscriber(models.Model):

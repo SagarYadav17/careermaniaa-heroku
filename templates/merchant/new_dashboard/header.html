@@ -52,13 +52,6 @@
                 class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
             <div class="dropdown-menu dropdown-menu-right pullDown">
               <div class="dropdown-title">Hello {{merchant.username}}</div>
-              <a href="{% url 'merchant_profile' %}" class="dropdown-item has-icon"> <i class="far
-										fa-user"></i> Profile
-              </a>
-              <a href="{% url 'coaching' %}" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
-                Settings
-              </a>
-              <div class="dropdown-divider"></div>
               <a href="{% url 'logout_user' %}" class="dropdown-item has-icon text-danger"> <i
                   class="fas fa-sign-out-alt"></i>
                 Logout
@@ -125,15 +118,6 @@
             <li class="menu-header">Support</li>
             <li><a class="nav-link" href="{% url 'merchant_messages' %}"><i data-feather="mail"></i><span>Chat with
                   us</span></a></li>
-
-
-            <li class="menu-header">...</li>
-            <li><a class="nav-link" href="{% url 'merchant_invoice' %}"><i
-                  data-feather="file"></i><span>Invoice</span></a></li>
-            <li><a class="nav-link" href="{% url 'merchant_table' %}"><i
-                  data-feather="file-text"></i><span>Reports</span></a></li>
-
-
         </aside>
       </div>
       <script src="{% static 'assets/js/app.min.js' %}"></script>
@@ -146,8 +130,5 @@
       <!-- Custom JS File -->
       <script src="{% static 'assets/js/custom.js' %}"></script>
 </body>
-
-
-<!-- index.html  21 Nov 2019 03:47:04 GMT -->
 
 </html>

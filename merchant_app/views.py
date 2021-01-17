@@ -202,10 +202,10 @@ def login_merchant(request):
                 return render(request, 'merchant/login.html', {"error": "Account is not verified yet. Pleace check your e-mail."})
 
         if user is None:
-            return render(request, 'user/login.html', {'error': 'Your email and password didn\'t match. Please try again.'})
+            return render(request, 'merchant/login.html', {'error': 'Your email and password didn\'t match. Please try again.'})
 
         else:
-            return render(request, 'user/login.html', {'error': 'Account doesn\'t found. Try signup'})
+            return render(request, 'merchant/login.html', {'error': 'Account doesn\'t found. Try signup'})
 
     return render(request, 'merchant/login.html')
 
