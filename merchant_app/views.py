@@ -280,9 +280,30 @@ class PasswordResetDoneView(PasswordContextMixin, TemplateView):
 @login_required(login_url='merchant/login')
 def merchant_dashboard(request):
     if request.user.is_merchant:
-        merchant = request.user
+        # for colleges
+        if request.user.merchant_type == 1:
+            context = {
+                'merchant': request.user,
+                'total_courses': len(CollegeCourse.objects.filter(college__user=request.user)),
+                'total_faculty': len(CollegeFacultyMember.objects.filter(college__user=request.user))
+            }
 
-        context = {'merchant': request.user}
+        # for coaching centers
+        elif request.user.merchant_type == 2:
+            context = {
+                'merchant': request.user,
+                'total_courses': len(Course.objects.filter(coaching__merchant=request.user, is_active=True)),
+                'total_faculty': len(CoachingFacultyMember.objects.filter(coaching__merchant=request.user))
+            }
+
+        # for jobs
+        elif request.user.merchant_type == 3:
+            context = {
+                'merchant': request.user,
+                'active_jobs': len(Job.objects.filter(recruiter=JobRecruiter.objects.get(user=request.user))),
+                'total_applicants': len(JobApplications.objects.filter(job_appication__recruiter__user=request.user.id))
+            }
+
         return render(request, 'merchant/new_dashboard/merchant_dashboard.html', context=context)
     return render(request, 'merchant/login.html')
 
