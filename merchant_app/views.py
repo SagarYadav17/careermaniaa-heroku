@@ -112,11 +112,9 @@ def register_merchant(request):
                 user.save()
 
                 user_id = User.objects.get(email=request.POST['email'])
-                logo = request.FILES['logo_img']
                 coaching = Coaching.objects.create(
                     merchant=user_id,
                     name=request.POST['name'],
-                    logo=logo,
                     registration_number=request.POST['registeration-number'],
                     country=request.POST['country'],
                     state=request.POST['state'],
@@ -127,10 +125,9 @@ def register_merchant(request):
 
                 coaching.save()
                 owner_name = request.POST['chairman']
-                owner_image = request.FILES['image']
                 established = request.POST['established']
                 mobile = request.POST['phone-number']
-                owner = CoachingMetaData(owner_name=owner_name, owner_image=owner_image, mobile=mobile, established_on=established,
+                owner = CoachingMetaData(owner_name=owner_name, mobile=mobile, established_on=established,
                                          coaching=coaching)
                 owner.save()
 

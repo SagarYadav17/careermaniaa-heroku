@@ -84,10 +84,21 @@ class ActivateAccountView(View):
 
 
 def index(request):
+    try: 
+        city = request.session['loc']
+    except:
+        city = None
+    if request.method == "POST" and city == None:
+        lat = request.POST.get("lati", "21.1458")
+        lng = request.POST.get("lngi", "79.0882")
+        coordinates = lat, lng
+        city = reverseGeocode(coordinates)
+        request.session['loc'] = city
+        print(city)
     courses = Course.objects.all()
     science_courses = Course.objects.filter(stream="Science")
     context = {'courses': courses,
-               'science_courses': science_courses}
+               'science_courses': science_courses, 'loc':city}
     return render(request, 'user/index.html', context)
 
 

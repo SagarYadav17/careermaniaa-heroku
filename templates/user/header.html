@@ -21,7 +21,7 @@
 
 
     </head>
-  <body class="red-skin">
+  <body class="red-skin" onload="get_loc()">
     <script>
     
       function showPosition() {
@@ -42,8 +42,30 @@
       <input type="hidden" value="" name="lat" id="lat">
       <input type="hidden" value="" name="lng" id="lng">
   </form>
-    
-  
+  {% if loc %}
+    <script></script>
+  {% else %}
+  <script>
+    function get_loc(){
+      if(navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var positionInfo = "Your current position is (" + "Latitude: " + position.coords.latitude + ", " + "Longitude: " + position.coords.longitude + ")"
+                    var myform = document.getElementById("reloadform");
+                    document.getElementById("lati").value = position.coords.latitude;
+                    document.getElementById("lngi").value = position.coords.longitude;
+                    myform.submit();
+                });
+            } else {
+                alert("Sorry, your browser does not support HTML5 geolocation.");
+            }
+    }
+  </script>
+  <form action="{% url 'index' %}" method="POST" id="reloadform">{% csrf_token %}
+    <input type="hidden" value="" name="lati" id="lati">
+    <input type="hidden" value="" name="lngi" id="lngi">
+  </form>
+  {% endif %}
+
   <div id="main-wrapper">
 			<div class="header header-light">
 				<div class="container">
@@ -93,7 +115,6 @@
                     </li>
                     <li><a href="{% url 'user_profile' %}">Profile</a>
                     </li>
-                  </li>
                   <li><a href="{% url 'bookings' %}">Bookings</a>
                   </li>
 									</ul>
@@ -108,6 +129,9 @@
 								<li class="login_click theme-bg">
 									<a href="{% url 'register_user' %}">Sign up</a>
                 </li>
+                {% endif %}
+                {% if loc %}
+                <li><a>Your Location: {{loc}}</a></li>
                 {% endif %}
 							</ul>
 						</div>
