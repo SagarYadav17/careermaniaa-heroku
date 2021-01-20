@@ -36,7 +36,7 @@ class Coaching(models.Model):
 
 
 class BankAccountDetails(models.Model):
-    coaching = models.OneToOneField(Coaching, on_delete=models.CASCADE)
+    user = models.OneToOneField('mania.User', on_delete=models.CASCADE)
     account_no = models.CharField(max_length=30, default=None)
     ifsc_code = models.CharField(max_length=20, default=None)
     bank_name = models.CharField(max_length=50, default=None)

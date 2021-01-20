@@ -48,7 +48,7 @@
           <li style="padding-top: 6px;"><a href="{% url 'merchant_messages' %}"><i data-feather="mail"
                 style="color: black;"></i></a></li>
           <li class="dropdown"><a href="#" data-toggle="dropdown"
-              class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="{{coaching.logo.url}}"
+              class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src=""
                 class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
             <div class="dropdown-menu dropdown-menu-right pullDown">
               <div class="dropdown-title">Hello {{merchant.username}}</div>
@@ -94,13 +94,12 @@
               <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="chevrons-down"></i><span>General
                   settings</span></a>
               <ul class="dropdown-menu">
-                <li><a class="nav-link" href="{% url 'merchant_profile' %}">Profile</a></li>
+                <li><a class="nav-link" href="{% url 'owner' %}">Profile</a></li>
                 <li><a class="nav-link" href="{% url 'coaching' %}">Coaching</a></li>
                 <li><a class="nav-link" href="{% url 'merchant_address' %}">Address</a></li>
                 <li><a class="nav-link" href="{% url 'add_branch' %}">Branch</a></li>
                 <li><a class="nav-link" href="{% url 'add_faculty' %}">Faculty</a></li>
                 <li><a class="nav-link" href="{% url 'add_batch' %}">Batch</a></li>
-                <li><a class="nav-link" href="{% url 'owner' %}">Owner</a></li>
                 <li><a class="nav-link" href="{% url 'payment_info' %}">Bank Details</a></li>
                 <li><a class="nav-link" href="{% url 'add_offer' %}">Offers</a></li>
                 <li><a class="nav-link" href="{% url 'add_discount' %}">Discounts</a></li>
