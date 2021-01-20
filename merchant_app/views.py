@@ -362,7 +362,7 @@ def merchant_payment(request):
         merchant = request.user
 
         try:
-            payment = BankAccountDetails.objects.get(coaching=coaching)
+            payment = BankAccountDetails.objects.get(user=merchant)
         except:
             payment = None
         if request.method == "POST":
@@ -380,9 +380,9 @@ def merchant_payment(request):
                 pan = None
             account_no = request.POST['number']
             if payment:
-                payment = BankAccountDetails.objects.filter(coaching=coaching).update(account_holder=account_holder,
+                payment = BankAccountDetails.objects.filter(user=merchant).update(account_holder=account_holder,
                                                                                       account_no=account_no, ifsc_code=ifsc, bank_name=bank_name, mobile_no=mobile)
-                payment = BankAccountDetails.objects.get(coaching=coaching)
+                payment = BankAccountDetails.objects.get(user=merchant)
                 if adhar:
                     payment.adhar_card = adhar
                 if pan:
@@ -390,11 +390,10 @@ def merchant_payment(request):
                 payment.save()
             else:
                 payment = BankAccountDetails(account_holder=account_holder, account_no=account_no, ifsc_code=ifsc, bank_name=bank_name,
-                                             adhar_card=adhar, pan_card=pan, coaching=coaching, mobile_no=mobile)
+                                             adhar_card=adhar, pan_card=pan, user=merchant, mobile_no=mobile)
                 payment.save()
             return redirect('payment_info')
-        context = {'merchant': request.user,
-                   'coaching': coaching, 'account': payment}
+        context = {'merchant': request.user, 'account': payment}
         return render(request, 'merchant/new_dashboard/payment.html', context)
 
 

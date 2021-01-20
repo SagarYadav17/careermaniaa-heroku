@@ -12,25 +12,12 @@
               <div class="row m-0">
                 <div class="col-12 col-md-12 col-lg-12 p-0">
                   <div class="card-header text-center">
-                    <h4>Owner Details</h4>
+                    <h4>Profile</h4>
                   </div>
                   <div class="card-body">
                     
                     <form method="POST" action="owner" enctype="multipart/form-data"> {% csrf_token %}
 
-                        <div class="form-group floating-addon">
-                            <center><img src="{{owner.owner_image.url}}" class="img-fluid" height="300" width="300" style="border-radius: 50%;margin: 10px;"></center>
-
-                            <label>Image</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                  
-                                </div>
-                              </div>
-                              <input id="Description" type="file" class="form-control" name="owner_image">
-                            </div>
-                          </div>
                       <div class="form-group floating-addon">
                         <label>Name</label>
                         <div class="input-group">
