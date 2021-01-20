@@ -22,11 +22,14 @@ urlpatterns = [
     path('reset_password_complete', auth_views.PasswordResetCompleteView.as_view(
     ), name='password_reset_complete'),
     path('activate/<uidb64>/<token>',
-         views.ActivateAccountView.as_view(), name="activate"),
+         views.ActivateAccountView.as_view(), name='activate'),
     path('science_coachings', views.science_coachings, name='science_coachings'),
     path('commerce_coachings', views.commerce_coachings,
          name='commerce_coachings'),
     path('other_coachings', views.other_coachings, name='other_coachings'),
+    path('jobs', views.jobs, name='jobs'),
+    path('job/<str:id>', views.job, name='job'),
+    path('job/apply/<str:id>', views.job_apply, name='job_apply'),
 
     path('add_to_cart/<str:id>', views.add_to_cart, name='add_to_cart'),
     path('cart', views.cart, name='cart'),
@@ -38,11 +41,11 @@ urlpatterns = [
     path('search', views.search, name='search'),
     path('about', views.about, name='about'),
 
-    path("checkout/<str:id>", views.checkout, name="checkout"),
-    path("payment", views.handlerequest, name="HandleRequest"),
-    path("user_profile", views.user_profile, name="user_profile"),
-    path("bookings", views.bookings, name="bookings"),
-    path("product/<str:id>", views.product, name="product"),
+    path('checkout/<str:id>', views.checkout, name='checkout'),
+    path('payment', views.handlerequest, name='HandleRequest'),
+    path('user_profile', views.user_profile, name='user_profile'),
+    path('bookings', views.bookings, name='bookings'),
+    path('product/<str:id>', views.product, name='product'),
 
-    path('reverify', views.reverifyAccount, name="reverify")
+    path('reverify', views.reverifyAccount, name='reverify')
 ]

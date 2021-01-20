@@ -23,7 +23,7 @@
                                 <tbody>
                                     {% for user in applicants %}
                                     <tr>
-                                        <td>{{user.email}}</td>
+                                        <td>{{user.applicant}}</td>
                                         <td><a href="{% url 'delete_applicants' id=user.id %}"><button
                                                     class="btn btn-lg btn-danger">Delete</button></a></td>
                                     </tr>

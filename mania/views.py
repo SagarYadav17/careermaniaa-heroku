@@ -84,7 +84,7 @@ class ActivateAccountView(View):
 
 
 def index(request):
-    try: 
+    try:
         city = request.session['loc']
     except:
         city = None
@@ -98,7 +98,7 @@ def index(request):
     courses = Course.objects.all()
     science_courses = Course.objects.filter(stream="Science")
     context = {'courses': courses,
-               'science_courses': science_courses, 'loc':city}
+               'science_courses': science_courses, 'loc': city}
     return render(request, 'user/index.html', context)
 
 
@@ -434,3 +434,26 @@ def product(request, id):
     context = {'course': course}
     print(context)
     return render(request, 'user/product.html', context)
+
+
+def jobs(request):
+    context = {
+        'jobs': Job.objects.all()
+    }
+    return render(request, 'user/jobs.html', context)
+
+
+def job(request, id):
+    context = {
+        'job': Job.objects.get(id=id)
+    }
+    return render(request, 'user/job.html', context)
+
+
+def job_apply(request, id):
+    try:
+        JobApplications.objects.create(
+            applicant=request.user, job_appication=Job.objects.get(id=id)).save()
+    except:
+        pass
+    return redirect('jobs')

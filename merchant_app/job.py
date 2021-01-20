@@ -46,7 +46,7 @@ def delete_job(request, id):
 @login_required(login_url='merchant/login')
 def applicants(request, id):
     context = {
-        'applicants': JobApplications.objects.filter(id=id)
+        'applicants': JobApplications.objects.filter(job_appication__id=id)
     }
 
     return render(request, 'merchant/new_dashboard/jobs/applicants.html', context)
@@ -56,4 +56,5 @@ def applicants(request, id):
 def delete_applicant(request, id):
     job = JobApplications.objects.get(id=id)
     job.delete()
-    return redirect('all_applicants')
+    return redirect('all_jobs')
+    

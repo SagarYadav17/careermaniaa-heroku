@@ -1,0 +1,42 @@
+{% include 'user/header.html' %}
+{% load static %}
+{% block content %}
+<div class="main">
+  <hr class="divider-w">
+  <section class="module-small">
+    <div class="container">
+      <center>
+        <h4 style="padding: 10px;">{{msg}}</h4>
+      </center>
+      <div class="row multi-columns-row">
+        {% for job in jobs %}
+        <div class="col-sm-6 col-md-4 col-lg-4">
+          <div class="singles_items">
+            <div class="education_block_grid style_2">
+              <div class="education_block_body">
+                <h4 class="bl-title"><a href="{% url 'job' id=job.id %}">{{job.title}}</a></h4>
+                <p>{{job.description}}</p>
+              </div>
+
+              <div class="cources_info_style3">
+                <ul>
+                  <li><i class="ti-user mr-2"></i>{{job.available_posts}}</li>
+                  <li><i class="ti-time mr-2"></i>6h 40min</li>
+                  <li><i class="ti-star text-warning mr-2"></i>4.7 Reviews</li>
+                </ul>
+              </div>
+
+              <div class="education_block_footer">
+
+                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i><a href="{% url 'job_apply' id=job.id %}"><button
+                      class="btn btn-success">Apply Now</button></a></div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+      </div>
+  </section>
+  {% endblock %}
+  {% include 'user/footer.html' %}

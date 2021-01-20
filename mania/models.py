@@ -185,6 +185,9 @@ class JobApplications(models.Model):
     job_appication = models.OneToOneField(Job, on_delete=models.CASCADE)
     status = models.CharField(choices=STATUS_CHOICES, default='Applied', max_length=20)
 
+    def __str__(self):
+        return self.applicant
+
 class UniversityType(models.Model):
     type = models.CharField(max_length=100)
 
