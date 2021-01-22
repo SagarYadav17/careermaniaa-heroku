@@ -10,7 +10,7 @@ urlpatterns = [
     path('merchant/register', views.register_merchant, name='merchant/register'),
     path('merchant/login', views.login_merchant, name='merchant/login'),
     path('merchant', views.merchant_dashboard, name='merchant'),
-    path('logout', views.logout_user, name='logout_user'),
+    path('logout', views.logout_merchant, name='merchant/logout'),
     path('merchant/forget-password', views.PasswordResetView.as_view(),
          name='merchant/forget-password'),
     path('merchant/reset_password_sent', views.PasswordResetDoneView.as_view(),

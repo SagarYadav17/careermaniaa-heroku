@@ -1,7 +1,6 @@
 import reverse_geocoder as rg
 from .paytm import Checksum
 from django.db.models import Q
-import json
 from datetime import datetime
 from django.shortcuts import render, redirect
 
@@ -12,17 +11,17 @@ from django.db import IntegrityError
 
 from django.http import HttpResponse, JsonResponse
 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_text
 from mania.utils import generate_token
 from django.core.mail import EmailMessage
-from django.conf import settings
 from django.contrib import messages
 from django.views import View
-from datetime import *
+
+from django.contrib.auth.decorators import login_required
 
 
 def send_confirmation_email(request, user):
@@ -151,6 +150,12 @@ def login_user(request):
             return render(request, 'user/login.html', {'error': 'Account doesn\'t found. Try signup'})
 
     return render(request, 'user/login.html')
+
+
+@login_required(login_url='merchant/login')
+def logout_user(request):
+    logout(request)
+    return redirect('merchant/login')
 
 
 def reverifyAccount(request):

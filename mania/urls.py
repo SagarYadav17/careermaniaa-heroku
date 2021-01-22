@@ -1,7 +1,5 @@
 from django.urls import path, include
-from . import views
-
-from django.contrib.auth.views import LoginView
+from mania import views
 
 from django.contrib.auth import views as auth_views
 
@@ -10,6 +8,7 @@ urlpatterns = [
 
     path('register_user', views.register_user, name='register_user'),
     path('login', views.login_user, name='login_user'),
+    path('logout', views.logout_user, name='logout_user'),
 
     path('filters', views.filters, name='filters'),
     path('products', views.products, name='products'),

@@ -1,25 +1,21 @@
 from django.shortcuts import render, redirect
 from mania.models import *
-from merchant_app.models import Merchant_Details
+from merchant_app.models import *
 
 from django.db import IntegrityError
 
-from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from mania.utils import generate_token
 from django.core.mail import EmailMessage
-from merchant_app.models import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
 from django.contrib import messages
 from datetime import *
-
-from urllib.parse import urlparse, urlunparse
 
 from django.contrib.auth.forms import PasswordResetForm
 
@@ -31,8 +27,6 @@ from django.utils.translation import gettext_lazy as _
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
-
-from django.conf import settings
 
 
 def merchant_view(request):
@@ -381,7 +375,7 @@ def merchant_payment(request):
             account_no = request.POST['number']
             if payment:
                 payment = BankAccountDetails.objects.filter(user=merchant).update(account_holder=account_holder,
-                                                                                      account_no=account_no, ifsc_code=ifsc, bank_name=bank_name, mobile_no=mobile)
+                                                                                  account_no=account_no, ifsc_code=ifsc, bank_name=bank_name, mobile_no=mobile)
                 payment = BankAccountDetails.objects.get(user=merchant)
                 if adhar:
                     payment.adhar_card = adhar
@@ -418,7 +412,7 @@ def merchant_profile(request):
 
 
 @login_required(login_url='merchant/login')
-def logout_user(request):
+def logout_merchant(request):
     logout(request)
     return redirect('index')
 
