@@ -2,80 +2,90 @@
 {% load static %}
 {% block content %}
 <div class="main">
-        <section class="module-small">
-          <div class="container">
-            <form class="row">
-              <div class="col-sm-4 mb-sm-20">
-                <select class="form-control">
-                  <option selected="selected">Default Sorting</option>
-                  <option>Popular</option>
-                  <option>Latest</option>
-                  <option>Average Price</option>
-                  <option>High Price</option>
-                  <option>Low Price</option>
-                </select>
+  <section class="module-small">
+    <div class="container">
+      <form class="row">
+        <div class="col-sm-4 mb-sm-20">
+          <select class="form-control">
+            <option selected="selected">Default Sorting</option>
+            <option>Popular</option>
+            <option>Latest</option>
+            <option>Average Price</option>
+            <option>High Price</option>
+            <option>Low Price</option>
+          </select>
+        </div>
+        <div class="col-sm-2 mb-sm-20">
+          <select class="form-control">
+            <option selected="selected">classes</option>
+            <option>insitution</option>
+          </select>
+        </div>
+        <div class="col-sm-3 mb-sm-20">
+          <select class="form-control">
+            <option selected="selected">All</option>
+            <option>Coats</option>
+            <option>Jackets</option>
+          </select>
+        </div>
+        <div class="col-sm-3">
+          <button class="btn btn-block btn-round btn-g" type="submit">Apply</button>
+        </div>
+      </form>
+    </div>
+  </section>
+  <hr class="divider-w">
+  <section class="module-small">
+    <div class="container">
+      <center>
+        <h4 style="padding: 10px;">{{msg}}</h4>
+      </center>
+      <div class="row multi-columns-row">
+        {% for course in courses %}
+        <div class="col-sm-6 col-md-4 col-lg-4">
+          <div class="singles_items">
+            <div class="education_block_grid style_2">
+              <div class="education_block_thumb n-shadow">
+                {% if course.coaching.logo %}
+                <a href="{% url 'product' id=course.id %}"><img src="{{course.coaching.logo.url}}" class="img-fluid"
+                    alt=""></a>
+                {% endif %}
+                <div class="cources_price">INR {{course.fees}}</div>
               </div>
-              <div class="col-sm-2 mb-sm-20">
-                <select class="form-control">
-                  <option selected="selected">classes</option>
-                  <option>insitution</option>
-                </select>
+
+              <div class="education_block_body">
+                <h4 class="bl-title"><a href="{% url 'product' id=course.id %}">{{course.name}}</a></h4>
+                <p>{{course.description}}</p>
               </div>
-              <div class="col-sm-3 mb-sm-20">
-                <select class="form-control">
-                  <option selected="selected">All</option>
-                  <option>Coats</option>
-                  <option>Jackets</option>
-              </select>
+
+              <div class="cources_info_style3">
+                <ul>
+                  <li><i class="ti-eye mr-2"></i>8682 Views</li>
+                  <li><i class="ti-time mr-2"></i>6h 40min</li>
+                  <li><i class="ti-star text-warning mr-2"></i>4.7 Reviews</li>
+                </ul>
               </div>
-              <div class="col-sm-3">
-                <button class="btn btn-block btn-round btn-g" type="submit">Apply</button>
+
+              <div class="education_block_footer">
+                <div class="education_block_author">
+                  {% if course.coaching.logo %}
+                  <div class="path-img"><a href="instructor-detail.html"><img src="{{course.coaching.logo.url}}"
+                        class="img-fluid" alt=""></a></div>
+                  {% endif %}
+                  <h5><a href="instructor-detail.html">{{course.coaching.name}}</a></h5>
+                </div>
+                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i><a href=""><button
+                      class="btn btn-success">Book Now</button></a></div>
               </div>
-            </form>
+              <center><a href="{% url 'add_to_cart' id=course.id %}"><button class="btn btn-warning"
+                    style="margin:5px">ADD TO CART</button></a></center>
+            </div>
           </div>
-        </section>
-        <hr class="divider-w">
-        <section class="module-small">
-          <div class="container">
-            <center><h4 style="padding: 10px;">{{msg}}</h4></center>
-            <div class="row multi-columns-row">
-                {% for course in courses %}
-                <div class="col-sm-6 col-md-4 col-lg-4">
-              <div class="singles_items">
-                <div class="education_block_grid style_2">
-                  <div class="education_block_thumb n-shadow">
-                    <a href="{% url 'product' id=course.id %}"><img src="{{course.coaching.logo.url}}" class="img-fluid" alt=""></a>
-                    <div class="cources_price">INR {{course.fees}}</div>
-                  </div>
-                  
-                  <div class="education_block_body">
-                    <h4 class="bl-title"><a href="{% url 'product' id=course.id %}">{{course.name}}</a></h4>
-                    <p>{{course.description}}</p>
-                  </div>
-                  
-                  <div class="cources_info_style3">
-                    <ul>
-                      <li><i class="ti-eye mr-2"></i>8682 Views</li>
-                      <li><i class="ti-time mr-2"></i>6h 40min</li>
-                      <li><i class="ti-star text-warning mr-2"></i>4.7 Reviews</li>
-                    </ul>
-                  </div>
-                  
-                  <div class="education_block_footer">
-                    <div class="education_block_author">
-                      <div class="path-img"><a href="instructor-detail.html"><img src="{{course.coaching.logo.url}}" class="img-fluid" alt=""></a></div>
-                      <h5><a href="instructor-detail.html">{{course.coaching.name}}</a></h5>
-                    </div>
-                    <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i><a href=""><button class="btn btn-success">Book Now</button></a></div>
-                  </div>
-                  <center><a href="{% url 'add_to_cart' id=course.id %}"><button class="btn btn-warning" style="margin:5px">ADD TO CART</button></a></center>
-                </div>	
-              </div>
-              </div>
-          {% endfor %}
-              </div>
-          
-          </div>
-        </section>
-{% endblock %}
-{% include 'user/footer.html' %}
+        </div>
+        {% endfor %}
+      </div>
+
+    </div>
+  </section>
+  {% endblock %}
+  {% include 'user/footer.html' %}

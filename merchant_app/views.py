@@ -58,7 +58,6 @@ def send_confirmation_email(request, user):
 
 def register_merchant(request):
     if request.method == "POST":
-        print(request.POST['register-type'])
         if request.POST['register-type'] == str('colleges'):
             try:
                 user = User.objects.create_merchant(
@@ -307,11 +306,9 @@ def merchant_messages(request):
         receiver = User.objects.get(is_superuser=True)
         if request.method == "POST":
             msg = request.POST['msg']
-            print(msg)
             message = Message(sender=request.user, receiver=receiver,
                               message=msg, timestamp=datetime.now())
             message.save()
-            print(message)
             return redirect('merchant_messages')
         messages = list(Message.objects.filter(
             sender=request.user).filter(receiver=receiver))
@@ -321,7 +318,6 @@ def merchant_messages(request):
         messages = sorted(messages, key=attrgetter('id'))
         context = {'messages': messages,
                    'merchant': request.user}
-        print(messages)
         return render(request, 'merchant/new_dashboard/chat.html', context)
 
 

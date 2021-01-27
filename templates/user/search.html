@@ -2,69 +2,73 @@
 {% load static %}
 {% block content %}
 <div class="main">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 col-md-12 col-sm-12">
-              <div class="banner-search shadow_high">
-                <div class="search_hero_wrapping">
-                  <form action="search" method="POST">{% csrf_token %}
-                  <div class="row">
-                  
-                    <div class="col-lg-5 col-md-5 col-sm-12 br-right">
-                      <div class="form-group">
-                        <div class="input-with-icon">
-                          <input type="text" class="form-control" placeholder="Search Course" name="keyword" value="{{keyword}}"/>
-                          <img src="{% static 'user_assets_new/img/search.svg' %}" class="search-icon" alt="" />
-                        </div>
-                      </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-12 col-sm-12">
+        <div class="banner-search shadow_high">
+          <div class="search_hero_wrapping">
+            <form action="search" method="POST">{% csrf_token %}
+              <div class="row">
+
+                <div class="col-lg-5 col-md-5 col-sm-12 br-right">
+                  <div class="form-group">
+                    <div class="input-with-icon">
+                      <input type="text" class="form-control" placeholder="Search Course" name="keyword"
+                        value="{{keyword}}" />
+                      <img src="{% static 'user_assets_new/img/search.svg' %}" class="search-icon" alt="" />
                     </div>
-                    
-                    <div class="col-lg-5 col-md-4 col-sm-12 small-pad">
-                      <div class="form-group">
-                        <div class="input-with-icon">
-                          <select id="c-category" class="form-control" name="city">
-                            <option value="">&nbsp;</option>
-                            <option value="Nagpur">Nagpur</option>
-                            <option value="Delhi">Delhi</option>
-                            <option value="Mumbai">Mumbai</option>
-                            <option value="Pune">Pune</option>
-                            <option value="Chandigadh">Chandigadh</option>
-                          </select>
-                          <img src="{% static 'user_assets_new/img/pin.svg' %}" class="search-icon" alt="" />
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div class="col-lg-2 col-md-3 col-sm-12 pl-0">
-                      <div class="form-group none">
-                        <input type="submit" class="btn search-btn full-width" value="Search">
-                      </div>
-                    </div>
-                    
                   </div>
-                  </form>
                 </div>
+
+                <div class="col-lg-5 col-md-4 col-sm-12 small-pad">
+                  <div class="form-group">
+                    <div class="input-with-icon">
+                      <select id="c-category" class="form-control" name="city">
+                        <option value="">&nbsp;</option>
+                        <option value="Nagpur">Nagpur</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Pune">Pune</option>
+                        <option value="Chandigadh">Chandigadh</option>
+                      </select>
+                      <img src="{% static 'user_assets_new/img/pin.svg' %}" class="search-icon" alt="" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-12 pl-0">
+                  <div class="form-group none">
+                    <input type="submit" class="btn search-btn full-width" value="Search">
+                  </div>
+                </div>
+
               </div>
-            </div>
+            </form>
           </div>
-        <hr class="divider-w">
-        <section class="module-small">
-          <div class="container">
-            <div class="row multi-columns-row">
-              {% for course in courses %}
-              <div class="col-sm-6 col-md-4 col-lg-4">
+        </div>
+      </div>
+    </div>
+    <hr class="divider-w">
+    <section class="module-small">
+      <div class="container">
+        <div class="row multi-columns-row">
+          {% for course in courses %}
+          <div class="col-sm-6 col-md-4 col-lg-4">
             <div class="singles_items">
               <div class="education_block_grid style_2">
                 <div class="education_block_thumb n-shadow">
-                  <a href="{% url 'product' id=course.id %}"><img src="{{course.coaching.logo.url}}" class="img-fluid" alt=""></a>
+                  {% if course.coaching.logo %}
+                  <a href="{% url 'product' id=course.id %}"><img src="{{course.coaching.logo.url}}" class="img-fluid"
+                      alt=""></a>
+                  {% endif %}
                   <div class="cources_price">INR {{course.fees}}</div>
                 </div>
-                
+
                 <div class="education_block_body">
                   <h4 class="bl-title"><a href="{% url 'product' id=course.id %}">{{course.name}}</a></h4>
                   <p>{{course.description}}</p>
                 </div>
-                
+
                 <div class="cources_info_style3">
                   <ul>
                     <li><i class="ti-eye mr-2"></i>8682 Views</li>
@@ -72,23 +76,28 @@
                     <li><i class="ti-star text-warning mr-2"></i>4.7 Reviews</li>
                   </ul>
                 </div>
-                
+
                 <div class="education_block_footer">
                   <div class="education_block_author">
-                    <div class="path-img"><a href="{% url 'product' id=course.id %}"><img src="{{course.coaching.logo.url}}" class="img-fluid" alt=""></a></div>
+                    {% if course.coaching.logo %}
+                    <div class="path-img"><a href="{% url 'product' id=course.id %}"><img
+                          src="{{course.coaching.logo.url}}" class="img-fluid" alt=""></a></div>
+                    {% endif %}
                     <h5><a href="{% url 'product' id=course.id %}">{{course.coaching.name}}</a></h5>
                   </div>
-                  <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i><a href=""><button class="btn btn-success">Book Now</button></a></div>
+                  <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i><a href=""><button
+                        class="btn btn-success">Book Now</button></a></div>
                 </div>
-                <center><a href="{% url 'add_to_cart' id=course.id %}"><button class="btn btn-warning" style="margin:5px">ADD TO CART</button></a></center>
-              </div>	
-            </div>
-            </div>
-        {% endfor %}
+                <center><a href="{% url 'add_to_cart' id=course.id %}"><button class="btn btn-warning"
+                      style="margin:5px">ADD TO CART</button></a></center>
+              </div>
             </div>
           </div>
-        </section>
+          {% endfor %}
+        </div>
       </div>
-    </div>
+    </section>
+  </div>
+</div>
 {% endblock %}
 {% include 'user/footer.html' %}

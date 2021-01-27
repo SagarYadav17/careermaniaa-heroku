@@ -93,7 +93,6 @@ def index(request):
         coordinates = lat, lng
         city = reverseGeocode(coordinates)
         request.session['loc'] = city
-        print(city)
     courses = Course.objects.all()
     science_courses = Course.objects.filter(stream="Science")
     context = {'courses': courses,
@@ -196,7 +195,6 @@ def products(request):
         return render(request, 'user/products.html', context)
     courses = Course.objects.all()
     context = {'courses': courses, 'msg': 'All Courses'}
-    print(courses)
     return render(request, 'user/products.html', context)
 
 
@@ -219,7 +217,6 @@ def filters(request):
         return render(request, 'user/products.html', context)
     courses = Course.objects.all()
     context = {'courses': courses}
-    print(courses)
     return render(request, 'user/products.html', context)
 
 
@@ -293,14 +290,11 @@ def delete_cartitem(request, id):
         cart = Cart.objects.get(id=id)
         cart.delete()
     else:
-        print("In else")
         courses = request.COOKIES
-        print(courses)
         for item in courses.items():
             if item[1] == id:
                 cookie_name = item[0]
                 break
-        print(cookie_name)
         res = HttpResponse("Item Deleted From your Cart.")
         res.delete_cookie(cookie_name)
         return res
@@ -356,10 +350,8 @@ def search(request):
         courses += Course.objects.filter(Q(name__icontains=keyword)
                                          | Q(description__icontains=keyword))
         if city:
-            print(city)
             courses = [course for course in courses if Address.objects.get(
                 user=course.coaching.merchant).city == city]
-        print(courses)
         return render(request, 'user/search.html', {'courses': courses, 'keyword': keyword})
     courses = Course.objects.all()
     return render(request, 'user/search.html', {'courses': courses})
@@ -424,7 +416,6 @@ def handlerequest(request):
 def bookings(request):
     if request.user in User.objects.all():
         courses = Registration.objects.filter(user=request.user)
-        print(courses)
         context = {'courses': courses}
         return render(request, 'user/bookings.html', context)
     return redirect('login_user')
@@ -437,7 +428,6 @@ def product(request, id):
         course = None
         return redirect('index')
     context = {'course': course}
-    print(context)
     return render(request, 'user/product.html', context)
 
 

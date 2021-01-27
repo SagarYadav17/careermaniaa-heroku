@@ -146,7 +146,9 @@
           <div class="singles_items">
             <div class="education_block_grid style_2">
               <div class="education_block_thumb n-shadow">
+                {% if course.coaching.logo %}
                 <a href="{% url 'product' id=course.id %}"><img src="{{course.coaching.logo.url}}" class="img-fluid" alt=""></a>
+                {% endif %}
                 <div class="cources_price">INR {{course.fees}}</div>
               </div>
               
@@ -165,7 +167,10 @@
               
               <div class="education_block_footer">
                 <div class="education_block_author">
+                  {% if course.coaching.logo %}
                   <div class="path-img"><a href="{% url 'product' id=course.id %}"><img src="{{course.coaching.logo.url}}" class="img-fluid" alt=""></a></div>
+
+                  {% endif %}
                   <h5><a href="{% url 'product' id=course.id %}">{{course.coaching.name}}</a></h5>
                 </div>
                 <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i><a href="{% url 'checkout' id=course.id %}"><button class="btn btn-success">Book Now</button></a></div>
@@ -211,7 +216,9 @@
           <div class="singles_items">
             <div class="education_block_grid style_2">
               <div class="education_block_thumb n-shadow">
+                {% if course.coaching.logo %}
                 <a href="{% url 'product' id=course.id %}"><img src="{{course.coaching.logo.url}}" class="img-fluid" alt=""></a>
+                {% endif %}
                 <div class="cources_price">INR {{course.fees}}</div>
               </div>
               
@@ -230,7 +237,9 @@
               
               <div class="education_block_footer">
                 <div class="education_block_author">
+                  {% if course.coaching.logo %}
                   <div class="path-img"><a href="{% url 'product' id=course.id %}"><img src="{{course.coaching.logo.url}}" class="img-fluid" alt=""></a></div>
+                  {% endif %}
                   <h5><a href="{% url 'product' id=course.id %}">{{course.coaching.name}}</a></h5>
                 </div>
                 <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i><a href="{% url 'checkout' id=course.id %}"><button class="btn btn-success">Book Now</button></a></div>
