@@ -14,6 +14,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
+from django.http import JsonResponse
 from django.contrib import messages
 from datetime import *
 
@@ -54,6 +55,23 @@ def send_confirmation_email(request, user):
     )
 
     email_message.send(fail_silently=False)
+
+
+def reverifyAccount(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        try:
+            user = User.objects.get(email=email)
+            if not user.is_verified:
+                send_confirmation_email(request, user)
+                return JsonResponse({'message': 'Check your mail'})
+            if user.is_verified:
+                return JsonResponse({'message': 'Account is already verified'})
+
+        except:
+            return redirect('merchant/reverify')
+
+    return render(request, 'merchant/merchant-reverify.html')
 
 
 def register_merchant(request):

@@ -9,6 +9,7 @@ urlpatterns = [
 
     path('merchant/register', views.register_merchant, name='merchant/register'),
     path('merchant/login', views.login_merchant, name='merchant/login'),
+    path('merchant/reverify', views.reverifyAccount, name='merchant/reverify'),
     path('merchant', views.merchant_dashboard, name='merchant'),
     path('logout', views.logout_merchant, name='merchant/logout'),
     path('merchant/forget-password', views.PasswordResetView.as_view(),

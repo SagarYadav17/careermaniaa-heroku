@@ -1,0 +1,64 @@
+{% load static %}
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial scale 1.0">
+    <meta name="description" content="Merchant signup page">
+    <meta name="author" content="Indranil and Moumita">
+
+    <title>careermania-signup</title>
+    <link rel="stylesheet" href="{% static 'new-merchant/vendor/bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'new-merchant/css/login.css' %}">
+</head>
+
+<body>
+    <div class="main_body">
+        <div class="container register">
+            <div class="col-md-5 register-right">
+                <div class="logo">
+                    <a href="{% url 'merchant_view' %}"><img src="{% static 'new-merchant/asset/logo1.png' %}"></a><br>
+                    <div class="cword"><span style="color:  #da0b4e;">Career</span>Maniaa </div>
+                </div>
+                <div class="tab-content" id="myTabContent">
+                    <div class="row register-form">
+                        <div class="col-md-12">
+                            <form method="POST">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="Name"> E-mail: </label><br>
+                                    <input id="username" name="email" type="text" class="form-control"
+                                        autocomplete="email" required placeholder="example@something.com"
+                                        style="border-radius: 20px">
+                                </div>
+                                <p class="error-message">{{message}}</p>
+                                <div>
+                                    <p><a href="{% url 'merchant/login' %}"><small style="color: #da0b4e;">Back to
+                                                Login</small></a></p>
+
+                                </div>
+                                <div class="footer-buttons">
+                                    <table class="table table-borderless" style="width: 100%;">
+                                        <tr>
+                                            <td>
+                                                <input type="submit" class="btnLogin" id="login_btn" value="Submit" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'new-merchant/vendor/jquery/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'new-merchant/vendor/bootstrap/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+</html>
