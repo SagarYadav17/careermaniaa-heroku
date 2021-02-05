@@ -85,6 +85,7 @@ def register_merchant(request):
                     merchant_type=1
                 )
                 user.save()
+                send_confirmation_email(request, user)
 
                 user_id = User.objects.get(email=request.POST['email'])
                 college = College.objects.create(
@@ -101,7 +102,6 @@ def register_merchant(request):
                     city=request.POST['city']
                 )
                 college.save()
-                send_confirmation_email(request, user)
                 return redirect('merchant/login')
 
             except IntegrityError as e:
@@ -121,6 +121,7 @@ def register_merchant(request):
                     merchant_type=2
                 )
                 user.save()
+                send_confirmation_email(request, user)
 
                 user_id = User.objects.get(email=request.POST['email'])
                 coaching = Coaching.objects.create(
