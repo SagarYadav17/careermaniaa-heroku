@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+from os import environ
 from pathlib import Path
 import dj_database_url  # for heroku database
 from smtplib import SMTP_SSL    # for e-mail service
@@ -160,7 +161,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = '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'
+EMAIL_HOST_PASSWORD = environ.get('SENDGRID_API_KEY')
 EMAIL_USE_TLS = True
 
 SITE_ID = 1
