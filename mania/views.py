@@ -154,7 +154,7 @@ def login_user(request):
 @login_required(login_url='merchant/login')
 def logout_user(request):
     logout(request)
-    return redirect('merchant/login')
+    return redirect('login_user')
 
 
 def reverifyAccount(request):

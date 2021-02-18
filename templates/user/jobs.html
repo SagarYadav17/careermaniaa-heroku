@@ -27,9 +27,14 @@
               </div>
 
               <div class="education_block_footer">
-
-                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i><a href="{% url 'job_apply' id=job.id %}"><button
-                      class="btn btn-success">Apply Now</button></a></div>
+                {% if request.user.is_authenticated %}
+                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i><a
+                    href="{% url 'job_apply' id=job.id %}"><button class="btn btn-success">Apply Now</button></a></div>
+                {% else %}
+                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"><a
+                      href="{% url 'login_user' %}"></i><button class="btn btn-danger">Login to
+                    Apply</button></a></div>
+                {% endif %}
               </div>
             </div>
           </div>

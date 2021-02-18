@@ -1,63 +1,67 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
-  <head>
-    <title>CAREERMANIAA</title>
-    <!--  
+
+<head>
+  <title>CAREERMANIAA</title>
+  <!--  
     Favicons
     =============================================
     -->
-    <meta charset="utf-8" />
-		<meta name="author" content="www.frebsite.nl" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-		 
-    <!-- Custom CSS -->
-    <link href="{% static 'user_assets_new/css/styles.css' %}" rel="stylesheet">
-		
-		<!-- Custom Color Option -->
-		<link href="{% static 'user_assets_new/css/colors.css' %}" rel="stylesheet">
-    
-    <link  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <meta charset="utf-8" />
+  <meta name="author" content="www.frebsite.nl" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <!-- Custom CSS -->
+  <link href="{% static 'user_assets_new/css/styles.css' %}" rel="stylesheet">
+
+  <!-- Custom Color Option -->
+  <link href="{% static 'user_assets_new/css/colors.css' %}" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
 
-    </head>
-  <body class="red-skin" onload="get_loc()">
-    <script>
-    
-      function showPosition() {
-          if(navigator.geolocation) {
-              navigator.geolocation.getCurrentPosition(function(position) {
-                  var positionInfo = "Your current position is (" + "Latitude: " + position.coords.latitude + ", " + "Longitude: " + position.coords.longitude + ")"
-                  var myform = document.getElementById("myform");
-                  document.getElementById("lat").value = position.coords.latitude;
-                  document.getElementById("lng").value = position.coords.longitude;
-                  myform.submit();
-              });
-          } else {
-              alert("Sorry, your browser does not support HTML5 geolocation.");
-          }
+</head>
+
+<body class="red-skin" onload="get_loc()">
+  <script>
+
+    function showPosition() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          var positionInfo = "Your current position is (" + "Latitude: " + position.coords.latitude + ", " + "Longitude: " + position.coords.longitude + ")"
+          var myform = document.getElementById("myform");
+          document.getElementById("lat").value = position.coords.latitude;
+          document.getElementById("lng").value = position.coords.longitude;
+          myform.submit();
+        });
+      } else {
+        alert("Sorry, your browser does not support HTML5 geolocation.");
       }
+    }
   </script>
   <form action="products" method="POST" id="myform">{% csrf_token %}
-      <input type="hidden" value="" name="lat" id="lat">
-      <input type="hidden" value="" name="lng" id="lng">
+    <input type="hidden" value="" name="lat" id="lat">
+    <input type="hidden" value="" name="lng" id="lng">
   </form>
   {% if loc %}
-    <script></script>
+  <script></script>
   {% else %}
   <script>
-    function get_loc(){
-      if(navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    var positionInfo = "Your current position is (" + "Latitude: " + position.coords.latitude + ", " + "Longitude: " + position.coords.longitude + ")"
-                    var myform = document.getElementById("reloadform");
-                    document.getElementById("lati").value = position.coords.latitude;
-                    document.getElementById("lngi").value = position.coords.longitude;
-                    myform.submit();
-                });
-            } else {
-                alert("Sorry, your browser does not support HTML5 geolocation.");
-            }
+    function get_loc() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          var positionInfo = "Your current position is (" + "Latitude: " + position.coords.latitude + ", " + "Longitude: " + position.coords.longitude + ")"
+          var myform = document.getElementById("reloadform");
+          document.getElementById("lati").value = position.coords.latitude;
+          document.getElementById("lngi").value = position.coords.longitude;
+          myform.submit();
+        });
+      } else {
+        alert("Sorry, your browser does not support HTML5 geolocation.");
+      }
     }
   </script>
   <form action="{% url 'index' %}" method="POST" id="reloadform">{% csrf_token %}
@@ -67,89 +71,91 @@
   {% endif %}
 
   <div id="main-wrapper">
-			<div class="header header-light">
-				<div class="container">
-					<nav id="navigation" class="navigation navigation-landscape">
-						<div class="nav-header">
-							<a class="nav-brand" href="/">
-								<img src="{% static 'user_assets_new/img/Asset 2.png' %}" class="logo" alt="" width=60 height=100 />
-							</a>
-							<div class="nav-toggle"></div>
-						</div>
-						<div class="nav-menus-wrapper" style="transition-property: none;">
-							<ul class="nav-menu">
-							
-								<li class="active"><a href="/">Home</a>
-                </li>
-                
-                <li class=""><a href="about">About</a>
-                </li>
-                
-                <li class=""><a onclick="showPosition()">Near By</a>
-								</li>
-								
-								<li><a href="">Courses<span class="submenu-indicator"></span></a>
-									<ul class="nav-dropdown nav-submenu" role="menu">
-										<li><a href="science_coachings">Science</a>
-                    </li>
-                    <li><a href="commerce_coachings">Commerce</a>
-                    </li>
-                    <li><a href="other_coachings">Humanities</a>
-										</li>
-									</ul>
-                </li>
-                
-                <li><a href="#">Contact</a></li>
-								
-								<li><a href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i></a></li>
-                
-                <li><a href="{% url 'wishlist' %}"><i class="fa fa-heart"></i></a></li>
-								
-							</ul>
-							
-							<ul class="nav-menu nav-menu-social align-to-right">
-                {% if user.username %}
-                <li><a href=""><i class="fa fa-user"></i><span class="submenu-indicator"></span></a>
-									<ul class="nav-dropdown nav-submenu" role="menu">
-										<li><a>{{user.username}}</a>
-                    </li>
-                    <li><a href="{% url 'user_profile' %}">Profile</a>
-                    </li>
+    <div class="header header-light">
+      <div class="container">
+        <nav id="navigation" class="navigation navigation-landscape">
+          <div class="nav-header">
+            <a class="nav-brand" href="/">
+              <img src="{% static 'user_assets_new/img/Asset 2.png' %}" class="logo" alt="" width=60 height=100 />
+            </a>
+            <div class="nav-toggle"></div>
+          </div>
+          <div class="nav-menus-wrapper" style="transition-property: none;">
+            <ul class="nav-menu">
+
+              <li class="active"><a href="/">Home</a>
+              </li>
+
+              <li class=""><a href="about">About</a>
+              </li>
+
+              <li class=""><a onclick="showPosition()">Near By</a>
+              </li>
+
+              <li><a href="">Courses<span class="submenu-indicator"></span></a>
+                <ul class="nav-dropdown nav-submenu" role="menu">
+                  <li><a href="science_coachings">Science</a>
+                  </li>
+                  <li><a href="commerce_coachings">Commerce</a>
+                  </li>
+                  <li><a href="other_coachings">Humanities</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li><a href="#">Contact</a></li>
+
+              <li><a href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i></a></li>
+
+              <li><a href="{% url 'wishlist' %}"><i class="fa fa-heart"></i></a></li>
+
+            </ul>
+
+            <ul class="nav-menu nav-menu-social align-to-right">
+              {% if user.username %}
+              <li><a href=""><i class="fa fa-user"></i><span class="submenu-indicator"></span></a>
+                <ul class="nav-dropdown nav-submenu" role="menu">
+                  <li><a>{{user.username}}</a>
+                  </li>
+                  <li><a href="{% url 'user_profile' %}">Profile</a>
+                  </li>
                   <li><a href="{% url 'bookings' %}">Bookings</a>
                   </li>
-									</ul>
-                </li>
-                <li>
-									<a href="logout"><button class="btn btn-danger" style="border-radius: 20px;margin-top:-7px">Logout</button></a>
-								</li>
-                {% else %}
-								<li class="login_click light">
-									<a href="{% url 'login_user' %}">Sign in</a>
-								</li>
-								<li class="login_click theme-bg">
-									<a href="{% url 'register_user' %}">Sign up</a>
-                </li>
-                {% endif %}
-                {% if loc %}
-                <li><a>Your Location: {{loc}}</a></li>
-                {% endif %}
-							</ul>
-						</div>
-					</nav>
-				</div>
-			</div>
-			<!-- End Navigation -->
+                </ul>
+              </li>
+              <li>
+                <a href="{% url 'logout_user' %}"><button class="btn btn-danger"
+                    style="border-radius: 20px;margin-top:-7px">Logout</button></a>
+              </li>
+              {% else %}
+              <li class="login_click light">
+                <a href="{% url 'login_user' %}">Sign in</a>
+              </li>
+              <li class="login_click theme-bg">
+                <a href="{% url 'register_user' %}">Sign up</a>
+              </li>
+              {% endif %}
+              {% if loc %}
+              <li><a>Your Location: {{loc}}</a></li>
+              {% endif %}
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <!-- End Navigation -->
 
-<!--JavaScripts
+    <!--JavaScripts
     =============================================
     -->
     <script src="{% static 'user_assets_new/js/jquery.min.js' %}"></script>
-		<script src="{% static 'user_assets_new/js/popper.min.js' %}"></script>
-		<script src="{% static 'user_assets_new/js/bootstrap.min.js' %}"></script>
-		<script src="{% static 'user_assets_new/js/select2.min.js' %}"></script>
-		<script src="{% static 'user_assets_new/js/slick.js' %}"></script>
-		<script src="{% static 'user_assets_new/js/jquery.counterup.min.js' %}"></script>
-		<script src="{% static 'user_assets_new/js/counterup.min.js' %}"></script>
-		<script src="{% static 'user_assets_new/js/custom.js' %}"></script>
-  </body>
+    <script src="{% static 'user_assets_new/js/popper.min.js' %}"></script>
+    <script src="{% static 'user_assets_new/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'user_assets_new/js/select2.min.js' %}"></script>
+    <script src="{% static 'user_assets_new/js/slick.js' %}"></script>
+    <script src="{% static 'user_assets_new/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'user_assets_new/js/counterup.min.js' %}"></script>
+    <script src="{% static 'user_assets_new/js/custom.js' %}"></script>
+</body>
+
 </html>
