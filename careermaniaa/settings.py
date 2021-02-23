@@ -161,8 +161,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = environ.get('SENDGRID_API_KEY')
+EMAIL_HOST_PASSWORD = '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'
 EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'sagaryadav.careermaniaa@gmail.com'
 
 SITE_ID = 1
 
