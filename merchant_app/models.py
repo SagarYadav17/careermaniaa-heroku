@@ -240,8 +240,6 @@ class Booking(models.Model):
     status = models.CharField(choices=BOOKING_STATUS,
                               max_length=20, default=None)
 
-    def __str__(self):
-        return self.user
 
 
 class JobRecruiter(models.Model):
