@@ -34,6 +34,9 @@
                   <div class="input-with-icon">
                     <select id="c-category" class="form-control" name="city">
                       <option value="">&nbsp;</option>
+                      {% if loc %}
+                      <option value="{{loc}}">Current Location: {{loc}}</option>
+                      {% endif %}
                       <option value="Nagpur">Nagpur</option>
                       <option value="Delhi">Delhi</option>
                       <option value="Mumbai">Mumbai</option>
