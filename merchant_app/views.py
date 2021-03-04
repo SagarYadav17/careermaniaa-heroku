@@ -102,7 +102,7 @@ def register_merchant(request):
                     city=request.POST['city']
                 )
                 college.save()
-                return redirect('merchant/login')
+                return redirect('merchant/register/confirm')
 
             except IntegrityError as e:
                 if str(e) == 'UNIQUE constraint failed: mania_user.username':
@@ -143,7 +143,7 @@ def register_merchant(request):
                                          coaching=coaching)
                 owner.save()
 
-                return redirect('merchant/login')
+                return redirect('merchant/register/confirm')
 
             except IntegrityError as e:
                 if str(e) == 'UNIQUE constraint failed: mania_user.username':
@@ -179,7 +179,7 @@ def register_merchant(request):
                 )
                 job.save()
 
-                return redirect('merchant/login')
+                return redirect('merchant/register/confirm')
 
             except IntegrityError as e:
                 if str(e) == 'UNIQUE constraint failed: mania_user.username':
@@ -188,6 +188,7 @@ def register_merchant(request):
                     messages.info(request, 'EmailID is already in use')
                 else:
                     messages.info(request, 'Something went wrong')
+
     university_types = UniversityType.objects.all()
     class_types = ClassType.objects.all()
     industry_types = IndustryType.objects.all()
@@ -195,6 +196,10 @@ def register_merchant(request):
     context = {'university_types': university_types, 'class_types': class_types,
                'industry_types': industry_types, 'institution_types': institution_types}
     return render(request, "merchant/signup.html", context)
+
+
+def signupConfirm(request):
+    return render(request, 'merchant/signupConfirm.html')
 
 
 def login_merchant(request):

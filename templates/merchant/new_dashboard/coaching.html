@@ -1,117 +1,125 @@
 {% include 'merchant/new_dashboard/header.html' %}
 {% load static %}
 {% block content %}
-    <section class="section">
-      <div class="container mt-5">
-        <div class="row">
-          <div class="col-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1">
-            <div class="login-brand">
-             
-            </div>
-            <div class="card card-primary">
-              <div class="row m-0">
-                <div class="col-12 col-md-12 col-lg-12 p-0">
-                  <div class="card-header text-center">
-                    <h4>Update Profile</h4>
-                  </div>
-                  <div class="card-body">
-                    <form method="POST" action="coaching" enctype="multipart/form-data"> {% csrf_token %}
+<section class="section">
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1">
+        <div class="login-brand">
 
-                      <div class="form-group floating-addon">
-                        <label>Name Of Coaching</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text">
-                              
-                            </div>
-                          </div>
-                          <input id="name" type="text" class="form-control" name="name" autofocus placeholder="Name" value="{{coaching.name}}" required>
-                        </div>
-                      </div>
-                      <div class="form-group floating-addon">
-                        <label>Registration Number</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text">
-                              
-                            </div>
-                          </div>
-                          <input id="Description" type="text" class="form-control" name="reg" placeholder="Registration Number" value="{{coaching.registration_number}}" required>
-                        </div>
-                      </div>
-                      <div class="form-group floating-addon">
-                        <label>Country</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text">
-                              
-                            </div>
-                          </div>
-                          <input id="Description" type="text" class="form-control" name="country" placeholder="Country" value="{{coaching.country}}" required>
-                        </div>
-                      </div>
-                      <div class="form-group floating-addon">
-                        <label>State</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text">
-                              
-                            </div>
-                          </div>
-                          <input id="Description" type="text" class="form-control" name="state" placeholder="State" value="{{coaching.state}}" required>
-                        </div>
-                      </div>
-                      <div class="form-group floating-addon">
-                        <label>Address</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text">
-                              
-                            </div>
-                          </div>
-                          <input id="Description" type="text" class="form-control" name="address" placeholder="Address" value="{{coaching.address}}" required>
-                        </div>
-                      </div>
-                      <div class="form-group floating-addon">
-                        <label>Director Name</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text">
-                              
-                            </div>
-                          </div>
-                          <input id="Description" type="text" class="form-control" name="director" placeholder="Director Name" value="{{coaching.director_name}}" required>
-                        </div>
-                      </div>
-                      <div class="form-group floating-addon">
-                        <label>Phone Number</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text">
-                              
-                            </div>
-                          </div>
-                          <input id="Description" type="text" class="form-control" name="phone" placeholder="Phone Number" value="{{coaching.phone_number}}" required>
-                        </div>
-                      </div>
-                      <center>
-                        <button type="submit" class="btn btn-round btn-lg btn-primary">
-                          Submit
-                        </button></center>
-                    </form>
-                  </div>
-                </div>
-              </div>
-                  
-            </div>
-                
-            
-          </div>
-              
         </div>
-      </div>
-    </section>
+        <div class="card card-primary">
+          <div class="row m-0">
+            <div class="col-12 col-md-12 col-lg-12 p-0">
+              <div class="card-header text-center">
+                <h4>Update Profile</h4>
+              </div>
+              <div class="card-body">
+                <form method="POST" action="coaching" enctype="multipart/form-data"> {% csrf_token %}
 
-    
+                  <div class="form-group floating-addon">
+                    <label>Name Of Coaching</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+
+                        </div>
+                      </div>
+                      <input id="name" type="text" class="form-control" name="name" autofocus placeholder="Name"
+                        value="{{coaching.name}}" required>
+                    </div>
+                  </div>
+                  <div class="form-group floating-addon">
+                    <label>Registration Number</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+
+                        </div>
+                      </div>
+                      <input id="Description" type="text" class="form-control" name="reg"
+                        placeholder="Registration Number" value="{{coaching.registration_number}}" required>
+                    </div>
+                  </div>
+                  <div class="form-group floating-addon">
+                    <label>Country</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+
+                        </div>
+                      </div>
+                      <input id="Description" type="text" class="form-control" name="country" placeholder="Country"
+                        value="{{coaching.country}}" required>
+                    </div>
+                  </div>
+                  <div class="form-group floating-addon">
+                    <label>State</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+
+                        </div>
+                      </div>
+                      <input id="Description" type="text" class="form-control" name="state" placeholder="State"
+                        value="{{coaching.state}}" required>
+                    </div>
+                  </div>
+                  <div class="form-group floating-addon">
+                    <label>Address</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+
+                        </div>
+                      </div>
+                      <input id="Description" type="text" class="form-control" name="address" placeholder="Address"
+                        value="{{coaching.address}}" required>
+                    </div>
+                  </div>
+                  <div class="form-group floating-addon">
+                    <label>Director Name</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+
+                        </div>
+                      </div>
+                      <input id="Description" type="text" class="form-control" name="director"
+                        placeholder="Director Name" value="{{coaching.director_name}}" required>
+                    </div>
+                  </div>
+                  <div class="form-group floating-addon">
+                    <label>Phone Number</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+
+                        </div>
+                      </div>
+                      <input id="Description" type="text" class="form-control" name="phone" placeholder="Phone Number"
+                        value="{{coaching.phone_number}}" required>
+                    </div>
+                  </div>
+                  <center>
+                    <button type="submit" class="btn btn-round btn-lg btn-primary">
+                      Submit
+                    </button>
+                  </center>
+                </form>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
   </div>
+</section>
+
+
+</div>
 {% endblock %}

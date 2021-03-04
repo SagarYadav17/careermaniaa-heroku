@@ -241,7 +241,6 @@ class Booking(models.Model):
                               max_length=20, default=None)
 
 
-
 class JobRecruiter(models.Model):
     user = models.ForeignKey('mania.User', on_delete=models.CASCADE)
     contact_no = models.BigIntegerField()

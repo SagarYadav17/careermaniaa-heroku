@@ -6,6 +6,19 @@ from mania.models import JobApplications
 
 @login_required(login_url='merchant/login')
 def profile(request):
+    if request.method == "POST":
+        JobRecruiter.objects.update(
+            company_name=request.POST['company_name'],
+            registration_no=request.POST['reg'],
+            country=request.POST['country'],
+            state=request.POST['state'],
+            city=request.POST['city'],
+            company_address=request.POST['address'],
+            director_name=request.POST['director'],
+            contact_no=request.POST['phone']
+        )
+        return redirect('job/profile')
+
     context = {
         'user': JobRecruiter.objects.get(user=request.user)
     }
@@ -23,6 +36,7 @@ def add_job(request):
             skills=request.POST['skills'],
             available_posts=request.POST['available_posts']
         ).save()
+
         return redirect('add_job')
 
     return render(request, 'merchant/new_dashboard/jobs/add_job.html')
@@ -57,4 +71,3 @@ def delete_applicant(request, id):
     job = JobApplications.objects.get(id=id)
     job.delete()
     return redirect('all_jobs')
-    

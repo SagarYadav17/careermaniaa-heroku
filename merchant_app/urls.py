@@ -8,6 +8,8 @@ urlpatterns = [
     path('contact', views.contact, name='contact'),
 
     path('merchant/register', views.register_merchant, name='merchant/register'),
+    path('merchant/register/confirm', views.signupConfirm,
+         name='merchant/register/confirm'),
     path('merchant/login', views.login_merchant, name='merchant/login'),
     path('merchant/reverify', views.reverifyAccount, name='merchant/reverify'),
     path('merchant', views.merchant_dashboard, name='merchant'),
@@ -87,7 +89,7 @@ urlpatterns = [
          job.applicants, name='all_applicants'),
 
     # COLLEGES
-    path('merchant/colllege/profile', college.profile, name='college/profile'),
+    path('merchant/college/profile', college.profile, name='college/profile'),
     path('merchant/college/members',
          college.faculty_members, name='faculty_members'),
     path('merchant/college/member/delete<str:id>',

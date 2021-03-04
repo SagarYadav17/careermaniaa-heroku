@@ -6,9 +6,19 @@ from merchant_app.models import College, CollegeFacultyMember, CollegeCourse
 
 @login_required(login_url='merchant/login')
 def profile(request):
+    if request.method == "POST":
+        College.objects.update(
+            contact_no=request.POST['phone'],
+            college_address=request.POST['address'],
+            college_name=request.POST['college_name'],
+            chairman=request.POST['chairman']
+        )
+        return redirect('college/profile')
+
     context = {
         'college': College.objects.get(user=request.user)
     }
+
     return render(request, 'merchant/new_dashboard/colleges/profile.html', context)
 
 
@@ -22,6 +32,7 @@ def faculty_members(request):
         )
         member.save()
         return redirect('faculty_members')
+
     context = {
         'members': CollegeFacultyMember.objects.filter(college=College.objects.get(user=request.user)),
         'total': len(CollegeFacultyMember.objects.filter(college=College.objects.get(user=request.user)))
