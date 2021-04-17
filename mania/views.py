@@ -316,21 +316,23 @@ def wishlist(request):
     else:
         return redirect('login_user')
 
-
+@login_required(login_url='user/login')
 def add_to_wishlist(request, id):
     if request.user in list(User.objects.all()):
         course = Course.objects.get(id=id)
         user = request.user
         wishlist = Wishlist(user=user, course=course)
         wishlist.save()
-        return HttpResponse("Item added to wishlist")
+        return redirect("wishlist")
 
 
 def delete_wishlistitem(request, id):
     if request.user in list(User.objects.all()):
         wishlist = Wishlist.objects.get(id=id)
         wishlist.delete()
-        return redirect('cart')
+        return redirect('wishlist')
+    else:
+        return redirect('login_user')
 
 
 def about(request):
@@ -360,13 +362,12 @@ def search(request):
 def checkout(request, id):
     if request.user in User.objects.all():
         user = request.user
-        address = Address.objects.get(user=user)
         course = Course.objects.get(id=id)
         fees = str(course.fees)
         now = datetime.now()
         registration_id = str(now.year) + str(now.month) + str(now.day) + str(now.hour) + str(now.minute) + str(
             now.second)
-        registration = Registration(user=user, address=address, course=course, fees=str(
+        registration = Registration(user=user, course=course, fees=str(
             fees), registration_id=registration_id)
         registration.save()
 

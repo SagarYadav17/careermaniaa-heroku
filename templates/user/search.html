@@ -89,7 +89,8 @@
                         class="btn btn-success">Book Now</button></a></div>
                 </div>
                 <center><a href="{% url 'add_to_cart' id=course.id %}"><button class="btn btn-warning"
-                      style="margin:5px">ADD TO CART</button></a></center>
+                      style="margin:5px">ADD TO CART</button></a>
+                      <a href="{% url 'add_to_wishlist' id=course.id %}"><button class="btn btn-info" style="margin:5px">ADD TO Wishlist</button></a></center>
               </div>
             </div>
           </div>

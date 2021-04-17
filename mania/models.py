@@ -151,7 +151,6 @@ class Wishlist(models.Model):
 
 class Registration(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    address = models.ForeignKey(Address, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=20, default="")
     last_name = models.CharField(max_length=20, default="")
     mobile = models.CharField(max_length=15, default="")

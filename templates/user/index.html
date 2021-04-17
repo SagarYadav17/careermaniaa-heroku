@@ -178,7 +178,8 @@
                 </div>
                 <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i><a href="{% url 'checkout' id=course.id %}"><button class="btn btn-success">Book Now</button></a></div>
               </div>
-              <center><a href="{% url 'add_to_cart' id=course.id %}"><button class="btn btn-warning" style="margin:5px">ADD TO CART</button></a></center>
+              <center><a href="{% url 'add_to_cart' id=course.id %}"><button class="btn btn-warning" style="margin:5px">ADD TO CART</button></a>
+                <a href="{% url 'add_to_wishlist' id=course.id %}"><button class="btn btn-info" style="margin:5px">ADD TO Wishlist</button></a></center>
             </div>	
           </div>
           {% endfor %}
