@@ -1,8 +1,9 @@
 import reverse_geocoder as rg
-from .paytm import Checksum
 from django.db.models import Q
 from datetime import datetime
 from django.shortcuts import render, redirect
+import os
+import razorpay
 
 from mania.models import *
 from merchant_app.models import *
@@ -359,59 +360,28 @@ def search(request):
     return render(request, 'user/search.html', {'courses': courses})
 
 
-def checkout(request, id):
+from django.views.decorators.csrf import csrf_exempt
+
+def payment(request, id):
     if request.user in User.objects.all():
         user = request.user
         course = Course.objects.get(id=id)
         fees = str(course.fees)
-        now = datetime.now()
-        registration_id = str(now.year) + str(now.month) + str(now.day) + str(now.hour) + str(now.minute) + str(
-            now.second)
-        registration = Registration(user=user, course=course, fees=str(
-            fees), registration_id=registration_id)
+        amount = int(fees)
+        registration = Registration(user=user, course=course, fees=str(fees))
         registration.save()
-
-        param_dict = {
-
-            'MID': 'MerchantID',
-            'ORDER_ID': str(registration.registration_id),
-            'TXN_AMOUNT': str(fees),
-            'CUST_ID': user.email,
-            'INDUSTRY_TYPE_ID': 'Retail',
-            'WEBSITE': 'WEBSTAGING',
-            'CHANNEL_ID': 'WEB',
-            'CALLBACK_URL': 'http://careermaniaa.herokuapp.com/payment',
-
-        }
-        param_dict['CHECKSUMHASH'] = Checksum.generate_checksum(
-            param_dict, 'MerchantKey')
-        return render(request, 'user/paytm.html', {'param_dict': param_dict})
-
-    return redirect('register_user')
+        client = razorpay.Client(auth=(os.getenv('razorpaykey'), os.getenv('razorpaysecret')))
+        response = client.order.create({'amount':amount,'currency':'INR','payment_capture':1})
+        print(response)
+        context = {'response':response}
+        return render(request,"user/payment.html",context)
 
 
-def handlerequest(request):
-    form = request.POST
-    response_dict = {}
-    for i in form.keys():
-        response_dict[i] = form[i]
-        if i == 'CHECKSUMHASH':
-            checksum = form[i]
-
-    registration = Registration.objects.get(
-        registration_id=response_dict['ORDERID'])
-
-    verify = Checksum.verify_checksum(response_dict, "MerchantKey", checksum)
-    if verify:
-        registration.txn_id = str(response_dict['TXNID'])
-        registration.txn_date = str(response_dict['TXNDATE'])
-        registration.txn_amount = str(response_dict['TXNAMOUNT'])
-        registration.txn_status = str(response_dict['STATUS'])
-        registration.txn_msg = str(response_dict['RESPMSG'])
-        registration.save()
-        return render(request, 'user/paymentstatus.html',
-                      {'response': response_dict, 'registration': registration})
-    return render(request, 'index.html')
+@csrf_exempt
+def payment_success(request):
+    if request.method =="POST":
+        print(request.POST)
+        return HttpResponse("Done payment hurrey!")
 
 
 def bookings(request):
