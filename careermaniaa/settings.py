@@ -14,7 +14,8 @@ from os import environ
 from pathlib import Path
 import dj_database_url  # for heroku database
 from smtplib import SMTP_SSL    # for e-mail service
-
+from dotenv import load_dotenv
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -161,9 +162,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = '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'
+EMAIL_HOST_PASSWORD = environ['SENDGRID_API']
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'sagaryadav.careermaniaa@gmail.com'
+DEFAULT_FROM_EMAIL = environ['SENDGRID_FROM_EMAIL']
 
 SITE_ID = 1
 

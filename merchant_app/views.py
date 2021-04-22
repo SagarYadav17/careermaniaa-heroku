@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from mania.models import *
 from merchant_app.models import *
 
+from os import environ
+
 from django.db import IntegrityError
 
 from django.contrib.sites.shortcuts import get_current_site
@@ -29,6 +31,9 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
 
+from dotenv import load_dotenv
+load_dotenv()
+
 
 def merchant_view(request):
     faqs = FAQ.objects.all()
@@ -50,7 +55,7 @@ def send_confirmation_email(request, user):
     email_message = EmailMessage(
         'Activate Your Account',
         message,
-        'sagaryadav.careermaniaa@gmail.com',
+        environ['SENDGRID_FROM_EMAIL'],
         [user.email],
     )
 

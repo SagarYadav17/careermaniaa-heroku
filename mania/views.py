@@ -5,6 +5,8 @@ from django.shortcuts import render, redirect
 import os
 import razorpay
 
+from django.views.decorators.csrf import csrf_exempt
+
 from mania.models import *
 from merchant_app.models import *
 
@@ -24,6 +26,9 @@ from django.views import View
 
 from django.contrib.auth.decorators import login_required
 
+from dotenv import load_dotenv
+load_dotenv()
+
 
 def send_confirmation_email(request, user):
     current_site = get_current_site(request)
@@ -39,7 +44,7 @@ def send_confirmation_email(request, user):
     email_message = EmailMessage(
         'Activate Your Account',
         message,
-        'sagaryadav.careermaniaa@gmail.com',
+        os.environ['SENDGRID_FROM_EMAIL'],
         [user.email],
     )
 
@@ -58,7 +63,7 @@ def add_forms_mail(request, user):
     email_message = EmailMessage(
         email_subject,
         message,
-        'sagaryadav.careermaniaa@gmail.com',
+        os.environ['SENDGRID_FROM_EMAIL'],
         [user.email],
     )
 
@@ -317,6 +322,7 @@ def wishlist(request):
     else:
         return redirect('login_user')
 
+
 @login_required(login_url='user/login')
 def add_to_wishlist(request, id):
     if request.user in list(User.objects.all()):
@@ -360,8 +366,6 @@ def search(request):
     return render(request, 'user/search.html', {'courses': courses})
 
 
-from django.views.decorators.csrf import csrf_exempt
-
 def payment(request, id):
     if request.user in User.objects.all():
         user = request.user
@@ -370,16 +374,18 @@ def payment(request, id):
         amount = int(fees)
         registration = Registration(user=user, course=course, fees=str(fees))
         registration.save()
-        client = razorpay.Client(auth=(os.getenv('razorpaykey'), os.getenv('razorpaysecret')))
-        response = client.order.create({'amount':amount,'currency':'INR','payment_capture':1})
+        client = razorpay.Client(
+            auth=(os.getenv('razorpaykey'), os.getenv('razorpaysecret')))
+        response = client.order.create(
+            {'amount': amount, 'currency': 'INR', 'payment_capture': 1})
         print(response)
-        context = {'response':response}
-        return render(request,"user/payment.html",context)
+        context = {'response': response}
+        return render(request, "user/payment.html", context)
 
 
 @csrf_exempt
 def payment_success(request):
-    if request.method =="POST":
+    if request.method == "POST":
         print(request.POST)
         return HttpResponse("Done payment hurrey!")
 
