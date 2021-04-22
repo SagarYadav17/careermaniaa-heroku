@@ -2,12 +2,13 @@
 {% load static %}
 {% block content %}
 <!--hero-slider-->
-<div class="image-cover hero_banner hero-inner-2 shadow rlt" style="background:url({% static 'user_assets_new/img/banner-2.jpg' %}) no-repeat;" data-overlay="7">
+<div class="image-cover hero_banner hero-inner-2 shadow rlt"
+  style="background:url({% static 'user_assets_new/img/banner-2.jpg' %}) no-repeat;" data-overlay="7">
   <div class="elix_img_box">
     <img src="{% static 'user_assets_new/img/preet-o.html' %}" class="img-fluid" alt="" />
   </div>
   <div class="container">
-    
+
     <div class="hero-caption small_wd mb-5">
       <h1 class="big-header-capt cl_2 mb-0">Learn on your schedule</h1>
       <p>Study any topic, anytime. Explore thousands of courses for the lowest price ever!</p>
@@ -18,43 +19,43 @@
         <div class="banner-search shadow_high">
           <div class="search_hero_wrapping">
             <form action="search" method="POST">{% csrf_token %}
-            <div class="row">
-            
-              <div class="col-lg-5 col-md-5 col-sm-12 br-right">
-                <div class="form-group">
-                  <div class="input-with-icon">
-                    <input type="text" class="form-control" placeholder="Search Course" name="keyword"/>
-                    <img src="{% static 'user_assets_new/img/search.svg' %}" class="search-icon" alt="" />
+              <div class="row">
+
+                <div class="col-lg-5 col-md-5 col-sm-12 br-right">
+                  <div class="form-group">
+                    <div class="input-with-icon">
+                      <input type="text" class="form-control" placeholder="Search Course" name="keyword" />
+                      <img src="{% static 'user_assets_new/img/search.svg' %}" class="search-icon" alt="" />
+                    </div>
                   </div>
                 </div>
-              </div>
-              
-              <div class="col-lg-5 col-md-4 col-sm-12 small-pad">
-                <div class="form-group">
-                  <div class="input-with-icon">
-                    <select id="c-category" class="form-control" name="city">
-                      <option value="">&nbsp;</option>
-                      {% if loc %}
-                      <option value="{{loc}}">Current Location: {{loc}}</option>
-                      {% endif %}
-                      <option value="Nagpur">Nagpur</option>
-                      <option value="Delhi">Delhi</option>
-                      <option value="Mumbai">Mumbai</option>
-                      <option value="Pune">Pune</option>
-                      <option value="Chandigadh">Chandigadh</option>
-                    </select>
-                    <img src="{% static 'user_assets_new/img/pin.svg' %}" class="search-icon" alt="" />
+
+                <div class="col-lg-5 col-md-4 col-sm-12 small-pad">
+                  <div class="form-group">
+                    <div class="input-with-icon">
+                      <select id="c-category" class="form-control" name="city">
+                        <option value="">&nbsp;</option>
+                        {% if loc %}
+                        <option value="{{loc}}">Current Location: {{loc}}</option>
+                        {% endif %}
+                        <option value="Nagpur">Nagpur</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Pune">Pune</option>
+                        <option value="Chandigadh">Chandigadh</option>
+                      </select>
+                      <img src="{% static 'user_assets_new/img/pin.svg' %}" class="search-icon" alt="" />
+                    </div>
                   </div>
                 </div>
-              </div>
-              
-              <div class="col-lg-2 col-md-3 col-sm-12 pl-0">
-                <div class="form-group none">
-                  <input type="submit" class="btn search-btn full-width" value="Search">
+
+                <div class="col-lg-2 col-md-3 col-sm-12 pl-0">
+                  <div class="form-group none">
+                    <input type="submit" class="btn search-btn full-width" value="Search">
+                  </div>
                 </div>
+
               </div>
-              
-            </div>
             </form>
           </div>
         </div>
@@ -69,7 +70,7 @@
   <div class="container">
     <div class="trips_wrap">
       <div class="row m-0">
-      
+
         <div class="col-lg-4 col-md-4 col-sm-12">
           <div class="trips">
             <div class="trips_icons">
@@ -81,7 +82,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="col-lg-4 col-md-4 col-sm-12">
           <div class="trips">
             <div class="trips_icons">
@@ -93,7 +94,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="col-lg-4 col-md-4 col-sm-12">
           <div class="trips none">
             <div class="trips_icons">
@@ -105,7 +106,7 @@
             </div>
           </div>
         </div>
-        
+
       </div>
     </div>
   </div>
@@ -115,7 +116,7 @@
 <!-- ============================ Featured Courcses Start ================================== -->
 <section>
   <div class="container">
-    
+
     <div class="row justify-content-center">
       <div class="col-lg-12 col-md-12 mb-3">
         <div class="sec-heading2">
@@ -125,20 +126,20 @@
           <div class="sec-right">
             <ul class="nav nav-tabs side-cates">
               <li class="nav-item">
-              <a class="nav-link active" href="javascript:void(0);">Science</a>
+                <a class="nav-link active" href="javascript:void(0);">Science</a>
               </li>
               <li class="nav-item">
-              <a class="nav-link" href="javascript:void(0);">Commerce</a>
+                <a class="nav-link" href="javascript:void(0);">Commerce</a>
               </li>
               <li class="nav-item">
-              <a class="nav-link" href="javascript:void(0);">Humanities</a>
+                <a class="nav-link" href="javascript:void(0);">Humanities</a>
               </li>
             </ul>
           </div>
         </div>
       </div>
     </div>
-    
+
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 p-0">
 
@@ -150,16 +151,17 @@
             <div class="education_block_grid style_2">
               <div class="education_block_thumb n-shadow">
                 {% if course.coaching.logo %}
-                <a href="{% url 'product' id=course.id %}"><img src="{{course.coaching.logo.url}}" class="img-fluid" alt=""></a>
+                <a href="{% url 'product' id=course.id %}"><img src="{{course.coaching.logo.url}}" class="img-fluid"
+                    alt=""></a>
                 {% endif %}
                 <div class="cources_price">INR {{course.fees}}</div>
               </div>
-              
+
               <div class="education_block_body">
                 <h4 class="bl-title"><a href="{% url 'product' id=course.id %}">{{course.name}}</a></h4>
                 <p>{{course.description}}</p>
               </div>
-              
+
               <div class="cources_info_style3">
                 <ul>
                   <li><i class="ti-eye mr-2"></i>8682 Views</li>
@@ -167,28 +169,33 @@
                   <li><i class="ti-star text-warning mr-2"></i>4.7 Reviews</li>
                 </ul>
               </div>
-              
+
               <div class="education_block_footer">
                 <div class="education_block_author">
                   {% if course.coaching.logo %}
-                  <div class="path-img"><a href="{% url 'product' id=course.id %}"><img src="{{course.coaching.logo.url}}" class="img-fluid" alt=""></a></div>
+                  <div class="path-img"><a href="{% url 'product' id=course.id %}"><img
+                        src="{{course.coaching.logo.url}}" class="img-fluid" alt=""></a></div>
 
                   {% endif %}
                   <h5><a href="{% url 'product' id=course.id %}">{{course.coaching.name}}</a></h5>
                 </div>
-                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i><a href="{% url 'payment' %}"><button class="btn btn-success">Book Now</button></a></div>
+                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i><a
+                    href="{% url 'payment' id=course.id %}"><button class="btn btn-success">Book Now</button></a></div>
               </div>
-              <center><a href="{% url 'add_to_cart' id=course.id %}"><button class="btn btn-warning" style="margin:5px">ADD TO CART</button></a>
-                <a href="{% url 'add_to_wishlist' id=course.id %}"><button class="btn btn-info" style="margin:5px">ADD TO Wishlist</button></a></center>
-            </div>	
+              <center><a href="{% url 'add_to_cart' id=course.id %}"><button class="btn btn-warning"
+                    style="margin:5px">ADD TO CART</button></a>
+                <a href="{% url 'add_to_wishlist' id=course.id %}"><button class="btn btn-info" style="margin:5px">ADD
+                    TO Wishlist</button></a>
+              </center>
+            </div>
           </div>
           {% endfor %}
-        
+
         </div>
       </div>
 
     </div>
-    
+
   </div>
 </section>
 <!-- ============================ Featured Courcses End ================================== -->
@@ -196,7 +203,7 @@
 <!-- ============================ Featured Category Start ================================== -->
 <section class="bg-light">
   <div class="container">
-    
+
     <div class="row justify-content-center">
       <div class="col-lg-12 col-md-12 mb-3">
         <div class="sec-heading2">
@@ -209,28 +216,29 @@
         </div>
       </div>
     </div>
-    
+
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 p-0">
 
         <div class="arrow_slide three_slide-dots arrow_middle">
-          
+
           <!-- Single Slide -->
           {% for course in science_courses %}
           <div class="singles_items">
             <div class="education_block_grid style_2">
               <div class="education_block_thumb n-shadow">
                 {% if course.coaching.logo %}
-                <a href="{% url 'product' id=course.id %}"><img src="{{course.coaching.logo.url}}" class="img-fluid" alt=""></a>
+                <a href="{% url 'product' id=course.id %}"><img src="{{course.coaching.logo.url}}" class="img-fluid"
+                    alt=""></a>
                 {% endif %}
                 <div class="cources_price">INR {{course.fees}}</div>
               </div>
-              
+
               <div class="education_block_body">
                 <h4 class="bl-title"><a href="{% url 'product' id=course.id %}">{{course.name}}</a></h4>
                 <p>{{course.description}}</p>
               </div>
-              
+
               <div class="cources_info_style3">
                 <ul>
                   <li><i class="ti-eye mr-2"></i>8682 Views</li>
@@ -238,26 +246,29 @@
                   <li><i class="ti-star text-warning mr-2"></i>4.7 Reviews</li>
                 </ul>
               </div>
-              
+
               <div class="education_block_footer">
                 <div class="education_block_author">
                   {% if course.coaching.logo %}
-                  <div class="path-img"><a href="{% url 'product' id=course.id %}"><img src="{{course.coaching.logo.url}}" class="img-fluid" alt=""></a></div>
+                  <div class="path-img"><a href="{% url 'product' id=course.id %}"><img
+                        src="{{course.coaching.logo.url}}" class="img-fluid" alt=""></a></div>
                   {% endif %}
                   <h5><a href="{% url 'product' id=course.id %}">{{course.coaching.name}}</a></h5>
                 </div>
-                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i><a href="{% url 'payment' %}"><button class="btn btn-success">Book Now</button></a></div>
+                <div class="foot_lecture"><i class="ti-control-skip-forward mr-2"></i><a
+                    href="{% url 'payment' id=course.id %}"><button class="btn btn-success">Book Now</button></a></div>
               </div>
-              <center><a href="{% url 'add_to_cart' id=course.id %}"><button class="btn btn-warning" style="margin:5px">ADD TO CART</button></a></center>
-            </div>	
+              <center><a href="{% url 'add_to_cart' id=course.id %}"><button class="btn btn-warning"
+                    style="margin:5px">ADD TO CART</button></a></center>
+            </div>
           </div>
           {% endfor %}
-        
+
         </div>
       </div>
 
     </div>
-    
+
   </div>
 </section>
 <!-- ============================ Featured Category End ================================== -->
@@ -265,7 +276,7 @@
 <!-- ========================== Articles Section =============================== -->
 <section>
   <div class="container">
-  
+
     <div class="row justify-content-center">
       <div class="col-lg-12 col-md-12">
         <div class="sec-heading-flex">
@@ -273,65 +284,71 @@
         </div>
       </div>
     </div>
-    
+
     <div class="row">
-          
+
       <!-- Single Article -->
       <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="articles_grid_style">
           <div class="articles_grid_thumb">
-            <a href="blog-detail.html"><img src="{% static 'user_assets_new/img/b-1.jpg' %}" class="img-fluid" alt="" /></a>
+            <a href="blog-detail.html"><img src="{% static 'user_assets_new/img/b-1.jpg' %}" class="img-fluid"
+                alt="" /></a>
           </div>
-          
+
           <div class="articles_grid_caption">
             <h4>The National Minimum wage is an important part</h4>
             <div class="articles_grid_author">
-              <div class="articles_grid_author_img"><img src="{% static 'user_assets_new/img/user-1.jpg' %}" class="img-fluid" alt="" /></div>
+              <div class="articles_grid_author_img"><img src="{% static 'user_assets_new/img/user-1.jpg' %}"
+                  class="img-fluid" alt="" /></div>
               <h4>Adam Willsone</h4>
             </div>
           </div>
         </div>
       </div>
-      
+
       <!-- Single Article -->
       <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="articles_grid_style">
           <div class="articles_grid_thumb">
-            <a href="blog-detail.html"><img src="{% static 'user_assets_new/img/b-2.jpg' %}" class="img-fluid" alt="" /></a>
+            <a href="blog-detail.html"><img src="{% static 'user_assets_new/img/b-2.jpg' %}" class="img-fluid"
+                alt="" /></a>
           </div>
-          
+
           <div class="articles_grid_caption">
             <h4>The National Minimum wage is an important part</h4>
             <div class="articles_grid_author">
-              <div class="articles_grid_author_img"><img src="{% static 'user_assets_new/img/user-2.jpg' %}" class="img-fluid" alt="" /></div>
+              <div class="articles_grid_author_img"><img src="{% static 'user_assets_new/img/user-2.jpg' %}"
+                  class="img-fluid" alt="" /></div>
               <h4>Rikki Sen</h4>
             </div>
           </div>
         </div>
       </div>
-      
+
       <!-- Single Article -->
       <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="articles_grid_style">
           <div class="articles_grid_thumb">
-            <a href="blog-detail.html"><img src="{% static 'user_assets_new/img/b-3.jpg' %}" class="img-fluid" alt="" /></a>
+            <a href="blog-detail.html"><img src="{% static 'user_assets_new/img/b-3.jpg' %}" class="img-fluid"
+                alt="" /></a>
           </div>
-          
+
           <div class="articles_grid_caption">
             <h4>The National Minimum wage is an important part</h4>
             <div class="articles_grid_author">
-              <div class="articles_grid_author_img"><img src="{% static 'user_assets_new/img/user-3.jpg' %}" class="img-fluid" alt="" /></div>
+              <div class="articles_grid_author_img"><img src="{% static 'user_assets_new/img/user-3.jpg' %}"
+                  class="img-fluid" alt="" /></div>
               <h4>Daniel Wikjones</h4>
             </div>
           </div>
         </div>
       </div>
-    
+
     </div>
   </div>
 </section>
 <!-- ========================== Articles Section =============================== -->
-      
+
 
 {% endblock %}
 {% include 'user/footer.html' %}
