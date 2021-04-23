@@ -138,7 +138,8 @@
               {% if loc %}
               <li><a>Your Location: {{loc}}</a></li>
               {% else %}
-              <li><button style="margin-top: 20px;margin-left:7px;" class="btn btn-info" onclick="get_loc()">Get Location</button></li>
+              <li><button style="margin-top: 20px;margin-left:7px;" class="btn btn-info" onclick="get_loc()">Get
+                  Location</button></li>
               {% endif %}
             </ul>
           </div>
@@ -158,6 +159,9 @@
     <script src="{% static 'user_assets_new/js/jquery.counterup.min.js' %}"></script>
     <script src="{% static 'user_assets_new/js/counterup.min.js' %}"></script>
     <script src="{% static 'user_assets_new/js/custom.js' %}"></script>
+
+    <script
+      type="text/javascript">!function (t, e) { t.artibotApi = { l: [], t: [], on: function () { this.l.push(arguments) }, trigger: function () { this.t.push(arguments) } }; var a = !1, i = e.createElement("script"); i.async = !0, i.type = "text/javascript", i.src = "https://app.artibot.ai/loader.js", e.getElementsByTagName("head").item(0).appendChild(i), i.onreadystatechange = i.onload = function () { if (!(a || this.readyState && "loaded" != this.readyState && "complete" != this.readyState)) { new window.ArtiBot({ i: "7f932f0a-ca00-45c9-85c5-f1d8526d886f" }); a = !0 } } }(window, document);</script>
 </body>
 
 </html>
