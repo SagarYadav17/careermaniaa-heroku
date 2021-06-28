@@ -1,1 +1,0 @@
-web: gunicorn careermaniaa.wsgi --log-file -
