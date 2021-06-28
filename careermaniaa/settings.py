@@ -28,7 +28,7 @@ SECRET_KEY = '@dzi+31^t3razs3q73(g+j80ce9sz0i@lsr+ia%yi_v1%p_jb-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['careermaniaa.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['careermaniaa.com', 'www.careermaniaa.com']
 
 
 # Application definition
